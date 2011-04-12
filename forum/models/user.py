@@ -292,6 +292,13 @@ class User(BaseModel, DjangoUser):
         return self == comment.author or self.reputation >= int(settings.REP_TO_DELETE_COMMENTS)
 
     def can_convert_comment_to_answer(self, comment):
+        # We need to know what is the comment parent node type.
+        comment_parent_type = comment.parent.node_type
+
+        # If the parent is not a question or an answer this comment cannot be converted to an answer.
+        if comment_parent_type != "question" and comment_parent_type != "answer":
+            return False
+
         return (comment.parent.node_type in ('question', 'answer')) and (self.is_superuser or self.is_staff or (
             self == comment.author) or (self.reputation >= int(settings.REP_TO_CONVERT_COMMENTS_TO_ANSWERS)))
 

@@ -264,7 +264,8 @@ def comment(request, id):
                 id, comment.id, comment.comment, user.decorated_name, user.get_profile_url(),
                 reverse('delete_comment', kwargs={'id': comment.id}),
                 reverse('node_markdown', kwargs={'id': comment.id}),
-                reverse('convert_comment', kwargs={'id': comment.id}),            
+                reverse('convert_comment', kwargs={'id': comment.id}),
+                user.can_convert_comment_to_answer(comment),
                 ]
         }
         }

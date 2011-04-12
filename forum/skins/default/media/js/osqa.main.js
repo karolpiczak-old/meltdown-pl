@@ -75,7 +75,7 @@ var response_commands = {
         alert('ok');
     },
 
-    insert_comment: function(post_id, comment_id, comment, username, profile_url, delete_url, edit_url, convert_url) {
+    insert_comment: function(post_id, comment_id, comment, username, profile_url, delete_url, edit_url, convert_url, can_convert) {
         var $container = $('#comments-container-' + post_id);
         var skeleton = $('#new-comment-skeleton-' + post_id).html().toString();
 
@@ -88,6 +88,11 @@ var response_commands = {
                 .replace(new RegExp('%CONVERT_URL%', 'g'), convert_url);
 
         $container.append(skeleton);
+
+        // Show the convert comment to answer tool only if the current comment can be converted
+        if (can_convert == true) {
+            $('#comment-' + comment_id + '-convert').show();
+        }
 
         $('#comment-' + comment_id).slideDown('slow');
     },
