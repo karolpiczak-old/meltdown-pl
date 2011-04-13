@@ -108,7 +108,7 @@ def tag(request, tag):
         raise Http404
 
     # Getting the questions QuerySet
-    questions = Question.objects.filter(tags__name=smart_unicode(tag.name))
+    questions = Question.objects.filter(tags__id=tag.id)
 
     if request.method == "GET":
         user = request.GET.get('user', None)
