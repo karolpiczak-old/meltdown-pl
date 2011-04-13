@@ -27,7 +27,7 @@ class Tag(BaseModel):
         app_label = 'forum'
 
     def __unicode__(self):
-        return smart_unicode(self.name)
+        return unicode(self.name)
 
     def add_to_usage_count(self, value):
         if self.used_count + value < 0:

@@ -162,7 +162,7 @@ class CachedQuerySet(models.query.QuerySet):
                     yield row
 
     def _get_query_hash(self):
-        return md5(str(self.query)).hexdigest()
+        return md5(unicode(self.query).encode("utf-8")).hexdigest()
 
 
 

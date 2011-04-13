@@ -382,10 +382,10 @@ class Node(BaseModel, NodeContent):
             return None
         else:
             if self._original_state['tagnames']:
-                old_tags = set(name for name in self._original_state['tagnames'].split(u' '))
+                old_tags = set(self._original_state['tagnames'].split())
             else:
                 old_tags = set()
-            new_tags = set(name for name in self.tagnames.split(u' ') if name)
+            new_tags = set(self.tagnames.split())
 
             return dict(
                     current=list(new_tags),
