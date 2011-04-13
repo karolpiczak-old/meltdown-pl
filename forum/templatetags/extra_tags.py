@@ -7,7 +7,7 @@ import re
 import logging
 import random
 from django import template
-from django.utils.encoding import smart_unicode
+from django.utils.encoding import smart_unicode, force_unicode, smart_str
 from django.utils.safestring import mark_safe
 from django.utils import dateformat
 from forum.models import Question, Answer, QuestionRevision, AnswerRevision, NodeRevision
@@ -278,10 +278,15 @@ class DeclareNode(template.Node):
                 d['os'] = os
                 d['html'] = html
                 d['reverse'] = reverse
+                d['smart_str'] = smart_str
+                d['smart_unicode'] = smart_unicode
+                d['force_unicode'] = force_unicode
                 for c in clist:
                     d.update(c)
                 try:
-                    context[m.group(1).strip()] = eval(m.group(3).strip(), d)
+                    command = m.group(3).strip()
+                    logging.error(command)
+                    context[m.group(1).strip()] = eval(command, d)
                 except Exception, e:
                     logging.error("Error in declare tag, when evaluating: %s" % m.group(3).strip())
                     raise

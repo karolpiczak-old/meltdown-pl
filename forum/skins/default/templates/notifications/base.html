@@ -1,8 +1,8 @@
 {% load extra_filters extra_tags i18n email_tags %}
 
 {% declare %}
-    p_style = settings.EMAIL_PARAGRAPH_STYLE
-    a_style = settings.EMAIL_ANCHOR_STYLE
+    p_style = smart_str(settings.EMAIL_PARAGRAPH_STYLE)
+    a_style = smart_str(settings.EMAIL_ANCHOR_STYLE)
     hr_style = "color:#ccc;border:0;height:1px;background-color:#ccc;margin-bottom:20px;"
     small_style = "color:#333333;font-family:'Lucida Grande', Trebuchet, Helvetica, sans-serif;font-size:12px;"
     table_style = "border:20px %s solid;margin:10px auto 10px auto;width:750px;text-align:left;" % settings.EMAIL_BORDER_COLOR

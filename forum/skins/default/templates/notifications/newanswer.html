@@ -1,15 +1,15 @@
 {% load i18n extra_tags email_tags %}
 
 {% declare %}
-    prefix = html.mark_safe(settings.EMAIL_SUBJECT_PREFIX)
-    app_name = settings.APP_SHORT_NAME
-    safe_app_name = html.mark_safe(settings.APP_SHORT_NAME)
-    answer_author = html.mark_safe(answer.author.username)
-    question = answer.question
-    question_title = html.mark_safe(question.title)
-    safe_body = html.html2text(answer.html)
-    author_link = html.objlink(answer.author, style=settings.EMAIL_ANCHOR_STYLE)
-    question_link = html.objlink(question, style=settings.EMAIL_ANCHOR_STYLE)
+    prefix = smart_str(html.mark_safe(settings.EMAIL_SUBJECT_PREFIX))
+    app_name = smart_str(settings.APP_SHORT_NAME)
+    safe_app_name = smart_str(html.mark_safe(settings.APP_SHORT_NAME))
+    answer_author = smart_str(html.mark_safe(answer.author.username))
+    question = smart_str(answer.question)
+    question_title = smart_str(html.mark_safe(question.title))
+    safe_body = smart_str(html.html2text(answer.html))
+    author_link = smart_str(html.objlink(answer.author, style=settings.EMAIL_ANCHOR_STYLE))
+    question_link = smart_str(html.objlink(question, style=settings.EMAIL_ANCHOR_STYLE))
 {% enddeclare %}
 
 {% email %}

@@ -1,17 +1,17 @@
 {% load i18n extra_tags email_tags %}
 
 {% declare %}
-    prefix = html.mark_safe(settings.EMAIL_SUBJECT_PREFIX)
-    app_name = settings.APP_SHORT_NAME
-    safe_app_name = html.mark_safe(settings.APP_SHORT_NAME)
-    question_author = html.mark_safe(question.author.username)
-    question_url = settings.APP_URL + question.get_absolute_url()
-    question_title = html.mark_safe(question.title)
-    question_tags = html.mark_safe(question.tagnames)
-    safe_body = html.html2text(question.html)
-    author_link = html.objlink(question.author, style=settings.EMAIL_ANCHOR_STYLE)
-    question_link = html.objlink(question, style=settings.EMAIL_ANCHOR_STYLE)
-    tag_links = html.mark_safe(" ".join([html.objlink(t, style=settings.EMAIL_ANCHOR_STYLE) for t in question.tags.all()]))
+    prefix = html.mark_safe(smart_str(settings.EMAIL_SUBJECT_PREFIX))
+    app_name = smart_str(settings.APP_SHORT_NAME)
+    safe_app_name = html.mark_safe(smart_str(settings.APP_SHORT_NAME))
+    question_author = html.mark_safe(smart_str(question.author.username))
+    question_url = smart_str(settings.APP_URL + question.get_absolute_url())
+    question_title = html.mark_safe(smart_str(question.title))
+    question_tags = html.mark_safe(smart_str(question.tagnames))
+    safe_body = html.html2text(smart_str(question.html))
+    author_link = html.objlink(smart_str(question.author), style=settings.EMAIL_ANCHOR_STYLE)
+    question_link = html.objlink(smart_str(question), style=settings.EMAIL_ANCHOR_STYLE)
+    tag_links = html.mark_safe(smart_str(" ".join([html.objlink(t, style=settings.EMAIL_ANCHOR_STYLE) for t in question.tags.all()])))
 {% enddeclare %}
 
 {% email %}

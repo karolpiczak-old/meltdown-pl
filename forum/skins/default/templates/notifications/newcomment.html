@@ -1,16 +1,16 @@
 {% load i18n extra_tags email_tags %}
 
 {% declare %}
-    prefix = html.mark_safe(settings.EMAIL_SUBJECT_PREFIX)
+    prefix = html.mark_safe(smart_str(settings.EMAIL_SUBJECT_PREFIX))
     post = comment.parent
     question = post.question and post.question or post
-    post_author = post.author.username
-    safe_post_author = html.mark_safe(post.author.username)
-    comment_author = html.mark_safe(comment.author)
-    question_title = html.mark_safe(question.title)
-    safe_body = html.html2text(comment.comment)
-    author_link = html.objlink(comment.author, style=settings.EMAIL_ANCHOR_STYLE)
-    question_link = html.objlink(question, style=settings.EMAIL_ANCHOR_STYLE)
+    post_author = smart_str(post.author.username)
+    safe_post_author = html.mark_safe(smart_str(post.author.username))
+    comment_author = html.mark_safe(smart_str(comment.author))
+    question_title = html.mark_safe(smart_str(question.title))
+    safe_body = html.html2text(smart_str(comment.comment))
+    author_link = html.objlink(smart_str(comment.author), style=settings.EMAIL_ANCHOR_STYLE)
+    question_link = html.objlink(smart_str(question), style=settings.EMAIL_ANCHOR_STYLE)
 {% enddeclare %}
 
 {% email %}

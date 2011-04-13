@@ -1,14 +1,14 @@
 {% load i18n extra_tags email_tags %}
 
 {% declare %}
-    prefix = html.mark_safe(settings.EMAIL_SUBJECT_PREFIX)
-    app_name = settings.APP_SHORT_NAME
-    safe_app_name = html.mark_safe(settings.APP_SHORT_NAME)
-    app_url = settings.APP_URL
-    newmember_name = newmember.username
-    safe_newmember_name = html.mark_safe(newmember.username)
-    newmember_url = newmember.get_profile_url()
-    newmember_link = html.objlink(newmember, style=settings.EMAIL_ANCHOR_STYLE)
+    prefix = html.mark_safe(smart_str(settings.EMAIL_SUBJECT_PREFIX))
+    app_name = smart_str(settings.APP_SHORT_NAME)
+    safe_app_name = html.mark_safe(smart_str(settings.APP_SHORT_NAME))
+    app_url = smart_str(settings.APP_URL)
+    newmember_name = smart_str(newmember.username)
+    safe_newmember_name = html.mark_safe(smart_str(newmember.username))
+    newmember_url = smart_str(newmember.get_profile_url())
+    newmember_link = html.objlink(smart_str(newmember), style=settings.EMAIL_ANCHOR_STYLE)
 {% enddeclare %}
 
 {% email %}

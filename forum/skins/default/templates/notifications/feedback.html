@@ -1,8 +1,8 @@
 {% load i18n extra_tags email_tags %}
 
 {% declare %}
-    prefix = html.mark_safe(settings.EMAIL_SUBJECT_PREFIX)
-    app_name = html.mark_safe(settings.APP_SHORT_NAME)
+    prefix = smart_str(settings.EMAIL_SUBJECT_PREFIX)
+    app_name = smart_str(settings.APP_SHORT_NAME)
 
     exclude_greeting = True
     exclude_finetune = True
