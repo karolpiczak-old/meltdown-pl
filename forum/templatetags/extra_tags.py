@@ -285,7 +285,6 @@ class DeclareNode(template.Node):
                     d.update(c)
                 try:
                     command = m.group(3).strip()
-                    logging.error(command)
                     context[m.group(1).strip()] = eval(command, d)
                 except Exception, e:
                     logging.error("Error in declare tag, when evaluating: %s" % m.group(3).strip())
