@@ -9,8 +9,8 @@
     comment_author = html.mark_safe(smart_str(comment.author))
     question_title = html.mark_safe(smart_str(question.title))
     safe_body = html.html2text(smart_str(comment.comment))
-    author_link = html.objlink(smart_str(comment.author), style=settings.EMAIL_ANCHOR_STYLE)
-    question_link = html.objlink(smart_str(question), style=settings.EMAIL_ANCHOR_STYLE)
+    author_link = html.objlink(comment.author, style=settings.EMAIL_ANCHOR_STYLE)
+    question_link = html.objlink(question, style=settings.EMAIL_ANCHOR_STYLE)
 {% enddeclare %}
 
 {% email %}

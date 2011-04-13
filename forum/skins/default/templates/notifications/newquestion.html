@@ -9,8 +9,8 @@
     question_title = html.mark_safe(smart_str(question.title))
     question_tags = html.mark_safe(smart_str(question.tagnames))
     safe_body = html.html2text(smart_str(question.html))
-    author_link = html.objlink(smart_str(question.author), style=settings.EMAIL_ANCHOR_STYLE)
-    question_link = html.objlink(smart_str(question), style=settings.EMAIL_ANCHOR_STYLE)
+    author_link = html.objlink(question.author, style=settings.EMAIL_ANCHOR_STYLE)
+    question_link = html.objlink(question, style=settings.EMAIL_ANCHOR_STYLE)
     tag_links = html.mark_safe(smart_str(" ".join([html.objlink(t, style=settings.EMAIL_ANCHOR_STYLE) for t in question.tags.all()])))
 {% enddeclare %}
 

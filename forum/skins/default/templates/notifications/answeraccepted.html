@@ -6,9 +6,9 @@
     question = smart_str(answer.question)
     question_title = html.mark_safe(smart_str(question.title))
     accepted_by = html.mark_safe(smart_str(answer.nstate.accepted.by.username))
-    accepted_by_link = html.objlink(smart_str(answer.nstate.accepted.by), style=settings.EMAIL_ANCHOR_STYLE)
-    answer_author_link = html.objlink(smart_str(answer.author), style=settings.EMAIL_ANCHOR_STYLE)
-    question_link = html.objlink(smart_str(question), style=settings.EMAIL_ANCHOR_STYLE)
+    accepted_by_link = html.objlink(answer.nstate.accepted.by, style=settings.EMAIL_ANCHOR_STYLE)
+    answer_author_link = html.objlink(answer.author, style=settings.EMAIL_ANCHOR_STYLE)
+    question_link = html.objlink(question, style=settings.EMAIL_ANCHOR_STYLE)
 {% enddeclare %}
 
 {% email %}

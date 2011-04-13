@@ -8,7 +8,7 @@
     newmember_name = smart_str(newmember.username)
     safe_newmember_name = html.mark_safe(smart_str(newmember.username))
     newmember_url = smart_str(newmember.get_profile_url())
-    newmember_link = html.objlink(smart_str(newmember), style=settings.EMAIL_ANCHOR_STYLE)
+    newmember_link = html.objlink(newmember, style=settings.EMAIL_ANCHOR_STYLE)
 {% enddeclare %}
 
 {% email %}
