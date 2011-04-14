@@ -211,9 +211,15 @@ class User(BaseModel, DjangoUser):
     def get_answered_url(self):
         return ('user_questions', (), {'mode': _('answered-by'), 'user': self.id, 'slug': slugify(self.username)})
 
-    @models.permalink
     def get_subscribed_url(self):
-        return ('user_questions', (), {'mode': _('subscribed-by'), 'user': self.id, 'slug': slugify(self.username)})
+        try:
+            # Try to retrieve the Subscribed User URL.
+            url = reverse('user_questions',
+                           kwargs={'mode': _('subscribed-by'), 'user': self.id, 'slug': slugify(smart_unicode(self.username))})
+            return url
+        except Exception, e:
+            # If some Exception has been raised, don't forget to log it.
+            logging.error("Error retrieving a subscribed user URL: %s" % e)
 
     def get_profile_link(self):
         profile_link = u'<a href="%s">%s</a>' % (self.get_profile_url(), self.username)
