@@ -286,7 +286,7 @@ def user_view(template, tab_name, tab_title, tab_description, private=False, tab
         if tabbed:
             def url_getter(vu):
                 try:
-                    return reverse(fn.__name__, kwargs={'id': vu.id, 'slug': slugify(vu.username)})
+                    return reverse(fn.__name__, kwargs={'id': vu.id, 'slug': slugify(smart_unicode(vu.username))})
                 except NoReverseMatch:
                     return reverse(fn.__name__, kwargs={'id': vu.id})
 

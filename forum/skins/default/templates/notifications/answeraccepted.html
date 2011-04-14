@@ -3,7 +3,7 @@
 {% declare %}
     prefix = html.mark_safe(smart_str(settings.EMAIL_SUBJECT_PREFIX))
     answer_author = html.mark_safe(smart_str(answer.author.username))
-    question = smart_str(answer.question)
+    question = answer.question
     question_title = html.mark_safe(smart_str(question.title))
     accepted_by = html.mark_safe(smart_str(answer.nstate.accepted.by.username))
     accepted_by_link = html.objlink(answer.nstate.accepted.by, style=settings.EMAIL_ANCHOR_STYLE)
