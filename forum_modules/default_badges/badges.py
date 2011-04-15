@@ -308,7 +308,7 @@ class Necromancer(AbstractBadge):
     def award_to(self, action):
         if (action.node.node_type == "answer") and (
         action.node.added_at >= (action.node.question.added_at + timedelta(days=int(settings.NECROMANCER_DIF_DAYS)))
-        ) and (action.node.score == settings.NECROMANCER_UP_VOTES):
+        ) and (int(action.node.score) == int(settings.NECROMANCER_UP_VOTES)):
             return action.node.author
 
 class Taxonomist(AbstractBadge):
