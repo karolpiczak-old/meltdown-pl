@@ -240,9 +240,9 @@ def _paginated(request, objects, context):
             page_numbers = []
 
             if sort:
-                url_builder = lambda n: mark_safe("%s%s%s=%s&amp;%s=%s" % (base_path, url_joiner, context.SORT, sort, context.PAGE, n))
+                url_builder = lambda n: mark_safe("%s%s%s=%s&amp;%s=%s" % (escape(base_path), url_joiner, context.SORT, sort, context.PAGE, n))
             else:
-                url_builder = lambda n: mark_safe("%s%s%s=%s" % (base_path, url_joiner, context.PAGE, n))
+                url_builder = lambda n: mark_safe("%s%s%s=%s" % (escape(base_path), url_joiner, context.PAGE, n))
 
             if range_start > (context.outside_page_range + 1):
                 page_numbers.append([(n, url_builder(n)) for n in range(1, context.outside_page_range + 1)])
