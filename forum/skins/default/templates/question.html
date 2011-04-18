@@ -179,6 +179,7 @@
                 </div>
             {% endif %}
         <form id="fmanswer" action="{% url answer question.id %}" method="post">
+            {% csrf_token %}
             <div style="clear:both">
             </div>
             

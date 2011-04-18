@@ -59,7 +59,8 @@
 </div>
 <div id="main-body" class="ask-body">
     <div id="askform">
-        <form id="fmretag" action="{% url edit_question question.id %}" method="post" >
+        <form id="fmretag" action="{% url edit_question question.id %}" method="post">
+            {% csrf_token %}
             <h3>
                 {{ question.headline }}
             </h3>

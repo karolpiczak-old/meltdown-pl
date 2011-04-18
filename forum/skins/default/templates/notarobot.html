@@ -4,6 +4,7 @@
 {% block content %}
 {% comment %} this form is set up to be used in wizards {% endcomment %}
 <form name="notarobot" action="." method="POST">
+    {% csrf_token %}
     <div>
     {{form}}
     </div>

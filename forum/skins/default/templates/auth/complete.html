@@ -34,6 +34,7 @@
 
 	<div class="login">
         <form name="fregister" action="" method="POST">
+            {% csrf_token %}
             {{ form1.next }}
             <div class="form-row-vertical margin-bottom">
                 <label for="id_username">{{ form1.username.label }}</label>
@@ -81,6 +82,7 @@
     {% if form2 %}
 	<div class="login" style="display:none">
         <form name="fverify" action="{% url user_register %}" method="POST">
+            {% csrf_token %}
             {{ form2.next }}
 			<fieldset style="padding:10px">
 				<legend class="big">{% trans "Existing account" %}</legend>

@@ -9,6 +9,7 @@
 {% block admincontent %}
     <div class="module">
         <form action="" id="changelist" method="POST">
+            {% csrf_token %}
             <div class="actions">
                 {% trans "Verify:" %}
                 <input type="text" size="3" name="limit" id="filter-limit" value="5" />

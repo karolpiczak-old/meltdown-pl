@@ -6,6 +6,7 @@
     <h2>{% trans "Preferences" %}</h2>
     <div class='inline-block'>
     <form method="POST">
+        {% csrf_token %}
         <p class="message">
             {% trans "Here you can set some personal preferences." %}
         </p>

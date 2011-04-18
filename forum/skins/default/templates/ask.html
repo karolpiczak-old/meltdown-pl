@@ -94,6 +94,7 @@
 <div id="main-body" class="ask-body">
     <div id="askform">
         <form id="fmask" action="" method="post" accept-charset="utf-8">
+            {% csrf_token %}
 			{% if not request.user.is_authenticated %}
             <div class="message">
                 <span class="strong big">{% trans "You are welcome to start submitting your question anonymously." %}</span>

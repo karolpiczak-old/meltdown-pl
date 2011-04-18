@@ -25,6 +25,7 @@
     <strong>{% trans "Start new backup" %}</strong>
 </p>
 <form method="POST" action="">
+    {% csrf_token %}
     <table>
     {{ form.as_table }}
     </table>

@@ -10,6 +10,7 @@
 </p>
 <div class='inline-block'>
 <form method="POST">
+    {% csrf_token %}
     {{ form.errors }}
     <table class="form-as-table">
         <tr>

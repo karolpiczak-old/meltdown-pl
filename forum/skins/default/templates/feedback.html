@@ -12,6 +12,7 @@
 </div>
 <div class="content">
     <form method="post" action="{% url feedback %}" accept-charset="utf-8">
+        {% csrf_token %}
         {% if user.is_authenticated %}
             <p class="message">
             {% blocktrans with user.username as user_name %}

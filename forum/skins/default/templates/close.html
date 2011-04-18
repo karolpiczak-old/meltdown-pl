@@ -21,6 +21,7 @@
     </p>   
     
     <form id="fmclose" action="{% url close question.id %}" method="post" >
+        {% csrf_token %}
         <p>
             <strong>{% trans "Reasons" %}:</strong> {{ form.reason }}
         </p>

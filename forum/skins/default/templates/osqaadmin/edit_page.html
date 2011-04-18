@@ -14,6 +14,7 @@
 
 {% block admincontent %}
     <form action="" method="post" accept-charset="utf-8">
+        {% csrf_token %}
         <table style="width: 100%">
         {{ form.as_table }}
         <tr>

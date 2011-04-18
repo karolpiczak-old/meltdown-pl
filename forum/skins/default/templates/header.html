@@ -25,6 +25,7 @@
   
 	<div id="searchBar">
     <form action="{% url search %}" method="get">
+        {% csrf_token %}
         <div>
             <input type="text" class="searchInput" value="{{ keywords }}" name="q" id="keywords" />
             <input type="submit" name="Submit" value="{% trans "search" %}" class="searchBtn" />

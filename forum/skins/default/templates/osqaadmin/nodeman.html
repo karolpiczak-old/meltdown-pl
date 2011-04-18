@@ -268,6 +268,7 @@
     <div id="changelist" class="module filtered">
         <div id="toolbar">
             <form method="get" action="" id="changelist-search">
+            {% csrf_token %}
             <div>
                 <div>
                     <label><img alt="Search" src="{{ settings.ADMIN_MEDIA_PREFIX }}img/admin/icon_searchbox.png"></label>
@@ -393,18 +394,21 @@
                 {% endfor %}
             </ul>
             <form action="" method="POST">
+                {% csrf_token %}
                 <input name="filter_name" type="text" size="20" id="filter-name-box" style="color: #AAA;" value="{% trans "Filter name..." %}" />
                 <button name="save_filter" value="0" style="color: #AAA;" title="{% trans "Click to save the current filter" %}" id="save-filter-button" disabled="disabled" class="button">{% trans "Save" %}</button>
             </form>
 
             {% comment %}<h3>{% trans "Show" %}</h3>
             <form action="" method="get">
+                {% csrf_token %}
                 <div>{{ show_form.show }}</div>
                 <input type="submit" value="{% trans "Refresh" %}" />
             </form>{% endcomment %}
             </div>
         </div>
         <form id="changelist-form" method="POST" action="">
+            {% csrf_token %}
             <div class="actions">
                 <label>
                     {% trans "Action" %}:

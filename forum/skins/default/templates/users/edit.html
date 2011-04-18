@@ -34,6 +34,7 @@
 </div>
 <div id="main-body" style="width:100%;padding-top:10px">
     <form name="" action="{% url edit_user user.id %}" method="post">
+        {% csrf_token %}
         <div id="left" style="float:left;width:180px">
             {% if user.email %}
             {% gravatar user 128 %}

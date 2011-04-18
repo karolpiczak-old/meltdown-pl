@@ -12,6 +12,7 @@
 
 {% block admincontent %}
     <form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
     <input type="file" name="dump" /><br>
     {% trans "Your user id in stack exchange" %}
     <input type="test" name="owneruid" size="3" value="2" /><br />

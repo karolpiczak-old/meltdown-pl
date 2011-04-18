@@ -10,6 +10,7 @@
 </div>
 <div id="main-body" style="text-align: center; height: 400px;">
 <form action="{% url search %}" method="get">
+    {% csrf_token %}
     <div>
         <input type="text" class="searchInput" value="{{ keywords }}" name="q" id="keywords" style="width: 600px" />
         <input type="submit" name="Submit" value="{% trans "search" %}" class="searchBtn" />
