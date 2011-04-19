@@ -21,13 +21,13 @@ TLDS = ('gw', 'gu', 'gt', 'gs', 'gr', 'gq', 'gp', 'gy', 'gg', 'gf', 'ge', 'gd', 
 AUTO_LINK_RE = re.compile(r"""
     (?P<ws>.?\s*)
     (?P<url>
-        (?P<format1>
+        (?:(?P<format1>
             ((?P<protocol1>[a-z][a-z]+)://)?
             (?P<domain1>\w(?:[\w-]*\w)?\.\w(?:[\w-]*\w)?(?:\.\w(?:[\w-]*\w)?)*)
         ) | (?P<format2>
             ((?P<protocol2>[a-z][a-z]+)://)
             (?P<domain2>\w(?:[\w-]*\w)?(?:\.\w(?:[\w-]*\w)?)*)
-        )
+        ))
         (?P<port>:\d+)?
         (?P<uri>/[^\s<]*)?
     )
