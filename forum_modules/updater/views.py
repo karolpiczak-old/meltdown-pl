@@ -1,12 +1,17 @@
+import os
 import sys
+import bz2
+import urllib2, urllib
+import binascii
 
 from django import VERSION as DJANGO_VERSION
 from django.http import HttpResponse
 from django.utils.translation import ugettext as _
 from django.utils import simplejson
+from django.conf import settings
 
 from base import get_site_views, get_server_name
-from settings import SITE_KEY
+from settings import SITE_KEY, UPDATE_SERVER_URL
 from forum.settings import APP_URL, SVN_REVISION
 from forum.views.admin import admin_tools_page, admin_page
 
@@ -36,8 +41,8 @@ def updater_check(request):
     <server value="%(server_name)s" />
     <python_version value="%(python_version)s" />
     <django_version value="%(django_version)s" />
-    <database value="MySQL 5" />
-    <os value="Linux" />
+    <database value="%(database)s" />
+    <os value="%(os)s" />
 </check> """ % {
         'site_key' : SITE_KEY,
         'app_url' : APP_URL,
@@ -46,9 +51,29 @@ def updater_check(request):
         'server_name' : get_server_name(),
         'python_version' : ''.join(sys.version.splitlines()),
         'django_version' : str(DJANGO_VERSION),
+        'database' : settings.DATABASE_ENGINE,
+        'os' : str(os.uname()),
     }
-    return HttpResponse(statistics, mimetype='text/plain')
 
+    # Compress the statistics XML dump
+    statistics_compressed = bz2.compress(statistics)
 
-    json = simplejson.dumps({'name' : 'Jordan'})
-    return HttpResponse(json, mimetype='application/json')
+    # Pass the compressed statistics to the update server
+    post_data = {
+        'statistics' : binascii.b2a_base64(statistics_compressed),
+    }
+    data = urllib.urlencode(post_data)
+
+    # We simulate some browser, otherwise the server can return 403 response
+    user_agent = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_8; en-us) AppleWebKit/531.21.8 (KHTML, like Gecko) Version/4.0.4 Safari/5'
+    headers={ 'User-Agent' : user_agent,}
+
+    try:
+        check_request = urllib2.Request('%s%s' % (UPDATE_SERVER_URL, '/site_check/'), data, headers=headers)
+        check_response = urllib2.urlopen(check_request)
+        content = check_response.read()
+    except urllib2.HTTPError, error:
+        content = error.read()
+
+    json = simplejson.dumps({})
+    return HttpResponse(content, mimetype='text/html')
