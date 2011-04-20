@@ -2,6 +2,18 @@
 
 {% load i18n %}
 
+{% block adminjs %}
+{{ block.super }}
+<script type="text/javascript">
+$(function() {
+
+    $('#check_for_updates').live('click', function() {
+        alert("Ok")
+    })
+});
+</script>
+{% endblock %}
+
 {% block subtitle %}
     {% trans "Update Checker" %}
 {% endblock %}
@@ -10,5 +22,7 @@
 {% endblock %}
 
 {% block admincontent %}
+
+<a href="javascript:void(0);" id="check_for_updates" class="button">{% trans "Check for Updates" %}</a>
 
 {% endblock %}
