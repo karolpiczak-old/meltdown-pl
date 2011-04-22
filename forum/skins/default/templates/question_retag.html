@@ -7,44 +7,26 @@
         <script type="text/javascript">
         
         $().ready(function(){
-            $("#nav_questions").attr('className',"on");
-            //Tags autocomplete action
-        	$("#id_tags").autocomplete("{% url matching_tags %}", {
-                minChars: 1,
+            $("#id_tags").autocomplete("{% url matching_tags %}", {
         		matchContains: true,
                 max: 20,
                 multiple: true,
                 multipleSeparator: " ",
+                highlightItem: true,
+                scroll: true,
+                scrollHeight: 300,
         		/*formatItem: function(row, i, max) {
         			return row.n + " ("+ row.c +")";
         		},
                 formatResult: function(row, i, max){
                     return row.n;
-                } */
+                }*/
                 formatItem: function(row, i, max, value) {
                     return row[1] + " (" + row[2] + ")";
                 },
 
                 formatResult: function(row, i, max, value){
-                    return row[0];
-                }
-                
-            });
-           
-             $("#fmretag").validate({
-                rules: {
-        			tags: {
-        				required: true,
-        				maxength: 105
-        			}
-        		},
-                messages: {
-        			tags: {
-                        required: "{% trans "tags are required" %}",
-                        {% blocktrans with settings.FORM_MAX_NUMBER_OF_TAGS as max_number_of_tags and settings.FORM_MAX_LENGTH_OF_TAG as max_length_of_tags %}
-                        maxlength: "up to {{max_number_of_tags}} tags, less than {{max_length_of_tags}} characters each"
-                        {% endblocktrans %}
-                    }
+                    return row[1];
                 }
                 
             });
