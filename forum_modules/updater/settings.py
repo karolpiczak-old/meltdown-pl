@@ -1,3 +1,5 @@
+import datetime
+
 from forum.settings.base import Setting, SettingSet
 from django.utils.translation import ugettext_lazy as _
 
@@ -13,6 +15,10 @@ Use the OSQA update server recieve notifications about the latest updates.
 required=False))
 
 SITE_KEY = Setting('SITE_KEY', generate_installation_key())
+
+UPDATE_MESSAGES_XML = Setting('UPDATE_MESSAGES_XML', '')
+
+LATEST_UPDATE_DATETIME = Setting('LATEST_UPDATES_DATETIME', datetime.datetime.now())
 
 # Update server. Do not edit.
 UPDATE_SERVER_URL = 'http://192.168.0.102:8008'

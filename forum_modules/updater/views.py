@@ -13,7 +13,7 @@ from django.utils import simplejson
 from django.conf import settings
 
 from base import get_site_views, get_server_name, get_admin_emails
-from settings import SITE_KEY, UPDATE_SERVER_URL
+import settings as updater_settings
 from forum.settings import APP_URL, SVN_REVISION
 from forum.views.admin import admin_tools_page, admin_page
 
@@ -52,7 +52,7 @@ def updater_check(request):
     <os value="%(os)s" />
     %(emails)s
 </check> """ % {
-        'site_key' : SITE_KEY,
+        'site_key' : updater_settings.SITE_KEY,
         'app_url' : APP_URL,
         'svn_revision' : svn_revision,
         'site_views' : get_site_views(),
@@ -78,17 +78,20 @@ def updater_check(request):
     headers={ 'User-Agent' : user_agent,}
 
     try:
-        check_request = urllib2.Request('%s%s' % (UPDATE_SERVER_URL, '/site_check/'), data, headers=headers)
+        check_request = urllib2.Request('%s%s' % (updater_settings.UPDATE_SERVER_URL, '/site_check/'), data, headers=headers)
         check_response = urllib2.urlopen(check_request)
         content = check_response.read()
     except urllib2.HTTPError, error:
         content = error.read()
 
     # Read the messages from the Update Server
-    messages_xml_url = '%s%s' % (UPDATE_SERVER_URL, '/messages/xml/')
+    messages_xml_url = '%s%s' % (updater_settings.UPDATE_SERVER_URL, '/messages/xml/')
     messages_request = urllib2.Request(messages_xml_url, headers=headers)
     messages_response = urllib2.urlopen(messages_request)
     messages_xml = messages_response.read()
+
+    # Store the messages XML in a Setting object
+    updater_settings.UPDATE_MESSAGES_XML.set_value(messages_xml)
 
     messages_dom = parseString(messages_xml)
     messages_count = len(messages_dom.getElementsByTagName('message'))

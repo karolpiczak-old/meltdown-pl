@@ -7,7 +7,12 @@ from django.conf import settings as djsettings
 from django.utils.version import get_svn_revision
 
 OSQA_VERSION = "Development Build"
+
 SVN_REVISION = get_svn_revision(djsettings.SITE_SRC_ROOT)
+
+# We'll have to keep in mind this variable on every release.
+if SVN_REVISION == u'SVN-unknown':
+    SVN_REVISION = u'SVN-1000'
 
 MAINTAINANCE_MODE = Setting('MAINTAINANCE_MODE', None)
 
