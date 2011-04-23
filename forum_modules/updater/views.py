@@ -4,6 +4,8 @@ import bz2
 import urllib2, urllib
 import binascii
 
+from xml.dom.minidom import parse, parseString
+
 from django import VERSION as DJANGO_VERSION
 from django.http import HttpResponse
 from django.utils.translation import ugettext as _
@@ -75,5 +77,13 @@ def updater_check(request):
     except urllib2.HTTPError, error:
         content = error.read()
 
-    json = simplejson.dumps({})
-    return HttpResponse(content, mimetype='text/html')
+    # Read the messages from the Update Server
+    messages_xml_url = '%s%s' % (UPDATE_SERVER_URL, '/messages/xml/')
+    messages_request = urllib2.Request(messages_xml_url, headers=headers)
+    messages_response = urllib2.urlopen(messages_request)
+    messages_xml = messages_response.read()
+
+    messages_dom = parseString(messages_xml)
+    messages_count = len(messages_dom.getElementsByTagName('message'))
+
+    return HttpResponse(_('%d update messages have been downloaded') % messages_count, mimetype='text/html')
