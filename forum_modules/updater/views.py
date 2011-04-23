@@ -12,7 +12,7 @@ from django.utils.translation import ugettext as _
 from django.utils import simplejson
 from django.conf import settings
 
-from base import get_site_views, get_server_name
+from base import get_site_views, get_server_name, get_admin_emails
 from settings import SITE_KEY, UPDATE_SERVER_URL
 from forum.settings import APP_URL, SVN_REVISION
 from forum.views.admin import admin_tools_page, admin_page
@@ -34,6 +34,11 @@ def updater_check(request):
         # Here we'll have to find another way of getting the SVN revision
         svn_revision = 0
 
+    admin_emails_xml = '<emails>'
+    for email in get_admin_emails():
+        admin_emails_xml += '<email value="%s" />' % email
+    admin_emails_xml += '</emails>'
+
     statistics = """<check>
     <key value="%(site_key)s" />
     <app_url value="%(app_url)s" />
@@ -45,6 +50,7 @@ def updater_check(request):
     <django_version value="%(django_version)s" />
     <database value="%(database)s" />
     <os value="%(os)s" />
+    %(emails)s
 </check> """ % {
         'site_key' : SITE_KEY,
         'app_url' : APP_URL,
@@ -55,6 +61,7 @@ def updater_check(request):
         'django_version' : str(DJANGO_VERSION),
         'database' : settings.DATABASE_ENGINE,
         'os' : str(os.uname()),
+        'emails' : admin_emails_xml,
     }
 
     # Compress the statistics XML dump

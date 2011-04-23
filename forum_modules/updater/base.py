@@ -4,7 +4,7 @@ import re
 
 import urllib2
 
-from forum.models import Question
+from forum.models import Question, User
 from forum.settings import APP_URL
 
 def generate_installation_key():
@@ -38,3 +38,11 @@ def get_server_name():
         return server_name
     except:
         return 'Unknown'
+
+def get_admin_emails():
+    emails = []
+
+    for user in User.objects.filter(is_superuser=True):
+        emails.append(user.email)
+
+    return emails
