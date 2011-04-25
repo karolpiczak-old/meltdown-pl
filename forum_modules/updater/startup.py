@@ -4,21 +4,20 @@ import logging
 import settings
 
 from xml.dom.minidom import parse, parseString
-
 from forum.modules import ui, decorate
 from forum.settings import SVN_REVISION
 from django.contrib.auth.middleware import AuthenticationMiddleware
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.encoding import smart_str
 
-# Trigger the update process
-now = datetime.datetime.now()
-if (now - settings.LATEST_UPDATE_DATETIME) > datetime.timedelta(days=1):
-    pass
+from base import update_trigger
 
 # Update the user messages
 @decorate.result(AuthenticationMiddleware.process_request, needs_params=True)
 def process_request(result, self, request):
+    # Call the update trigger on every request
+    update_trigger()
+
     messages_dom = parseString(smart_str(settings.UPDATE_MESSAGES_XML.value))
     messages = messages_dom.getElementsByTagName('message')
 
