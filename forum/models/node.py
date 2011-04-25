@@ -375,6 +375,18 @@ class Node(BaseModel, NodeContent):
 
         return active_users
 
+    def get_last_edited(self):
+        if not self.last_edited:
+            try:
+                le = self.actions.exclude(action_type__in=('voteup', 'votedown', 'flag'), canceled=True).order_by('-action_date')[0]
+                self.last_edited = le
+                self.save()
+            except:
+                pass
+
+        return self.last_edited
+
+
     def _list_changes_in_tags(self):
         dirty = self.get_dirty_fields()
 
