@@ -119,12 +119,17 @@ def check_for_updates():
         content = check_response.read()
     except urllib2.HTTPError, error:
         content = error.read()
+    except:
+        return _("Wasn't able to check to the update server.")
 
     # Read the messages from the Update Server
-    messages_xml_url = '%s%s' % (settings.UPDATE_SERVER_URL, '/messages/xml/')
-    messages_request = urllib2.Request(messages_xml_url, headers=headers)
-    messages_response = urllib2.urlopen(messages_request)
-    messages_xml = messages_response.read()
+    try:
+        messages_xml_url = '%s%s' % (settings.UPDATE_SERVER_URL, '/messages/xml/')
+        messages_request = urllib2.Request(messages_xml_url, headers=headers)
+        messages_response = urllib2.urlopen(messages_request)
+        messages_xml = messages_response.read()
+    except:
+        return _("Wasn't able to retreive the update messages.")
 
     # Store the messages XML in a Setting object
     settings.UPDATE_MESSAGES_XML.set_value(messages_xml)
@@ -132,7 +137,7 @@ def check_for_updates():
     messages_dom = parseString(messages_xml)
     messages_count = len(messages_dom.getElementsByTagName('message'))
 
-    return _('%d update messages have been downloaded') % messages_count
+    return _('%d update messages have been downloaded.') % messages_count
 
 def update_trigger():
     # Trigger the update process
