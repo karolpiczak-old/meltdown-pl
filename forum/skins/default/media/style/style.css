@@ -139,6 +139,7 @@ pre {
 code {
     font-family: Consolas, Monaco, Liberation Mono, Lucida Console, Monospace;
     font-size: 100%;
+    white-space: pre-wrap;
 }
 
 blockquote {
