@@ -1765,7 +1765,7 @@ div.dialog.confirm {
 }
 
 div.dialog.prompt {
-    width: 300px;
+    width: 355px;
 }
 
 div.dialog.prompt .dialog-content select, div.dialog.prompt .dialog-content textarea, div.dialog.prompt .dialog-content input[type=text] {
