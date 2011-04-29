@@ -18,7 +18,7 @@
     {{ questions.paginator.sort_tabs }}
 </div>
 <div id="listA">{% for question in questions.paginator.page %}
-    {% question_list_item question %}
+    {% question_list_item_full question %}
 {% endfor %}</div>
 {% endblock %}
 
@@ -30,7 +30,7 @@
 {% block sidebar %}
     {% include "question_list/count.html" %}
     {% sidebar_upper %}
-    {% tag_selector %}
+{#    {% tag_selector %}#}
     {% sidebar_lower %}
     {% question_list_related_tags questions.paginator.page %}
 

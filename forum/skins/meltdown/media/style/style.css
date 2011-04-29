@@ -101,8 +101,8 @@ a img {
 
 .spacer3 {
     clear: both;
-    height: 30px;
-    line-height: 30px;
+    height: 5px;
+    line-height: 5px;
     visibility: hidden;
 }
 
@@ -426,7 +426,8 @@ footer p.separate {
     color: orange;
 }
 
-.short-summary {
+.short-summary,
+.full-summary {
   border-bottom: 1px dotted #AAAAAA;
   padding: 10px 8px;
   color: #666666;
@@ -438,16 +439,19 @@ footer p.separate {
     border-top: 0;
 }
 
-.user-stats-table .short-summary {
+.user-stats-table .short-summary,
+.user-stats-table .full-summary {
     width: 764px;
 }
 
-.short-summary h2 {
+.short-summary h2,
+.full-summary h2 {
   padding-left: 0px;
   margin: 0 0 5px;
 }
 
-.short-summary h2 a {
+.short-summary h2 a,
+.full-summary h2 a {
   color: #E75113;
   display: inline;
   font-family: "helvetica neue",helvetica,arial,freesans,"liberation sans","numbus sans l",sans-serif;
@@ -455,12 +459,14 @@ footer p.separate {
   font-weight: bold;
 }
 
-.short-summary h2 a:hover {
+.short-summary h2 a:hover,
+.full-summary h2 a:hover {
   color: #E75113;
   border-bottom: dotted 1px;
 }
 
-.short-summary .userinfo {
+.short-summary .userinfo,
+.full-summary .userinfo {
   float: right;
   padding: 3px 0 0;
   margin: 0 0 10px 20px;
@@ -482,6 +488,11 @@ footer p.separate {
   padding: 0px;
 }
 
+.full-summary .counts {
+  float: left;
+  padding: 0px 10px 0px 0px;
+}
+
 .short-summary .counts .votecount,
 .short-summary .counts .answercount,
 .short-summary .counts .viewcount {
@@ -492,14 +503,30 @@ footer p.separate {
   width: 60px;
 }
 
+.full-summary .counts .votecount,
+.full-summary .counts .answercount,
+.full-summary .counts .viewcount {
+  float: none;
+  font-size: 10px;
+  margin-right: 4px;
+  text-align: center;
+  width: 60px;
+}
+  
+
 .short-summary .counts .votecount,
-.short-summary .counts .viewcount {
+.short-summary .counts .viewcount,
+.full-summary .counts .votecount,
+.full-summary .counts .viewcount {
    border: 1px solid white;
 }
 
 .short-summary .counts .votecount .count,
 .short-summary .counts .answercount .count,
-.short-summary .counts .viewcount .count {
+.short-summary .counts .viewcount .count,
+.full-summary .counts .votecount .count,
+.full-summary .counts .answercount .count,
+.full-summary .counts .viewcount .count {
   font-size: 16px/16px;
   font-weight: bold;
   padding: 14px 0 2px;
@@ -507,7 +534,10 @@ footer p.separate {
 
 .short-summary .counts .votecount .tail,
 .short-summary .counts .answercount .tail,
-.short-summary .counts .viewcount .tail {
+.short-summary .counts .viewcount .tail,
+.full-summary .counts .votecount .tail,
+.full-summary .counts .answercount .tail,
+.full-summary .counts .viewcount .tail{
   padding: 2px 0px 14px 0px;
   font-size: 10px;
   line-height: 10px;
@@ -518,6 +548,20 @@ footer p.separate {
   margin-left: 10px;
   padding: 0px 0px 5px 0px;
   width: 480px;
+}
+
+.full-summary .question-summary-wrapper {
+  float: left;
+  margin-left: 10px;
+  padding: 0px 0px 5px 0px;
+  width: 600px;
+}
+
+.full-summary .question-summary-wrapper p {
+  color: #6F7072;
+  margin-bottom: 10px;
+  font-size: 12px;
+  line-height: 15px;
 }
 
 #question-table {
@@ -645,7 +689,6 @@ footer p.separate {
   border-color: #E5E5E5;
   border-style: solid;
   border-width: 0 0 1px;
-  border-bottom: 1px solid #CCCCCC;
   font-size: 13px;
   line-height: 13px;
   height: 30px;
@@ -665,11 +708,7 @@ footer p.separate {
 }
 
 .paginator .prev a, .paginator .prev a:visited, .paginator .next a, .paginator .next a:visited {
-    background-color: #FFFFFF;
-    border: 1px solid #FFFFFF;
-    color: #777777;
-    font: bold 100% sans-serif;
-    padding: 2px 4px 3px;
+  padding: 1px 5px;
 }
 
 .paginator .prev {
@@ -680,33 +719,38 @@ footer p.separate {
     margin-left: 0.5em;
 }
 
-.paginator .page, .paginator .page a:visited, .paginator .curr {
-    background-color: #FFFFFF;
-    border: 1px solid #CCCCCC;
-    color: #777777;
-    font: 0.875em verdana;
-    margin: 0 0.25em;
-    padding: 0.25em;
+.paginator .page, .paginator .curr {
+  padding: 1px 5px;
+  margin: 0px 3px;
+  line-height: 100%;
 }
 
 .paginator .curr {
-    background-color: #777777;
-    border: 1px solid #777777;
-    color: #FFFFFF;
-    font-weight: bold;
+  -moz-border-radius: 3px 3px 3px 3px;
+  background-color: #E07200;
+  color: white;
+  padding: 1px 5px;
+  border: none;
 }
 
-.paginator .page:hover, .paginator .prev a:hover, .paginator .next a:hover {
-    background-color: #777777;
-    border: 1px solid #777777;
-    color: #FFFFFF;
-    text-decoration: none;
+.paginator .page:hover, .paginator .next a:hover {
+  -moz-border-radius: 3px 3px 3px 3px;
+  background-color: #E07200;
+  color: white;
+  padding: 1px 5px;
+  border: none;
+}
+
+.paginator .page:hover a {
+  color: white;
 }
 
 .paginator .text {
-    color: #777777;
-    font: bold 100% sans-serif;
-    padding: 0.3em;
+  color: #717274;
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: bold;
+  padding: 4px;
 }
 
 .paginator-container-left {
@@ -780,7 +824,7 @@ a.medal:hover {
 
 .tabBar {
     background-color: #FFFFFF;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #E5E5E5;
     clear: both;
     height: 30px;
     margin-bottom: 3px;
@@ -788,29 +832,29 @@ a.medal:hover {
 }
 
 .tabsA {
-    background-color: #FFFFFF;
-    display: block;
-    float: right;
-    font-weight: bold;
-    height: 20px;
-    position: relative;
+  background-color: #FFFFFF;
+  display: block;
+  float: right;
+  font-weight: normal;
+  height: 20px;
+  position: relative;
 }
 
 .tabsA a, .sticky-sort-tabs {
-    background: none repeat scroll 0 0 #EEEEEE;
-    border-bottom: 1px solid #CCCCCC;
-    border-right: 1px solid #CCCCCC;
-    color: #888A85;
-    display: block;
-    float: left;
-    height: 20px;
-    line-height: 22px;
-    margin: 5px 4px 0 0;
-    text-decoration: none;
-}
+  display: block;
+  float: left;
+  margin: 5px 4px 0px 4px;
+  text-decoration: none;
 
-.tabsA a {
-    padding: 0 11px;    
+  background: none repeat scroll 0 0 transparent;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 1px;
+  color: #717274;
+  font-size: 13px;
+  line-height: 18px;
+  padding: 3px 13px 3px 13px;
+  text-transform: none;
 }
 
 .sticky-sort-tabs {
@@ -826,13 +870,21 @@ a.medal:hover {
 }
 
 .tabsA a.on, .tabsA a:hover {
-    background: none repeat scroll 0 0 #FFFFFF;
-    color: #A40000;
+  border-color: #E5E5E5 #E5E5E5 white;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.tabsA a.on {
+  font-weight: bold;
+  margin: 3px 5px 0px 5px;
+  padding: 5px 13px 3px 13px;
 }
 
 .tabsA a:hover {
-    background: none repeat scroll 0 0 #356FCB;
-    color: #FFFFFF;
+  border-color: #E5E5E5 #E5E5E5 white;
+  border-style: solid;
+  border-width: 1px;
 }
 
 .headlineA {
@@ -1975,9 +2027,10 @@ div.dialog.prompt .dialog-content select, div.dialog.prompt .dialog-content text
 }
 
 .feed-icon {
-    width: 14px;
-    height: 14px;
-    display: inline-block;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-top: 8px;
 }
 
 div#subscription_list {

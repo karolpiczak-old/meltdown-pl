@@ -21,6 +21,15 @@ class QuestionItemNode(template.Node):
             'signature_type': self.options.get('signature_type', 'lite'),
         }))
 
+class QuestionItemFullNode(QuestionItemNode):
+    template = template.loader.get_template('question_list/item_full.html')
+
+    def __init__(self, question, options):
+        QuestionItemNode.__init__(self, question, options)
+
+    def render(self, context):
+        return QuestionItemNode.render(self, context)
+
 class SubscriptionItemNode(template.Node):
     template = template.loader.get_template('question_list/subscription_item.html')
 
@@ -40,6 +49,11 @@ class SubscriptionItemNode(template.Node):
 def question_list_item(parser, token):
     tokens = token.split_contents()[1:]
     return QuestionItemNode(tokens[0], argument_parser(tokens[1:]))
+
+@register.tag
+def question_list_item_full(parser, token):
+    tokens = token.split_contents()[1:]
+    return QuestionItemFullNode(tokens[0], argument_parser(tokens[1:]))
 
 @register.tag
 def subscription_list_item(parser, token):

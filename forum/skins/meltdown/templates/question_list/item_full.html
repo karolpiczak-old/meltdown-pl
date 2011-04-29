@@ -1,0 +1,41 @@
+{% load i18n humanize extra_filters extra_tags user_tags %}
+<article class="full-summary">
+    <div class="counts">{% if favorite_count %}
+        <div class="favoritecount">
+            <span class="favorite-mark{% if question.favourite_count %} on{% endif %}"></span>
+            <div class="item-count">{{question.favourite_count|intcomma}}</div>
+        </div>
+        {% endif %}
+        <div class="votecount">
+            <div class="count">{{question.score|intcomma}}</div>
+            <div class="tail">{% ifequal question.score 1 %}{% trans "vote" %}{% else %}{% trans "votes" %}{% endifequal %}</div>
+        </div >
+        <div {% if question.accepted_count %}title="{% trans "this question has an accepted answer" %}"{% endif %} class="answercount {% if question.accepted_count %}answered-accepted{% endif %} {% ifequal question.answer_count 0 %}unanswered{% endifequal %}{% ifnotequal question.answer_count 0 %}answered{% endifnotequal %}">
+            <div class="count">{{question.answer_count|intcomma}}</div>
+            <div class="tail">{% ifequal question.answer_count 1 %}{% trans "answer" %}{% else %}{% trans "answers" %}{% endifequal %}</div>
+        </div>
+        <div class="viewcount">
+             <div class="count">{{question.view_count|decorated_int|safe}}</div>
+             <div class="tail">{% ifequal question.view_count 1 %}{% trans "view" %}{% else %}{% trans "views" %}{% endifequal %}</div>
+        </div>
+    </div>
+
+    <div class="question-summary-wrapper">
+        <h2><a title="{{ question.summary }}" href="{{ question.get_absolute_url }}">{{question.headline}}</a></h2>
+        <p>{{ question.summary_long }}</p>
+        <div class="userinfo">
+            <span class="relativetime" title="{{question.last_activity_at}}">{% diff_date question.last_activity_at %}</span>
+            {% if question.last_activity_by %}{% user_signature question.last_activity_by signature_type %}{% endif %}
+        </div>
+
+        <div class="tags">
+          <ul>
+          {% for tag in question.tagname_list %}
+            <li class="tag-{{ tag }}"><a class="tag-link-{{ tag }}" href="{% url tag_questions tag|urlencode %}" title="{% trans "see questions tagged" %} '{{ tag }}'" rel="tag">{{ tag }}</a></li>
+          {% endfor %}
+          </ul>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+</article>

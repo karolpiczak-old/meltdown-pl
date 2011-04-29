@@ -324,6 +324,18 @@ class Node(BaseModel, NodeContent):
 
         return content
 
+    @property
+    def summary_long(self):
+        content = strip_tags(self.html)[:SUMMARY_LENGTH]
+
+        # Remove multiple spaces.
+        content = re.sub(' +',' ', content)
+
+        # Replace line breaks.
+        content = content.replace("\n", ' ')
+
+        return content
+
     @models.permalink
     def get_revisions_url(self):
         return ('revisions', (), {'id': self.id})
