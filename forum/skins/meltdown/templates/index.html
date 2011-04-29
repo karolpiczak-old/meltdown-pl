@@ -1,0 +1,34 @@
+{% extends "questions.html" %}
+<!-- index.html -->
+{% load question_list_tags %}
+{% load general_sidebar_tags %}
+{% load question_list_tags %}
+{% load i18n %}
+{% load extra_tags %}
+{% block fulltitle %}{{ settings.APP_TITLE }}{% endblock %}
+
+{% block content %}
+<div id="listA">{% for question in questions.paginator.page %}
+    {% question_list_item question %}
+{% endfor %}</div>
+{% endblock %}
+
+{% block sidebar %}
+    {% if not request.user.is_authenticated %}
+        {% if settings.SHOW_WELCOME_BOX %}
+            <div class="boxA">
+              {{ settings.APP_INTRO|safe }}
+            </div>
+        {% endif %}
+    {% endif %}
+    {% include "question_list/count.html" %}
+    {% sidebar_upper %}
+    {% if request.user.is_authenticated %}
+        {% tag_selector %}
+    {% endif %}
+    {% sidebar_lower %}
+    {% recent_tags %}
+    {% recent_awards %}
+{% endblock %}
+<!-- index.html -->
+

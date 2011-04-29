@@ -1,19 +1,26 @@
 {% load extra_tags ui_registry i18n %}
 
-
-<div>
-    <div class="footerLinks" >
-        {% loadregistry footer_links %}<span class="link-separator"> |</span>{% endloadregistry %}
-    </div>
-  <p>
-     <a href="http://osqa.net" target="_blank" title="OSQA {{ settings.OSQA_VERSION }} ({{ settings.SVN_REVISION }})">
-        powered by OSQA
-     </a>
+<footer>
+  <nav>
+    <ul>
+      <li>{% loadregistry footer_links %}</li><li>{% endloadregistry %}</li>
+    </ul>
+  </nav>
+  <nav class="partners">
+    <ul>
+      <li>Serwisy stowarzyszone:</li>
+      <li>...</li>
+    </ul>
+  </nav>
+  <p class="separate">
+    Projekt strony i logo © 2011 <em>meltdown.pl</em>.
+    W logo serwisu wykorzystano zmodyfikowaną czcionkę <em>Juice</em> <a href="http://www.gadisradio.blogspot.com/">Dhany Arliyanti</a> za zgodą autorki.<br>
+    Treści publikowane przez użytkowników udostępniane są na zasadach licencji <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a> z wymaganym przypisaniem autorstwa.
   </p>
-</div>
- <div id="licenseLogo">
-  <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
-            <img src="{% media  "/media/images/by-sa-88x31.png" %}" title="Creative Commons: Attribution - Share Alike" alt="cc-by-sa" width="88" height="31" />
-  </a>
- </div>
-
+  <p class="separate">
+    Ograniczenia prawne...
+  </p>
+  <p>
+    Serwis korzysta z oprogramowania <a href="http://www.osqa.net">OSQA</a> na zasadach licencji <a href="http://www.gnu.org/licenses/gpl-3.0.html">GNU General Public License</a>.<br>Dostęp do zmodyfikowanego kodu źródłowego możliwy jest poprzez <a href="https://github.com/karoldvl/meltdown-osqa">repozytorium meltdown.pl</a>.
+  </p>
+</footer>

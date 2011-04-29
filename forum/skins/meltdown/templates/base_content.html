@@ -108,7 +108,7 @@
                     {{ settings.CUSTOM_FOOTER|or_preview:request|static_content:settings.CUSTOM_FOOTER_RENDER_MODE }}
                 </div>
             {% endifequal %}
-            <div id="ground">
+            <div id="footer-container">
                 {% ifequal settings.CUSTOM_FOOTER_MODE|or_preview:request "replace" %}
                     {{ settings.CUSTOM_FOOTER|or_preview:request|static_content:settings.CUSTOM_FOOTER_RENDER_MODE }}
                 {% else %}
@@ -121,7 +121,7 @@
                 </div>
             {% endifequal %}
         {% else %}
-            <div id="ground">
+            <div id="footer-container">
                 {% include "footer.html" %}
             </div>
         {% endif %}
