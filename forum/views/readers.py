@@ -86,7 +86,8 @@ def index(request):
                          Question.objects.all(),
                          base_path=reverse('questions'),
                          feed_url=reverse('latest_questions_feed'),
-                         paginator_context=paginator_context)
+                         paginator_context=paginator_context,
+                         isIndex=True)
 
 @decorators.render('questions.html', 'unanswered', _('unanswered'), weight=400)
 def unanswered(request):
@@ -159,7 +160,8 @@ def question_list(request, initial,
                   page_title=_("All Questions"),
                   allowIgnoreTags=True,
                   feed_url=None,
-                  paginator_context=None):
+                  paginator_context=None,
+                  isIndex=None):
 
     questions = initial.filter_state(deleted=False)
 
@@ -194,7 +196,7 @@ def question_list(request, initial,
     "list_description": list_description,
     "base_path" : base_path,
     "page_title" : page_title,
-    "tab" : "questions",
+    "tab" : "index" if isIndex else "questions",
     'feed_url': feed_url,
     })
 
