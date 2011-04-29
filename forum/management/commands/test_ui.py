@@ -1,6 +1,7 @@
 import os
 import glob
 import logging
+import subprocess
 
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings as django_settings
@@ -28,3 +29,17 @@ class Command(BaseCommand):
             print 'Loading UI tests from %s' % TEST_FOLDER
         else:
             exit("UI tests folder couldn't be loaded")
+
+        # Loop through all args and try to get the python test files that match
+        print args
+        files = []
+        for arg in args:
+            matching_files = glob.glob('%s/%s.py' % (TEST_FOLDER, arg))
+            for matching_file in matching_files:
+                files.append(matching_file)
+
+        # Loop through all test files
+        for file in files:
+            file_name = file.split('/')[-1]
+            print "Starting test %s" % file_name
+            child = subprocess.Popen('python %s' % file, shell=True)
