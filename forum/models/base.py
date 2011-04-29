@@ -41,7 +41,7 @@ class LazyQueryList(object):
     def __len__(self):
         return len(self.items)
 
-class ToFetch(str):
+class ToFetch(unicode):
     pass
 
 class CachedQuerySet(models.query.QuerySet):

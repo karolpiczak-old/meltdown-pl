@@ -121,9 +121,9 @@ def tag(request, tag):
 
     return question_list(request,
                          questions,
-                         mark_safe(_('questions tagged <span class="tag">%(tag)s</span>') % {'tag': tag}),
+                         mark_safe(_(u'questions tagged <span class="tag">%(tag)s</span>') % {'tag': tag}),
                          None,
-                         mark_safe(_('Questions Tagged With %(tag)s') % {'tag': tag}),
+                         mark_safe(_(u'Questions Tagged With %(tag)s') % {'tag': tag}),
                          False)
 
 @decorators.render('questions.html', 'questions', tabbed=False)

@@ -52,7 +52,7 @@ class NodeContent(models.Model):
 
     def tagname_list(self):
         if self.tagnames:
-            return [name.strip() for name in self.tagnames.split(u' ') if name]
+            return [name.strip() for name in self.tagnames.split() if name]
         else:
             return []
 
