@@ -569,13 +569,21 @@ footer p.separate {
 }
 
 .questions-count {
-    color: #A40000;
-    font-family: sans-serif;
-    font-size: 24px;
-    font-weight: 600;
-    margin-top: 3px;
-    margin-right: 5px;
-    padding: 0 0 5px 0;
+  margin-top: 5px;
+  margin-right: 5px;
+  padding: 5px 0 5px 0;
+  font-weight: bold;
+  line-height: 24px;
+}
+
+.questions-count .count {
+  color: #E75113;
+  font-size: 18px;
+}
+
+.questions-count .item {
+  font-size: 15px;
+  margin-left: 5px;
 }
 
 .boxA,
