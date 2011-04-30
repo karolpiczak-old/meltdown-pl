@@ -35,9 +35,6 @@ var response_commands = {
 
         count += inc;
 
-        if (count == 0)
-            count = '';
-
         $favorite_count.html(count);
     },
 

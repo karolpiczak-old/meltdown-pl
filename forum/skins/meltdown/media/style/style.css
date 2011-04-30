@@ -69,11 +69,8 @@ a {
 }
 
 a:hover {
-  color: #d05800;
-}
-
-a:hover, a:focus {
-  border-bottom: 0;
+  color: #ee681f;
+  border-bottom: dotted #ee681f 1px;
 }
 
 a:active {
@@ -263,17 +260,26 @@ blockquote blockquote {
   vertical-align: top;
 }
 
-.nav-button.current {
-    background: url("../images/meltdown-nav-current-bg.png") repeat-x scroll 0 0 #E7E6E5;
-    border-bottom: 5px solid #009FD3;
-    color: #717274;
-}
-.nav-button.ask {
-    float: right;
-}
 .nav-button:hover {
-    background: url("../images/meltdown-nav-current-bg.png") repeat-x scroll 0 0 #E7E6E5;
-    color: #717274;
+  background: url("../images/meltdown-nav-current-bg.png") repeat-x scroll 0 0 #E7E6E5;
+  color: #717274;
+  border-color: #8CD4F1;
+  border-style: solid;
+  border-width: 1px 0;
+}
+
+.nav-button.current {
+  background: url("../images/meltdown-nav-current-bg.png") repeat-x scroll 0 0 #E7E6E5;
+  border-bottom: 5px solid #009FD3;
+  color: #717274;
+}
+
+.nav-button.current:hover {
+  border-bottom: 5px solid #009FD3;
+}
+
+.nav-button.ask {
+  float: right;
 }
 
 #footer-container {
@@ -565,7 +571,12 @@ footer p.separate {
 }
 
 #question-table {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
+  border-collapse: collapse;
+}
+
+#question-table td {
+  padding: 0px;
 }
 
 .questions-count {
@@ -942,12 +953,23 @@ a.medal:hover {
 }
 
 .headNormal {
-    border-bottom: 1px solid #777777;
-    font-size: 15px;
-    font-weight: bold;
-    margin-bottom: 12px;
-    padding: 3px;
-    text-align: left;
+  border-bottom: 1px solid #E5E5E5;
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: bold;
+  margin: 10px 10px 0px 10px;
+  text-align: left;
+}
+
+.headNormal h1 {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 28px;
+  margin: 0 0 5px;
+}
+
+.headNormal a:hover {
+  border-bottom: none;
 }
 
 .headUser {
@@ -957,6 +979,29 @@ a.medal:hover {
     margin-bottom: 12px;
     padding: 5px;
     text-align: left;
+}
+
+#main-body {
+  margin: 10px;
+}
+
+#item-right {
+  padding-left: 20px;
+}
+
+.question-body,
+.answer-body {
+  color: black;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.question-body p,
+.answer-body p {
+  color: black;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 10px 0 10px 0;
 }
 
 .questions-related {
@@ -971,8 +1016,6 @@ a.medal:hover {
 }
 
 .question-body {
-    font-size: 13px;
-    line-height: 20px;
     min-height: 100px;
 }
 
@@ -980,9 +1023,31 @@ a.medal:hover {
     max-width: 640px;
 }
 
+.question-body ul,
+.answer-body ul {
+  list-style: disc outside none;
+  margin-left: 20px;
+}
+
+.question-body li,
+.answer-body li {
+   margin: 0 0 3px;
+}
+
 .vote-buttons {
-    float: left;
-    text-align: center;
+  float: left;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  width: 32px;
+  padding-left: 8px;
+}
+
+.vote-buttons .separator {
+  border-bottom: 1px dashed #E5E5E5;
+  height: 1px;
+  overflow: hidden;
+  margin: 15px 0px 15px 0px;
 }
 
 span.form-error {
@@ -1005,8 +1070,6 @@ ul.errorlist li {
 }
 
 .answer-body {
-    font-size: 13px;
-    line-height: 20px;
     min-height: 80px;
 }
 
@@ -1574,26 +1637,72 @@ ul.form-horizontal-rows li input {
 }
 
 .post-controls, .tags-container {
-    font-size: 11px;
-    line-height: 12px;
-    margin-bottom: 5px;
-    min-width: 200px;
-}
+  font-size: 11px;
+  line-height: 12px;
 
-.tags-container {
-    margin: 0 0 16px 0;
-}
-
-#question-tags {
-    margin-top: 15px;
+  background-color: #FFEED7;
+  background-image: url("../images/meltdown-sidebar-peach-bg.png");
+  background-repeat: repeat-x;
+  border-color: #E5E5E5;
+  border-style: solid;
+  border-width: 0 0 1px;
+  display: block;
+  clear: both;
+  float: none;
+  height: 15px;
+  margin: 0 0 5px;
+  width: auto !important;
 }
 
 .post-controls {
-    float: left;
+  padding: 10px 10px;
+  border-top: 1px solid #E5E5E5;
+}
+
+.tags-container {
+  padding: 10px 10px 15px 10px;
+  margin: 0px 10px 5px 10px;
+}
+
+.tags-container .title {
+  display: inline;
+  float: left;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: bolder;
+  margin-right: 20px;
+  margin-top: 1px;
+}
+
+.tags-container a {
+  display: inline;
+  float: left;
+  font-size: 11px;
+  line-height: 11px;
+  background-color: #E7E6E5;
+  background-image: url("../images/meltdown-nav-current-bg.png");
+  background-repeat: repeat-x;
+  border: 1px solid #E5E5E5;
+  margin: 0 5px 5px 0;
+  padding: 4px 6px;
+  color: #717274;
+}
+
+.tags-container a:hover {
+  background-color: #6f7072;
+  background-image: url("../images/meltdown-nav-bg.png");
+  background-repeat: repeat-x;
+  color: white;
 }
 
 #question-controls .tags {
     margin: 0 0 3px;
+}
+
+.post-update-info-container {
+  border-top: 1px dotted #E5E5E5;
+  margin-top: 10px;
+  padding-top: 10px;
 }
 
 .post-update-info {
@@ -1629,24 +1738,33 @@ ul.form-horizontal-rows li input {
 }
 
 a.sidebar_button {
-    background: none repeat scroll 0 0 #EEEEEE;
-    color: black;
-    cursor: pointer;
-    font-size: 11px;
-    padding: 3px;
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 11px;
+  background-color: #E7E6E5;
+  background-image: url("../images/meltdown-nav-current-bg.png");
+  background-repeat: repeat-x;
+  border: 1px solid #E5E5E5;
+  margin: 0 5px 5px 0;
+  padding: 4px 6px;
+  color: #717274;
 }
 
 a.sidebar_button:hover {
-    background-color: #777777;
-    color: white;
-    text-decoration: none;
+  background-color: #6f7072;
+  background-image: url("../images/meltdown-nav-bg.png");
+  background-repeat: repeat-x;
+  color: white;
+  border: 1px solid #E5E5E5;
 }
 
 a.post-vote, .favorite-mark, a.accept-answer {
-    display: block;
-    height: 24px;
-    position: relative;
-    width: 24px;
+  display: block;
+  position: relative;
+  margin: 7px 0px;
+  border: 0 none;
+  height: 32px;
+  width: 32px;
 }
 
 a.post-vote.up {
@@ -1674,37 +1792,52 @@ a.accept-answer.on, a.accept-answer:hover {
 }
 
 .community-wiki {
-    font-size: 11px;
-    color: #333;
-    background: url("../images/wiki.png") no-repeat left center;
-    padding-left: 36px;
-    margin: 6px 0 0 0;
-    min-height: 32px;
-    line-height: 15px;
+  clear: both;
+  font-size: 11px;
+  background: url("../images/wiki.png") no-repeat;
+  background-position: 15px center;
+  padding: 10px 0px 10px 60px;
+  margin: 10px 0px 20px 0px;
+  min-height: 32px;
+  line-height: 15px;
+  border-top: 1px solid #E5E5E5;
+  border-bottom: 1px solid #E5E5E5;
+  border-left: 15px solid #DCEDF7;
+  border-right: 15px solid #DCEDF7;
 }
 
-.post-score, .comments-char-left-count {
-    color: #777777;
-    font-family: Arial;
-    font-size: 165%;
-    font-weight: bold;
-    padding: 0 0 3px;
+.comments-char-left-count {
+  padding: 0 0 3px 0px;
+}
+
+.post-score {
+  margin: 12px -8px;
+  padding: 8px 0px;
+  line-height: 30px;
+  background-color: #E7E6E5;
+  background-image: url("../images/meltdown-nav-current-bg-big.png");
+  background-repeat: repeat-x;
+  border: 1px solid #E5E5E5;
+  color: #717274;
 }
 
 .favorite-mark {
-    background: url("../images/vote-favorite-off.png") no-repeat scroll center center transparent;
+  background: url("../images/vote-favorite-off.png") no-repeat scroll center center transparent;
+  margin-bottom: 0px;
 }
 
 .favorite-mark.on, a.favorite-mark:hover {
-    background: url("../images/vote-favorite-on.png") no-repeat scroll center center transparent;
+  background: url("../images/vote-favorite-on.png") no-repeat scroll center center transparent;
+  border: none;
 }
 
 .favorite-count {
-    color: #777777;
-    font-family: Arial;
-    font-size: 100%;
-    font-weight: bold;
-    padding: 0;
+  font-size: 50%;
+  font-weight: bold;
+  border: 1px dashed #E5E5E5;
+  color: #6F7072;
+  margin: 5px auto;
+  padding: 0px;
 }
 
 .comments-container {
@@ -1833,7 +1966,6 @@ span.comment-chars-left {
 }
 
 div.comment-tools {
-    border-top: 1px dotted #CCCCCE;
     padding-top: 12px;
     text-align: right;
 }
@@ -1844,33 +1976,41 @@ div.comment-tools .comments-showing {
 }
 
 div.comment-tools a {
-    background: none repeat scroll 0 0 #EEEEEE;
-    color: black;
-    cursor: pointer;
-    font-size: 11px;
-    padding: 3px;
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 11px;
+  background-color: #E7E6E5;
+  background-image: url("../images/meltdown-nav-current-bg.png");
+  background-repeat: repeat-x;
+  border: 1px solid #E5E5E5;
+  margin: 0 5px 5px 0;
+  padding: 4px 6px;
+  color: #717274;
 }
 
 div.comment-tools a:hover {
-    background-color: #777777;
-    color: white;
-    text-decoration: none;
+  background-color: #6f7072;
+  background-image: url("../images/meltdown-nav-bg.png");
+  background-repeat: repeat-x;
+  color: white;
+  border: 1px solid #E5E5E5;
 }
 
 .action-link {
-    color: #777777;
-    cursor: pointer;
-    padding: 3px;
+  color: #777777;
+  cursor: pointer;
+  padding: 3px;
 }
 
 .action-link a {
-    color: inherit;
+  color: inherit;
+  padding: 3px;
 }
 
-.action-link a.ajax-command:hover {
-    background-color: #777777;
-    color: #FFFFFF;
-    text-decoration: none;
+.action-link a:hover {
+  background-color: #777777;
+  color: #FFFFFF;
+  text-decoration: none;
 }
 
 .action-link-separator {
@@ -1928,12 +2068,14 @@ div.comment-tools a:hover {
 }
 
 div.dialog, .context-menu-dropdown {
-    position: absolute;
-    background-color: #EEEEEE;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-box-shadow: 2px 2px 5px #3060A8;
-    -webkit-box-shadow: 2px 2px 5px #3060A8;
+  position: absolute;
+  background-color: #E7E6E5;
+  border: 1px solid #E5E5E5;
+  color: #717274;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-box-shadow: 1px 1px 2px #6F7072;
+  -webkit-box-shadow: 1px 1px 2px #6F7072;
 }
 
 .context-menu-dropdown {
@@ -1955,6 +2097,10 @@ div.dialog, .context-menu-dropdown {
     color: inherit;
     white-space: nowrap;
     text-decoration: none;
+}
+
+.context-menu-dropdown li.item a:hover {
+  border: none;
 }
 
 .context-menu-dropdown li.separator {
@@ -1999,7 +2145,7 @@ div.dialog .dialog-buttons {
     margin: 0 3px 5px 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
-    background-color: #3060A8;
+    background-color: #6F7072;
     color: white;
     height: 20px;
     line-height: 20px;
