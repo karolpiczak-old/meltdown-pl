@@ -2038,6 +2038,14 @@ div.dialog.prompt .dialog-content select, div.dialog.prompt .dialog-content text
   width: 16px;
   height: 16px;
   display: inline-block;
+  vertical-align: top;
+}
+
+.feed-icon:hover {
+  border: none !important;
+}
+
+.tabBar .feed-icon {
   margin-top: 8px;
 }
 
