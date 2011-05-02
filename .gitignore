@@ -2,3 +2,4 @@
 /osqa.wsgi
 /settings_local.py
 /log/
+*.pyc
