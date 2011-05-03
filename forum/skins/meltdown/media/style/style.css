@@ -189,7 +189,7 @@ blockquote blockquote {
 #CAFull {
     float: left;
     padding: 0 5px;
-    width: 950px;
+    width: 930px;
 }
 
 #top {
@@ -1225,7 +1225,7 @@ span.form-error {
 }
 
 #revisions {
-    width: 950px;
+    width: 910px;
 }
 
 .revision {
@@ -1244,7 +1244,12 @@ span.form-error {
 }
 
 .revision .author {
-    background-color: #E9E9FF;
+  background-color: #FFEED7;
+  background-image: url("../images/meltdown-sidebar-peach-bg.png");
+  background-repeat: repeat-x;
+  border-color: #E5E5E5;
+  border-style: solid;
+  border-width: 1px 0px 1px 0px;
 }
 
 .revision .summary {
@@ -1281,6 +1286,7 @@ span.form-error {
 .revision .body {
     margin-bottom: 50px;
     padding-left: 10px;
+    padding-right: 10px;
 }
 
 del {
@@ -1636,7 +1642,9 @@ ul.form-horizontal-rows li input {
     padding-bottom: 10px;
 }
 
-.post-controls, .tags-container {
+.post-controls,
+.tags-container,
+.tags {
   font-size: 11px;
   line-height: 12px;
 
@@ -1664,6 +1672,12 @@ ul.form-horizontal-rows li input {
   margin: 0px 10px 5px 10px;
 }
 
+.tags {
+  padding: 10px 10px 15px 10px;
+  margin: 10px 10px 5px 10px;
+  border-top: 1px solid #E5E5E5;
+}
+
 .tags-container .title {
   display: inline;
   float: left;
@@ -1674,7 +1688,8 @@ ul.form-horizontal-rows li input {
   margin-top: 1px;
 }
 
-.tags-container a {
+.tags-container a,
+.tags a {
   display: inline;
   float: left;
   font-size: 11px;
@@ -1688,7 +1703,8 @@ ul.form-horizontal-rows li input {
   color: #717274;
 }
 
-.tags-container a:hover {
+.tags-container a:hover,
+.tags a:hover{
   background-color: #6f7072;
   background-image: url("../images/meltdown-nav-bg.png");
   background-repeat: repeat-x;
