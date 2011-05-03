@@ -16,6 +16,7 @@ from django.template.defaultfilters import slugify
 from django.db.models.signals import post_delete, post_save, pre_save, pre_delete
 from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
+from django.utils.encoding import force_unicode
 from django.contrib.sitemaps import ping_google
 import django.dispatch
 from forum import settings
@@ -118,10 +119,11 @@ class CachedQuerySet(models.query.QuerySet):
         to_return = None
         to_cache = {}
 
+        with_aggregates = len(self.query.aggregates) > 0
         key_list = self._fetch_from_query_cache(cache_key)
 
         if key_list is None:
-            if not len(self.query.aggregates):
+            if not with_aggregates:
                 values_list = [on_cache_query_attr]
 
                 if len(self.query.extra):
@@ -131,24 +133,35 @@ class CachedQuerySet(models.query.QuerySet):
                 to_cache[cache_key] = (datetime.datetime.now(), key_list)
             else:
                 to_return = list(super(CachedQuerySet, self).iterator())
-                to_cache[cache_key] = (datetime.datetime.now(), [row.__dict__[on_cache_query_attr] for row in to_return])
+                to_cache[cache_key] = (datetime.datetime.now(), [
+                    (row.__dict__[on_cache_query_attr], dict([(k, row.__dict__[k]) for k in self.query.aggregates.keys()]))
+                    for row in to_return])
+        elif with_aggregates:
+            tmp = key_list
+            key_list = [k[0] for k in tmp]
+            with_aggregates = [k[1] for k in tmp]
+            del tmp
 
         if (not to_return) and key_list:
             row_keys = [self.model.infer_cache_key({on_cache_query_attr: attr}) for attr in key_list]
             cached = cache.get_many(row_keys)
 
             to_return = [
-                (ck in cached) and self.obj_from_datadict(cached[ck]) or ToFetch(key_list[i]) for i, ck in enumerate(row_keys)
+                (ck in cached) and self.obj_from_datadict(cached[ck]) or ToFetch(force_unicode(key_list[i])) for i, ck in enumerate(row_keys)
             ]
 
             if len(cached) != len(row_keys):
-                to_fetch = [str(tr) for tr in to_return if isinstance(tr, ToFetch)]
+                to_fetch = [unicode(tr) for tr in to_return if isinstance(tr, ToFetch)]
 
-                fetched = dict([(str(r.__dict__[on_cache_query_attr]), r) for r in
+                fetched = dict([(force_unicode(r.__dict__[on_cache_query_attr]), r) for r in
                               models.query.QuerySet(self.model).filter(**{"%s__in" % on_cache_query_attr: to_fetch})])
 
-                to_return = [(isinstance(tr, ToFetch) and fetched[str(tr)] or tr) for tr in to_return]
+                to_return = [(isinstance(tr, ToFetch) and fetched[unicode(tr)] or tr) for tr in to_return]
                 to_cache.update(dict([(self.model.infer_cache_key({on_cache_query_attr: attr}), r._as_dict()) for attr, r in fetched.items()]))
+
+            if with_aggregates:
+                for i, r in enumerate(to_return):
+                    r.__dict__.update(with_aggregates[i])
 
 
         if len(to_cache):
