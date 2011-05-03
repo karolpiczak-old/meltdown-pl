@@ -5,31 +5,38 @@
     {% for comment in comments %}
         <a name="{{ comment.id }}"></a>
         <div class="comment{% if not comment.top_scorer %} not_top_scorer{% endif %}" id="comment-{{comment.id}}">
-            <div id="post-{{ comment.id }}-score" class="comment-score">{% if comment.score %}{{ comment.score }}{% endif %}</div>
-            <div class="comment-text">{{ comment.comment }}</div>
-            <div class="comment-info" id="comment-{{comment.id}}-info">
-                {% if comment.can_like %}
-                    <a id="post-{{ comment.id }}-upvote" href="{% url like_comment id=comment.id %}"
-                     title="{% trans "I like this comment (click again to cancel)" %}" class="ajax-command comment-like{% if comment.likes %} on{% endif %}"
-                    rel="nofollow"> </a>
-                {% endif %}
-                {% if comment.can_edit %}
-                    <a id="comment-{{ comment.id }}-edit" href="{% url node_markdown id=comment.id %}" title="{% trans "Edit comment" %}"
-                        class="comment-edit" rel="nofollow"> </a>
-                {% endif %}
+            <div id="post-{{ comment.id }}-score" class="comment-score">
+              {% if comment.can_like %}
+                  <a id="post-{{ comment.id }}-upvote" href="{% url like_comment id=comment.id %}"
+                   title="{% trans "I like this comment (click again to cancel)" %}" class="ajax-command comment-like{% if comment.likes %} on{% endif %}"
+                  rel="nofollow"> </a>
+              {% endif %}
+              {% if comment.score %}{{ comment.score }}{% endif %}
+            </div>
+            <div class="comment-delete-box" id="comment-{{comment.id}}-delete-box">
                 {% if comment.can_delete %}
                     <a id="comment-{{ comment.id }}-delete" href="{% url delete_comment id=comment.id %}" title="{% trans "Delete comment" %}"
                         class="ajax-command comment-delete confirm" rel="nofollow"> </a>
                 {% endif %}
-                {% if comment.can_convert %}
-                    <a rel="nofollow" id="comment-{{ comment.id }}-convert" href="{% url convert_comment id=comment.id %}" title="{% trans "Convert comment to answer" %}"
-                        class="ajax-command comment-convert confirm" rel="nofollow"> </a>
-                {% endif %}
-                    
-
-                <span class="comment-age">({% diff_date comment.added_at %})</span>
-                <a class="comment-user userinfo" href="{{comment.user.get_profile_url}}">{{comment.user.decorated_name}}</a>
-                {% if show_gravatar %}{% gravatar comment.user 18 %}{% endif %}
+            </div>
+            <div class="comment-body">
+                <div class="comment-text">{{ comment.comment }}</div>
+                <div class="comment-signature">
+                    <div class="comment-actions" id="comment-{{comment.id}}-actions">
+                      {% if comment.can_edit %}
+                          <a id="comment-{{ comment.id }}-edit" href="{% url node_markdown id=comment.id %}" title="{% trans "Edit comment" %}"
+                              class="comment-edit" rel="nofollow"> </a>
+                      {% endif %}
+                      {% if comment.can_convert %}
+                          <a rel="nofollow" id="comment-{{ comment.id }}-convert" href="{% url convert_comment id=comment.id %}" title="{% trans "Convert comment to answer" %}"
+                              class="ajax-command comment-convert confirm" rel="nofollow"> </a>
+                      {% endif %}
+                    </div>
+                    {% if show_gravatar %}{% gravatar comment.user 18 %}{% endif %}
+                    <a class="comment-user userinfo" href="{{comment.user.get_profile_url}}">{{comment.user.decorated_name}}</a>
+                    <span class="comment-age">({% diff_date comment.added_at %})</span>
+                </div>
+                <div class="bottom"></div>
             </div>
         </div>
     {% endfor %}

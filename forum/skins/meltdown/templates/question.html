@@ -123,7 +123,6 @@
                             </div>
                             {% comments question request.user %}
                         </div>
-                        
                     </td>
                 </tr>
             </table>
@@ -152,7 +151,7 @@
                     <div id="answer-container-{{ answer.id }}" class="answer {% post_classes answer %}">
                         <table style="width:100%;">
                             <tr>
-                                <td style="width:30px;vertical-align:top">
+                                <td style="width:40px;vertical-align:top">
                                     <div class="vote-buttons">
                                         {% vote_buttons answer request.user %}
                                         {% accept_button answer request.user %}
@@ -163,12 +162,12 @@
                                         <div class="answer-body">
                                             {{ answer.html|safe }}
                                         </div>
-                                        <div class="answer-controls post-controls">
-                                            {% post_controls answer request.user %}
-                                            {% wiki_symbol request.user answer %}
-                                        </div>
                                         <div class="post-update-info-container">
                                             {% contributors_info answer %}
+                                        </div>
+                                        {% wiki_symbol request.user answer %}
+                                        <div class="answer-controls post-controls">
+                                            {% post_controls answer request.user %}
                                         </div>
                                         {% comments answer request.user %}
                                     </div>
