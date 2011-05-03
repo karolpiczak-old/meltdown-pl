@@ -427,7 +427,6 @@ $(function() {
         if ($form.length) {
             var $textarea = $container.find('textarea');
             var textarea = $textarea.get(0);
-            var $csrf = $container.find('[name="csrfmiddlewaretoken"]');
             var $button = $container.find('.comment-submit');
             var $cancel = $container.find('.comment-cancel');
             var $chars_left_message = $container.find('.comments-chars-left-msg');
@@ -556,8 +555,7 @@ $(function() {
                 if (running) return false;
 
                 var post_data = {
-                    comment: $textarea.val(),
-                    csrfmiddlewaretoken: $csrf.val()
+                    comment: $textarea.val()
                 }
 
                 if (comment_in_form) {
