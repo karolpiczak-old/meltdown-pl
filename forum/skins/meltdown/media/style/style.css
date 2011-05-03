@@ -2027,6 +2027,7 @@ div.comment-tools a:hover {
   background-color: #777777;
   color: #FFFFFF;
   text-decoration: none;
+  border-bottom: none;
 }
 
 .action-link-separator {
