@@ -534,6 +534,10 @@ def matching_users(request):
 def related_questions(request):
     if request.POST and request.POST.get('title', None):
         can_rank, questions = Question.objects.search(request.POST['title'])
+
+        if can_rank and isinstance(can_rank, basestring):
+            questions = questions.order_by(can_rank)
+
         return HttpResponse(simplejson.dumps(
                 [dict(title=q.title, url=q.get_absolute_url(), score=q.score, summary=q.summary)
                  for q in questions.filter_state(deleted=False)[0:10]]), mimetype="application/json")
