@@ -71,20 +71,26 @@
         <script type="text/html" class="new-comment-skeleton" id="new-comment-skeleton-{{ post.id }}">
             <div class="comment{% if not comment.top_scorer %} not_top_scorer{% endif %}" id="comment-%ID%">
                 <div id="post-%ID%-score" class="comment-score"></div>
-                <div class="comment-text">%COMMENT%</div>
-                <div class="comment-info" id="comment-%ID%-info">
-                    <a id="comment-%ID%-edit" href="%EDIT_URL%" title="{% trans "Edit comment" %}"
-                        class="comment-edit" rel="nofollow"> </a>
-                    <a id="comment-%ID%-delete" href="%DELETE_URL%" title="{% trans "Delete comment" %}"
-                        class="ajax-command comment-delete confirm" rel="nofollow"> </a>
-                    <a rel="nofollow" id="comment-%ID%-convert" style="display:none;" href="%CONVERT_URL%" title="{% trans "Convert comment to answer" %}"
-                        class="ajax-command comment-convert confirm" rel="nofollow"> </a>
-
-                    <span class="comment-age">({% trans "just now" %})</span>
-                    <a class="comment-user" href="%PROFILE_URL%">%USERNAME%</a>
+                <div class="comment-delete-box" id="comment-%ID%-delete-box">
+                  <a id="comment-%ID%-delete" href="%DELETE_URL%" title="{% trans "Delete comment" %}"
+                      class="ajax-command comment-delete confirm" rel="nofollow"> </a>
+                </div>
+                <div class="comment-body">
+                  <div class="comment-text">%COMMENT%</div>
+                  <div class="comment-signature">
+                    <div class="comment-actions" id="comment-%ID%-actions">
+                      <a id="comment-%ID%-edit" href="%EDIT_URL%" title="{% trans "Edit comment" %}"
+                          class="comment-edit" rel="nofollow"> </a>
+                      <a rel="nofollow" id="comment-%ID%-convert" style="display:none;" href="%CONVERT_URL%" title="{% trans "Convert comment to answer" %}"
+                          class="ajax-command comment-convert confirm" rel="nofollow"> </a>
+                    </div>
                     {% if user.is_authenticated %}
-                        {% if show_gravatar %}{% gravatar user 18 %}{% endif %}
+                      {% if show_gravatar %}{% gravatar user 18 %}{% endif %}
                     {% endif %}
+                    <a class="comment-user userinfo" href="%PROFILE_URL%">%USERNAME%</a>
+                    <span class="comment-age">({% trans "just now" %})</span>
+                  </div>
+                  <div class="bottom"></div>
                 </div>
              </div>
         </script>
