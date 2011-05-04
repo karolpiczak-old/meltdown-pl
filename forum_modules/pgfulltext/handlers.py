@@ -12,7 +12,7 @@ def question_search(self, keywords):
     tsquery = " | ".join(word_re.findall(keywords))
     ilike = keywords + u"%%"
 
-    return True, self.extra(
+    return '-ranking', self.extra(
             tables = ['forum_rootnode_doc'],
             select={
             'ranking': """

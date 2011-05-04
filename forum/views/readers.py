@@ -220,8 +220,13 @@ def question_search(request, keywords):
     can_rank, initial = Question.objects.search(keywords)
 
     if can_rank:
+        sort_order = None
+
+        if isinstance(can_rank, basestring):
+            sort_order = can_rank
+
         paginator_context = QuestionListPaginatorContext()
-        paginator_context.sort_methods[_('ranking')] = pagination.SimpleSort(_('relevance'), '-ranking', _("most relevant questions"))
+        paginator_context.sort_methods[_('ranking')] = pagination.SimpleSort(_('relevance'), sort_order, _("most relevant questions"))
         paginator_context.force_sort = _('ranking')
     else:
         paginator_context = None

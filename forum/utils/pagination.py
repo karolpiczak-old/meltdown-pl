@@ -34,7 +34,10 @@ class SimpleSort(SortBase):
         return isinstance(self.order_by, (list, tuple)) and self.order_by or [self.order_by]
 
     def apply(self, objects):
-        return objects.order_by(*self._get_order_by())
+        if self.order_by:
+            return objects.order_by(*self._get_order_by())
+
+        return objects
 
 class PaginatorContext(object):
     visible_page_range = 5
