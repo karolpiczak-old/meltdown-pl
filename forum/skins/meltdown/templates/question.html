@@ -282,25 +282,28 @@
 
 {% cache 60 questions_tags settings.APP_URL question.id %}
 <div class="boxC">
-    <p>
-		{% trans "Question tags" %}:
-    </p>
+    <h3>
+		{% trans "Question tags" %}
+    </h3>
     <p class="tags" >
         {% for tag in question.tags.all %}
         	<a href="{% url tag_questions tag.name|urlencode %}"
             class="tag-link-{{ tag.name }}"
 			title="{% trans "see questions tagged"%}'{{tag.name}}'{% trans "using tags" %}"
-			rel="tag">{{ tag.name }}</a> <span class="tag-number">&#215;{{ tag.used_count|intcomma }}</span><br/>
+			rel="tag">{{ tag.name }}</a> <span class="tag-number">&#215;{{ tag.used_count|intcomma }}</span><br class="clear"/>
         {% endfor %}
     </p>
+    <h3>
+      {% trans "Question details" %}
+    </h3>
     <p>
-        {% trans "question asked" %}: <strong title="{{ question.added_at }}">{% diff_date question.added_at %}</strong>
+        {% trans "Question asked" %}: <strong title="{{ question.added_at }}">{% diff_date question.added_at %}</strong>
     </p>
     <p> 
-     	{% trans "question was seen" %}: <strong>{{ question.view_count|intcomma }} {% trans "times" %}</strong>
+     	{% trans "Question was seen" %}: <strong>{{ question.view_count|intcomma }} {% trans "times" %}</strong>
     </p>
     <p> 
-        {% trans "last updated" %}: <strong title="{{ question.last_activity_at }}">{% diff_date question.last_activity_at %}</strong>
+        {% trans "Last updated" %}: <strong title="{{ question.last_activity_at }}">{% diff_date question.last_activity_at %}</strong>
     </p>
 </div>
 {% endcache %}

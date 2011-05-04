@@ -715,6 +715,10 @@ footer p.separate {
   text-align: center;
 }
 
+.pager.border {
+  border-width: 1px 0px 1px 0px;
+}
+
 .pagesize {
   float: right;
   margin-bottom: 16px;
@@ -782,7 +786,14 @@ footer p.separate {
   margin: 0;
 }
 
-.tags ul li a {
+.boxC .more {
+  clear: both;
+  text-align: right;
+}
+
+.tags ul li a,
+.boxC .tags a,
+#searchtags .tags a {
   display: inline;
   float: left;
   font-size: 11px;
@@ -796,11 +807,18 @@ footer p.separate {
   color: #717274;
 }
 
-.tags ul li:hover a {
+.tags ul li:hover a,
+.boxC .tags a:hover,
+#searchtags .tags a:hover {
   background-color: #6f7072;
   background-image: url("../images/meltdown-nav-bg.png");
   background-repeat: repeat-x;
   color: white;
+}
+
+.boxC .tags a {
+  position: relative;
+  top: -2px;
 }
 
 .tag-number {
@@ -1113,6 +1131,10 @@ div.question-body p, div.answer-body p {
 
 .unanswered {
   border: 1px solid #E5E5E5;
+}
+
+#searchtags {
+  margin-bottom: 10px;
 }
 
 .tagsList {
@@ -2380,19 +2402,24 @@ div.subscription_tags {
     float:left;
 }
 div.subscription_tags a, span.tag {
-    background-color: #EEEEEE;
-    border-bottom: 1px solid #CCCCCC;
-    border-right: 1px solid #CCCCCC;
-    color: #777777;
-    font-size: 11px;
-    font-weight: normal;
-    padding: 1px 8px;
-    text-decoration: none;
-    white-space: nowrap;
+  text-decoration: none;
+  white-space: nowrap;
+  display: inline;
+  font-size: 11px;
+  line-height: 11px;
+  background-color: #E7E6E5;
+  background-image: url("../images/meltdown-nav-current-bg.png");
+  background-repeat: repeat-x;
+  border: 1px solid #E5E5E5;
+  margin: 0 5px 5px 0;
+  padding: 4px 6px;
+  color: #717274;
 }
 div.subscription_tags a:hover {
-    background-color: #356FCB;
-    color: #FFFFFF;
+  background-color: #6f7072;
+  background-image: url("../images/meltdown-nav-bg.png");
+  background-repeat: repeat-x;
+  color: white;
 }
 
 div.wmd-button {
