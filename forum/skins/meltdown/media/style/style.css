@@ -2057,8 +2057,14 @@ img.subscription-remove {
 
 .comment-form-widgets-container textarea {
     height: 80px;
-    width: 80%;
+    padding: 10px 10px !important;
+    margin-left: 5%;
+    width: 70%;
     float: left;
+    border: 1px solid #E5E5E5;
+    font-size: 12px;
+    line-height: 18px;
+    font-family: arial,verdana,"bitstream vera sans","dejavu sans","liberation sans",geneva,sans-serif
 }
 
 span.comment-chars-left {
@@ -2143,11 +2149,27 @@ div.comment-tools a:hover {
 }
 
 .comment-form-buttons input, .user-prompt .prompt-buttons button {
-    height: 16px;
-    line-height: 12px;
-    font-size: 110%;
-    border: 1px solid #999;
+  height: 16px;
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 11px;
+  background-color: #E7E6E5;
+  background-image: url("../images/meltdown-nav-current-bg.png");
+  background-repeat: repeat-x;
+  border: 1px solid #E5E5E5;
+  margin: 0 5px 5px 0;
+  padding: 4px 6px;
+  color: #717274;
 }
+
+.comment-form-buttons input:hover, .user-prompt .prompt-buttons button:hover {
+  background-color: #6f7072;
+  background-image: url("../images/meltdown-nav-bg.png");
+  background-repeat: repeat-x;
+  color: white;
+  border: 1px solid #E5E5E5;
+}
+
 
 .comment-form-buttons input {
     width: 100%;
@@ -2260,7 +2282,7 @@ div.dialog.confirm, div.dialog.warning {
 }
 
 div.dialog.confirm {
-    font-size: 140%;
+    font-size: 120%;
     font-weight: bold;
 }
 
