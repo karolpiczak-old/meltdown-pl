@@ -5,13 +5,15 @@
     {% for comment in comments %}
         <a name="{{ comment.id }}"></a>
         <div class="comment{% if not comment.top_scorer %} not_top_scorer{% endif %}" id="comment-{{comment.id}}">
-            <div id="post-{{ comment.id }}-score" class="comment-score">
+            <div id="post-{{ comment.id }}-score-box" class="comment-score-box">
               {% if comment.can_like %}
                   <a id="post-{{ comment.id }}-upvote" href="{% url like_comment id=comment.id %}"
                    title="{% trans "I like this comment (click again to cancel)" %}" class="ajax-command comment-like{% if comment.likes %} on{% endif %}"
                   rel="nofollow"> </a>
               {% endif %}
-              {% if comment.score %}{{ comment.score }}{% endif %}
+              <div id="post-{{ comment.id }}-score" class="comment-score">
+                {% if comment.score %}{{ comment.score }}{% endif %}
+              </div>
             </div>
             <div class="comment-delete-box" id="comment-{{comment.id}}-delete-box">
                 {% if comment.can_delete %}
@@ -70,7 +72,9 @@
         </div>
         <script type="text/html" class="new-comment-skeleton" id="new-comment-skeleton-{{ post.id }}">
             <div class="comment{% if not comment.top_scorer %} not_top_scorer{% endif %}" id="comment-%ID%">
-                <div id="post-%ID%-score" class="comment-score"></div>
+                <div id="post-%ID%-score-box" class="comment-score-box">
+                   <div id="post-%ID%-score" class="comment-score"></div>
+                </div>
                 <div class="comment-delete-box" id="comment-%ID%-delete-box">
                   <a id="comment-%ID%-delete" href="%DELETE_URL%" title="{% trans "Delete comment" %}"
                       class="ajax-command comment-delete confirm" rel="nofollow"> </a>

@@ -1944,7 +1944,7 @@ a.accept-answer.on, a.accept-answer:hover {
     display: none;
 }
 
-.comment-score {
+.comment-score-box {
   color: #717274;
   font-size: 12px;
   font-weight: bold;
@@ -1955,7 +1955,7 @@ a.accept-answer.on, a.accept-answer:hover {
   text-align: center;
 }
 
-.comment-score a {
+.comment-score-box a {
   display: block;
   margin: 0px auto 1px auto;
   width: 18px;
