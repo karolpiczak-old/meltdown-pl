@@ -992,7 +992,8 @@ a.medal:hover {
 }
 
 .question-body p,
-.answer-body p {
+.answer-body p,
+.wmd-preview p {
   color: black;
   font-size: 14px;
   line-height: 20px;
@@ -1019,13 +1020,15 @@ a.medal:hover {
 }
 
 .question-body ul,
-.answer-body ul {
+.answer-body ul,
+.wmd-preview ul {
   list-style: disc outside none;
   margin-left: 20px;
 }
 
 .question-body li,
-.answer-body li {
+.answer-body li,
+.wmd-preview li {
    margin: 0 0 3px;
 }
 
@@ -1211,26 +1214,34 @@ span.form-error {
 }
 
 #editor {
-    font-size: 100%;
-    line-height: 18px;
-    min-height: 200px;
-    width: 100%;
+  min-height: 250px;
+  width: 690px;
+
+  padding: 10px 10px 5px 10px;
+  border: 1px solid #E5E5E5;
+  color: black;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: monospace;
 }
 
 .wmd-preview {
-    background-color: #F5F5F5;
-    margin-top: 10px;
-    min-height: 20px;
-    padding: 6px;
-    width: 98%;
-    overflow: hidden;
+  border: 1px solid #E5E5E5;
+  background-color: white;
+  border-top: solid 15px #FFEED7;
+  border-bottom: solid 15px #FFEED7;
+  margin-top: 10px;
+  min-height: 20px;
+  padding: 10px 10px 5px 10px;
+  width: 690px;
+  overflow: hidden;
 }
 
 .preview-toggle {
-    color: #AAAAAA;
-    font-weight: 600;
-    text-align: left;
-    width: 100%;
+  color: #6F7072;
+  font-weight: 600;
+  text-align: left;
+  width: 100%;
 }
 
 .preview-toggle span:hover {
@@ -1522,17 +1533,27 @@ ins {
 }
 
 .submit {
-    background-color: #D4D0C8;
-    border: 1px solid #777777;
-    cursor: pointer;
-    font-size: 120%;
-    font-weight: bold;
-    height: 40px;
-    padding-bottom: 4px;
+  height: 40px;
+  padding-bottom: 4px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 18px;
+  background-color: #E7E6E5;
+  background-image: url("../images/meltdown-nav-current-bg.png");
+  background-repeat: repeat-x;
+  border: 1px solid #E5E5E5;
+  margin: 0 5px 5px 0;
+  padding: 4px 6px;
+  color: #717274;
 }
 
 .submit:hover {
-    text-decoration: underline;
+  background-color: #6f7072;
+  background-image: url("../images/meltdown-nav-bg.png");
+  background-repeat: repeat-x;
+  color: white;
+  border: 1px solid #E5E5E5;
 }
 
 .ask-body {
