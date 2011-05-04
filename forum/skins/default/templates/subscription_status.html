@@ -22,8 +22,7 @@
         {% endif %}
     </a></p>
     <p>
-        {% url user_subscriptions id=request.user.id,slug=request.user.username|slugify as subscriptions_url %}
-        {% blocktrans %}
+        {% blocktrans with request.user.get_user_subscriptions_url as subscriptions_url %}
             (you can adjust your notification settings on your <a href="{{ subscriptions_url }}">profile</a>)
         {% endblocktrans %}
     </p>

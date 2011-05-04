@@ -205,7 +205,11 @@ class User(BaseModel, DjangoUser):
 
     @models.permalink
     def get_asked_url(self):
-        return ('user_questions', (), {'mode': _('asked-by'), 'user': self.id, 'slug': slugify(self.username)})
+        return ('user_questions', (), {'mode': _('asked-by'), 'user': self.id, 'slug': slugify(smart_unicode(self.username))})
+
+    @models.permalink
+    def get_user_subscriptions_url(self):
+        return ('user_subscriptions', (), { 'id': self.id, 'slug': slugify(smart_unicode(self.username))})
 
     @models.permalink
     def get_answered_url(self):
