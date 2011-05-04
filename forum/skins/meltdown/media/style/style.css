@@ -901,7 +901,7 @@ a.medal:hover {
 }
 
 .headlineA {
-    border-bottom: 1px solid #777777;
+    border-bottom: 1px solid #E5E5E5;
     font-size: 13px;
     font-weight: 800;
     height: 30px;
@@ -931,7 +931,7 @@ a.medal:hover {
     height: 23px;
     line-height: 23px;
     margin: 5px 0 0 5px;
-    padding: 0 6px 0 15px;
+    padding: 0 6px 0 22px;
 }
 
 .headMedals {
@@ -943,7 +943,7 @@ a.medal:hover {
     height: 23px;
     line-height: 23px;
     margin: 5px 0 0 5px;
-    padding: 0 6px 0 15px;
+    padding: 0 6px 0 22px;
 }
 
 .headNormal {
