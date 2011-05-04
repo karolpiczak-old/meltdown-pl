@@ -814,30 +814,24 @@ footer p.separate {
 }
 
 .medal {
-    background: none repeat scroll 0 0 #FFFFCD;
-    border-color: #EEEEEE #CCCCCC #CCCCCC #EEEEEE;
-    border-left: 1px solid #EEEEEE;
-    border-style: solid;
-    border-width: 1px;
-    color: #333333;
-    font-size: 14px;
+    background: url("../images/meltdown-nav-current-bg-big.png") repeat-x scroll 0 0 #E7E6E5;
+
+    border: 1px solid #E5E5E5;
+    color: #6F7072;
+    font-size: 12px;
     font-weight: bold;
     line-height: 250%;
-    padding: 4px 12px 4px 6px;
+    padding: 4px 12px 4px 2px;
 }
 
 a.medal {
     text-decoration: none;
-    color: #333333;
+    color: #6F7072;
 }
 
 a.medal:hover {
-    background: url("../images/medala_on.gif") no-repeat scroll 0 0 transparent;
-    border-color: #E7E296 #D1CA3D #D1CA3D #E7E296;
-    border-left: 1px solid #E7E296;
-    border-style: solid;
-    border-width: 1px;
-    color: #333333;
+    background: url("../images/meltdown-sidebar-bg.png") repeat-x scroll 0 0 #DCEDF7;
+    border: 1px solid #E5E5E5;color: #333333;
     text-decoration: none;
 }
 
@@ -1135,12 +1129,20 @@ div.question-body p, div.answer-body p {
     margin: 0;
 }
 
+.badge-list .username {
+  padding-left: 25px;
+}
+
+.boxC .badge-list {
+  text-align: left;
+}
+
 .badge-list a {
-    color: #3060A8;
+    color: #E75113;
 }
 
 .badge-list a.medal {
-    color: #333333;
+    color: #6F7072;
 }
 
 .list-item {
