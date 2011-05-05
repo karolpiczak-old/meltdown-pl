@@ -1,5 +1,8 @@
 from django.utils.translation import ugettext as _
+from django.utils.encoding import smart_unicode
 from base import *
+
+from unidecode import unidecode
 
 class Vote(models.Model):
     user = models.ForeignKey(User, related_name="votes")
@@ -52,7 +55,7 @@ class Badge(BaseModel):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('badge', [], {'id': self.id, 'slug': slugify(self.name)})
+        return ('badge', [], {'id': self.id, 'slug': slugify(unidecode(smart_unicode(self.name)))})
 
     def save(self, *args, **kwargs):
         if isinstance(self.awarded_count, models.expressions.ExpressionNode):

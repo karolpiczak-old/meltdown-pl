@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load extra_tags %}
 {% load humanize %}
+{% load unidecode_tags %}
 
 {% block userjs %}
     <script type="text/javascript">
@@ -32,8 +33,8 @@
     <br/>
 
     <div id="navBar"><div class="tabsA">
-        <a href='{% url user_subscriptions id=view_user.id slug=view_user.username|slugify %}?tab=settings' id="subscriptions_settings_button"  {%  if not manage_open %}class="on"{% endif %}>Settings</a>
-        <a href='{% url user_subscriptions id=view_user.id slug=view_user.username|slugify %}?tab=manage' id="subscriptions_management_button"  {%  if manage_open %}class="on"{% endif %}>Manage</a>
+        <a href='{% url user_subscriptions id=view_user.id slug=view_user.username|unidecode|slugify %}?tab=settings' id="subscriptions_settings_button"  {%  if not manage_open %}class="on"{% endif %}>Settings</a>
+        <a href='{% url user_subscriptions id=view_user.id slug=view_user.username|unidecode|slugify %}?tab=manage' id="subscriptions_management_button"  {%  if manage_open %}class="on"{% endif %}>Manage</a>
     </div></div>
 
     <br/>

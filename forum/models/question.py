@@ -1,6 +1,9 @@
 from base import *
 from tag import Tag
 from django.utils.translation import ugettext as _
+from django.utils.encoding import smart_unicode
+
+from unidecode import unidecode
 
 class QuestionManager(NodeManager):
     def search(self, keywords):
@@ -41,7 +44,7 @@ class Question(Node):
 
     @models.permalink    
     def get_absolute_url(self):
-        return ('question', (), {'id': self.id, 'slug': django_urlquote(slugify(self.title))})
+        return ('question', (), {'id': self.id, 'slug': django_urlquote(slugify(unidecode(smart_unicode(self.title))))})
         
     def meta_description(self):
         return self.summary

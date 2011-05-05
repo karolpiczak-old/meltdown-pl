@@ -8,6 +8,7 @@ from forum.templatetags.extra_tags import get_score_badge
 from forum.utils.html import cleanup_urls
 from forum import settings
 
+from unidecode import unidecode
 
 try:
     from django.template import get_templatetags_modules
@@ -84,14 +85,14 @@ ui.register(ui.USER_MENU,
             ),
             ui.UserMenuItem(
                 label=_("email notification settings"),
-                url=lambda u, c: reverse('user_subscriptions', kwargs={'id': c['user'].id, 'slug': slugify(smart_unicode(c['user'].username))}),
+                url=lambda u, c: reverse('user_subscriptions', kwargs={'id': c['user'].id, 'slug': slugify(unidecode(smart_unicode(c['user'].username)))}),
                 span_attrs={'class': 'user-subscriptions'},
                 weight=200,
                 name='EMAIL_SETTINGS'
             ),
             ui.UserMenuItem(
                 label=_("other preferences"),
-                url=lambda u, c: reverse('user_preferences', kwargs={'id': c['user'].id, 'slug': slugify(c['user'].username)}),
+                url=lambda u, c: reverse('user_preferences', kwargs={'id': c['user'].id, 'slug': slugify(unidecode(smart_unicode(c['user'].username)))}),
                 weight=200,
                 name='OTHER_PREFS'
             ),

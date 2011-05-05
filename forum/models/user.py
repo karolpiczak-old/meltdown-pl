@@ -15,6 +15,8 @@ from random import Random
 from django.utils.translation import ugettext as _
 import logging
 
+from unidecode import unidecode
+
 class AnonymousUser(DjangoAnonymousUser):
     reputation = 0
     
@@ -198,28 +200,28 @@ class User(BaseModel, DjangoUser):
 
     @models.permalink
     def get_profile_url(self):
-        return ('user_profile', (), {'id': self.id, 'slug': slugify(smart_unicode(self.username))})
+        return ('user_profile', (), {'id': self.id, 'slug': slugify(unidecode(smart_unicode(self.username)))})
 
     def get_absolute_url(self):
         return self.get_profile_url()
 
     @models.permalink
     def get_asked_url(self):
-        return ('user_questions', (), {'mode': _('asked-by'), 'user': self.id, 'slug': slugify(smart_unicode(self.username))})
+        return ('user_questions', (), {'mode': _('asked-by'), 'user': self.id, 'slug': slugify(unidecode(smart_unicode(self.username)))})
 
     @models.permalink
     def get_user_subscriptions_url(self):
-        return ('user_subscriptions', (), { 'id': self.id, 'slug': slugify(smart_unicode(self.username))})
+        return ('user_subscriptions', (), { 'id': self.id, 'slug': slugify(unidecode(smart_unicode(self.username)))})
 
     @models.permalink
     def get_answered_url(self):
-        return ('user_questions', (), {'mode': _('answered-by'), 'user': self.id, 'slug': slugify(self.username)})
+        return ('user_questions', (), {'mode': _('answered-by'), 'user': self.id, 'slug': slugify(unidecode(smart_unicode(self.username)))})
 
     def get_subscribed_url(self):
         try:
             # Try to retrieve the Subscribed User URL.
             url = reverse('user_questions',
-                           kwargs={'mode': _('subscribed-by'), 'user': self.id, 'slug': slugify(smart_unicode(self.username))})
+                           kwargs={'mode': _('subscribed-by'), 'user': self.id, 'slug': slugify(unidecode(smart_unicode(self.username)))})
             return url
         except Exception, e:
             # If some Exception has been raised, don't forget to log it.

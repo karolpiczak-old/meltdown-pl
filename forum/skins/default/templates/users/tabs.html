@@ -1,5 +1,5 @@
-{% load extra_filters ui_registry i18n %}
-{% with view_user.username|slugify as user_slug %}
+{% load extra_filters ui_registry i18n unidecode_tags %}
+{% with view_user.username|unidecode|slugify as user_slug %}
 <div class="tabBar">
     <div class="tabsA">
         {% loopregistry profile_tabs %}{% spaceless %}

@@ -33,6 +33,8 @@ from forum.feed import RssQuestionFeed, RssAnswerFeed
 from forum.utils.pagination import generate_uri
 import decorators
 
+from unidecode import unidecode
+
 class HottestQuestionsSort(pagination.SortBase):
     def apply(self, questions):
         return questions.annotate(new_child_count=Count('all_children')).filter(
@@ -274,7 +276,7 @@ def match_question_slug(id, slug):
     qs = Question.objects.filter(title__istartswith=slug_words[0])
 
     for q in qs:
-        if slug == urlquote(slugify(q.title)):
+        if slug == urlquote(slugify(unidecode(smart_unicode(q.title)))):
             return q
 
     return None
@@ -336,7 +338,7 @@ def question(request, id, slug='', answer=None):
 
         return answer_redirect(request, answer)
 
-    if settings.FORCE_SINGLE_URL and (slug != slugify(question.title)):
+    if settings.FORCE_SINGLE_URL and (slug != slugify(unidecode(smart_unicode(question.title)))):
         return HttpResponsePermanentRedirect(question.get_absolute_url())
 
     if request.POST:

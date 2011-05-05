@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n unidecode_tags %}
 
 <div class="boxC">
     <h3>{% trans "Recent awards" %}</h3>
@@ -6,7 +6,7 @@
          <ul class="badge-list">
          {% for award in awards %}
             <li>
-              <a href="{% url badges %}{{award.badge.id}}/{{award.badge.name|slugify}}" title="{{ award.badge.description }}" class="medal">
+              <a href="{% url badges %}{{award.badge.id}}/{{award.badge.name|unidecode|slugify}}" title="{{ award.badge.description }}" class="medal">
               <span class="badge{{ award.badge.type }}"></span>&nbsp;{{ award.badge.name }}</a><br />
               <span class="username"><a href="{{ award.user.get_profile_url }}">{{ award.user.decorated_name }}</a></span>
             </li>

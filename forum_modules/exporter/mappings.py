@@ -5,6 +5,9 @@ from forum.views import readers
 from forum.modules import decorate
 from forum.models import Question
 
+from django.utils.encoding import smart_unicode
+from unidecode import unidecode
+
 import settings, logging
 
 @decorate(readers.question, needs_origin=True)
@@ -18,7 +21,7 @@ def match_question_slug(origin, request, id, slug='', answer=None):
         try:
             question = Question.objects.get(id=id)
 
-            if slug != slugify(question.title):
+            if slug != slugify(unidecode(smart_unicode(question.title))):
                 return origin(request, settings.MERGE_MAPPINGS['merged_nodes'][int(id)], slug, answer)
 
         except:
