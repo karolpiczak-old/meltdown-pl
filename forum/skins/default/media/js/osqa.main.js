@@ -159,7 +159,6 @@ var response_commands = {
     },
 
     copy_url: function(url) {
-        $.copy(url);
     }
 }
 
@@ -181,10 +180,16 @@ function show_dialog (extern) {
         yes_callback: default_close_function,
         no_text: messages.cancel,
         show_no: false,
-        close_on_clickoutside: false
+        close_on_clickoutside: false,
+        copy: false
     }
 
     $.extend(options, extern);
+
+    var copy_id = '';
+    if (options.copy) {
+        copy_id = ' id="copy_clip_button"'
+    }
 
     if (options.event != undefined) {
         options.pos = {x: options.event.pageX, y: options.event.pageY};
@@ -197,8 +202,7 @@ function show_dialog (extern) {
         html += '<button class="dialog-no">' + options.no_text + '</button>';
     }
 
-    html += '<button class="dialog-yes">' + options.yes_text + '</button>'
-            + '</div></div>';
+    html += '<button class="dialog-yes"' + copy_id + '>' + options.yes_text + '</button>' + '</div></div>';
 
     $dialog = $(html);
     $('body').append($dialog);
@@ -304,7 +308,12 @@ function load_prompt(evt, el, url) {
                     process_ajax_response(data, evt);
                 }, 'json');
             },
-            show_no: true
+            show_no: true,
+            copy: false
+        }
+
+        if (el.hasClass('copy')) {
+            $.extend(doptions, { yes_text : 'Copy', copy: true});
         }
 
         if (!el.is('.centered')) {

@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n extra_tags %}
 
 <p>
 {% blocktrans %}
@@ -11,11 +11,38 @@ Would you like to copy the permanent link to your clipboard?
 <p><input id="permanent_link_url" name="permanent_link_url" size="64" style="font-size: 12px; width: 330px" readonly="readonly" type="text" value="{{ url }}" /></p>
 {% endspaceless %}
 
+<script type="text/javascript" src="{% media  "/media/js/ZeroClipboard.js" %}"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     // We highlight the content of the text field on click event
     $('#permanent_link_url').click(function() {
         $(this).select();
-    })
-})
+    });
+
+    // We use ZeroClipboard to copy the URL
+    ZeroClipboard.setMoviePath('{% media '/media/js/ZeroClipboard.swf' %}');
+
+    // Create the Client Clip
+    var clip = new ZeroClipboard.Client();
+
+    // Create the glue when on mouse-over event
+    $('#copy_clip_button').live('mouseover', function() {
+        // Take the URL from the input
+        clip.setText($('#permanent_link_url').val());
+
+        // Create the glue
+        clip.glue('copy_clip_button');
+
+        // Simulate click on the OK button when we hear a moseDown event on the glue
+        clip.addEventListener('mouseDown', function() {
+            $('#copy_clip_button').click();
+        });
+
+        // Reposition the clip
+        clip.addEventListener('complete', function() {
+            clip.reposition();
+        });
+    });
+
+});
 </script>

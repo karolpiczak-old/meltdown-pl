@@ -23,13 +23,12 @@
         </style>
         <![endif]-->
         {% block forestyle %}{% endblock %}
+
         <script src="http://www.google.com/jsapi" type="text/javascript"></script>
         <script type="text/javascript">
             google.load("jquery", "1.4.2");
             google.load("jqueryui", "1", {autoload:true});
-        </script>
-        <script type="text/javascript">
-        /* <![CDATA[ */
+
             var i18nLang = '{{settings.LANGUAGE_CODE}}';
             var scriptUrl = '{{settings.FORCE_SCRIPT_NAME}}/'
             var osqaSkin = '{{settings.OSQA_SKIN}}';
@@ -49,10 +48,8 @@
                 character: "{% trans "character" %}",
                 characters: "{% trans "characters" %}"
             }
-        /* ]]> */
         </script>
         <script type="text/javascript" src="{% media  "/media/js/osqa.main.js" %}"></script>
-        <script type="text/javascript" src="{% media  "/media/js/jquery.copy.js" %}"></script>
         {% if user_messages %}
         <style type="text/css">
             body { margin-top:2.4em; }

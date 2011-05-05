@@ -75,8 +75,9 @@ def post_classes(post):
 
     return " ".join(classes)
 
-def post_control(text, url, command=False, withprompt=False, confirm=False, title=""):
-    classes = (command and "ajax-command" or " ") + (withprompt and " withprompt" or " ") + (confirm and " confirm" or " ")
+def post_control(text, url, command=False, withprompt=False, confirm=False, title="", copy=False):
+    classes = (command and "ajax-command" or " ") + (withprompt and " withprompt" or " ") + (confirm and " confirm" or " ") + \
+        (copy and " copy" or " ")
     return {'text': text, 'url': url, 'classes': classes, 'title': title}
 
 @register.inclusion_tag('node/post_controls.html')
@@ -88,8 +89,8 @@ def post_controls(post, user):
     # We show the link tool if the post is an Answer. It is visible to Guests too.
     if post_type == "answer":
         # Answer permanent link tool
-        controls.append(post_control(_('permanent link'), reverse('answer_permanent_link', kwargs={'id' : post.id}),
-                                     title=_("answer permanent link"), command=True, withprompt=True))
+        controls.append(post_control(_('permanent link'), reverse('answer_permanent_link', kwargs={'id' : post.id,}),
+                                     title=_("answer permanent link"), command=True, withprompt=True, copy=True))
 
         # Users should be able to award points for an answer. Users cannot award their own answers
         if user != post.author and user.is_authenticated():
