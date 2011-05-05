@@ -81,6 +81,10 @@ a img {
   border: 0;
 }
 
+.thumb a:hover {
+  border: none;
+}
+
 .clear {
   clear: both;
   width: 0px;
