@@ -36,7 +36,7 @@ class VoteAction(ActionProxy):
             return None
 
     def describe_vote(self, vote_desc, viewer=None):
-        return _("%(user)s %(vote_desc)s %(post_desc)s") % {
+        return _("%(vote_desc)s %(post_desc)s") % {
             'user': self.hyperlink(self.user.get_profile_url(), self.friendly_username(viewer, self.user)),
             'vote_desc': vote_desc, 'post_desc': self.describe_node(viewer, self.node)
         }
@@ -55,7 +55,7 @@ class VoteUpAction(VoteAction):
         self.user.reset_vote_up_count_cache()
 
     def describe(self, viewer=None):
-        return self.describe_vote(_("voted up"), viewer)
+        return self.describe_vote(_("Upvote on"), viewer)
 
 class VoteDownAction(VoteAction):
     def repute_users(self):
@@ -71,7 +71,7 @@ class VoteDownAction(VoteAction):
         self.user.reset_vote_down_count_cache()
 
     def describe(self, viewer=None):
-        return self.describe_vote(_("voted down"), viewer)
+        return self.describe_vote(_("Downvote on"), viewer)
 
 
 class VoteUpCommentAction(VoteUpAction):
