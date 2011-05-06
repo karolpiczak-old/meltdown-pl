@@ -454,6 +454,28 @@ footer p.separate {
     width: 764px;
 }
 
+.user-stats-table .pager {
+  width: 764px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-left: 60px;
+}
+
+.user-stats-table .votes {
+  width: 400px;
+  margin: 5px auto 5px auto;
+  text-align: center;
+}
+
+.user-stats-table  .votes .vote-count {
+  display: block;
+}
+
+.user-stats-table .tags,
+.user-stats-table .badges {
+  padding-left: 60px;
+}
+
 .short-summary h2,
 .full-summary h2 {
   padding-left: 0px;
@@ -505,7 +527,8 @@ footer p.separate {
 
 .short-summary .counts .votecount,
 .short-summary .counts .answercount,
-.short-summary .counts .viewcount {
+.short-summary .counts .viewcount,
+.short-summary .counts .favoritecount{
   float: left;
   font-size: 10px;
   margin-right: 4px;
@@ -515,7 +538,8 @@ footer p.separate {
 
 .full-summary .counts .votecount,
 .full-summary .counts .answercount,
-.full-summary .counts .viewcount {
+.full-summary .counts .viewcount,
+.full-summary .counts .favoritecount {
   float: none;
   font-size: 10px;
   margin-right: 4px;
@@ -526,17 +550,21 @@ footer p.separate {
 
 .short-summary .counts .votecount,
 .short-summary .counts .viewcount,
+.short-summary .counts .favoritecount,
 .full-summary .counts .votecount,
-.full-summary .counts .viewcount {
+.full-summary .counts .viewcount,
+.full-summary .counts .favoritecount {
    border: 1px solid white;
 }
 
 .short-summary .counts .votecount .count,
 .short-summary .counts .answercount .count,
 .short-summary .counts .viewcount .count,
+.short-summary .counts .favoritecount .count,
 .full-summary .counts .votecount .count,
 .full-summary .counts .answercount .count,
-.full-summary .counts .viewcount .count {
+.full-summary .counts .viewcount .count,
+.full-summary .counts .favoritecount .count{
   font-size: 16px/16px;
   font-weight: bold;
   padding: 14px 0 2px;
@@ -545,12 +573,27 @@ footer p.separate {
 .short-summary .counts .votecount .tail,
 .short-summary .counts .answercount .tail,
 .short-summary .counts .viewcount .tail,
+.short-summary .counts .favoritecount .tail,
 .full-summary .counts .votecount .tail,
 .full-summary .counts .answercount .tail,
-.full-summary .counts .viewcount .tail{
+.full-summary .counts .viewcount .tail,
+.full-summary .counts .favoritecount .tail {
+  margin-top: 3px;
   padding: 2px 0px 14px 0px;
   font-size: 10px;
   line-height: 10px;
+}
+
+.short-summary .counts .favoritecount .tail.favorite-count {
+  margin-top: 8px;
+  padding: 2px 0px 2px 0px;
+}
+
+.short-summary .favorite-mark {
+  display: inline;
+  height: 0px;
+  width: 0px;
+  padding: 16px 16px;
 }
 
 .short-summary .question-summary-wrapper {
@@ -797,7 +840,8 @@ footer p.separate {
 
 .tags ul li a,
 .boxC .tags a,
-#searchtags .tags a {
+#searchtags .tags a,
+.user-stats-table .tags a {
   display: inline;
   float: left;
   font-size: 11px;
@@ -813,7 +857,8 @@ footer p.separate {
 
 .tags ul li:hover a,
 .boxC .tags a:hover,
-#searchtags .tags a:hover {
+#searchtags .tags a:hover,
+.user-stats-table .tags a:hover {
   background-color: #6f7072;
   background-image: url("../images/meltdown-nav-bg.png");
   background-repeat: repeat-x;
@@ -989,12 +1034,13 @@ a.medal:hover {
 }
 
 .headUser {
-    border-bottom: 1px solid #777777;
-    font-size: 20px;
-    font-weight: 800;
-    margin-bottom: 12px;
-    padding: 5px;
-    text-align: left;
+  background: url("../images/user.png") no-repeat scroll left center transparent;
+  border-bottom: 1px solid #E5E5E5;
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  padding: 5px 6px 5px 22px;
+  text-align: left;
 }
 
 #main-body {
@@ -1367,12 +1413,15 @@ ins {
 }
 
 .user-about {
-    background-color: #EEEEEE;
-    height: 200px;
-    line-height: 20px;
-    overflow: auto;
-    padding: 10px;
-    width: 90%;
+  background-color: #FFEED7;
+  background-image: url("../images/meltdown-sidebar-peach-bg.png");
+  background-repeat: repeat-x;
+  border: 1px solid #E5E5E5;
+  height: 200px;
+  line-height: 20px;
+  overflow: auto;
+  padding: 10px;
+  width: 90%;
 }
 
 .user-edit-link {
@@ -1382,6 +1431,61 @@ ins {
 
 .user-info-table {
     margin-bottom: 10px;
+}
+
+.user-info-table .gravatar {
+  border: 1px solid #E5E5E5;
+}
+
+#mainbar-full .tabBar {
+  margin-bottom: 20px;
+}
+
+#mainbar-full .recent-activity {
+  padding: 5px 60px 10px 60px;
+}
+
+#mainbar-full .recent-activity .action_container {
+  border-bottom: dotted 1px #E5E5E5;
+  padding: 5px 5px 5px 5px;
+}
+
+#mainbar-full .recent-activity .action_container:hover {
+  background-color: #FFEED7;
+  background-image: url("../images/meltdown-sidebar-peach-bg.png");
+  background-repeat: repeat-x;
+}
+
+.fullbar {
+  background-color: #DCEDF7;
+  background-image: url("../images/meltdown-sidebar-bg.png");
+  background-repeat: repeat-x;
+  border-color: #E5E5E5;
+  border-style: solid;
+  border-width: 1px 0;
+  display: block;
+  font-weight: bold;
+  margin: 10px -15px 10px -15px;
+  padding: 15px 20px 12px 20px;
+  font-size: 16px;
+  line-height: 22px;
+  border-left: 15px solid #FFEED7;
+  border-right: 15px solid #FFEED7;
+}
+
+.fullbar .count {
+  font-size: 22px;
+  line-height: 22px;
+  color: #E75113;
+}
+
+.user-stats-table {
+  margin-left: 0px;
+}
+
+.user-stats-table article,
+.user-stats-table .answer-summary {
+  margin-left: 60px;
 }
 
 .relativetime {
@@ -1397,18 +1501,79 @@ ins {
 }
 
 .answer-votes {
-    background-color: #EEEEEE;
-    color: #555555;
-    float: left;
-    font-family: Arial;
-    font-size: 110%;
-    font-weight: bold;
-    height: 15px;
-    margin-right: 10px;
-    padding: 4px 4px 5px;
-    text-align: center;
-    text-decoration: none;
-    width: 20px;
+  float: left;
+  height: 16px;
+  width: 16px;
+  margin-right: 10px;
+  text-align: center;
+  text-decoration: none;
+  padding: 2px 2px;
+  background-color: #E7E6E5;
+  background-image: url("../images/meltdown-nav-current-bg-big.png");
+  background-repeat: repeat-x;
+  border: 1px solid #E5E5E5;
+  color: #717274;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.reputation-change-box {
+  float: left;
+  height: 16px;
+  width: 16px;
+  margin-right: 10px;
+  text-align: center;
+  text-decoration: none;
+  padding: 2px 2px;
+  background-color: #E7E6E5;
+  background-image: url("../images/meltdown-nav-current-bg-big.png");
+  background-repeat: repeat-x;
+  border: 1px solid #E5E5E5;
+  color: #717274;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.reputation-change-box.positive {
+  margin-right: 0px;
+  color: #77BA00;
+}
+
+.reputation-change-box.negative {
+  color: #ee681f;
+}
+
+.action_date {
+  margin-top: 5px;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 16px;
+}
+
+.user-votes {
+  padding: 5px 60px 5px 60px;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.user-votes .date-column {
+  padding-top: 5px;
+  width: 150px;
+  float: left;
+}
+
+.user-votes .vote-column {
+  width: 50px;
+  float: left;
+}
+
+.user-votes .question-column {
+  padding-top: 5px;
+  width: 500px;
+  float: left;
+  overflow: hidden;
 }
 
 .vote-count {
@@ -1448,8 +1613,8 @@ ins {
 }
 
 .question-title-link a {
-    color: #0077CC;
-    font-weight: bold;
+  color: #ee681f;
+  font-weight: bold;
 }
 
 .answer-title-link a {
@@ -2282,7 +2447,7 @@ div.dialog, .context-menu-dropdown {
 }
 
 .context-menu-dropdown li.item:hover {
-    background-color: #3060A8;
+    background-color: #6F7072;
     color: white;
 }
 

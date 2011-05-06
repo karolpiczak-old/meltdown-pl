@@ -1,0 +1,29 @@
+{% extends "user.html" %}
+<!-- user_votes.html -->
+{% load extra_tags %}
+{% load extra_filters %}
+{% load humanize %}
+{% load i18n %}
+
+{% block usercontent %}
+        <div class="user-votes">
+        {% for vote in votes %}
+            <div style="clear:both;line-height:20px" >
+                <div class="date-column">{% diff_date vote.voted_at 3 %}</div>
+                <div class="vote-column">
+                {% ifequal vote.value 1 %}
+                    <img src="{% media  "/media/images/vote-arrow-up-on.png" %}" title="{% trans "upvote" %}">
+                {% else %}
+                    <img src="{% media  "/media/images/vote-arrow-down-on.png" %}" title="{% trans "downvote" %}">
+                {% endifequal %}
+                </div>
+                <div class="question-column">
+                    <span class="{{ vote.node.node_type }}-title-link"><a href="{{ vote.node.get_absolute_url }}">{{ vote.node.headline }}</a></span>
+                    <div style="height:5px"></div>
+                </div>          
+            </div>
+        {% endfor %}
+        </div>
+        <div class="clear"></div>
+{% endblock %}
+<!-- end user_votes.html -->

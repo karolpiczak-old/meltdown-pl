@@ -2,8 +2,8 @@
 <article class="short-summary">
     <div class="counts">{% if favorite_count %}
         <div class="favoritecount">
-            <span class="favorite-mark{% if question.favourite_count %} on{% endif %}"></span>
-            <div class="item-count">{{question.favourite_count|intcomma}}</div>
+            <div class="count"><span class="favorite-mark{% if question.favorite_count %} on{% endif %}"></span></div>
+            <div class="tail favorite-count">{{question.favorite_count|intcomma}}</div>
         </div>
         {% endif %}
         <div class="votecount">

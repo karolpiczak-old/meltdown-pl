@@ -1,0 +1,42 @@
+{% extends "user.html" %}
+<!-- user_reputation.html -->
+{% load extra_tags %}
+{% load extra_filters %}
+{% load humanize %}
+{% load user_tags %}
+{% block userjs %}
+       <script type='text/javascript' src='{% media  "/media/js/excanvas.min.js" %}'></script>
+       <script type='text/javascript' src='{% media  "/media/js/jquery.flot.min.js" %}'></script>
+       
+       <script type="text/javascript">
+        $().ready(function(){
+            var d = {{ graph_data }};
+            var placeholder = $("#diagram");
+
+            var plot = $.plot(placeholder, [d], {
+                xaxis: { mode: "time" },
+                points: { show: true },
+                lines: { show: true }
+            });
+        });
+
+        </script>
+{% endblock %}
+{% block usercontent %}
+        <div style="padding:5px;font-size:13px;">
+            <div id="diagram" style="width:500px;height:250px;float:left">
+
+            </div>
+            <div style="float:right; width:385px; height:300px; overflow-y:auto;word-wrap:break-word;" >
+                {% for rep in reputation %}
+                <p style="clear:both">
+                    <div>
+                        <div class="reputation-change-box positive">{{ rep.positive }}</div>
+                        <div class="reputation-change-box negative">{{ rep.negative }}</div>
+                    </div>
+                    {% activity_item rep.action request.user %}<br/>
+                </p>
+                {% endfor %}
+            </div>
+        </div>
+{% endblock %}<!-- end user_reputation.html -->
