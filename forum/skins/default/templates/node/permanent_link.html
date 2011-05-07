@@ -8,7 +8,7 @@ Would you like to copy the permanent link to your clipboard?
 
 {% spaceless %}
 <p><label for="permanent_link_url">{% trans "Permanent link" %}:</label></p>
-<p><input id="permanent_link_url" name="permanent_link_url" size="64" style="font-size: 12px; width: 330px" readonly="readonly" type="text" value="{{ url }}" /></p>
+<p><textarea id="permanent_link_url" name="permanent_link_url" size="64" style="font-size: 12px;" readonly="readonly">{{ url }}</textarea></p>
 {% endspaceless %}
 
 <script type="text/javascript" src="{% media  "/media/js/ZeroClipboard.js" %}"></script>
