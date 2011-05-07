@@ -18,9 +18,18 @@
     width: 550px;    
 }
 
-#admin_form th {
+#admin_form th input[type="text"] {
     text-align: left;
     vertical-align: top;
+    width: 125px;
+    padding: 2px 3px;
+    font-size: 12px;
+    height: auto;
+    line-height: 100%;
+}
+
+#admin_form th {
+
 }
 
 #admin_form td {
