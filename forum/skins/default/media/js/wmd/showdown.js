@@ -498,6 +498,11 @@ var _DoAnchors = function(text) {
 	*/
 	text = text.replace(/(\[([^\[\]]+)\])()()()()()/g, writeAnchorTag);
 
+    // Prevent executing JavaScript from the Anchor href.
+    text = text.replace(/(<a.*href=[\"|\']javascript\:([^"]+)[\"|\'].*>([^<]+)<\/a>)/g, function() {
+        return arguments[3];
+    });
+
 	return text;
 }
 
