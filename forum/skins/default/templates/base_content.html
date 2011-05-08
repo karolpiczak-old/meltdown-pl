@@ -26,6 +26,7 @@
 
         <script src="http://www.google.com/jsapi" type="text/javascript"></script>
         <script type="text/javascript">
+        /*<![CDATA[*/
             google.load("jquery", "1.4.2");
             google.load("jqueryui", "1", {autoload:true});
 
@@ -48,6 +49,7 @@
                 character: "{% trans "character" %}",
                 characters: "{% trans "characters" %}"
             }
+        /*]]>*/
         </script>
         <script type="text/javascript" src="{% media  "/media/js/osqa.main.js" %}"></script>
         {% if user_messages %}
