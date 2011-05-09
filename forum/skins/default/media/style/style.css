@@ -1199,6 +1199,10 @@ ins {
     z-index: 100;
 }
 
+* html .notify {
+    position: absolute;
+}
+
 .notify p {
     font-size: 16px;
     margin-bottom: 5px;
