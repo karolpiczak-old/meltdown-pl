@@ -27,7 +27,7 @@ class Migration(DataMigration):
                     rev = node.revisions.order_by('-revision')[0]
                 except:
                     continue
-            node.body = sanitize_html(markdown.markdown(rev.body, ['urlize']))
+            node.body = sanitize_html(markdown.markdown(rev.body, ['urlize'], safe_mode="escape"))
             node.save()
             progress.update()
 
