@@ -40,8 +40,8 @@ class NodeContent(models.Model):
 
         """
         # (?s) shorthand for re.DOTALL
-        content = re.sub('(?s)\$([^\$]*?)\$', cls._parse_mathjax_content, content)
-        content = re.sub('(?s)\$\$(.*?)\$\$', cls._parse_mathjax_content, content)
+        content = re.sub(r'(?s)\$\%(.*?)\$\%', cls._parse_mathjax_content, content)
+        content = re.sub(r'(?s)\$\$(.*?)\$\$', cls._parse_mathjax_content, content)
         return content
 
     @classmethod
