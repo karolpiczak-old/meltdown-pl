@@ -102,6 +102,9 @@ var response_commands = {
         var $container = $('#comments-container-' + post_id);
         var skeleton = $('#new-comment-skeleton-' + post_id).html().toString();
 
+        // Temporarily substitute $ for MathJax use avoiding special meaning in RegExp
+        comment = comment.replace(/\$/g,"~D");
+
         skeleton = skeleton.replace(new RegExp('%ID%', 'g'), comment_id)
                 .replace(new RegExp('%COMMENT%', 'g'), comment)
                 .replace(new RegExp('%USERNAME%', 'g'), username)
@@ -110,6 +113,9 @@ var response_commands = {
                 .replace(new RegExp('%EDIT_URL%', 'g'), edit_url)
                 .replace(new RegExp('%CONVERT_URL%', 'g'), convert_url);
 
+        // Replace back $
+        skeleton = skeleton.replace(/~D/g,"$$");
+
         $container.append(skeleton);
 
         // Show the convert comment to answer tool only if the current comment can be converted
@@ -117,14 +123,14 @@ var response_commands = {
             $('#comment-' + comment_id + '-convert').show();
         }
 
-        $('#comment-' + comment_id).slideDown('slow');
+        $('#comment-' + comment_id).slideDown('slow', MathJax.Hub.Queue(["Typeset",MathJax.Hub]));
     },
 
     update_comment: function(comment_id, comment_text) {
         var $comment = $('#comment-' + comment_id);
         $comment.find('.comment-text').html(comment_text);
 
-        $comment.slideDown('slow');
+        $comment.slideDown('slow', MathJax.Hub.Queue(["Typeset",MathJax.Hub]));
     },
 
     mark_deleted: function(post_type, post_id) {

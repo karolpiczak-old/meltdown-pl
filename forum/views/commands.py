@@ -16,6 +16,8 @@ from decorators import command, CommandException, RefreshPageCommand
 from forum.modules import decorate
 from forum import settings
 import logging
+import re
+from django.utils.safestring import mark_safe
 
 class NotEnoughRepPointsException(CommandException):
     def __init__(self, action):
@@ -261,7 +263,7 @@ def comment(request, id):
         return {
         'commands': {
         'insert_comment': [
-                id, comment.id, comment.comment, user.decorated_name, user.get_profile_url(),
+                id, comment.id, mark_safe(re.sub(r'\\\\', r'\\', comment.comment)), user.decorated_name, user.get_profile_url(),
                 reverse('delete_comment', kwargs={'id': comment.id}),
                 reverse('node_markdown', kwargs={'id': comment.id}),
                 reverse('convert_comment', kwargs={'id': comment.id}),
@@ -272,7 +274,7 @@ def comment(request, id):
     else:
         return {
         'commands': {
-        'update_comment': [comment.id, comment.comment]
+        'update_comment': [comment.id, mark_safe(re.sub(r'\\\\', r'\\', comment.comment))]
         }
         }
 

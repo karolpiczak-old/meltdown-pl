@@ -198,7 +198,8 @@ def comments(post, user):
             context['likes'] = VoteAction.get_for(user, c) == 1
 
         context['user'] = c.user
-        context['comment'] = c.comment
+        # Added backslash stripping for MathJax support
+        context['comment'] = mark_safe(re.sub(r'\\\\', r'\\', c.comment))
         context.update(dict(c.__dict__))
         comments.append(context)
 
