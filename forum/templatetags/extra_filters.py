@@ -51,7 +51,7 @@ def contained_in(item, container):
 @register.filter
 def static_content(content, render_mode):
     if render_mode == 'markdown':
-        return mark_safe(markdown.markdown(unicode(content), ["settingsparser"], safe_mode="escape"))
+        return mark_safe(markdown.markdown(unicode(content), ["settingsparser"]))
     elif render_mode == "html":
         return mark_safe(unicode(content))
     else:

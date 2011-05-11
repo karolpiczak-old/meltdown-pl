@@ -57,7 +57,7 @@ class NodeContent(models.Model):
     @classmethod
     def _as_markdown(cls, content, *extensions):
         try:
-            return mark_safe(sanitize_html(markdown.markdown(cls._parse_mathjax(content), extensions=extensions, safe_mode="escape")))
+            return mark_safe(sanitize_html(markdown.markdown(cls._parse_mathjax(content), extensions=extensions)))
         except Exception, e:
             import traceback
             logging.error("Caught exception %s in markdown parser rendering %s %s:\s %s" % (
