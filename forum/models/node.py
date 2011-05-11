@@ -29,9 +29,25 @@ class NodeContent(models.Model):
         return auto_user_link(self, self._as_markdown(content, *['auto_linker']))
 
     @classmethod
+    def _parse_mathjax_content(cls, mathjax_content):
+        return re.sub(r'\\', r'\\\\', mathjax_content.group(0))
+
+    @classmethod
+    def _parse_mathjax(cls, content):
+        """Escape backslashes in MathJax equations.
+
+        Spurious backslashes should be stripped later by the markdown parser.
+
+        """
+        # (?s) shorthand for re.DOTALL
+        content = re.sub('(?s)\$([^\$]*?)\$', cls._parse_mathjax_content, content)
+        content = re.sub('(?s)\$\$(.*?)\$\$', cls._parse_mathjax_content, content)
+        return content
+
+    @classmethod
     def _as_markdown(cls, content, *extensions):
         try:
-            return mark_safe(sanitize_html(markdown.markdown(content, extensions=extensions, safe_mode="escape")))
+            return mark_safe(sanitize_html(markdown.markdown(cls._parse_mathjax(content), extensions=extensions, safe_mode="escape")))
         except Exception, e:
             import traceback
             logging.error("Caught exception %s in markdown parser rendering %s %s:\s %s" % (
