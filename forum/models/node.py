@@ -30,7 +30,17 @@ class NodeContent(models.Model):
 
     @classmethod
     def _parse_mathjax_content(cls, mathjax_content):
-        return re.sub(r'\\', r'\\\\', mathjax_content.group(0))
+        content = mathjax_content.group(0)
+        content = re.sub(r'\\', r'\\\\', content)
+
+        # Possible escaping issue, see http://code.google.com/p/python-markdown2/issues/detail?id=45
+        #
+        # For the time being seems to work OK without patching, I'm not sure why.
+        # Probably due to python-markdown's current internal handling of the content we get what we want
+        # without further escaping (contrary to WMD JavaScript implementation of the Markdown engine).
+        # That's good, but can break with upstream changes.
+
+        return content
 
     @classmethod
     def _parse_mathjax(cls, content):

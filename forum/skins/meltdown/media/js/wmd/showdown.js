@@ -89,6 +89,10 @@ var g_html_blocks;
 // (see _ProcessListItems() for details):
 var g_list_level = 0;
 
+// Escape characters which have special Markdown meaning
+var _EscapeMathJax = function(str, content, offset, s) {
+    return str.replace(/([-\\`*_{}[\]()#+.!])/g, '\\$1');
+}
 
 this.makeHtml = function(text) {
 //
@@ -111,6 +115,13 @@ this.makeHtml = function(text) {
 	// The choice of character is arbitray; anything that isn't
     // magic in Markdown will work.
 	text = text.replace(/~/g,"~T");
+
+    // MathJax support: Escape Markdown special characters
+    // We use [^] instead of . for matching any character _including_ new line
+    // Inline delimiters
+    text = text.replace(/\$\%([^]*?)\$\%/g, _EscapeMathJax);
+    // Display mode delimiters
+    text = text.replace(/\$\$([^]*?)\$\$/g, _EscapeMathJax);
 
 	// attacklab: Replace $ with ~D
 	// RegExp interprets $ as a special character

@@ -1919,6 +1919,9 @@ Attacklab.wmdBase = function(){
 
 			pushPreviewHtml(text);
 			htmlOut = text;
+
+            // Update with MathJax preview
+            MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 		};
 
 		// setTimeout is already used.  Used as an event listener.
