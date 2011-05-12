@@ -13,6 +13,15 @@
 {% endfor %}</div>
 {% endblock %}
 
+{% block tail %}
+    <div id="full_list">
+      {% trans "Want to look at more questions?" %}
+      {% trans "Browse " %}<a href="{% url questions %}">{% trans "the full list of questions" %}</a>
+      or
+      <a href="{% url tags %}">{% trans "questions with particular tags" %}</a>.
+    </div>
+{% endblock %}
+
 {% block sidebar %}
     {% if not request.user.is_authenticated %}
         {% if settings.SHOW_WELCOME_BOX %}
