@@ -700,6 +700,13 @@ footer p.separate {
     text-align: right;
 }
 
+#title_side_bar.boxC ul,
+#editor_side_bar.boxC ul,
+#tags_side_bar.boxC ul,
+#answer_side_bar.boxC ul{
+  text-align: left;
+}
+
 .boxA ul li,
 .boxC ul li {
     margin-bottom: 10px;
@@ -1053,7 +1060,8 @@ a.medal:hover {
 }
 
 .question-body,
-.answer-body {
+.answer-body,
+.wmd-preview {
   color: black;
   font-size: 14px;
   line-height: 20px;
@@ -1083,7 +1091,9 @@ a.medal:hover {
     min-height: 100px;
 }
 
-.question-body img {
+.question-body img,
+.answer-body img,
+.wmd-preview img {
     max-width: 640px;
 }
 
@@ -1123,7 +1133,7 @@ span.form-error {
 }
 
 ul.errorlist li {
-    color: #990000;
+    color: #E75113;
     font-weight: normal;
     margin-left: 0px;
     margin-top: 5px;
@@ -1149,7 +1159,7 @@ ul.errorlist li {
 }
 
 /* Fixes OSQA-143 IE8 text overflow issue */
-div.question-body p, div.answer-body p {
+div.question-body p, div.answer-body p, div.wmd-preview p {
     max-width: 700px;
 }
 
@@ -1283,6 +1293,15 @@ span.form-error {
 .title-desc {
     color: #666666;
     font-size: 90%;
+}
+
+#askform input {
+  padding: 10px 10px 5px 10px;
+  border: 1px solid #E5E5E5;
+  color: black;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: monospace;
 }
 
 #editor {
@@ -1723,12 +1742,13 @@ ins {
     color: #6F7072;
 }
 
-.submit {
+.submit,
+#askform input.submit {
   height: 40px;
-  padding-bottom: 4px;
   cursor: pointer;
   font-size: 15px;
   font-weight: bold;
+  font-family: Trebuchet MS,"segoe ui",Helvetica,"Microsoft YaHei",Tahoma,Verdana,MingLiu,PMingLiu,Arial,sans-serif;
   line-height: 18px;
   background-color: #E7E6E5;
   background-image: url("../images/meltdown-nav-current-bg.png");
