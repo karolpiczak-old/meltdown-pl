@@ -9,8 +9,8 @@
 
   <div id="logo-container">
 
-    <a href="{% url index %}">
-      <img id="logo" src="{% media "/media/images/meltdown-logo.png" %}" title="{% trans "back to home page" %}" alt="{{settings.APP_TITLE}} logo"/>
+    <a id="logo" href="{% url index %}">
+      <img src="{% media "/media/images/meltdown-logo.png" %}" title="{% trans "back to home page" %}" alt="{{settings.APP_TITLE}} logo"/>
     </a>
 
     <nav id="nav">
@@ -25,24 +25,24 @@
         </li>
       </ul>
     </nav>
-  </div>
 
-  <!--
-  <div id="searchBar">
-    <form action="{% url search %}" method="get">
-        <div>
-            <input type="text" class="searchInput" value="{{ keywords }}" name="q" id="keywords" />
-            <input type="submit" name="Submit" value="{% trans "search" %}" class="searchBtn" />
-        </div>
-        <div class="options">
-            <input id="type-question" type="radio" value="question" name="t" 
-                checked="checked" /><label for="type-question">{% trans "questions" %}</label>
-            <input id="type-tag" type="radio" value="tag" name="t" /><label for="type-tag">{% trans "tags" %}</label>
-            <input id="type-user" type="radio" value="user" name="t" /><label for="type-user">{% trans "users" %}</label>
-        </div>
-    </form>	
+    <div id="searchContainer">
+      <div id="searchBar">
+        <form action="{% url search %}" method="get">
+            <div>
+                <input type="text" class="searchInput" value="{{ keywords }}" name="q" id="keywords" />
+                <select name="t" class="searchOptions">
+                  <option value="question">{% trans "questions" %}</option>
+                  <option value="tag">{% trans "tags" %}</option>
+                  <option value="user">{% trans "users" %}</option>
+                </select>
+                <input type="submit" name="Submit" value="{% trans "Search »" %}" class="searchBtn" />
+            </div>
+        </form>
+      </div>
+    </div>
+
   </div>
-  -->
 
 	{% if settings.USE_ANNOUNCEMENT_BAR|or_preview:request %}
   <div id="announcement">

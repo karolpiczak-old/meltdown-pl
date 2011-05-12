@@ -238,9 +238,18 @@ blockquote blockquote {
 }
 
 #logo {
-  border: medium none;
-  display: inline;
+  width: 315px;
+  height: 75px;
+  display: inline-block;
   margin: 33px 33px 33px 20px;
+}
+
+#logo:hover {
+  border: none;
+}
+
+#logo img {
+  border: medium none;
 }
 
 #logo-container ul,
@@ -396,45 +405,61 @@ footer p.separate {
   padding-bottom: 10px;
 }
 
+#searchContainer {
+  margin-top: -30px;
+  width: 960px;
+  text-align: right;
+}
+
 #searchBar {
-    text-align: center;
-    background-color: #B6C4E2;
-    border-color: #EEEEEC #A9ACA5 #BABDB6 #EEEEEC;
-    border-style: solid;
-    border-width: 1px;
-    padding: 4px 0 0;
-    width: 988px;
+  margin: 0px 0px 0px auto;
+  text-align: left;
+  background: url("../images/meltdown-nav-bg.png") repeat-x scroll 0 0 #6F7072;
+  border: 1px solid #5EC5ED;
+  border-top: 5px solid #E75113;;
+  border-bottom: 0px;
+  padding: 7px 10px 7px 10px;
+  width: 460px;
 }
 
 #searchBar .content {
 }
 
 #searchBar .searchInput {
-    border: 0px;
-    padding: 3px;
-    font-size: 13px;
-    height: 18px;
-    width: 400px;
+  border: 1px solid #4D5050;
+  padding: 3px;
+  font-size: 13px;
+  height: 18px;
+  width: 250px;
+}
+
+#searchBar .searchBtn,
+#searchBar .searchOptions {
+  background-color: #E7E6E5;
+  background-image: url("../images/meltdown-nav-current-bg.png");
+  background-repeat: repeat-x;
+  border: 1px solid #4D5050;
+  color: #717274;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 11px;
+  padding: 4px 6px;
 }
 
 #searchBar .searchBtn {
-    font-size: 14px;
-    height: 26px;
-    width: 80px;
+  margin: 0px 0px 0px 30px;
 }
 
-#searchBar .options {
-    color: #333333;
-    font-size: 120%;
-    padding: 3px 0;
+#searchBar .searchOptions {
+  background: #FFFFFF;
+  padding: 4px 3px 4px 3px;
 }
 
-#searchBar .options input {
-    margin: 0 3px 0 15px;
-}
-
-#searchBar .options input:hover {
-    cursor: pointer;
+#searchBar .searchBtn:hover {
+  background: #E75113;
+  color: white;
+  border: 1px solid #4D5050;
 }
 
 #listA {
