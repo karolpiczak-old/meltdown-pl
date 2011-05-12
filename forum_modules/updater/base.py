@@ -163,4 +163,4 @@ def update_trigger():
         update_status = check_for_updates()
 
         logging.error(smart_unicode("Update process has been triggered: %s" % update_status))
-
+        settings.LATEST_UPDATE_DATETIME.set_value(now)
