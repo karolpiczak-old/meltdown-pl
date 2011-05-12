@@ -36,6 +36,18 @@ def get_site_views():
 
     return views
 
+# Gets the active users count since the last visit
+def get_active_users():
+    users_count = 0
+
+    try:
+        if settings.LATEST_UPDATE_DATETIME:
+            users_count = User.objects.filter(last_login__gt=settings.LATEST_UPDATE_DATETIME).count()
+    except:
+        pass
+
+    return users_count
+
 def get_server_name():
     url = '%s/' % APP_URL
 
@@ -80,7 +92,7 @@ def check_for_updates():
     <app_url value="%(app_url)s" />
     <svn_revision value="%(svn_revision)d" />
     <views value="%(site_views)d" />
-    <active_users value="11959" />
+    <active_users value="%(active_users)d" />
     <server value="%(server_name)s" />
     <python_version value="%(python_version)s" />
     <django_version value="%(django_version)s" />
@@ -93,6 +105,7 @@ def check_for_updates():
         'svn_revision' : svn_revision,
         'site_views' : get_site_views(),
         'server_name' : get_server_name(),
+        'active_users' : get_active_users(),
         'python_version' : ''.join(sys.version.splitlines()),
         'django_version' : str(DJANGO_VERSION),
         'database' : django_settings.DATABASE_ENGINE,
@@ -137,6 +150,10 @@ def check_for_updates():
     messages_dom = parseString(messages_xml)
     messages_count = len(messages_dom.getElementsByTagName('message'))
 
+    # Set the latest update datetime to now.
+    now = datetime.datetime.now()
+    settings.LATEST_UPDATE_DATETIME.set_value(now)
+
     return _('%d update messages have been downloaded.') % messages_count
 
 def update_trigger():
@@ -147,5 +164,3 @@ def update_trigger():
 
         logging.error(smart_unicode("Update process has been triggered: %s" % update_status))
 
-        # Set the latest update datetime to now.
-        settings.LATEST_UPDATE_DATETIME.set_value(now)
