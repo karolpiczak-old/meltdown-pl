@@ -13,6 +13,7 @@
         <div {% if question.accepted_count %}title="{% trans "this question has an accepted answer" %}"{% endif %} class="answercount {% if question.accepted_count %}answered-accepted{% endif %} {% ifequal question.answer_count 0 %}unanswered{% endifequal %}{% ifnotequal question.answer_count 0 %}answered{% endifnotequal %}">
             <div class="count">{{question.answer_count|intcomma}}</div>
             <div class="tail">{% ifequal question.answer_count 1 %}{% trans "answer" %}{% else %}{% trans "answers" %}{% endifequal %}</div>
+            {% if question.accepted_count %}<div class="accept-icon"></div>{% endif %}
         </div>
         <div class="viewcount">
              <div class="count">{{question.view_count|decorated_int|safe}}</div>

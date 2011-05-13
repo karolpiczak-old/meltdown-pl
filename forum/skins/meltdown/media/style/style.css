@@ -570,6 +570,7 @@ footer p.separate {
   margin-right: 4px;
   text-align: center;
   width: 60px;
+  position: relative;
 }
 
 .full-summary .counts .votecount,
@@ -581,6 +582,7 @@ footer p.separate {
   margin-right: 4px;
   text-align: center;
   width: 60px;
+  position: relative;
 }
   
 
@@ -1223,6 +1225,17 @@ div.question-body p, div.answer-body p, div.wmd-preview p {
 .answered-accepted, .answer-votes.answered-accepted {
     background: none repeat scroll 0 0 #E6F8DD;
     color: #3A6231;
+}
+
+.accept-icon {
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  z-index: 10;
+  height: 16px;
+  width: 16px;
+  background-image: url("../images/answer-accepted.png");
+  background-repeat: no-repeat;
 }
 
 .unanswered {
