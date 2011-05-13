@@ -106,7 +106,7 @@ def questions(request):
 @decorators.render('questions.html')
 def tag(request, tag):
     try:
-        tag = Tag.active.get(name=unquote(tag))
+        tag = Tag.active.get(slug=unquote(tag))
     except Tag.DoesNotExist:
         raise Http404
 

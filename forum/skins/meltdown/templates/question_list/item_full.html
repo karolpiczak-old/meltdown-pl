@@ -32,7 +32,7 @@
         <div class="tags">
           <ul>
           {% for tag in question.tagname_list %}
-            <li class="tag-{{ tag }}"><a class="tag-link-{{ tag }}" href="{% url tag_questions tag|urlencode %}" title="{% trans "see questions tagged" %} '{{ tag }}'" rel="tag">{{ tag }}</a></li>
+            <li class="tag-{{ tag }}"><a class="tag-link-{{ tag }}" href="{% url tag_questions tag|slugify_tag|urlencode %}" title="{% trans "see questions tagged" %} '{{ tag }}'" rel="tag">{{ tag }}</a></li>
           {% endfor %}
           </ul>
         </div>

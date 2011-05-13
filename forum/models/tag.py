@@ -3,6 +3,8 @@ from base import *
 
 from django.utils.translation import ugettext as _
 from django.utils.encoding import smart_unicode, force_unicode
+from unidecode import unidecode
+from django.core.exceptions import ObjectDoesNotExist
 
 from forum import modules
 
@@ -14,6 +16,7 @@ class ActiveTagManager(CachedManager):
 
 class Tag(BaseModel):
     name            = models.CharField(max_length=255, unique=True)
+    slug            = models.CharField(max_length=255, unique=True)
     created_by      = models.ForeignKey(User, related_name='created_tags')
     created_at      = models.DateTimeField(default=datetime.datetime.now, blank=True, null=True)
     marked_by       = models.ManyToManyField(User, related_name="marked_tags", through="MarkedTag")
@@ -55,7 +58,31 @@ class Tag(BaseModel):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('tag_questions', (), {'tag': self.name})
+        return ('tag_questions', (), {'tag': self.slug})
+
+    @classmethod
+    def get_slug(cls, name):
+        return cls.objects.get(name=name).slug
+
+    def create_slug(self, name):
+        slug = slugify(unidecode(smart_unicode(name)))
+
+        duplicates = 0
+        unique_slug = slug
+
+        try:
+            while self.__class__.objects.get(slug=unique_slug) != self:
+                duplicates += 1
+                unique_slug = slug + '-' + str(duplicates)
+        except ObjectDoesNotExist:
+            pass
+
+        return unique_slug
+
+    def save(self, *args, **kwargs):
+        self.slug = self.create_slug(self.name)
+        super(Tag, self).save(*args, **kwargs)
+
 
 class MarkedTag(models.Model):
     TAG_MARK_REASONS = (('good', _('interesting')), ('bad', _('ignored')))

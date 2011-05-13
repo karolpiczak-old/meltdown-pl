@@ -18,6 +18,7 @@ from forum import settings
 import logging
 import re
 from django.utils.safestring import mark_safe
+from django.utils.encoding import smart_unicode
 
 class NotEnoughRepPointsException(CommandException):
     def __init__(self, action):
@@ -517,7 +518,7 @@ def matching_tags(request):
     possible_tags = Tag.active.filter(name__icontains = request.GET['q'])
     tag_output = ''
     for tag in possible_tags:
-        tag_output += "%s|%s|%s\n" % (tag.id, tag.name, tag.used_count)
+        tag_output += "%s|%s|%s\n" % (tag.id, smart_unicode(tag.name), tag.used_count)
 
     return HttpResponse(tag_output, mimetype="text/plain")
 

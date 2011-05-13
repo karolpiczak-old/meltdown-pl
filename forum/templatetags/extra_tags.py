@@ -10,7 +10,7 @@ from django import template
 from django.utils.encoding import smart_unicode, force_unicode, smart_str
 from django.utils.safestring import mark_safe
 from django.utils import dateformat
-from forum.models import Question, Answer, QuestionRevision, AnswerRevision, NodeRevision
+from forum.models import Question, Answer, QuestionRevision, AnswerRevision, NodeRevision, Tag
 from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 from django.utils import simplejson
@@ -20,6 +20,7 @@ from forum import skins
 from forum.utils import html
 from extra_filters import decorated_int
 from django.core.urlresolvers import reverse
+from django.template.defaultfilters import stringfilter
 
 register = template.Library()
 
@@ -320,3 +321,8 @@ def random_number(parser, token):
 
     # Call the random Node
     return RandomNumberNode(int_from, int_to)
+
+@register.filter(name='slugify_tag')
+@stringfilter
+def slugify_tag(value):
+    return Tag.get_slug(value)
