@@ -90,7 +90,7 @@
                   <div class="form-row"><label for="id_username">{% trans "user name" %}</label><br/>{{ form2.username }}</div>
                   <div class="form-row"><label for="id_passwordl">{% trans "password" %}</label><br/>{{ form2.password }}</div>
                   <p><span class='big strong'>(Optional) receive updates by email</span> - only sent when there are any.</p>
-                  <!--todo double check translation from chinese 确认 = "Register" -->
+                  <!--todo double check translation from chinese-->
                   <div class="submit-row">
                       <input type="submit" class="submit" name="bverify" value="{% trans "Register" %}"/>
                       <a href="{% url user_sendpw %}">{% trans "Forgot your password?" %}</a>
