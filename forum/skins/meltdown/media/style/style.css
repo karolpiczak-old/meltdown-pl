@@ -741,7 +741,8 @@ footer p.separate {
 #title_side_bar.boxC ul,
 #editor_side_bar.boxC ul,
 #tags_side_bar.boxC ul,
-#answer_side_bar.boxC ul{
+#answer_side_bar.boxC ul,
+#openid_side_bar.boxC ul {
   text-align: left;
 }
 
@@ -1086,6 +1087,23 @@ a.medal:hover {
   margin-bottom: 12px;
   padding: 5px 6px 5px 22px;
   text-align: left;
+}
+
+.signin {
+  margin: 10px 10px 0px 10px;
+}
+
+.signin div {
+  margin-bottom: 10px;
+}
+
+.signin input {
+  padding: 5px 5px 5px 5px;
+  border: 1px solid #E5E5E5;
+  color: black;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: monospace;
 }
 
 #main-body {
@@ -1776,10 +1794,12 @@ ins {
 }
 
 .message {
-    background-color: #EEEEEE;
-    border: 1px solid #AAAAAA;
-    margin: 10px 0;
-    padding: 5px;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #FFEED7;
+  background-image: url("../images/meltdown-sidebar-peach-bg.png");
+  background-repeat: repeat-x;
+  border: 1px solid #E5E5E5;
 }
 
 .message p {
@@ -1792,7 +1812,8 @@ ins {
 }
 
 .submit,
-#askform input.submit {
+#askform input.submit,
+.signin input.submit {
   height: 40px;
   cursor: pointer;
   font-size: 15px;
@@ -1809,7 +1830,8 @@ ins {
 }
 
 .submit:hover,
-#askform input.submit:hover {
+#askform input.submit:hover,
+.signin input.submit:hover {
   background-color: #6f7072;
   background-image: url("../images/meltdown-nav-bg.png");
   background-repeat: repeat-x;
