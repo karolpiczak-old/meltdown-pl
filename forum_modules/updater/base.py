@@ -14,9 +14,10 @@ import logging
 
 from xml.dom.minidom import parse, parseString
 from forum.models import Question, User
-from forum.settings import APP_URL, SVN_REVISION
+from forum.settings import APP_URL, SVN_REVISION, APP_TITLE, APP_DESCRIPTION
 from django import VERSION as DJANGO_VERSION
 from django.utils import simplejson
+from django.utils.html import escape
 from django.utils.encoding import smart_unicode
 from django.conf import settings as django_settings
 from django.utils.translation import ugettext as _
@@ -90,6 +91,8 @@ def check_for_updates():
     statistics = """<check>
     <key value="%(site_key)s" />
     <app_url value="%(app_url)s" />
+    <app_title value="%(app_title)s" />
+    <app_description value="%(app_description)s" />
     <svn_revision value="%(svn_revision)d" />
     <views value="%(site_views)d" />
     <active_users value="%(active_users)d" />
@@ -102,6 +105,8 @@ def check_for_updates():
 </check> """ % {
         'site_key' : settings.SITE_KEY,
         'app_url' : APP_URL,
+        'app_title' : escape(APP_TITLE.value),
+        'app_description' : escape(APP_DESCRIPTION.value),
         'svn_revision' : svn_revision,
         'site_views' : get_site_views(),
         'server_name' : get_server_name(),
