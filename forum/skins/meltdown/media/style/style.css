@@ -1808,7 +1808,8 @@ ins {
   color: #717274;
 }
 
-.submit:hover {
+.submit:hover,
+#askform input.submit:hover {
   background-color: #6f7072;
   background-image: url("../images/meltdown-nav-bg.png");
   background-repeat: repeat-x;
