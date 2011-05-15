@@ -16,8 +16,8 @@
 {% block tail %}
     <div id="full_list">
       {% trans "Want to look at more questions?" %}
-      {% trans "Browse " %}<a href="{% url questions %}">{% trans "the full list of questions" %}</a>
-      or
+      {% trans "Browse" %} <a href="{% url questions %}">{% trans "the full list of questions" %}</a>
+      {% trans "or" %}
       <a href="{% url tags %}">{% trans "questions with particular tags" %}</a>.
     </div>
 {% endblock %}
