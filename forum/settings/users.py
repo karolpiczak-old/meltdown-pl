@@ -6,6 +6,11 @@ from django.utils.translation import ugettext as _
 
 USERS_SET = SettingSet('users', _('Users settings'), _("General settings for the OSQA users."), 20)
 
+STORE_GREETING_IN_COOKIE = Setting('STORE_GREETING_IN_COOKIE', True, USERS_SET, dict(
+label = _("Store greeting in cookie"),
+help_text = _("If you check this the greeting will be stored in a cookie and the users won't be notified on logout."),
+required=False))
+
 EDITABLE_SCREEN_NAME = Setting('EDITABLE_SCREEN_NAME', False, USERS_SET, dict(
 label = _("Editable screen name"),
 help_text = _("Allow users to alter their screen name."),

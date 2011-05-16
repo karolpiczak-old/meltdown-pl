@@ -15,6 +15,7 @@ TEMPLATE_LOADERS = [
 ]
 
 MIDDLEWARE_CLASSES = [
+    'forum.middleware.django_cookies.CookiePreHandlerMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'forum.middleware.extended_user.ExtendedUser',
@@ -23,6 +24,7 @@ MIDDLEWARE_CLASSES = [
     'forum.middleware.cancel.CancelActionMiddleware',
     'forum.middleware.admin_messages.AdminMessagesMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
+    'forum.middleware.django_cookies.CookiePostHandlerMiddleware',
 ]
 # Backwards compatibility. If we fail to import the CSRF middle-ware from the location
 # where it is supposed to be, we add the old middle-ware classes to the classes list.
