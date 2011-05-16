@@ -306,7 +306,7 @@ def user_profile(request, user):
     up_votes = user.vote_up_count
     down_votes = user.vote_down_count
     votes_today = user.get_vote_count_today()
-    votes_total = int(settings.MAX_VOTES_PER_DAY)
+    votes_total = users.can_vote_count_today()
 
     user_tags = Tag.objects.filter(Q(nodes__author=user) | Q(nodes__children__author=user)) \
         .annotate(user_tag_usage_count=Count('name')).order_by('-user_tag_usage_count')

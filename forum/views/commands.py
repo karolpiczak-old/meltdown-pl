@@ -73,6 +73,7 @@ def vote_post(request, id, vote_type):
         raise NotEnoughRepPointsException(vote_type == 'up' and _('upvote') or _('downvote'))
 
     user_vote_count_today = user.get_vote_count_today()
+    user_can_vote_count_today = user.can_vote_count_today()
 
     if user_vote_count_today >= user.can_vote_count_today():
         raise NotEnoughLeftException(_('votes'), str(settings.MAX_VOTES_PER_DAY))
@@ -104,7 +105,7 @@ def vote_post(request, id, vote_type):
     }
     }
 
-    votes_left = (int(settings.MAX_VOTES_PER_DAY) - user_vote_count_today) + (vote_type == 'none' and -1 or 1)
+    votes_left = (user_can_vote_count_today - user_vote_count_today) + (vote_type == 'none' and -1 or 1)
 
     if int(settings.START_WARN_VOTES_LEFT) >= votes_left:
         response['message'] = _("You have %(nvotes)s %(tvotes)s left today.") % \
