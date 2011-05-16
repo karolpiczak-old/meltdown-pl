@@ -583,6 +583,9 @@ def award_points(request, user_id, answer_id):
         points = int(request.POST['points'])
 
         # We should check if the user has enough reputation points, otherwise we raise an exception.
+        if points < 0:
+            raise CommandException(_("The number of points to award needs to be a positive value."))
+
         if user.reputation < points:
             raise NotEnoughRepPointsException(_("award"))
 
