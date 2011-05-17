@@ -113,7 +113,7 @@ class User(BaseModel, DjangoUser):
     is_approved = models.BooleanField(default=False)
     email_isvalid = models.BooleanField(default=False)
 
-    reputation = models.PositiveIntegerField(default=0)
+    reputation = models.IntegerField(default=0)
     gold = models.PositiveIntegerField(default=0)
     silver = models.PositiveIntegerField(default=0)
     bronze = models.PositiveIntegerField(default=0)
@@ -176,7 +176,8 @@ class User(BaseModel, DjangoUser):
         return md5(self.email.lower()).hexdigest()
     
     def save(self, *args, **kwargs):
-        if self.reputation < 0:
+        # If the community doesn't allow negative reputation, set it to 0
+        if not settings.ALLOW_NEGATIVE_REPUTATION and self.reputation < 0:
             self.reputation = 0
 
         new = not bool(self.id)

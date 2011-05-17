@@ -6,6 +6,11 @@ from django.utils.translation import ugettext as _
 
 USERS_SET = SettingSet('users', _('Users settings'), _("General settings for the OSQA users."), 20)
 
+ALLOW_NEGATIVE_REPUTATION = Setting('ALLOW_NEGATIVE_REPUTATION', True, USERS_SET, dict(
+label = _("Allow negative reputation"),
+help_text = _("Check if you want to allow negative user reputations in the community."),
+required=False))
+
 STORE_GREETING_IN_COOKIE = Setting('STORE_GREETING_IN_COOKIE', True, USERS_SET, dict(
 label = _("Store greeting in cookie"),
 help_text = _("If you check this the greeting will be stored in a cookie and the users won't be notified on logout."),
