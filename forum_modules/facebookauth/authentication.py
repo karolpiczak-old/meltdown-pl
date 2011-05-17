@@ -2,8 +2,10 @@ import hashlib
 from time import time
 from datetime import datetime
 from urllib import urlopen,  urlencode
+from urlparse import parse_qs
 from forum.authentication.base import AuthenticationConsumer, ConsumerTemplateContext, InvalidAuthentication
 from django.utils.translation import ugettext as _
+from django.utils.encoding import smart_unicode
 
 import settings
 
@@ -16,64 +18,39 @@ except:
         decoder = JSONDecoder()
         return decoder.decode(json.read())
 
-REST_SERVER = 'http://api.facebook.com/restserver.php'
-
 class FacebookAuthConsumer(AuthenticationConsumer):
     
     def process_authentication_request(self, request):
         API_KEY = str(settings.FB_API_KEY)
 
-        if API_KEY in request.COOKIES:
-            if self.check_cookies_signature(request.COOKIES):
-                if self.check_session_expiry(request.COOKIES):
-                    return request.COOKIES[API_KEY + '_user']
-                else:
-                    raise InvalidAuthentication(_('Sorry, your Facebook session has expired, please try again'))
+        # Check if the Facebook cookie has been received.
+        if 'fbs_%s' % API_KEY in request.COOKIES:
+            fbs_cookie = request.COOKIES['fbs_%s' % API_KEY]
+            parsed_fbs = parse_qs(smart_unicode(fbs_cookie))
+            self.parsed_fbs = parsed_fbs
+
+            # Check if the session hasn't expired.
+            if self.check_session_expiry(request.COOKIES):
+                return parsed_fbs['uid'][0]
             else:
-                raise InvalidAuthentication(_('The authentication with Facebook connect failed due to an invalid signature'))
+                raise InvalidAuthentication(_('Sorry, your Facebook session has expired, please try again'))
         else:
             raise InvalidAuthentication(_('The authentication with Facebook connect failed, cannot find authentication tokens'))
-
-    def generate_signature(self, values):
-        keys = []
-
-        for key in sorted(values.keys()):
-            keys.append(key)
-
-        signature = ''.join(['%s=%s' % (key,  values[key]) for key in keys]) + str(settings.FB_APP_SECRET)
-        return hashlib.md5(signature).hexdigest()
-
     def check_session_expiry(self, cookies):
-        return datetime.fromtimestamp(float(cookies[settings.FB_API_KEY+'_expires'])) > datetime.now()
+        return datetime.fromtimestamp(float(self.parsed_fbs['expires'][0])) > datetime.now()
 
-    def check_cookies_signature(self, cookies):
+    def get_user_data(self, cookies):
         API_KEY = str(settings.FB_API_KEY)
+        fbs_cookie = cookies['fbs_%s' % API_KEY]
+        parsed_fbs = parse_qs(smart_unicode(fbs_cookie))
 
-        values = {}
+        # Communicate with the access token to the Facebook oauth interface.
+        json = load_json(urlopen('https://graph.facebook.com/me?access_token=%s' % parsed_fbs['access_token'][0]))
 
-        for key in cookies.keys():
-            if (key.startswith(API_KEY + '_')):
-                values[key.replace(API_KEY + '_',  '')] = cookies[key]
-
-        return self.generate_signature(values) == cookies[API_KEY]
-
-    def get_user_data(self, key):
-        request_data = {
-            'method': 'Users.getInfo',
-            'api_key': settings.FB_API_KEY,
-            'call_id': time(),
-            'v': '1.0',
-            'uids': key,
-            'fields': 'name,first_name,last_name,email',
-            'format': 'json',
-        }
-
-        request_data['sig'] = self.generate_signature(request_data)
-        fb_response = load_json(urlopen(REST_SERVER, urlencode(request_data)))[0]
-
+        # Return the user data.
         return {
-            'username': fb_response['first_name'] + ' ' + fb_response['last_name'],
-            'email': fb_response['email']
+            'username': '%s %s' % (smart_unicode(json['first_name']), smart_unicode(json['last_name'])),
+            'email': smart_unicode(json['email']),
         }
 
 class FacebookAuthContext(ConsumerTemplateContext):

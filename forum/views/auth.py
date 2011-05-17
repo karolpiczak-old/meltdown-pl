@@ -7,6 +7,7 @@ from forum.http_responses import HttpResponseUnauthorized
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 from django.utils.http import urlquote_plus
+from django.utils.encoding import smart_unicode
 from forum.views.decorators import login_required
 from forum.modules import decorate
 from django.contrib.auth import login, logout
@@ -197,7 +198,12 @@ def external_register(request):
             return HttpResponseRedirect(reverse('auth_signin'))
 
         provider_class = AUTH_PROVIDERS[auth_provider].consumer
-        user_data = provider_class.get_user_data(request.session['assoc_key'])
+
+        # Pass the cookies to the Facebook authentication class get_user_data method. We need them to take the access token.
+        if provider_class.__class__.__name__ == 'FacebookAuthConsumer':
+            user_data = provider_class.get_user_data(request.COOKIES)
+        else:
+            user_data = provider_class.get_user_data(request.session['assoc_key'])
 
         if not user_data:
             user_data = request.session.get('auth_consumer_data', {})
@@ -374,7 +380,7 @@ def login_and_forward(request, user, forward=None, message=None):
     login(request, user)
 
     if message is None:
-        message = _("Welcome back %s, you are now logged in") % user.username
+        message = _("Welcome back %s, you are now logged in") % smart_unicode(user.username)
 
     request.user.message_set.create(message=message)
 
