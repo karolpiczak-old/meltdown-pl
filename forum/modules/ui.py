@@ -11,19 +11,13 @@ class Registry(list):
 
     def find_by_name(self, name):
         for i in self:
-            try:
-                if i.name and (i.name == name):
-                    return i
-            except AttributeError:
-                pass
+            if i.name and (i.name == name):
+                return i
 
     def remove_by_name(self, name):
         for i, r in enumerate(self):
-            try:
-                if r.name and (r.name == name):
-                    return self.pop(i)
-            except AttributeError:
-                pass
+            if r.name and (r.name == name):
+                return self.pop(i)
 
 
 HEAD_CONTENT = 'HEAD_CONTENT'
