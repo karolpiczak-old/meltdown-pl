@@ -759,6 +759,7 @@ ul.errorlist li {
     font-size: 13px;
     line-height: 20px;
     min-height: 80px;
+    margin: 0 0 20px 0;
 }
 
 .answer-body img {
