@@ -159,7 +159,8 @@ def question_list(request, initial,
                   page_title=_("All Questions"),
                   allowIgnoreTags=True,
                   feed_url=None,
-                  paginator_context=None):
+                  paginator_context=None,
+                  feed_sort='-added_at'):
 
     questions = initial.filter_state(deleted=False)
 
@@ -170,7 +171,7 @@ def question_list(request, initial,
         page_title = _("Questions")
 
     if request.GET.get('type', None) == 'rss':
-        questions = questions.order_by('-added_at')
+        questions = questions.order_by(feed_sort)
         return RssQuestionFeed(request, questions, page_title, list_description)(request)
 
     keywords =  ""
