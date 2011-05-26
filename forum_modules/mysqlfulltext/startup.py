@@ -44,14 +44,13 @@ def question_search(self, keywords):
     keywords = keywords.upper()
 
     return '-ranking', self.filter(
-            models.Q(ftsindex__body__search=keywords) or models.Q(ftsindex__title__search=keywords) or models.Q(ftsindex__tagnames__search=keywords)
-
+            models.Q(ftsindex__body__isnull=False)
     ).extra(
         select={
             'ranking': """
-                match(forum_mysqlftsindex.tagnames) against (%s in boolean mode) * 4 +
-                match(forum_mysqlftsindex.title) against (%s in boolean mode) * 2 +
-                match(forum_mysqlftsindex.body) against (%s in boolean mode) * 1
+                match(forum_mysqlftsindex.tagnames) against (%s) * 2 +
+                match(forum_mysqlftsindex.title) against (%s) * 4 +
+                match(forum_mysqlftsindex.body) against (%s) * 1
                                 """,
             },
         select_params=[keywords, keywords, keywords]

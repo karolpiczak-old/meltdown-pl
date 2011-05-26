@@ -3,8 +3,10 @@ DESCRIPTION = "Enables Mysql full text search functionality."
 
 try:
     import MySQLdb
-    from django.conf import settings
-    CAN_USE = settings.DATABASE_ENGINE in ('mysql', 'pooled_mysql')
-except:
+    import settings_local
+    CAN_USE = settings_local.DATABASE_ENGINE in ('mysql', 'pooled_mysql')
+except Exception, e:
+    import traceback
+    traceback.print_exc()
     CAN_USE = False
   
