@@ -35,13 +35,13 @@ class UserReputationSort(pagination.SimpleSort):
         return objects.order_by('-is_active', self.order_by)
 
 class UserListPaginatorContext(pagination.PaginatorContext):
-    def __init__(self):
+    def __init__(self, pagesizes=(20, 35, 60)):
         super (UserListPaginatorContext, self).__init__('USERS_LIST', sort_methods=(
             (_('reputation'), UserReputationSort(_('reputation'), '-reputation', _("sorted by reputation"))),
             (_('newest'), pagination.SimpleSort(_('recent'), '-date_joined', _("newest members"))),
             (_('last'), pagination.SimpleSort(_('oldest'), 'date_joined', _("oldest members"))),
             (_('name'), pagination.SimpleSort(_('by username'), 'username', _("sorted by username"))),
-        ), pagesizes=(20, 35, 60))
+        ), pagesizes=pagesizes)
 
 class SubscriptionListPaginatorContext(pagination.PaginatorContext):
     def __init__(self):
