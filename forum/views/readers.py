@@ -160,7 +160,7 @@ def question_list(request, initial,
                   allowIgnoreTags=True,
                   feed_url=None,
                   paginator_context=None,
-                  feed_sort='-added_at'):
+                  feed_sort=('-added_at',)):
 
     questions = initial.filter_state(deleted=False)
 
@@ -171,7 +171,8 @@ def question_list(request, initial,
         page_title = _("Questions")
 
     if request.GET.get('type', None) == 'rss':
-        questions = questions.order_by(feed_sort)
+        if feed_sort:
+            questions = questions.order_by(*feed_sort)
         return RssQuestionFeed(request, questions, page_title, list_description)(request)
 
     keywords =  ""
@@ -218,6 +219,7 @@ def search(request):
 
 @decorators.render('questions.html')
 def question_search(request, keywords):
+    rank_feed = False
     can_rank, initial = Question.objects.search(keywords)
 
     if can_rank:
@@ -225,6 +227,7 @@ def question_search(request, keywords):
 
         if isinstance(can_rank, basestring):
             sort_order = can_rank
+            rank_feed = True
 
         paginator_context = QuestionListPaginatorContext()
         paginator_context.sort_methods[_('ranking')] = pagination.SimpleSort(_('relevance'), sort_order, _("most relevant questions"))
@@ -239,7 +242,7 @@ def question_search(request, keywords):
                          None,
                          _("questions matching '%(keywords)s'") % {'keywords': keywords},
                          paginator_context=paginator_context,
-                         feed_url=feed_url)
+                         feed_url=feed_url, feed_sort=rank_feed and (can_rank,) or '-added_at')
 
 
 @decorators.render('tags.html', 'tags', _('tags'), weight=100)

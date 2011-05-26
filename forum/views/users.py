@@ -315,7 +315,7 @@ def user_profile(request, user):
               Badge.objects.filter(awards__user=user).values('id').annotate(count=Count('cls')).order_by('-count')]
 
     return pagination.paginated(request, (
-    ('questions', QuestionListPaginatorContext('USER_QUESTION_LIST', _('questions'), 15)),
+    ('questions', QuestionListPaginatorContext('USER_QUESTION_LIST', _('questions'), default_pagesize=15)),
     ('answers', UserAnswersPaginatorContext())), {
     "view_user" : user,
     "questions" : questions,
