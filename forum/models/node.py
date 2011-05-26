@@ -480,7 +480,10 @@ class Node(BaseModel, NodeContent):
         
         super(Node, self).save(*args, **kwargs)
         if tags_changed:
-            self.tags = list(Tag.objects.filter(name__in=self.tagname_list()))
+            if self.tagnames.strip():
+                self.tags = list(Tag.objects.filter(name__in=self.tagname_list()))
+            else:
+                self.tags = []
 
     class Meta:
         app_label = 'forum'
