@@ -6,7 +6,7 @@ import time
 from forum.authentication.base import AuthenticationConsumer, InvalidAuthentication
 from django.utils.translation import ugettext as _
 
-from lib import oauth
+from lib import oauth2
 
 class OAuthAbstractAuthConsumer(AuthenticationConsumer):
 
@@ -14,8 +14,8 @@ class OAuthAbstractAuthConsumer(AuthenticationConsumer):
         self.consumer_secret = consumer_secret
         self.consumer_key = consumer_key
 
-        self.consumer = oauth.OAuthConsumer(consumer_key, consumer_secret)
-        self.signature_method = oauth.OAuthSignatureMethod_HMAC_SHA1()
+        self.consumer = oauth2.Consumer(consumer_key, consumer_secret)
+        self.signature_method = oauth2.SignatureMethod_HMAC_SHA1()
 
         self.server_url = server_url
         self.request_token_url = request_token_url
@@ -32,7 +32,7 @@ class OAuthAbstractAuthConsumer(AuthenticationConsumer):
         if not unauthed_token:
              raise InvalidAuthentication(_('Error, the oauth token is not on the server'))
 
-        token = oauth.OAuthToken.from_string(unauthed_token)
+        token = oauth2.Token.from_string(unauthed_token)
 
         if token.key != request.GET.get('oauth_token', 'no-token'):
             raise InvalidAuthentication(_("Something went wrong! Auth tokens do not match"))
@@ -46,34 +46,34 @@ class OAuthAbstractAuthConsumer(AuthenticationConsumer):
         return {}
         
     def fetch_request_token(self):
-        oauth_request = oauth.OAuthRequest.from_consumer_and_token(self.consumer, http_url=self.request_token_url)
+        oauth_request = oauth2.Request.from_consumer_and_token(self.consumer, http_url=self.request_token_url)
         oauth_request.sign_request(self.signature_method, self.consumer, None)
-        params = oauth_request.parameters
+        params = oauth_request
         data = urllib.urlencode(params)
         full_url='%s?%s'%(self.request_token_url, data)
         response = urllib2.urlopen(full_url)
-        return oauth.OAuthToken.from_string(response.read())
+        return oauth2.Token.from_string(response.read())
 
     def authorize_token_url(self, token, callback_url=None):
-        oauth_request = oauth.OAuthRequest.from_token_and_callback(token=token,\
+        oauth_request = oauth2.Request.from_token_and_callback(token=token,\
                         callback=callback_url, http_url=self.authorization_url)
-        params = oauth_request.parameters
+        params = oauth_request
         data = urllib.urlencode(params)
         full_url='%s?%s'%(self.authorization_url, data)
         return full_url
 
     def fetch_access_token(self, token):
-        oauth_request = oauth.OAuthRequest.from_consumer_and_token(self.consumer, token=token, http_url=self.access_token_url)
+        oauth_request = oauth2.Request.from_consumer_and_token(self.consumer, token=token, http_url=self.access_token_url)
         oauth_request.sign_request(self.signature_method, self.consumer, token)
-        params = oauth_request.parameters
+        params = oauth_request
         data = urllib.urlencode(params)
         full_url='%s?%s'%(self.access_token_url, data)
         response = urllib2.urlopen(full_url)
-        return oauth.OAuthToken.from_string(response.read())
+        return oauth2.Token.from_string(response.read())
 
     def fetch_data(self, token, http_url, parameters=None):
-        access_token = oauth.OAuthToken.from_string(token)
-        oauth_request = oauth.OAuthRequest.from_consumer_and_token(
+        access_token = oauth2.Token.from_string(token)
+        oauth_request = oauth2.Request.from_consumer_and_token(
             self.consumer, token=access_token, http_method="GET",
             http_url=http_url, parameters=parameters,
         )

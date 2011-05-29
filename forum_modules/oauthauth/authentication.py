@@ -6,7 +6,7 @@ try:
 except ImportError:
     from django.utils import simplejson
 
-from lib import oauth
+from lib import oauth2
 import settings
 
 class TwitterAuthConsumer(OAuthAbstractAuthConsumer):
