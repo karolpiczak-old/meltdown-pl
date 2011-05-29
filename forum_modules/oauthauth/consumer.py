@@ -3,9 +3,12 @@ import urllib2
 import httplib
 import time
 
+from forum.settings import APP_URL
 from forum.authentication.base import AuthenticationConsumer, InvalidAuthentication
 from django.utils.translation import ugettext as _
+from django.core.urlresolvers import reverse
 
+from settings import TWITTER_AUTO_CALLBACK_REDIRECT
 from lib import oauth2
 
 class OAuthAbstractAuthConsumer(AuthenticationConsumer):
@@ -46,7 +49,16 @@ class OAuthAbstractAuthConsumer(AuthenticationConsumer):
         return {}
         
     def fetch_request_token(self):
-        oauth_request = oauth2.Request.from_consumer_and_token(self.consumer, http_url=self.request_token_url)
+        parameters = {}
+        # If the installation is configured to automatically redirect to the Twitter provider done page -- do it.
+        if bool(TWITTER_AUTO_CALLBACK_REDIRECT):
+            callback_url = '%s%s' % (APP_URL, reverse('auth_provider_done', kwargs={ 'provider' : 'twitter', }))
+            # Pass
+            parameters.update({
+                'oauth_callback' : callback_url,
+            })
+
+        oauth_request = oauth2.Request.from_consumer_and_token(self.consumer, http_url=self.request_token_url, parameters=parameters)
         oauth_request.sign_request(self.signature_method, self.consumer, None)
         params = oauth_request
         data = urllib.urlencode(params)
@@ -81,7 +93,7 @@ class OAuthAbstractAuthConsumer(AuthenticationConsumer):
 
         url = oauth_request.to_url()
         connection = httplib.HTTPSConnection(self.server_url)
-        connection.request(oauth_request.http_method, url)
+        connection.request("GET", url)
 
         return connection.getresponse().read()
 
