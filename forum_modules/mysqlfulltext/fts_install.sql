@@ -31,3 +31,10 @@ CREATE TRIGGER fts_on_update AFTER UPDATE ON forum_node
 |
 
 INSERT INTO forum_mysqlftsindex (node_id, title, body, tagnames) SELECT id, UPPER(title), UPPER(body), UPPER(tagnames) FROM forum_node;
+|
+
+delimiter |
+
+ALTER TABLE forum_mysqlftsindex ADD FULLTEXT(body);
+ALTER TABLE forum_mysqlftsindex ADD FULLTEXT(title);
+ALTER TABLE forum_mysqlftsindex ADD FULLTEXT(tagnames);

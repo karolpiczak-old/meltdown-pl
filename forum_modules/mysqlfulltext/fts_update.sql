@@ -24,3 +24,11 @@ CREATE TRIGGER fts_on_update AFTER UPDATE ON forum_node
   END;
 
 |
+
+delimiter |
+
+ALTER TABLE forum_mysqlftsindex ADD FULLTEXT(body);
+ALTER TABLE forum_mysqlftsindex ADD FULLTEXT(title);
+ALTER TABLE forum_mysqlftsindex ADD FULLTEXT(tagnames);
+
+|

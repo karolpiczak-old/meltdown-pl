@@ -8,7 +8,7 @@ from forum.models.question import Question, QuestionManager
 from forum.models.node import Node
 from forum.modules import decorate
 
-VERSION = 2
+VERSION = 3
 
 f_name = None
 
