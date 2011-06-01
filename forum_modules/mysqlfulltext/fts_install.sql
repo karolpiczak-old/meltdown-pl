@@ -6,7 +6,10 @@ CREATE TABLE forum_mysqlftsindex (
 	tagnames varchar(255),
 	PRIMARY KEY (id),
 	FOREIGN KEY (node_id) REFERENCES forum_node (id)   ON UPDATE CASCADE ON DELETE CASCADE,
-	FULLTEXT (body, title, tagnames)
+	FULLTEXT (body, title, tagnames),
+	FULLTEXT(body),
+	FULLTEXT(title),
+	FULLTEXT(tagnames)
 ) ENGINE=`MyISAM`;
 
 ALTER TABLE forum_mysqlftsindex CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
@@ -32,9 +35,3 @@ CREATE TRIGGER fts_on_update AFTER UPDATE ON forum_node
 
 INSERT INTO forum_mysqlftsindex (node_id, title, body, tagnames) SELECT id, UPPER(title), UPPER(body), UPPER(tagnames) FROM forum_node;
 |
-
-delimiter |
-
-ALTER TABLE forum_mysqlftsindex ADD FULLTEXT(body);
-ALTER TABLE forum_mysqlftsindex ADD FULLTEXT(title);
-ALTER TABLE forum_mysqlftsindex ADD FULLTEXT(tagnames);
