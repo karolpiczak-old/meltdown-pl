@@ -31,28 +31,47 @@ def super_user_required(fn):
 
     return wrapper
 
+def staff_user_required(fn):
+    def wrapper(request, *args, **kwargs):
+        if request.user.is_authenticated() and request.user.is_staff:
+            return fn(request, *args, **kwargs)
+        else:
+            return HttpResponseUnauthorized(request)
+
+    return wrapper
+
+def admin_page_wrapper(fn, request, *args, **kwargs):
+    res = fn(request, *args, **kwargs)
+    if isinstance(res, HttpResponse):
+        return res
+
+    template, context = res
+    context['basetemplate'] = settings.DJSTYLE_ADMIN_INTERFACE and "osqaadmin/djstyle_base.html" or "osqaadmin/base.html"
+    context['allsets'] = Setting.sets
+    context['othersets'] = sorted(
+            [s for s in Setting.sets.values() if not s.name in
+            ('basic', 'users', 'email', 'paths', 'extkeys', 'repgain', 'minrep', 'voting', 'accept', 'badges', 'about', 'faq', 'sidebar',
+            'form', 'moderation', 'css', 'headandfoot', 'head', 'view', 'urls')]
+            , lambda s1, s2: s1.weight - s2.weight)
+
+    context['tools'] = TOOLS
+
+    unsaved = request.session.get('previewing_settings', {})
+    context['unsaved'] = set([getattr(settings, s).set.name for s in unsaved.keys() if hasattr(settings, s)])
+
+    return render_to_response(template, context, context_instance=RequestContext(request))
+
 def admin_page(fn):
     @super_user_required
     def wrapper(request, *args, **kwargs):
-        res = fn(request, *args, **kwargs)
-        if isinstance(res, HttpResponse):
-            return res
+        return admin_page_wrapper(fn, request, *args, **kwargs)
 
-        template, context = res
-        context['basetemplate'] = settings.DJSTYLE_ADMIN_INTERFACE and "osqaadmin/djstyle_base.html" or "osqaadmin/base.html"
-        context['allsets'] = Setting.sets
-        context['othersets'] = sorted(
-                [s for s in Setting.sets.values() if not s.name in
-                ('basic', 'users', 'email', 'paths', 'extkeys', 'repgain', 'minrep', 'voting', 'accept', 'badges', 'about', 'faq', 'sidebar',
-                'form', 'moderation', 'css', 'headandfoot', 'head', 'view', 'urls')]
-                , lambda s1, s2: s1.weight - s2.weight)
+    return wrapper
 
-        context['tools'] = TOOLS
-
-        unsaved = request.session.get('previewing_settings', {})
-        context['unsaved'] = set([getattr(settings, s).set.name for s in unsaved.keys() if hasattr(settings, s)])
-
-        return render_to_response(template, context, context_instance=RequestContext(request))
+def moderation_page(fn):
+    @staff_user_required
+    def wrapper(request, *args, **kwargs):
+        return admin_page_wrapper(fn, request, *args, **kwargs)
 
     return wrapper
 
@@ -328,7 +347,7 @@ def maintenance(request):
                                            })
 
 
-@admin_page
+@moderation_page
 def flagged_posts(request):
     return ('osqaadmin/flagged_posts.html', {
     'flagged_posts': get_flagged_posts(),
