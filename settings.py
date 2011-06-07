@@ -15,6 +15,8 @@ TEMPLATE_LOADERS = [
 ]
 
 MIDDLEWARE_CLASSES = [
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfResponseMiddleware',
     'forum.middleware.django_cookies.CookiePreHandlerMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -26,19 +28,6 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.transaction.TransactionMiddleware',
     'forum.middleware.django_cookies.CookiePostHandlerMiddleware',
 ]
-# Backwards compatibility. If we fail to import the CSRF middle-ware from the location
-# where it is supposed to be, we add the old middle-ware classes to the classes list.
-try:
-    from django.middleware.csrf import CsrfViewMiddleware
-    MIDDLEWARE_CLASSES = [
-        'django.middleware.csrf.CsrfViewMiddleware',
-        'django.middleware.csrf.CsrfResponseMiddleware',
-    ] + MIDDLEWARE_CLASSES
-except ImportError:
-    MIDDLEWARE_CLASSES = [
-        'django.contrib.csrf.middleware.CsrfViewMiddleware',
-        'django.contrib.csrf.middleware.CsrfResponseMiddleware',
-    ] + MIDDLEWARE_CLASSES
 
 TEMPLATE_CONTEXT_PROCESSORS = [
     'django.core.context_processors.request',
