@@ -33,7 +33,7 @@ def super_user_required(fn):
 
 def staff_user_required(fn):
     def wrapper(request, *args, **kwargs):
-        if request.user.is_authenticated() and request.user.is_staff:
+        if request.user.is_authenticated() and (request.user.is_staff or request.user.is_superuser):
             return fn(request, *args, **kwargs)
         else:
             return HttpResponseUnauthorized(request)
