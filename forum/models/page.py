@@ -1,6 +1,25 @@
 from base import *
 from django.utils.translation import ugettext as _
 
+def silent_permalink(func):
+    """
+    Decorator that calls urlresolvers.reverse() to return a URL using
+    parameters returned by the decorated function "func".
+
+    "func" should be a function that returns a tuple in one of the
+    following formats:
+        (viewname, viewargs)
+        (viewname, viewargs, viewkwargs)
+    """
+    from django.core.urlresolvers import reverse
+    def inner(*args, **kwargs):
+        bits = func(*args, **kwargs)
+        try:
+            return reverse(bits[0], None, *bits[1:3])
+        except:
+            return "javascript:alert('Configure this page URL in the urls.py file');"
+    return inner
+
 class Page(Node):
     friendly_name = _("page")
 
@@ -34,7 +53,7 @@ class Page(Node):
         else:
             return _("[Unpublished] %s") % self.title
 
-    @models.permalink
+    @silent_permalink
     def get_absolute_url(self):
         return ('static_page', (), {'path': self.extra['path']})
         

@@ -435,7 +435,6 @@
 
                             added_at_link = current_sort == "added_at" and nodes.paginator.added_at_asc_sort_link or nodes.paginator.added_at_sort_link
                             author_link = current_sort == "author_asc" and nodes.paginator.author_sort_link or nodes.paginator.author_asc_sort_link
-                            score_link = current_sort == "score" and nodes.paginator.score_asc_sort_link or nodes.paginator.score_sort_link
                             act_at_link = current_sort == "act_at" and nodes.paginator.act_at_asc_sort_link or nodes.paginator.act_at_sort_link
                             act_by_link = current_sort == "act_by_asc" and nodes.paginator.act_by_sort_link or nodes.paginator.act_by_asc_sort_link
                         {% enddeclare %}
@@ -453,9 +452,11 @@
                         <th class="sorted {{ added_at }}">
                             <a href="{{ added_at_link }}">{% trans "Added at" %}</a>
                         </th>
-                        <!--<th class="sorted {{ score }}">
+                        {% comment %}
+                        <th class="sorted {{ score }}">
                             <a href="{{ score_link }}">{% trans "Score" %}</a>
-                        </th>-->
+                        </th>
+                        {% endcomment %}
                         <th class="sorted {{ act_by }}">
                             <a href="{{ act_by_link }}">{% trans "Last activity by" %}</a>
                         </th>
