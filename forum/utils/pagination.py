@@ -5,6 +5,7 @@ from django.core.paginator import Paginator, EmptyPage
 from django.utils.translation import ugettext as _
 from django.utils.html import escape
 from django.http import Http404
+from django.utils.encoding import smart_unicode
 from django.utils.http import urlquote
 from django.utils.safestring import mark_safe
 from django.utils.html import strip_tags, escape
@@ -298,7 +299,7 @@ def _paginated(request, objects, context):
             sorts = [(n, s.label, url_builder(n), strip_tags(s.description)) for n, s in context.sort_methods.items()]
 
             for name, label, url, descr in sorts:
-                paginator.__dict__['%s_sort_link' % name] = url
+                paginator.__dict__['%s_sort_link' % name] = smart_unicode(url)
 
             return sort_tabs_template.render(template.Context({
                 'current': sort,
