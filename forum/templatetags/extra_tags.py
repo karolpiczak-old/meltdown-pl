@@ -136,11 +136,12 @@ def diff_date(date, limen=2):
 
     now = datetime.datetime.now()
     diff = now - date
+    years = diff.years
     days = diff.days
     hours = int(diff.seconds/3600)
     minutes = int(diff.seconds/60)
 
-    if days > 2:
+    if years > 0 or days > 2:
         if date.year == now.year:
             return dateformat.format(date, 'd M, H:i')
         else:
