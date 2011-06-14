@@ -54,7 +54,7 @@ def admin_page_wrapper(fn, request, *args, **kwargs):
             'form', 'moderation', 'css', 'headandfoot', 'head', 'view', 'urls')]
             , lambda s1, s2: s1.weight - s2.weight)
 
-    context['tools'] = TOOLS
+    context['tools'] = [(name, fn.label) for name, fn in TOOLS.items()]
 
     unsaved = request.session.get('previewing_settings', {})
     context['unsaved'] = set([getattr(settings, s).set.name for s in unsaved.keys() if hasattr(settings, s)])

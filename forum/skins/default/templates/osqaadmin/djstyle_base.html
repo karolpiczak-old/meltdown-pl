@@ -129,8 +129,8 @@
                     <ul>
                         <li><a href="{% url admin_maintenance %}">{% trans "Maintenance mode" %}</a></li>
                         <li><a href="{% url admin_flagged_posts %}">{% trans "Flagged Posts" %}</a></li>
-                        {% for name,tool in tools.items %}
-                            <li><a href="{% url admin_tools name %}">{{ tool.label }}</a></li>
+                        {% for name,tool in tools %}
+                            <li><a href="{% url admin_tools name %}">{{ tool }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
