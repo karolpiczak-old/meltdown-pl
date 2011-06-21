@@ -69,9 +69,10 @@ def tag_selector(context):
     if request.user.is_authenticated():
         pt = MarkedTag.objects.filter(user=request.user)
         return {
+            'request' : request,
             "interesting_tag_names": pt.filter(reason='good').values_list('tag__name', flat=True),
             'ignored_tag_names': pt.filter(reason='bad').values_list('tag__name', flat=True),
             'user_authenticated': True,
         }
     else:
-        return {'user_authenticated': False}
+        return { 'request' : request, 'user_authenticated': False}
