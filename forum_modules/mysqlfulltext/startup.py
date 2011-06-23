@@ -43,7 +43,7 @@ word_re = re.compile(r'\w+', re.UNICODE)
 def question_search(self, keywords):
     keywords = keywords.upper()
 
-    return '-ranking', self.filter(
+    qs = self.filter(
             models.Q(ftsindex__body__isnull=False)
     ).extra(
         select={
@@ -54,4 +54,5 @@ def question_search(self, keywords):
                                 """,
             },
         select_params=[keywords, keywords, keywords]
-    )
+    ).filter(Q(title__search=keywords) | Q(tagnames__search=keywords) | Q(body__search=keywords))
+    return '-ranking', qs
