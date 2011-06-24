@@ -5607,7 +5607,7 @@ msgid "Markdown Basics"
 msgstr "Trucos del editor"
 
 #: forum/skins/default/templates/sidebar/markdown_help.html:6
-msgid "*italic* or __italic__"
+msgid "*italic* or _italic_"
 msgstr "*cursiva* o _cursiva_"
 
 #: forum/skins/default/templates/sidebar/markdown_help.html:9

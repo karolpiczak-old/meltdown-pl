@@ -5132,7 +5132,7 @@ msgid "Markdown Basics"
 msgstr ""
 
 #: forum/skins/default/templates/sidebar/markdown_help.html:6
-msgid "*italic* or __italic__"
+msgid "*italic* or _italic_"
 msgstr ""
 
 #: forum/skins/default/templates/sidebar/markdown_help.html:9

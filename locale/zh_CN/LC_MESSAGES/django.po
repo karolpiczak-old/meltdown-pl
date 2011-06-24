@@ -5529,7 +5529,7 @@ msgstr "Markdown快速参考"
 
 #: forum/skins/default/templates/sidebar/markdown_help.html:6
 #, fuzzy
-msgid "*italic* or __italic__"
+msgid "*italic* or _italic_"
 msgstr "*斜体* 或者 _斜体_"
 
 #: forum/skins/default/templates/sidebar/markdown_help.html:9

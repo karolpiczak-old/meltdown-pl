@@ -5413,8 +5413,8 @@ msgid "Markdown Basics"
 msgstr "Markdownの基礎"
 
 #: forum/skins/default/templates/sidebar/markdown_help.html:6
-msgid "*italic* or __italic__"
-msgstr "*斜体*または__italic__"
+msgid "*italic* or _italic_"
+msgstr "*斜体*または_italic_"
 
 #: forum/skins/default/templates/sidebar/markdown_help.html:9
 msgid "**bold** or __bold__"
