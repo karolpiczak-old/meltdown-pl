@@ -7,11 +7,9 @@ urlpatterns = patterns('',
 )
 
 if 'rosetta' in settings.INSTALLED_APPS:
-    urlpatterns += patterns('',
+    urlpatterns = patterns('',
         url(r'^rosetta/', include('rosetta.urls')),
-    )
+    ) + urlpatterns
 
 handler404 = 'forum.views.meta.page'
 handler500 = 'forum.views.meta.error_handler'
-
-
