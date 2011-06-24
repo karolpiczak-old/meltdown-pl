@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.views.static import serve
 from forum import settings
 from forum.modules import decorate
+from django.views.decorators.cache import cache_page
 from forum.views.decorators import login_required
 from forum.forms import FeedbackForm
 from django.core.urlresolvers import reverse
@@ -47,7 +48,7 @@ def media(request, skin, path):
 def markdown_help(request):
     return render_to_response('markdown_help.html', context_instance=RequestContext(request))
 
-
+@cache_page(60 * 60 * 24 * 30) #30 days
 def opensearch(request):
     return render_to_response('opensearch.html', {'settings' : settings}, context_instance=RequestContext(request))
 
