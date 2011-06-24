@@ -142,7 +142,8 @@ core_urls = (
     
     url(r'^%s%s%s$' % (_('admin/'), _('static_pages/'), _('new/')), app.admin.edit_page, name='admin_new_page'),
     url(r'^%s%s%s(?P<id>\d+)/$' % (_('admin/'), _('static_pages/'), _('edit/')), app.admin.edit_page, name='admin_edit_page'),
-    
+    url(r'^%s%s%s(?P<id>\d+)/$' % (_('admin/'), _('static_pages/'), _('delete/')), app.admin.delete_page, name='admin_delete_page'),
+
     url(r'^%s%s(?P<name>\w+)/$' % (_('admin/'), _('tools/')), app.admin.tools_page, name='admin_tools'),
     
     url(r'^%s%s(?P<set_name>\w+)/$' % (_('admin/'), _('settings/')), app.admin.settings_set, name='admin_set'),

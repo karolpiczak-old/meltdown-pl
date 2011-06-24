@@ -18,7 +18,12 @@
                 {% for page in pages %}
                     <tr>
                         <th scope="row"><a href="{% url admin_edit_page id=page.id %}">{{ page.headline }}</a></th>
-                        <td><a class="changelink" href="{% url admin_edit_page id=page.id %}">{% trans "Edit" %}</a></td>
+                        <td style="width: 125px;"><a class="changelink" href="{% url admin_edit_page id=page.id %}">{% trans "Edit" %}</a></td>
+                        <td style="width: 125px;">
+                            <a onclick="return confirm('{% trans "Are you sure you want to delete this page?" %}');" class="deletelink" href="{% url admin_delete_page id=page.id %}">
+                                {% trans "Delete" %}
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

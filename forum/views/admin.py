@@ -401,6 +401,12 @@ def edit_page(request, id=None):
     'published': published
     })
 
+@admin_page
+def delete_page(request, id=None):
+    page = get_object_or_404(Page, id=id)
+    page.delete()
+    return HttpResponseRedirect(reverse('admin_static_pages'))
+
 @admin_tools_page(_('createuser'), _("Create new user"))
 def create_user(request):
     if request.POST:

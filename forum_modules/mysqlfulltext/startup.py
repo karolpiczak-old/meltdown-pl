@@ -51,7 +51,7 @@ def question_search(self, keywords):
                 match(forum_mysqlftsindex.tagnames) against (%s) * 2 +
                 match(forum_mysqlftsindex.title) against (%s) * 4 +
                 match(forum_mysqlftsindex.body) against (%s) * 1
-                                """,
+                """,
             },
         select_params=[keywords, keywords, keywords]
     ).filter(Q(ftsindex__title__search=keywords) | Q(ftsindex__tagnames__search=keywords) | Q(ftsindex__body__search=keywords))
