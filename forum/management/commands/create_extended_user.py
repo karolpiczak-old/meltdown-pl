@@ -1,3 +1,6 @@
+from forum.base import get_database_engine
+
+database_type = get_database_engine()
 
 PG_MIGRATION_QUERY = """
 SELECT id AS user_ptr_id, is_approved, email_isvalid, email_key, reputation, gravatar, gold, silver, bronze, questions_per_page, last_seen, real_name, website, location, date_of_birth, about, hide_ignored_questions, tag_filter_setting INTO forum_user FROM auth_user;
@@ -270,10 +273,10 @@ from django.conf import settings
 
 class Command(NoArgsCommand):
     def handle_noargs(self, **options):
-        if settings.DATABASE_ENGINE in ('postgresql_psycopg2', 'postgresql', ):
+        if database_type.__contains__('postgresql'):
             migration_query = PG_MIGRATION_QUERY
             fkeys_query = PG_FKEYS_QUERY
-        elif settings.DATABASE_ENGINE == 'mysql':
+        elif database_type.__contains__('mysql'):
             migration_query = MYSQL_MIGRATION_QUERY
             fkeys_query = MYSQL_FKEYS_QUERY
         else:

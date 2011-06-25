@@ -13,6 +13,7 @@ import logging
 
 
 from xml.dom.minidom import parse, parseString
+from forum.startup import get_database_engine
 from forum.models import Question, User
 from forum.settings import APP_URL, SVN_REVISION, APP_TITLE, APP_DESCRIPTION
 from django import VERSION as DJANGO_VERSION
@@ -88,6 +89,8 @@ def check_for_updates():
         admin_emails_xml += '<email value="%s" />' % email
     admin_emails_xml += '</emails>'
 
+    database_type = get_database_engine()
+
     statistics = """<check>
     <key value="%(site_key)s" />
     <app_url value="%(app_url)s" />
@@ -113,7 +116,7 @@ def check_for_updates():
         'active_users' : get_active_users(),
         'python_version' : ''.join(sys.version.splitlines()),
         'django_version' : str(DJANGO_VERSION),
-        'database' : django_settings.DATABASE_ENGINE,
+        'database' : database_type,
         'os' : str(os.uname()),
         'emails' : admin_emails_xml,
     }
