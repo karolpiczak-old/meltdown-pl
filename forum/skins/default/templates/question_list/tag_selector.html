@@ -1,6 +1,7 @@
 {% load i18n %}
 {% load extra_tags %}
 
+{% if show_interesting_tags %}
 {% if user_authenticated %}
 <div id="tagSelector" class="boxC">
 	<h3 class="subtitle">{% trans "Interesting tags" %}</h3>
@@ -46,4 +47,5 @@
     <p>
     {% endcomment %}
 </div>
+{% endif %}
 {% endif %}

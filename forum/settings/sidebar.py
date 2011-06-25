@@ -11,6 +11,11 @@ label = _("Show the Welcome box"),
 help_text = _("Do you want to show the welcome box when a user first visits your site."),
 required=False))
 
+SHOW_INTERESTING_TAGS_BOX = Setting('SHOW_INTERESTING_TAGS_BOX', True, SIDEBAR_SET, dict(
+label = _("Show interesting tags in the sidebar"),
+help_text = _("Check this if you want to see the interesting tags container in the sidebar."),
+required=False))
+
 APP_INTRO = Setting('APP_INTRO', u'<p>Ask and answer questions, make the world better!</p>', SIDEBAR_SET, dict(
 label = _("Application intro"),
 help_text = _("The introductory page that is visible in the sidebar for anonymous users."),
