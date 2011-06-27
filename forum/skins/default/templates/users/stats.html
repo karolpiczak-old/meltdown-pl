@@ -11,9 +11,9 @@
         {% spaceless %}
             <h2>
                 {% blocktrans count questions.paginator.count as counter %}
-                <span class="count">{{counter}}</span> Question
+                <span class="count">{{counter}}</span> {% trans "Question" %}
                 {% plural %}
-                <span class="count">{{counter}}</span> Questions
+                <span class="count">{{counter}}</span> {% trans "Questions" %}
                 {% endblocktrans %}
                 <a class="feed-icon" style="background-image:url('{% media "media/images/feed-icon-small.png" %}');"
                     href="{{ view_user.get_asked_url }}?type=rss" title="{% trans "subscribe to question RSS feed" %}"></a>
@@ -33,9 +33,9 @@
         {% spaceless %}
             <h2>
                 {% blocktrans count answers.paginator.count as counter %}
-                <span class="count">{{counter}}</span> Answer
+                <span class="count">{{counter}}</span> {% trans "Answer" %}
                 {% plural %}
-                <span class="count">{{counter}}</span> Answers
+                <span class="count">{{counter}}</span> {% trans "Answers" %}
                 {% endblocktrans %}
             </h2>
         {% endspaceless %}
@@ -65,9 +65,9 @@
         {% spaceless %}
             <h2>
                 {% blocktrans count total_votes as cnt %}
-                    <span class="count">{{cnt}}</span> Vote
+                    <span class="count">{{cnt}}</span> {% trans "Vote" %}
                 {% plural %}
-                    <span class="count">{{cnt}}</span> Votes
+                    <span class="count">{{cnt}}</span> {% trans "Votes" %}
                 {% endblocktrans %}
             </h2>
         {% endspaceless %}
@@ -91,9 +91,9 @@
         {% spaceless %}
             <h2>
                 {% blocktrans count user_tags|length as counter %}
-                    <span class="count">{{counter}}</span> Tag
+                    <span class="count">{{counter}}</span> {% trans "Tag" %}
                 {% plural %}
-                    <span class="count">{{counter}}</span> Tags
+                    <span class="count">{{counter}}</span> {% trans "Tags"  %}
                 {% endblocktrans %}
             </h2>
         {% endspaceless %}
@@ -120,9 +120,9 @@
         {% spaceless %}
         <h2>
             {% blocktrans count total_awards as counter %}
-            <span class="count">{{counter}}</span> Badge
+            <span class="count">{{counter}}</span> {% trans "Badge" %}
             {% plural %}
-            <span class="count">{{counter}}</span> Badges
+            <span class="count">{{counter}}</span> {% trans "Badges" %}
             {% endblocktrans %}
         </h2>
         {% endspaceless %}
