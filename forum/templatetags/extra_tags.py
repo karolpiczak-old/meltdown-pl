@@ -98,7 +98,7 @@ def get_accept_rate(user):
     # If the user has more than one accepted answers the rate title will be in plural.
     if accepted_answers_count > 1:
         accept_rate_number_title = _('%(user)s has %(count)d accepted answers') % {
-            'user' :  user.username,
+            'user' :  smart_unicode(user.username),
             'count' : int(accepted_answers_count)
         }
     # If the user has one accepted answer we'll be using singular.
