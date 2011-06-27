@@ -1,3 +1,5 @@
+import re
+
 from django.contrib.sitemaps import Sitemap
 from forum.models import Question
 from forum.settings import QUESTIONS_SITEMAP_LIMIT, QUESTIONS_SITEMAP_CHANGEFREQ
@@ -16,7 +18,14 @@ def index(request, sitemaps):
         else:
             pages = site.paginator.num_pages
         sitemap_url = urlresolvers.reverse('sitemap_section_index', kwargs={'section': section})
-        sites.append('%s%s' % (settings.APP_URL, sitemap_url))
+
+        # Replace double forward slashes with single ones
+        final_url = '%s%s' % (settings.APP_URL, sitemap_url)
+        final_url = re.sub("/+", "/", final_url)
+        final_url = final_url.replace('http:/', 'http://')
+        final_url = final_url.replace('https:/', 'https://')
+
+        sites.append(final_url)
 
     xml = loader.render_to_string('sitemap_index.xml', {'sitemaps': sites})
     return HttpResponse(xml, mimetype='application/xml')
@@ -34,6 +43,9 @@ def sitemap_section_index(request, section, sitemaps):
     for page in paginator.page_range:
         location = urlresolvers.reverse('sitemap_section_page', kwargs={ 'page' : page, 'section' : section })
         location = '%s%s' % (settings.APP_URL, location)
+        location = re.sub("/+", "/", location)
+        location = location.replace('http:/', 'http://')
+        location = location.replace('https:/', 'https://')
         locations.append(location)
 
     xml = loader.render_to_string('sitemap_section_index.xml', { 'locations' : locations, })
