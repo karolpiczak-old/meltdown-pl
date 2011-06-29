@@ -359,7 +359,22 @@ class Node(BaseModel, NodeContent):
         self.body = self.rendered(revision.body)
 
         self.active_revision = revision
-        self.update_last_activity(user)
+
+        # Try getting the previous revision
+        try:
+            prev_revision = NodeRevision.objects.get(node=self, revision=revision.revision-1)
+
+            update_activity = True
+
+            # Do not update the activity if only the tags are changed
+            if prev_revision.title == revision.title and prev_revision.body == revision.body \
+            and prev_revision.tagnames != revision.tagnames and not settings.UPDATE_LATEST_ACTIVITY_ON_TAG_EDIT:
+                update_activity = False
+        except NodeRevision.DoesNotExist:
+            update_activity = True
+        finally:
+            if update_activity:
+                self.update_last_activity(user)
 
         self.save()
 
