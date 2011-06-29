@@ -5,8 +5,10 @@ from forum.models import *
 from django.utils.translation import ugettext as _
 from django.contrib.humanize.templatetags.humanize import apnumber
 
+from django.utils.encoding import smart_unicode
 from django.utils.safestring import mark_safe
 from general import NextUrlField, UserNameField, SetPasswordForm
+
 from forum import settings
 
 from forum.modules import call_all_handlers
@@ -213,7 +215,7 @@ class RevisionForm(forms.Form):
 
         date_format = '%c'
         self.fields['revision'].choices = [
-            (r[0], u'%s - %s (%s) %s' % (r[0], r[1], r[2].strftime(date_format), r[3]))
+            (r[0], u'%s - %s (%s) %s' % (r[0], smart_unicode(r[1]), r[2].strftime(date_format), r[3]))
             for r in revisions]
 
         self.fields['revision'].initial = post.active_revision.revision
