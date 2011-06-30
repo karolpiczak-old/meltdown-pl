@@ -183,7 +183,8 @@ def question_list(request, initial,
     #answer_description = _("answers")
 
     if not feed_url:
-        req_params = generate_uri(request.GET, (_('page'), _('pagesize'), _('sort')))
+        req_params = generate_uri(request.GET, (_('page'), _('pagesize')))
+
         if req_params:
             req_params = '&' + req_params
 
