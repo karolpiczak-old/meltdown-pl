@@ -160,7 +160,8 @@ def question_list(request, initial,
                   allowIgnoreTags=True,
                   feed_url=None,
                   paginator_context=None,
-                  feed_sort=('-added_at',)):
+                  feed_sort=('-added_at',),
+                  feed_req_params_exclude=(_('page'), _('pagesize'), _('sort'))):
 
     questions = initial.filter_state(deleted=False)
 
@@ -183,7 +184,7 @@ def question_list(request, initial,
     #answer_description = _("answers")
 
     if not feed_url:
-        req_params = generate_uri(request.GET, (_('page'), _('pagesize')))
+        req_params = generate_uri(request.GET, feed_req_params_exclude)
 
         if req_params:
             req_params = '&' + req_params
