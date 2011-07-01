@@ -91,7 +91,7 @@ def index(request):
 @decorators.render('questions.html', 'unanswered', _('unanswered'), weight=400)
 def unanswered(request):
     return question_list(request,
-                         Question.objects.exclude(id__in=Question.objects.filter(children__marked=True).distinct()),
+                         Question.objects.exclude(id__in=Question.objects.filter(children__marked=True).distinct()).exclude(marked=True),
                          _('open questions without an accepted answer'),
                          None,
                          _("Unanswered Questions"))
