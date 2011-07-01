@@ -2,6 +2,8 @@
 
 {% load i18n extra_tags general_sidebar_tags %}
 
+{% block title %}{% trans "Site Administration" %}{% endblock %}
+
 {% block forejs %}
     <link rel="stylesheet" type="text/css" media="screen" href="{% media "/media/style/admin.css" %}"/>
     <script type="text/javascript" src="{% media "/media/js/osqa.admin.js" %}"></script>
