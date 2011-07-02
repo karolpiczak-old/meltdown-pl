@@ -1,9 +1,15 @@
+# -*- coding: utf-8 -*-
+
 import re
 
+from django.utils.encoding import smart_unicode
 from forum.models.user import User
 
 def find_best_match_in_name(content,  uname,  fullname,  start_index):      
-    end_index = start_index + len(fullname)    
+    uname = smart_unicode(uname)
+    fullname = smart_unicode(fullname)
+
+    end_index = start_index + len(fullname)
     
     while end_index > start_index:
         if content[start_index : end_index].lower() == fullname.lower():
@@ -17,7 +23,7 @@ def find_best_match_in_name(content,  uname,  fullname,  start_index):
             
     return uname    
 
-APPEAL_PATTERN = re.compile(r'(?<!\w)@\w+')
+APPEAL_PATTERN = re.compile(r'(?<!\w)@\w+', re.UNICODE)
 
 def auto_user_link(node, content):
 
@@ -29,17 +35,17 @@ def auto_user_link(node, content):
 
     for appeal in appeals:
         # Try to find the profile URL
-        username = appeal.group(0)[1:]
+        username = smart_unicode(appeal.group(0)[1:])
         
         matches = []
         
         for user in active_users:
-            if user.username.lower().startswith(username.lower()):
+            if smart_unicode(user.username).lower().startswith(username.lower()):
                 matches.append(user)
                 
         if len(matches) == 1:
             replacements.append(
-                                (find_best_match_in_name(content,  username,  matches[0].username,  appeal.start(0) + 1),  matches[0])
+                                (find_best_match_in_name(content,  username, smart_unicode(matches[0].username),  appeal.start(0) + 1),  matches[0])
                                 )                                
         elif len(matches) == 0:
             matches = User.objects.filter(username__istartswith=username)
@@ -51,16 +57,16 @@ def auto_user_link(node, content):
         final_match = ""
         
         for user in matches:
-            user_match = find_best_match_in_name(content,  username,  user.username,  appeal.start(0) + 1)
+            user_match = find_best_match_in_name(content,  username,  smart_unicode(user.username),  appeal.start(0) + 1)
             
             if (len(user_match) < len(final_match)): 
                 continue
                 
             if (len(user_match) == len(final_match)):
-                if not (user.username.lower() == user_match.lower()):
+                if not (smart_unicode(user.username).lower() == user_match.lower()):
                     continue
                     
-                if (best_user_match and (best_user_match.username == final_match)):
+                if (best_user_match and (smart_unicode(best_user_match.username) == final_match)):
                     continue
                     
             best_user_match = user
@@ -69,7 +75,7 @@ def auto_user_link(node, content):
         replacements.append((final_match,  best_user_match))            
     
     for replacement in replacements:
-        to_replace = "@" + replacement[0]
+        to_replace = "@" + smart_unicode(replacement[0])
         profile_url = replacement[1].get_absolute_url()
         
         auto_link = '<a href="%s">%s</a>' % (profile_url, to_replace)
