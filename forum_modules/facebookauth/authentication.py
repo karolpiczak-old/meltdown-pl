@@ -47,9 +47,26 @@ class FacebookAuthConsumer(AuthenticationConsumer):
         # Communicate with the access token to the Facebook oauth interface.
         json = load_json(urlopen('https://graph.facebook.com/me?access_token=%s' % parsed_fbs['access_token'][0]))
 
+        first_name = smart_unicode(json['first_name'])
+        last_name = smart_unicode(json['last_name'])
+        full_name = '%s %s' % (first_name, last_name)
+
+        # There is a limit in the Django user model for the username length (no more than 30 characaters)
+        if len(full_name) <= 30:
+            username = full_name
+        # If the full name is too long use only the first
+        elif len(first_name) <= 30:
+            username = first_name
+        # If it's also that long -- only the last
+        elif len(last_name) <= 30:
+            username = last_name
+        # If the real name of the user is indeed that weird, let him choose something on his own =)
+        else:
+            username = ''
+
         # Return the user data.
         return {
-            'username': '%s %s' % (smart_unicode(json['first_name']), smart_unicode(json['last_name'])),
+            'username': username,
             'email': smart_unicode(json['email']),
         }
 
