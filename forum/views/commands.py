@@ -1,21 +1,25 @@
 import datetime
+import logging
+
 from forum import settings
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.urlresolvers import reverse
 from django.utils import simplejson
+from django.utils.encoding import smart_unicode
+from django.utils.translation import ungettext, ugettext as _
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404, render_to_response
-from django.utils.translation import ungettext, ugettext as _
 from django.template import RequestContext
+
 from django.template.loader import render_to_string
 from forum.models import *
 from forum.models.node import NodeMetaClass
-from forum.actions import *
-from django.core.urlresolvers import reverse
 from forum.utils.decorators import ajax_method, ajax_login_required
-from decorators import command, CommandException, RefreshPageCommand
+from forum.actions import *
 from forum.modules import decorate
 from forum import settings
-import logging
+
+from decorators import command, CommandException, RefreshPageCommand
 
 class NotEnoughRepPointsException(CommandException):
     def __init__(self, action):
@@ -409,20 +413,21 @@ def convert_to_comment(request, id):
     answer = get_object_or_404(Answer, id=id)
     question = answer.question
 
+    # Check whether the user has the required permissions
+    if not user.is_authenticated():
+        raise AnonymousNotAllowedException(_("convert answers to comments"))
+
+    if not user.can_convert_to_comment(answer):
+        raise NotEnoughRepPointsException(_("convert answers to comments"))
+
     if not request.POST:
-        description = lambda a: _("Answer by %(uname)s: %(snippet)s...") % {'uname': a.author.username,
+        description = lambda a: _("Answer by %(uname)s: %(snippet)s...") % {'uname': smart_unicode(a.author.username),
                                                                             'snippet': a.summary[:10]}
         nodes = [(question.id, _("Question"))]
         [nodes.append((a.id, description(a))) for a in
          question.answers.filter_state(deleted=False).exclude(id=answer.id)]
 
         return render_to_response('node/convert_to_comment.html', {'answer': answer, 'nodes': nodes})
-
-    if not user.is_authenticated():
-        raise AnonymousNotAllowedException(_("convert answers to comments"))
-
-    if not user.can_convert_to_comment(answer):
-        raise NotEnoughRepPointsException(_("convert answers to comments"))
 
     try:
         new_parent = Node.objects.get(id=request.POST.get('under', None))
