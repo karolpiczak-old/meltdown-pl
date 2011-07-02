@@ -197,6 +197,30 @@ class CommentToAnswerAction(ActionProxy):
             'user': self.hyperlink(self.user.get_profile_url(), self.friendly_username(viewer, self.user)),
             'question': self.describe_node(viewer, self.node.abs_parent),
         }
+class CommentToQuestionAction(NodeEditAction):
+    verb = _("converted")
+
+    def process_data(self, **data):
+        revision_data = self.create_revision_data(**data)
+        revision = self.node.create_revision(self.user, **revision_data)
+
+        self.extra = {
+            'covert_revision': revision.revision,
+        }
+
+        self.node.node_type = "question"
+        self.node.parent = None
+        self.node.abs_parent = None
+
+    def process_action(self):
+        self.node.last_edited = self
+        self.node.save()
+
+    def describe(self, viewer=None):
+        return _("%(user)s converted comment on %(question)s to a new question") % {
+            'user': self.hyperlink(self.user.get_profile_url(), self.friendly_username(viewer, self.user)),
+            'question': self.describe_node(viewer, self.node.abs_parent),
+        }
 
 class AnswerToQuestionAction(NodeEditAction):
     verb = _("converted to question")

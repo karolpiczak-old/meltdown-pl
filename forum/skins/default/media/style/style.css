@@ -1525,7 +1525,7 @@ a.accept-answer.on, a.accept-answer:hover {
     margin-left: 4px;
 }
 
-a.comment-like, a.comment-delete, a.comment-edit, a.comment-convert {
+a.comment-like, a.comment-delete, a.comment-edit, a.comment-convert, a.comment-convert-to-question {
     margin-left: 2px;
     width: 18px;
 }
@@ -1552,6 +1552,14 @@ a.comment-convert {
 
 a.comment-convert:hover {
     background: url("../images/convert-hover.png") no-repeat scroll center center transparent;
+}
+
+a.comment-convert-to-question {
+    background: url("../images/convert-to-question-off.png") no-repeat scroll center center transparent;
+}
+
+a.comment-convert-to-question:hover {
+    background: url("../images/convert-to-question-hover.png") no-repeat scroll center center transparent;
 }
 
 a.comment-edit {

@@ -24,6 +24,8 @@
                 {% if comment.can_convert %}
                     <a rel="nofollow" id="comment-{{ comment.id }}-convert" href="{% url convert_comment id=comment.id %}" title="{% trans "Convert comment to answer" %}"
                         class="ajax-command comment-convert confirm" rel="nofollow"> </a>
+                    <a rel="nofollow" id="comment-{{ comment.id }}-convert-to-question" href="{% url convert_to_question id=comment.id %}?node_type=comment" title="{% trans "Convert comment to question" %}"
+                        class="comment-convert-to-question" rel="nofollow"> </a>
                 {% endif %}
                     
 

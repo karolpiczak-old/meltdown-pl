@@ -44,7 +44,7 @@ class Action(BaseModel):
     real_user = models.ForeignKey('User', related_name="proxied_actions", null=True)
     ip   = models.CharField(max_length=39)
     node = models.ForeignKey('Node', null=True, related_name="actions")
-    action_type = models.CharField(max_length=16)
+    action_type = models.CharField(max_length=32)
     action_date = models.DateTimeField(default=datetime.datetime.now)
 
     extra = PickledObjectField()
