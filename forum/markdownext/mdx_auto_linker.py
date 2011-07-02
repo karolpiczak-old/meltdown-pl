@@ -14,7 +14,7 @@ TLDS = ('gw', 'gu', 'gt', 'gs', 'gr', 'gq', 'gp', 'gy', 'gg', 'gf', 'ge', 'gd', 
         'mu', 'mt', 'mw', 'mv', 'mq', 'ms', 'mr', 'im', 'ug', 'my', 'mx', 'il', 'pro', 'ac', 'sa', 'ae', 'ad', 'ag',
         'af', 'ai', 'vi', 'is', 'ir', 'am', 'al', 'ao', 'an', 'aq', 'as', 'ar', 'au', 'at', 'aw', 'in', 'ax', 'az',
         'ie', 'id', 'sr', 'nl', 'mil', 'no', 'na', 'travel', 'nc', 'ne', 'nf', 'ng', 'nz', 'dm', 'np',
-        'so', 'nr', 'nu', 'fr', 'io', 'ni', 'ye', 'sv', 'jsp', 'kz', 'fi', 'fj', 'php', 'fm', 'fo', 'tj', 'sz', 'sy',
+        'so', 'nr', 'nu', 'fr', 'io', 'ni', 'ye', 'sv', 'kz', 'fi', 'fj', 'fm', 'fo', 'tj', 'sz', 'sy',
         'mobi', 'kg', 'ke', 'doc', 'ki', 'kh', 'kn', 'km', 'st', 'sk', 'kr', 'si', 'kp', 'kw', 'sn', 'sm', 'sl', 'sc',
         'biz', 'ky', 'sg', 'se', 'sd')
 
