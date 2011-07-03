@@ -4,6 +4,11 @@ from django.utils.translation import ugettext_lazy as _
 """ view settings """
 VIEW_SET = SettingSet('view', _('View settings'), _("Set up how certain parts of the site are displayed."), 20)
 
+EMBED_YOUTUBE_VIDEOS = Setting('EMBED_YOUTUBE_VIDEOS', True, VIEW_SET, dict(
+label = _("Embed YouTube Videos"),
+help_text = _("If you check this YouTube videos will be embedded"),
+required=False))
+
 SUMMARY_LENGTH = Setting('SUMMARY_LENGTH', 300, VIEW_SET, dict(
 label = _("Summary Length"),
 help_text = _("The number of characters that are going to be displayed in order to get the content summary.")))

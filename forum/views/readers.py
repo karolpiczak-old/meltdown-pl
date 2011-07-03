@@ -366,6 +366,7 @@ def question(request, id, slug='', answer=None):
     "answers" : answers,
     "similar_questions" : question.get_related_questions(),
     "subscription": subscription,
+    "embed_youtube_videos" : settings.EMBED_YOUTUBE_VIDEOS,
     })
 
 

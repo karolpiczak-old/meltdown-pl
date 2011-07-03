@@ -21,6 +21,12 @@
         <script type='text/javascript' src='{% media  "/media/js/wmd/showdown.js" %}'></script>
         <script type='text/javascript' src='{% media  "/media/js/wmd/wmd.js" %}'></script>
         <link rel="stylesheet" type="text/css" href="{% media  "/media/js/wmd/wmd.css" %}" />
+
+        {% if embed_youtube_videos %}
+        <script type='text/javascript' src='{% media  "/media/js/viewbox_min.js" %}'></script>
+        <script type='text/javascript' src='{% media  "/media/js/youtube.js" %}'></script>
+        <link rel="stylesheet" type="text/css" href="{% media  "/media/js/viewbox.css" %}" />
+        {% endif %}
         {% endif %}
 
         <script type="text/javascript">
