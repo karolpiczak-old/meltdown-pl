@@ -64,10 +64,16 @@ class FacebookAuthConsumer(AuthenticationConsumer):
         else:
             username = ''
 
+        # Check whether the length if the email is greater than 75, if it is -- just replace the email
+        # with a blank string variable, otherwise we're going to have trouble with the Django model.
+        email = smart_unicode(json['email'])
+        if len(email) > 75:
+            email = ''
+
         # Return the user data.
         return {
             'username': username,
-            'email': smart_unicode(json['email']),
+            'email': email,
         }
 
 class FacebookAuthContext(ConsumerTemplateContext):
