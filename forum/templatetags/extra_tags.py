@@ -170,6 +170,24 @@ def media(url):
         url = url_prefix + url
         return url
 
+@register.simple_tag
+def get_tag_font_size(tag):
+    occurrences_of_current_tag = tag.used_count
+
+    # Occurrences count settings
+    min_occurs = int(settings.TAGS_CLOUD_MIN_OCCURS)
+    max_occurs = int(settings.TAGS_CLOUD_MAX_OCCURS)
+
+    # Font size settings
+    min_font_size = int(settings.TAGS_CLOUD_MIN_FONT_SIZE)
+    max_font_size = int(settings.TAGS_CLOUD_MAX_FONT_SIZE)
+
+    # Calculate the font size of the tag according to the occurrences count
+    weight = (math.log(occurrences_of_current_tag)-math.log(min_occurs))/(math.log(max_occurs)-math.log(min_occurs))
+    font_size_of_current_tag = min_font_size + int(math.floor((max_font_size-min_font_size)*weight))
+
+    return font_size_of_current_tag
+
 class ItemSeparatorNode(template.Node):
     def __init__(self, separator):
         sep = separator.strip()
@@ -277,6 +295,7 @@ class DeclareNode(template.Node):
                 d['os'] = os
                 d['html'] = html
                 d['reverse'] = reverse
+                d['settings'] = settings
                 d['smart_str'] = smart_str
                 d['smart_unicode'] = smart_unicode
                 d['force_unicode'] = force_unicode

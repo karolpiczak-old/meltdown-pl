@@ -1,11 +1,14 @@
-{% load i18n %}
+{% load i18n extra_tags %}
+{% declare %}
+    show_tags_in_a_cloud = settings.SHOW_TAGS_IN_A_CLOUD
+{% enddeclare %}
 
 <div class="boxC">
 	<h3>{% trans "Recent tags" %}</h3>
 	<div class="body">
          <div class="tags" id="recent-tags">
         {% for tag in tags %}
-            <a rel="tag" class="tag-link-{{ tag.name }}" title="{% blocktrans with tag.name as tagname %}see questions tagged '{{tagname}}'{% endblocktrans %}" href="{% url tag_questions tag.name|urlencode %}">{{ tag.name }}</a>
+            <a rel="tag"{% if show_tags_in_a_cloud %} style="font-size: {% get_tag_font_size tag %}px;"{% endif %} class="tag-link-{{ tag.name }}" title="{% blocktrans with tag.name as tagname %}see questions tagged '{{tagname}}'{% endblocktrans %}" href="{% url tag_questions tag.name|urlencode %}">{{ tag.name }}</a>
         {% endfor %}
         </div>
         <div class="more"><a href="{% url tags %}">{% trans "popular tags" %} </a> </div>
