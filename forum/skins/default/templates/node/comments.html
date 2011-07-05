@@ -52,7 +52,7 @@
     <form id="comment-{{ post.id }}-form" method="post" action="{% url comment id=post.id %}" accept-charset="utf-8">
         {% csrf_token %}
         <div class="comment-form-widgets-container">
-            <textarea name="comment" class="commentBox"></textarea>
+            <textarea name="comment" class="commentBox" id="comment"></textarea>
             <div class="comment-form-buttons">
                 <span id="comment-{{ post.id }}-chars-left" class="comment-chars-left">
                     <span class="comments-char-left-count">{{ min_length }}|{{ max_length }}</span>
@@ -62,6 +62,12 @@
                 <input type="submit" class="comment-submit" value="{% trans " comment" %}" />
                 <input type="submit" class="comment-cancel" value="{% trans " cancel" %}" />
             </div>
+            <div class="clear"></div>
+            {% if user.can_use_canned_comments %}
+            <div class="canned_comment">
+                <a href="{% url canned_comments post.id %}" class="ajax-command withprompt">{% trans "Use canned comment" %}</a>
+            </div>
+            {% endif %}
         </div>
         <script type="text/html" class="new-comment-skeleton" id="new-comment-skeleton-{{ post.id }}">
             <div class="comment{% if not comment.top_scorer %} not_top_scorer{% endif %}" id="comment-%ID%">

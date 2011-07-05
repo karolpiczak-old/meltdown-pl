@@ -259,6 +259,14 @@ class User(BaseModel, DjangoUser):
         
         return votes_today
     
+    def can_use_canned_comments(self):
+        # The canned comments feature is available only for admins and moderators,
+        # and only if the "Use canned comments" setting is activated in the administration.
+        if (self.is_superuser or self.is_staff) and settings.USE_CANNED_COMMENTS:
+            return True
+        else:
+            return False
+
     @true_if_is_super_or_staff
     def can_view_deleted_post(self, post):
         return post.author == self

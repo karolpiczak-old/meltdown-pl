@@ -493,6 +493,31 @@ def subscribe(request, id, user=None):
         }
     }
 
+@decorate.withfn(command)
+def canned_comments(request, post_id):
+    user = request.user
+
+    # Check whether the user has the required permissions to use the tool.
+    if not user.can_use_canned_comments:
+        raise CommandException(_("You cannot use the canned comments tool."))
+
+    if not request.POST:
+        canned_comments = []
+        for comment in settings.CANNED_COMMENTS:
+            canned_comments.append(smart_unicode(comment))
+
+        return render_to_response('node/canned_comments.html', {
+            'canned_comments' : canned_comments,
+        }, RequestContext(request))
+
+    comment = request.POST.get('comment', '')
+
+    return {
+        'commands' : {
+            'canned_comment' : [post_id, comment],
+        }
+    }
+
 #internally grouped views - used by the tagging system
 @ajax_login_required
 def mark_tag(request, tag=None, **kwargs):#tagging system

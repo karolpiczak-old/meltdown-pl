@@ -123,6 +123,10 @@ var response_commands = {
         $('#comment-' + comment_id).slideDown('slow');
     },
 
+    canned_comment: function(post_id, comment) {
+        $('#comment-' + post_id + '-form textarea').val(comment);
+    },
+
     update_comment: function(comment_id, comment_text) {
         var $comment = $('#comment-' + comment_id);
         $comment.find('.comment-text').html(comment_text);
