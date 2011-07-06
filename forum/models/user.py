@@ -362,7 +362,17 @@ class User(BaseModel, DjangoUser):
 
     @true_if_is_super_or_staff
     def can_reopen_question(self, question):
-        return self == question.author and self.reputation >= int(settings.REP_TO_REOPEN_OWN)
+        # Check whether the setting to Unify close and reopen permissions has been activated
+        if bool(settings.UNIFY_PERMISSIONS_TO_CLOSE_AND_REOPEN):
+            # If we unify close to reopen check whether the user has permissions to close.
+            # If he has -- he can reopen his question too.
+            can_reopen = (
+                self == question.author and self.reputation >= int(settings.REP_TO_CLOSE_OWN)
+            ) or self.reputation >= int(settings.REP_TO_CLOSE_OTHERS)
+        else:
+            # Check whether the user is the author and has the required permissions to reopen
+            can_reopen = self == question.author and self.reputation >= int(settings.REP_TO_REOPEN_OWN)
+        return can_reopen
 
     @true_if_is_super_or_staff
     def can_delete_post(self, post):

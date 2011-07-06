@@ -39,6 +39,11 @@ REP_TO_CLOSE_OWN = Setting('REP_TO_CLOSE_OWN', 250, MIN_REP_SET, dict(
 label = _("Minimum reputation to close own question"),
 help_text = _("The minimum reputation an user must have to be allowed to close his own question.")))
 
+UNIFY_PERMISSIONS_TO_CLOSE_AND_REOPEN = Setting('UNIFY_PERMISSIONS_TO_CLOSE_AND_REOPEN', True, MIN_REP_SET, dict(
+label = _("Unify close and reopen permissions"),
+help_text = _("If checked the same permissions as the ones to close question will be required to reopen it."),
+required=False))
+
 REP_TO_REOPEN_OWN = Setting('REP_TO_REOPEN_OWN', 500, MIN_REP_SET, dict(
 label = _("Minimum reputation to reopen own question"),
 help_text = _("The minimum reputation an user must have to be allowed to reopen his own question.")))
