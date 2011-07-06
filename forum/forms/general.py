@@ -36,7 +36,7 @@ class NextUrlField(forms.CharField):
         return clean_next(value)
 
 login_form_widget_attrs = { 'class': 'required login' }
-username_re = re.compile(r'^[\w\s ]+$', re.UNICODE)
+username_re = re.compile(r'^[\-\w\s ]+$', re.UNICODE)
 
 class UserNameField(StrippedNonEmptyCharField):
     def __init__(self,db_model=User, db_field='username', must_exist=False,skip_clean=False,label=_('choose a username'),**kw):
@@ -49,7 +49,7 @@ class UserNameField(StrippedNonEmptyCharField):
                         'forbidden':_('sorry, this name is not allowed, please choose another'),
                         'missing':_('sorry, there is no user with this name'),
                         'multiple-taken':_('sorry, we have a serious error - user name is taken by several users'),
-                        'invalid':_('user name can only consist of letters, empty space and underscore'),
+                        'invalid':_('user name can only consist of letters, empty space, hyphens and underscore'),
                         'toshort':_('user name is to short, please use at least %d characters') % settings.MIN_USERNAME_LENGTH
                     }
         if 'error_messages' in kw:
