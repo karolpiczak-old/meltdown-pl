@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-09 22:16+0900\n"
+"POT-Creation-Date: 2011-07-07 02:39+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,16 +18,16 @@ msgstr ""
 "Language: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: forum/feed.py:70 forum/models/page.py:5 forum/utils/pagination.py:166
-#: forum/views/readers.py:184 forum/views/readers.py:306
+#: forum/feed.py:70 forum/models/page.py:24 forum/utils/pagination.py:167
+#: forum/views/readers.py:164 forum/views/readers.py:312
 msgid "page"
 msgstr "ページ"
 
-#: forum/feed.py:70 forum/utils/pagination.py:162 forum/views/readers.py:184
+#: forum/feed.py:70 forum/utils/pagination.py:163 forum/views/readers.py:164
 msgid "pagesize"
 msgstr "ページサイズ"
 
-#: forum/feed.py:70 forum/utils/pagination.py:170 forum/views/readers.py:184
+#: forum/feed.py:70 forum/utils/pagination.py:171 forum/views/readers.py:164
 msgid "sort"
 msgstr "並べ替え"
 
@@ -50,7 +50,7 @@ msgstr "%(pauthor)s の %(qora)s に %(cauthor)s がコメントしました"
 #: forum/skins/default/templates/osqaadmin/dashboard.html:24
 #: forum/skins/default/templates/osqaadmin/index.html:26
 #: forum/skins/default/templates/question_list/item.html:15
-#: forum/views/writers.py:253 forum_modules/akismet/startup.py:76
+#: forum/views/writers.py:260 forum_modules/akismet/startup.py:76
 msgid "answer"
 msgstr "回答"
 
@@ -184,7 +184,7 @@ msgstr "logout/"
 msgid "answers/"
 msgstr "answers/"
 
-#: forum/urls.py:45 forum/urls.py:55 forum/urls.py:97 forum/urls.py:144
+#: forum/urls.py:45 forum/urls.py:56 forum/urls.py:98 forum/urls.py:145
 msgid "edit/"
 msgstr "edit/"
 
@@ -192,9 +192,9 @@ msgstr "edit/"
 msgid "revisions/"
 msgstr "revisions/"
 
-#: forum/urls.py:47 forum/urls.py:48 forum/urls.py:49 forum/urls.py:51
-#: forum/urls.py:52 forum/urls.py:55 forum/urls.py:56 forum/urls.py:57
-#: forum/urls.py:58 forum/urls.py:83 forum/urls.py:84 forum/urls.py:85
+#: forum/urls.py:47 forum/urls.py:48 forum/urls.py:50 forum/urls.py:52
+#: forum/urls.py:53 forum/urls.py:56 forum/urls.py:57 forum/urls.py:58
+#: forum/urls.py:59 forum/urls.py:84 forum/urls.py:85 forum/urls.py:86
 msgid "questions/"
 msgstr "questions/"
 
@@ -202,294 +202,294 @@ msgstr "questions/"
 msgid "ask/"
 msgstr "ask/"
 
-#: forum/urls.py:49
+#: forum/urls.py:50
 msgid "related_questions/"
 msgstr "related_questions/"
 
-#: forum/urls.py:51
+#: forum/urls.py:52
 msgid "unanswered/"
 msgstr "unanswered/"
 
-#: forum/urls.py:56
+#: forum/urls.py:57
 msgid "close/"
 msgstr "close/"
 
-#: forum/urls.py:57
+#: forum/urls.py:58
 msgid "reopen/"
 msgstr "reopen/"
 
-#: forum/urls.py:58 forum/urls.py:69
+#: forum/urls.py:59 forum/urls.py:70
 msgid "answer/"
 msgstr "answer/"
 
-#: forum/urls.py:59
+#: forum/urls.py:60
 msgid "pending-data/"
 msgstr "pending-data/"
 
-#: forum/urls.py:61
+#: forum/urls.py:62
 msgid "vote/"
 msgstr "vote/"
 
-#: forum/urls.py:62
+#: forum/urls.py:63
 msgid "like_comment/"
 msgstr "like_comment/"
 
-#: forum/urls.py:63
+#: forum/urls.py:64
 msgid "comment/"
 msgstr "comment/"
 
-#: forum/urls.py:64
+#: forum/urls.py:65
 msgid "delete_comment/"
 msgstr "delete_comment/"
 
-#: forum/urls.py:65
+#: forum/urls.py:66
 msgid "convert_comment/"
 msgstr "convert_comment/"
 
-#: forum/urls.py:66
+#: forum/urls.py:67
 msgid "accept_answer/"
 msgstr "accept_answer/"
 
-#: forum/urls.py:67
+#: forum/urls.py:68
 msgid "answer_link/"
 msgstr "answer_link/"
 
-#: forum/urls.py:68
+#: forum/urls.py:69
 msgid "mark_favorite/"
 msgstr "mark_favorite/"
 
-#: forum/urls.py:69
+#: forum/urls.py:70
 msgid "award_points/"
 msgstr "award_points/"
 
-#: forum/urls.py:69
+#: forum/urls.py:70
 msgid "user/"
 msgstr "user/"
 
-#: forum/urls.py:71
+#: forum/urls.py:72
 msgid "flag/"
 msgstr "flag/"
 
-#: forum/urls.py:72
+#: forum/urls.py:73 forum/urls.py:146
 msgid "delete/"
 msgstr "delete/"
 
-#: forum/urls.py:73 forum/urls.py:74
+#: forum/urls.py:74 forum/urls.py:75
 msgid "subscribe/"
 msgstr "subscribe/"
 
-#: forum/urls.py:75
+#: forum/urls.py:76
 msgid "matching_tags/"
 msgstr "matching_tags/"
 
-#: forum/urls.py:76
+#: forum/urls.py:77
 msgid "matching_users/"
 msgstr "matching_users/"
 
-#: forum/urls.py:77
+#: forum/urls.py:78
 msgid "node_markdown/"
 msgstr "node_markdown/"
 
-#: forum/urls.py:78
+#: forum/urls.py:79
 msgid "convert/"
 msgstr "convert/"
 
-#: forum/urls.py:79
+#: forum/urls.py:80
 msgid "convert_to_question/"
 msgstr "convert_to_question/"
 
-#: forum/urls.py:80
+#: forum/urls.py:81
 msgid "wikify/"
 msgstr "wikify/"
 
-#: forum/urls.py:82
+#: forum/urls.py:83
 msgid "question/"
 msgstr "question/"
 
-#: forum/urls.py:88 forum/urls.py:89
+#: forum/urls.py:89 forum/urls.py:90
 msgid "tags/"
 msgstr "tags/"
 
-#: forum/urls.py:90 forum/urls.py:91
+#: forum/urls.py:91 forum/urls.py:92
 msgid "mark-tag/"
 msgstr "mark-tag/"
 
-#: forum/urls.py:90
+#: forum/urls.py:91
 msgid "interesting/"
 msgstr "interesting/"
 
-#: forum/urls.py:91
+#: forum/urls.py:92
 msgid "ignored/"
 msgstr "ignored/"
 
-#: forum/urls.py:92
+#: forum/urls.py:93
 msgid "unmark-tag/"
 msgstr "unmark-tag/"
 
-#: forum/urls.py:94 forum/urls.py:97 forum/urls.py:98 forum/urls.py:99
-#: forum/urls.py:100 forum/urls.py:101 forum/urls.py:102 forum/urls.py:103
-#: forum/urls.py:104 forum/urls.py:105 forum/urls.py:106 forum/urls.py:107
+#: forum/urls.py:95 forum/urls.py:98 forum/urls.py:99 forum/urls.py:100
+#: forum/urls.py:101 forum/urls.py:102 forum/urls.py:103 forum/urls.py:104
+#: forum/urls.py:105 forum/urls.py:106 forum/urls.py:107 forum/urls.py:108
 msgid "users/"
 msgstr "users/"
 
-#: forum/urls.py:98
+#: forum/urls.py:99
 msgid "award/"
 msgstr "award/"
 
-#: forum/urls.py:99
+#: forum/urls.py:100
 msgid "suspend/"
 msgstr "suspend/"
 
-#: forum/urls.py:100
+#: forum/urls.py:101
 msgid "powers/"
 msgstr "powers/"
 
-#: forum/urls.py:101
+#: forum/urls.py:102
 msgid "subscriptions/"
 msgstr "subscriptions/"
 
-#: forum/urls.py:102
+#: forum/urls.py:103
 msgid "preferences/"
 msgstr "preferences/"
 
-#: forum/urls.py:103
+#: forum/urls.py:104
 msgid "favorites/"
 msgstr "favorites/"
 
-#: forum/urls.py:104
+#: forum/urls.py:105
 msgid "reputation/"
 msgstr "reputation/"
 
-#: forum/urls.py:105
+#: forum/urls.py:106
 msgid "votes/"
 msgstr "votes/"
 
-#: forum/urls.py:106
+#: forum/urls.py:107
 msgid "recent/"
 msgstr "recent/"
 
-#: forum/urls.py:108 forum/urls.py:109
+#: forum/urls.py:109 forum/urls.py:110
 msgid "badges/"
 msgstr "badges/"
 
-#: forum/urls.py:112
+#: forum/urls.py:113
 msgid "upload/"
 msgstr "upload/"
 
-#: forum/urls.py:113
+#: forum/urls.py:114
 msgid "search/"
 msgstr "search/"
 
-#: forum/urls.py:114
+#: forum/urls.py:115
 msgid "contact/"
 msgstr "contact/"
 
-#: forum/urls.py:118 forum/urls.py:119 forum/urls.py:120 forum/urls.py:121
-#: forum/urls.py:122 forum/urls.py:123 forum/urls.py:124 forum/urls.py:125
-#: forum/urls.py:126 forum/urls.py:127 forum/urls.py:128 forum/urls.py:129
+#: forum/urls.py:119 forum/urls.py:120 forum/urls.py:121 forum/urls.py:122
+#: forum/urls.py:123 forum/urls.py:124 forum/urls.py:125 forum/urls.py:126
+#: forum/urls.py:127 forum/urls.py:128 forum/urls.py:129 forum/urls.py:130
 #: forum_modules/localauth/urls.py:7
 msgid "account/"
 msgstr "account/"
 
-#: forum/urls.py:118 forum/urls.py:120
+#: forum/urls.py:119 forum/urls.py:121
 msgid "signin/"
 msgstr "signin/"
 
-#: forum/urls.py:119
+#: forum/urls.py:120
 msgid "signout/"
 msgstr "signout/"
 
-#: forum/urls.py:121
+#: forum/urls.py:122
 msgid "done/"
 msgstr "done/"
 
-#: forum/urls.py:122 forum_modules/localauth/urls.py:7
+#: forum/urls.py:123 forum_modules/localauth/urls.py:7
 msgid "register/"
 msgstr "register/"
 
-#: forum/urls.py:123
+#: forum/urls.py:124
 msgid "validate/"
 msgstr "validate/"
 
-#: forum/urls.py:124 forum/urls.py:125
+#: forum/urls.py:125 forum/urls.py:126
 msgid "tempsignin/"
 msgstr "tempsignin/"
 
-#: forum/urls.py:126
+#: forum/urls.py:127
 msgid "authsettings/"
 msgstr "authsettings/"
 
-#: forum/urls.py:127 forum/urls.py:128
+#: forum/urls.py:128 forum/urls.py:129
 msgid "providers/"
 msgstr "providers/"
 
-#: forum/urls.py:127
+#: forum/urls.py:128
 msgid "remove/"
 msgstr "remove/"
 
-#: forum/urls.py:128
+#: forum/urls.py:129
 msgid "add/"
 msgstr "add/"
 
-#: forum/urls.py:129
+#: forum/urls.py:130
 msgid "send-validation/"
 msgstr "send-validation/"
 
-#: forum/urls.py:132 forum/urls.py:133 forum/urls.py:134 forum/urls.py:135
-#: forum/urls.py:136 forum/urls.py:137 forum/urls.py:138 forum/urls.py:139
-#: forum/urls.py:140 forum/urls.py:141 forum/urls.py:143 forum/urls.py:144
-#: forum/urls.py:146 forum/urls.py:148 forum/urls.py:150
+#: forum/urls.py:133 forum/urls.py:134 forum/urls.py:135 forum/urls.py:136
+#: forum/urls.py:137 forum/urls.py:138 forum/urls.py:139 forum/urls.py:140
+#: forum/urls.py:141 forum/urls.py:142 forum/urls.py:144 forum/urls.py:145
+#: forum/urls.py:146 forum/urls.py:148 forum/urls.py:150 forum/urls.py:152
 #: forum_modules/exporter/urls.py:8 forum_modules/exporter/urls.py:9
 #: forum_modules/exporter/urls.py:10 forum_modules/sximporter/urls.py:8
 #: forum_modules/updater/urls.py:8
 msgid "admin/"
 msgstr "admin/"
 
-#: forum/urls.py:133
+#: forum/urls.py:134
 msgid "switch_interface/"
 msgstr "switch_interface/"
 
-#: forum/urls.py:134
+#: forum/urls.py:135
 msgid "statistics/"
 msgstr "statistics/"
 
-#: forum/urls.py:135
+#: forum/urls.py:136
 msgid "denormalize/"
 msgstr "denormalize/"
 
-#: forum/urls.py:136
+#: forum/urls.py:137
 msgid "go_bootstrap/"
 msgstr "go_bootstrap/"
 
-#: forum/urls.py:137
+#: forum/urls.py:138
 msgid "go_defaults/"
 msgstr "go_defaults/"
 
-#: forum/urls.py:138 forum/urls.py:148
+#: forum/urls.py:139 forum/urls.py:150
 msgid "settings/"
 msgstr "settings/"
 
-#: forum/urls.py:139
+#: forum/urls.py:140
 msgid "maintenance/"
 msgstr "maintenance/"
 
-#: forum/urls.py:140
+#: forum/urls.py:141
 msgid "flagged_posts/"
 msgstr "flagged_posts/"
 
-#: forum/urls.py:141 forum/urls.py:143 forum/urls.py:144
+#: forum/urls.py:142 forum/urls.py:144 forum/urls.py:145 forum/urls.py:146
 msgid "static_pages/"
 msgstr "static_pages/"
 
-#: forum/urls.py:143
+#: forum/urls.py:144
 msgid "new/"
 msgstr "new/"
 
-#: forum/urls.py:146
+#: forum/urls.py:148
 msgid "tools/"
 msgstr "tools/"
 
-#: forum/urls.py:150
+#: forum/urls.py:152
 msgid "test_email_settings/"
 msgstr "test_email_settings/"
 
@@ -626,6 +626,7 @@ msgid "%(user)s closed %(post_desc)s: %(reason)s"
 msgstr "%(user)s は %(post_desc)s をクローズしました: %(reason)s"
 
 #: forum/actions/node.py:160 forum/actions/node.py:184
+#: forum/actions/node.py:201
 msgid "converted"
 msgstr "変更"
 
@@ -639,20 +640,25 @@ msgstr "%(user)s は %(question)s への回答をコメントに変更しまし�
 msgid "%(user)s converted comment on %(question)s into an answer"
 msgstr "%(user)s は %(question)s へのコメントを回答に変更しました"
 
-#: forum/actions/node.py:202
+#: forum/actions/node.py:220
+#, fuzzy, python-format
+msgid "%(user)s converted comment on %(question)s to a new question"
+msgstr "%(user)s は %(question)s へのコメントを回答に変更しました"
+
+#: forum/actions/node.py:226
 msgid "converted to question"
 msgstr "質問に変更"
 
-#: forum/actions/node.py:227
+#: forum/actions/node.py:251
 #, python-format
 msgid "%(user)s converted an answer to %(question)s into a separate question"
 msgstr "%(user)s は %(question)s への回答を新しい質問に変更しました"
 
-#: forum/actions/node.py:233
+#: forum/actions/node.py:257
 msgid "wikified"
 msgstr "wiki化"
 
-#: forum/actions/node.py:245
+#: forum/actions/node.py:269
 #, python-format
 msgid "%(user)s marked %(node)s as community wiki."
 msgstr "%(user)s は %(node)s をコミュニティ wiki にしました"
@@ -738,7 +744,7 @@ msgid "You have been penalized in %s reputation points."
 msgstr "評判ポイントを %s ポイント減点されました"
 
 #: forum/actions/user.py:74 forum/actions/user.py:112
-#: forum/templatetags/extra_tags.py:135 forum/views/auth.py:221
+#: forum/templatetags/extra_tags.py:135 forum/views/auth.py:227
 #: forum_modules/exporter/templates/running.html:158
 msgid "unknown"
 msgstr "不明"
@@ -1007,7 +1013,9 @@ msgstr ""
 "で使用されています。"
 
 #: forum/forms/general.py:52
-msgid "user name can only consist of letters, empty space and underscore"
+#, fuzzy
+msgid ""
+"user name can only consist of letters, empty space, hyphens and underscore"
 msgstr "ユーザー名には、文字、スペース、アンダースコアだけを使ってください"
 
 #: forum/forms/general.py:53
@@ -1049,41 +1057,41 @@ msgid "sorry, entered passwords did not match, please try again"
 msgstr ""
 "申し訳ありませんが、パスワードが一致していません。もう一度入力してください"
 
-#: forum/forms/qanda.py:22
+#: forum/forms/qanda.py:24
 #: forum/skins/default/templates/sidebar/markdown_help.html:12
 #: forum/skins/default/templates/sidebar/markdown_help.html:17
 msgid "title"
 msgstr "タイトル"
 
-#: forum/forms/qanda.py:23
+#: forum/forms/qanda.py:25
 msgid "please enter a descriptive title for your question"
 msgstr "質問にはわかりやすいタイトルをつけましょう"
 
-#: forum/forms/qanda.py:28
+#: forum/forms/qanda.py:30
 #, python-format
 msgid "title must be must be at least %s characters"
 msgstr "タイトルは %s 文字以上入力してください"
 
-#: forum/forms/qanda.py:36
+#: forum/forms/qanda.py:38
 msgid "content"
 msgstr "コンテンツ"
 
-#: forum/forms/qanda.py:49
+#: forum/forms/qanda.py:51
 #, python-format
 msgid "question content must be at least %s characters"
 msgstr "質問は %s 文字以上入力してください。"
 
-#: forum/forms/qanda.py:60
+#: forum/forms/qanda.py:62
 #, python-format
 msgid "answer content must be at least %s characters"
 msgstr "回答は %s 文字以上入力してください。"
 
-#: forum/forms/qanda.py:71 forum/skins/default/templates/header.html:36
-#: forum/skins/default/templates/search.html:21 forum/views/readers.py:244
+#: forum/forms/qanda.py:73 forum/skins/default/templates/header.html:36
+#: forum/skins/default/templates/search.html:21 forum/views/readers.py:250
 msgid "tags"
 msgstr "タグ"
 
-#: forum/forms/qanda.py:73
+#: forum/forms/qanda.py:75
 #, python-format
 msgid ""
 "Tags are short keywords, with no spaces within. At least %(min)s and up to %"
@@ -1092,23 +1100,23 @@ msgstr ""
 "タグとは空白文字を含まない、短いキーワードです。%(min)s - %(max)s 個のタグを"
 "設定することが出来ます"
 
-#: forum/forms/qanda.py:89
+#: forum/forms/qanda.py:91
 #, python-format
 msgid "please use between %(min)s and %(max)s tags"
 msgstr "タグ数は %(min)s 個から %(max)s 個までとしてください"
 
-#: forum/forms/qanda.py:95
+#: forum/forms/qanda.py:97
 #, python-format
 msgid "please use between %(min)s and %(max)s characters in you tags"
 msgstr "タグは %(min)s 文字以上、 %(max)s 文字以下としてください"
 
-#: forum/forms/qanda.py:97
+#: forum/forms/qanda.py:99
 msgid ""
 "please use following characters in tags: letters , numbers, and characters "
 "'.-_'"
 msgstr "タグにはアルファベット、数字、または ,.-_ だけが利用可能です。"
 
-#: forum/forms/qanda.py:107
+#: forum/forms/qanda.py:109
 #, python-format
 msgid ""
 "You don't have enough reputation to create new tags. The following tags do "
@@ -1116,24 +1124,24 @@ msgid ""
 msgstr ""
 "新しいタグを登録するには、評価ポイントが足りません。タグ %s は未登録です"
 
-#: forum/forms/qanda.py:117
+#: forum/forms/qanda.py:119
 #: forum/skins/default/templates/question_summary_list_roll.html:26
 #: forum/skins/default/templates/question_summary_list_roll.html:38
 msgid "community wiki"
 msgstr "コミュニティwiki"
 
-#: forum/forms/qanda.py:118
+#: forum/forms/qanda.py:120
 msgid ""
 "if you choose community wiki option, the question and answer do not generate "
 "points and name of author will not be shown"
 msgstr ""
 "コミュニティwikiでは、質問や回答にポイントがつかず、著者名も表示されません"
 
-#: forum/forms/qanda.py:136
+#: forum/forms/qanda.py:138
 msgid "update summary:"
 msgstr "修正の概要："
 
-#: forum/forms/qanda.py:137
+#: forum/forms/qanda.py:139
 msgid ""
 "enter a brief summary of your revision (e.g. fixed spelling, grammar, "
 "improved style, this field is optional)"
@@ -1141,62 +1149,62 @@ msgstr ""
 "修正内容を簡単に入力します（例 誤字修正、書き間違いなど）。この項目は省略可能"
 "です。"
 
-#: forum/forms/qanda.py:141
+#: forum/forms/qanda.py:143
 msgid "Your message:"
 msgstr "メッセージ："
 
-#: forum/forms/qanda.py:147
+#: forum/forms/qanda.py:149
 msgid "Your name:"
 msgstr "あなたのお名前："
 
-#: forum/forms/qanda.py:148
+#: forum/forms/qanda.py:150
 msgid "Email (not shared with anyone):"
 msgstr "電子メール (一般には公開されません):"
 
-#: forum/forms/qanda.py:279
+#: forum/forms/qanda.py:281
 msgid "this email does not have to be linked to gravatar"
 msgstr "gravatarに登録されたメールアドレスである必要はありません"
 
-#: forum/forms/qanda.py:280
+#: forum/forms/qanda.py:282
 msgid "Real name"
 msgstr "本名"
 
-#: forum/forms/qanda.py:281
+#: forum/forms/qanda.py:283
 msgid "Website"
 msgstr "ホームページ"
 
-#: forum/forms/qanda.py:282
+#: forum/forms/qanda.py:284
 msgid "Location"
 msgstr "ロケーション"
 
-#: forum/forms/qanda.py:283
+#: forum/forms/qanda.py:285
 msgid "Date of birth"
 msgstr "誕生日"
 
-#: forum/forms/qanda.py:283
+#: forum/forms/qanda.py:285
 msgid "will not be shown, used to calculate age, format: YYYY-MM-DD"
 msgstr ""
 "年齢の計算にのみ使用し、公開はさません。YYYY-MM-DD 形式で入力してください"
 
-#: forum/forms/qanda.py:284
+#: forum/forms/qanda.py:286
 #: forum/skins/default/templates/account_settings.html:21
 #: forum/skins/default/templates/osqaadmin/moderation.html:69
 msgid "Profile"
 msgstr "プロフィール"
 
-#: forum/forms/qanda.py:289
+#: forum/forms/qanda.py:291
 msgid "Screen name"
 msgstr "スクリーンネーム"
 
-#: forum/forms/qanda.py:315
+#: forum/forms/qanda.py:317
 msgid "this email has already been registered, please use another one"
 msgstr "このメールアドレスは登録済みです。別のアドレスで登録してください"
 
-#: forum/forms/qanda.py:320
+#: forum/forms/qanda.py:322
 msgid "Instantly"
 msgstr "すぐに"
 
-#: forum/forms/qanda.py:323
+#: forum/forms/qanda.py:325
 msgid "No notifications"
 msgstr "通知しない"
 
@@ -1225,7 +1233,7 @@ msgstr ""
 "ローカル設定ファイルの APP_URLを設定してください。\n"
 "                    "
 
-#: forum/middleware/anon_user.py:34
+#: forum/middleware/anon_user.py:35
 #, python-format
 msgid "First time here? Check out the <a href=\"%s\">FAQ</a>!"
 msgstr "はじめましてですか？ <a href=\"%s\">FAQ</a>をご参照ください!"
@@ -1244,8 +1252,8 @@ msgstr "(%(link)s 内)"
 msgid "%(user)s %(node_name)s %(node_desc)s"
 msgstr "%(user)s の %(node_name)s %(node_desc)s"
 
-#: forum/models/comment.py:6 forum/views/commands.py:229
-#: forum/views/commands.py:255 forum_modules/akismet/startup.py:77
+#: forum/models/comment.py:6 forum/views/commands.py:234
+#: forum/views/commands.py:260 forum_modules/akismet/startup.py:77
 msgid "comment"
 msgstr "コメント"
 
@@ -1257,11 +1265,11 @@ msgstr "不明"
 msgid "No description available"
 msgstr "使用可能な説明がありません"
 
-#: forum/models/node.py:247
+#: forum/models/node.py:252
 msgid "post"
 msgstr "ポスト"
 
-#: forum/models/page.py:35
+#: forum/models/page.py:54
 #, python-format
 msgid "[Unpublished] %s"
 msgstr "[非公開] %s"
@@ -1282,15 +1290,15 @@ msgstr "興味のある"
 msgid "ignored"
 msgstr "興味のない"
 
-#: forum/models/user.py:208 forum/views/readers.py:133
+#: forum/models/user.py:209 forum/views/readers.py:133
 msgid "asked-by"
 msgstr "asked-by"
 
-#: forum/models/user.py:216 forum/views/readers.py:136
+#: forum/models/user.py:217 forum/views/readers.py:136
 msgid "answered-by"
 msgstr "answered-by"
 
-#: forum/models/user.py:222 forum/views/readers.py:139
+#: forum/models/user.py:223 forum/views/readers.py:139
 msgid "subscribed-by"
 msgstr "subscribed-by"
 
@@ -1818,131 +1826,162 @@ msgid ""
 msgstr "自分で投稿した質問をクローズするために必要な最低評判ポイント。"
 
 #: forum/settings/minrep.py:43
+msgid "Unify close and reopen permissions"
+msgstr ""
+
+#: forum/settings/minrep.py:44
+msgid ""
+"If checked the same permissions as the ones to close question will be "
+"required to reopen it."
+msgstr ""
+
+#: forum/settings/minrep.py:48
 msgid "Minimum reputation to reopen own question"
 msgstr "自分の質問の再オープンに必要な評判ポイント"
 
-#: forum/settings/minrep.py:44
+#: forum/settings/minrep.py:49
 msgid ""
 "The minimum reputation an user must have to be allowed to reopen his own "
 "question."
 msgstr "自分で投稿した質問を再オープンするために必要な最低評判ポイント。"
 
-#: forum/settings/minrep.py:47
+#: forum/settings/minrep.py:52
 msgid "Minimum reputation to retag others questions"
 msgstr "タグのつけ直しに必要な評判ポイント"
 
-#: forum/settings/minrep.py:48
+#: forum/settings/minrep.py:53
 msgid ""
 "The minimum reputation an user must have to be allowed to retag others "
 "questions."
 msgstr "他のユーザの質問のタグをつけ直すために必要な最低評判ポイント"
 
-#: forum/settings/minrep.py:51
+#: forum/settings/minrep.py:56
 msgid "Minimum reputation to edit wiki posts"
 msgstr "wikiの編集に必要な評判ポイント"
 
-#: forum/settings/minrep.py:52
+#: forum/settings/minrep.py:57
 msgid ""
 "The minimum reputation an user must have to be allowed to edit community "
 "wiki posts."
 msgstr "コミュニティWikiの編集をするために必要な最低評判ポイント。"
 
-#: forum/settings/minrep.py:55
+#: forum/settings/minrep.py:60
 msgid "Minimum reputation to mark post as community wiki"
 msgstr "投稿のコミュニティWikiへの変更に必要な評価ポイント"
 
-#: forum/settings/minrep.py:56
+#: forum/settings/minrep.py:61
 msgid ""
 "The minimum reputation an user must have to be allowed to mark a post as "
 "community wiki."
 msgstr "投稿をコミュニティWikiに変更するために必要な最低評価ポイント"
 
-#: forum/settings/minrep.py:59
+#: forum/settings/minrep.py:64
 msgid "Minimum reputation to edit others posts"
 msgstr "他ユーザの投稿の編集に必要な評価ポイント"
 
-#: forum/settings/minrep.py:60
+#: forum/settings/minrep.py:65
 msgid ""
 "The minimum reputation an user must have to be allowed to edit others posts."
 msgstr "他のユーザが投稿した記事を編集するために必要な最低評価ポイント。"
 
-#: forum/settings/minrep.py:63
+#: forum/settings/minrep.py:68
 msgid "Minimum reputation to close others posts"
 msgstr "他ユーザの投稿のクローズに必要な評価ポイント"
 
-#: forum/settings/minrep.py:64
+#: forum/settings/minrep.py:69
 msgid ""
 "The minimum reputation an user must have to be allowed to close others posts."
 msgstr "他のユーザが投稿した記事をクローズするために必要な最低評価ポイント。"
 
-#: forum/settings/minrep.py:67
+#: forum/settings/minrep.py:72
 msgid "Minimum reputation to delete comments"
 msgstr "コメント削除に必要な評価ポイント"
 
-#: forum/settings/minrep.py:68
+#: forum/settings/minrep.py:73
 msgid ""
 "The minimum reputation an user must have to be allowed to delete comments."
 msgstr "コメントを削除するために必要な最低評価ポイント。"
 
-#: forum/settings/minrep.py:71
+#: forum/settings/minrep.py:76
 msgid "Minimum reputation to convert answers to comment"
 msgstr "回答のコメントへの変更に必要な評価ポイント"
 
-#: forum/settings/minrep.py:72
+#: forum/settings/minrep.py:77
 msgid ""
 "The minimum reputation an user must have to be allowed to convert an answer "
 "into a comment."
 msgstr "回答をコメントに変更するために必要な最低評価ポイント。"
 
-#: forum/settings/minrep.py:75
+#: forum/settings/minrep.py:80
 msgid "Minimum reputation to convert comments to answers"
 msgstr "コメントの回答への変更に必要な評価ポイント"
 
-#: forum/settings/minrep.py:76
+#: forum/settings/minrep.py:81
 msgid ""
 "The minimum reputation an user must have to be allowed to convert comments "
 "into an answer."
 msgstr "コメントを回答に変更するために必要な最低評価ポイント。"
 
-#: forum/settings/minrep.py:79
+#: forum/settings/minrep.py:84
 msgid "Minimum reputation to convert answers to questions"
 msgstr "回答の質問への変更に必要な評価ポイント"
 
-#: forum/settings/minrep.py:80
+#: forum/settings/minrep.py:85
 msgid ""
 "The minimum reputation an user must have to be allowed to convert an answer "
 "into a question."
 msgstr "回答を質問に変更するために必要な最低評価ポイント。"
 
-#: forum/settings/minrep.py:83
+#: forum/settings/minrep.py:88
 msgid "Minimum reputation to view offensive flags"
 msgstr "通報内容を表示に必要な評価ポイント"
 
-#: forum/settings/minrep.py:84
+#: forum/settings/minrep.py:89
 msgid "The minimum reputation an user must have to view offensive flags."
 msgstr "通報内容を表示するために必要な最低評価ポイント。"
 
-#: forum/settings/moderation.py:7
+#: forum/settings/moderation.py:8
 msgid "Moderation settings"
 msgstr "モデレーション設定"
 
-#: forum/settings/moderation.py:7
+#: forum/settings/moderation.py:8
 msgid "Define the moderation workflow of your site"
 msgstr "サイトの承認ワークフローを定義します。"
 
-#: forum/settings/moderation.py:13
+#: forum/settings/moderation.py:11
+#, fuzzy
+msgid "Use canned comments"
+msgstr "回答とコメント"
+
+#: forum/settings/moderation.py:12
+msgid ""
+"If you check, the canned comments feature will be activated, allowing "
+"moderators to use canned patterns for their comments."
+msgstr ""
+
+#: forum/settings/moderation.py:20
+#, fuzzy
+msgid "Canned comments"
+msgstr "コメントをする"
+
+#: forum/settings/moderation.py:21
+#, fuzzy
+msgid "Create some canned comments to be used for easier moderation."
+msgstr "質問のクローズポップアップで表示するクローズ理由を作成します。"
+
+#: forum/settings/moderation.py:28
 msgid "Flag Reasons"
 msgstr "フラグ理由"
 
-#: forum/settings/moderation.py:14
+#: forum/settings/moderation.py:29
 msgid "Create some flag reasons to use in the flag post popup."
 msgstr "フラグ設定ポップアップで表示するフラグ理由を作成します。"
 
-#: forum/settings/moderation.py:22
+#: forum/settings/moderation.py:37
 msgid "Close Reasons"
 msgstr "クローズ理由"
 
-#: forum/settings/moderation.py:23
+#: forum/settings/moderation.py:38
 msgid "Create some close reasons to use in the close question popup."
 msgstr "質問のクローズポップアップで表示するクローズ理由を作成します。"
 
@@ -2057,27 +2096,36 @@ msgid "Do you want to show the welcome box when a user first visits your site."
 msgstr "ユーザーが最初にサイトを訪れたときにウエルカムボックスを表示します"
 
 #: forum/settings/sidebar.py:15
+msgid "Show interesting tags in the sidebar"
+msgstr ""
+
+#: forum/settings/sidebar.py:16
+msgid ""
+"Check this if you want to see the interesting tags container in the sidebar."
+msgstr ""
+
+#: forum/settings/sidebar.py:20
 msgid "Application intro"
 msgstr "アプリケーションの紹介"
 
-#: forum/settings/sidebar.py:16
+#: forum/settings/sidebar.py:21
 msgid ""
 "The introductory page that is visible in the sidebar for anonymous users."
 msgstr "匿名ユーザーのサイドバーに表示する紹介ページ。"
 
-#: forum/settings/sidebar.py:71
+#: forum/settings/sidebar.py:76
 msgid "Upper block rendering mode"
 msgstr "上部ブロックのレンダリングモード"
 
-#: forum/settings/sidebar.py:72
+#: forum/settings/sidebar.py:77
 msgid "How to render your upper block code."
 msgstr "上部ブロックのコードのレンダリング方法を指定します。"
 
-#: forum/settings/sidebar.py:100
+#: forum/settings/sidebar.py:105
 msgid "Lower block rendering mode"
 msgstr "下部ブロックのレンダリングモード"
 
-#: forum/settings/sidebar.py:101
+#: forum/settings/sidebar.py:106
 msgid "How to render your lower block code."
 msgstr "下部ブロックのコードのレンダリング方法を指定します。"
 
@@ -2310,75 +2358,94 @@ msgid "General settings for the OSQA users."
 msgstr "OSQAユーザーの一般的な設定を行います。"
 
 #: forum/settings/users.py:10
+#, fuzzy
+msgid "Allow negative reputation"
+msgstr "初期評判ポイント"
+
+#: forum/settings/users.py:11
+msgid "Check if you want to allow negative user reputations in the community."
+msgstr ""
+
+#: forum/settings/users.py:15
+msgid "Store greeting in cookie"
+msgstr ""
+
+#: forum/settings/users.py:16
+msgid ""
+"If you check this the greeting will be stored in a cookie and the users "
+"won't be notified on logout."
+msgstr ""
+
+#: forum/settings/users.py:20
 msgid "Editable screen name"
 msgstr "スクリーン名の変更"
 
-#: forum/settings/users.py:11
+#: forum/settings/users.py:21
 msgid "Allow users to alter their screen name."
 msgstr "ユーザーが自分のスクリーンネームを変更できるようにします。"
 
-#: forum/settings/users.py:15
+#: forum/settings/users.py:25
 msgid "Minimum username length"
 msgstr "ユーザー名の最小文字数"
 
-#: forum/settings/users.py:16
+#: forum/settings/users.py:26
 msgid "The minimum length (in character) of a username."
 msgstr "ユーザー名の最小の文字数。"
 
-#: forum/settings/users.py:19
+#: forum/settings/users.py:29
 msgid "fuck"
 msgstr ""
 
-#: forum/settings/users.py:19
+#: forum/settings/users.py:29
 msgid "shit"
 msgstr ""
 
-#: forum/settings/users.py:19
+#: forum/settings/users.py:29
 msgid "ass"
 msgstr ""
 
-#: forum/settings/users.py:19
+#: forum/settings/users.py:29
 msgid "sex"
 msgstr ""
 
-#: forum/settings/users.py:19
+#: forum/settings/users.py:29
 msgid "add"
 msgstr "追加"
 
-#: forum/settings/users.py:19 forum/templatetags/node_tags.py:106
+#: forum/settings/users.py:29 forum/templatetags/node_tags.py:106
 msgid "edit"
 msgstr "編集"
 
-#: forum/settings/users.py:19 forum/views/auth.py:392 forum/views/auth.py:397
+#: forum/settings/users.py:29 forum/views/auth.py:398 forum/views/auth.py:403
 msgid "save"
 msgstr "保存リストへ"
 
-#: forum/settings/users.py:19 forum/templatetags/node_tags.py:132
+#: forum/settings/users.py:29 forum/templatetags/node_tags.py:132
 msgid "delete"
 msgstr "削除"
 
-#: forum/settings/users.py:19
+#: forum/settings/users.py:29
 msgid "manage"
 msgstr "管理"
 
-#: forum/settings/users.py:19
+#: forum/settings/users.py:29
 msgid "update"
 msgstr "更新"
 
-#: forum/settings/users.py:19
+#: forum/settings/users.py:29
 #: forum/skins/default/templates/auth/auth_settings.html:12
 msgid "remove"
 msgstr "削除"
 
-#: forum/settings/users.py:19
+#: forum/settings/users.py:29
 msgid "new"
 msgstr ""
 
-#: forum/settings/users.py:21
+#: forum/settings/users.py:31
 msgid "Disabled usernames"
 msgstr "使用できないユーザ名"
 
-#: forum/settings/users.py:22
+#: forum/settings/users.py:32
 msgid ""
 "A comma separated list of disabled usernames (usernames not allowed during a "
 "new user registration)."
@@ -2386,79 +2453,79 @@ msgstr ""
 "使用できないユーザ名をカンマ区切りで指定します（ユーザー登録時に使用できない"
 "ユーザ名）。"
 
-#: forum/settings/users.py:26
+#: forum/settings/users.py:36
 msgid "Truncate long usernames"
 msgstr "長いユーザー名を切り詰める"
 
-#: forum/settings/users.py:27
+#: forum/settings/users.py:37
 msgid "The long usernames will be truncated.."
 msgstr "長いユーザー名が切り詰められます。"
 
-#: forum/settings/users.py:32
+#: forum/settings/users.py:42
 msgid "Truncate usernames longer than"
 msgstr "ユーザ名の最大長"
 
-#: forum/settings/users.py:33
+#: forum/settings/users.py:43
 msgid ""
 "The usernames that are longer than this will be truncated and ... will be "
 "appended."
 msgstr "指定した文字数以上のユーザ名は切り詰められ、末尾に ... を付加します。"
 
-#: forum/settings/users.py:36
+#: forum/settings/users.py:46
 msgid "Show status diamonds"
 msgstr "ステータスダイヤモンドを表示"
 
-#: forum/settings/users.py:37
+#: forum/settings/users.py:47
 msgid "Show status \"diamonds\" next to moderators or superusers usernames."
 msgstr "モデレータまたはスーパユーザの名前の隣に\"ダイヤモンド\"を表示します。"
 
-#: forum/settings/users.py:42
+#: forum/settings/users.py:52
 msgid "Force unique email"
 msgstr "メールアドレスの重複禁止"
 
-#: forum/settings/users.py:43
+#: forum/settings/users.py:53
 msgid "Should each user have an unique email."
 msgstr "別々のユーザが同じメールアドレスで登録する事を禁止します。"
 
-#: forum/settings/users.py:47
+#: forum/settings/users.py:57
 msgid "Require email validation to..."
 msgstr "電子メール検証が必要な操作"
 
-#: forum/settings/users.py:48
+#: forum/settings/users.py:58
 msgid ""
 "Which actions in this site, users without a valid email will be prevented "
 "from doing."
 msgstr "検証済みメールアドレスを持たないユーザには許可しない操作を指定します。"
 
-#: forum/settings/users.py:50
+#: forum/settings/users.py:60
 msgid "ask questions"
 msgstr "質問をする"
 
-#: forum/settings/users.py:50
+#: forum/settings/users.py:60
 msgid "provide answers"
 msgstr "答えを提供する"
 
-#: forum/settings/users.py:50
+#: forum/settings/users.py:60
 msgid "make comments"
 msgstr "コメントをする"
 
-#: forum/settings/users.py:50
+#: forum/settings/users.py:60
 msgid "report posts"
 msgstr "投稿の通報"
 
-#: forum/settings/users.py:55
+#: forum/settings/users.py:65
 msgid "Don't notify to invalid emails"
 msgstr "未検証な電子メールに通知しない"
 
-#: forum/settings/users.py:56
+#: forum/settings/users.py:66
 msgid "Do not notify users with unvalidated emails."
 msgstr "検証していないメールアドレスには通知メールを送信しない。"
 
-#: forum/settings/users.py:60
+#: forum/settings/users.py:70
 msgid "Hold pending posts for X minutes"
 msgstr "投稿の保留時間(分)"
 
-#: forum/settings/users.py:61
+#: forum/settings/users.py:71
 msgid ""
 "How much time in minutes a post should be kept in session until the user "
 "logs in or validates the email."
@@ -2466,11 +2533,11 @@ msgstr ""
 "投稿後、ユーザがログインするかメールを検証するまで、投稿を保留する時間を分単"
 "位に指定します。"
 
-#: forum/settings/users.py:65
+#: forum/settings/users.py:75
 msgid "Warn about pending posts afer X minutes"
 msgstr "記事を保留中の警告を表示(分)"
 
-#: forum/settings/users.py:66
+#: forum/settings/users.py:76
 msgid ""
 "How much time in minutes a user that just logged in or validated his email "
 "should be warned about a pending post instead of publishing it automatically."
@@ -2478,11 +2545,11 @@ msgstr ""
 "ユーザがログインするかメールを検証したとき、保留中の投稿を自動的に公開せずに"
 "ユーザに問い合わせる時間を分単位に指定します。"
 
-#: forum/settings/users.py:70
+#: forum/settings/users.py:80
 msgid "suitable for display on all websites with any audience type."
 msgstr "すべてのWebサイトで、どんなタイプの視聴者でも表示に適しています。"
 
-#: forum/settings/users.py:71
+#: forum/settings/users.py:81
 msgid ""
 "may contain rude gestures, provocatively dressed individuals, the lesser "
 "swear words, or mild violence."
@@ -2490,7 +2557,7 @@ msgstr ""
 "失礼なジェスチャー、挑発的な服装の個人、軽い罵り、またはソフトな暴力表現が含"
 "まれている可能性があります。"
 
-#: forum/settings/users.py:72
+#: forum/settings/users.py:82
 msgid ""
 "may contain such things as harsh profanity, intense violence, nudity, or "
 "hard drug use."
@@ -2498,15 +2565,15 @@ msgstr ""
 "不愉快な冒涜、激しい暴力、ヌード、または薬物乱用などが含まれている可能性があ"
 "ります。"
 
-#: forum/settings/users.py:73
+#: forum/settings/users.py:83
 msgid "may contain hardcore sexual imagery or extremely disturbing violence."
 msgstr "性的な画像または非常に不穏な暴力ハードを含めることができます。"
 
-#: forum/settings/users.py:77
+#: forum/settings/users.py:87
 msgid "Gravatar rating"
 msgstr "Gravatarレーティング"
 
-#: forum/settings/users.py:78
+#: forum/settings/users.py:88
 msgid ""
 "Gravatar allows users to self-rate their images so that they can indicate if "
 "an image is appropriate for a certain audience."
@@ -2514,7 +2581,7 @@ msgstr ""
 "Gravatarでは、ユーザが自分のイメージを自己評価し、どのような訪問者に表示する"
 "ことが妥当であるかを示すことが出来ます"
 
-#: forum/settings/users.py:84
+#: forum/settings/users.py:94
 msgid ""
 "(mystery-man) a simple, cartoon-style silhouetted outline of a person (does "
 "not vary by email hash)"
@@ -2522,23 +2589,23 @@ msgstr ""
 "（ミステリーマン）シンプルな漫画風シルエット（メールアドレスのハッシュによっ"
 "て変化しない）"
 
-#: forum/settings/users.py:85
+#: forum/settings/users.py:95
 msgid "a geometric pattern based on an email hash"
 msgstr "メールアドレスのハッシュに基づいた幾何学模様"
 
-#: forum/settings/users.py:86
+#: forum/settings/users.py:96
 msgid "a generated \"monster\" with different colors, faces, etc"
 msgstr "異なる色、顔などを持つ\"怪物\"を生成"
 
-#: forum/settings/users.py:87
+#: forum/settings/users.py:97
 msgid "generated faces with differing features and backgrounds"
 msgstr "異なる特徴と背景の顔を生成"
 
-#: forum/settings/users.py:91
+#: forum/settings/users.py:101
 msgid "Gravatar default"
 msgstr "デフォルトGravatar"
 
-#: forum/settings/users.py:92
+#: forum/settings/users.py:102
 msgid ""
 "Gravatar has a number of built in options which you can also use as defaults."
 msgstr ""
@@ -2553,38 +2620,87 @@ msgid "Set up how certain parts of the site are displayed."
 msgstr "サイト各部の表示方法を設定します。"
 
 #: forum/settings/view.py:8
+msgid "Embed YouTube Videos"
+msgstr ""
+
+#: forum/settings/view.py:9
+msgid "If you check this YouTube videos will be embedded"
+msgstr ""
+
+#: forum/settings/view.py:13
 msgid "Summary Length"
 msgstr "要約の長さ"
 
-#: forum/settings/view.py:9
+#: forum/settings/view.py:14
 msgid ""
 "The number of characters that are going to be displayed in order to get the "
 "content summary."
 msgstr "内容の要約として表示される文字数を指定します。"
 
-#: forum/settings/view.py:12
+#: forum/settings/view.py:18
 msgid "Recent tags block size"
 msgstr "最近のタグの表示数"
 
-#: forum/settings/view.py:13
+#: forum/settings/view.py:19
 msgid ""
 "The number of tags to display in the recent tags block in the front page."
 msgstr "フロントページで、最近のタグブロックに表示されるタグの数を指定します。"
 
-#: forum/settings/view.py:16
+#: forum/settings/view.py:22
+#, fuzzy
+msgid "Show tags in a cloud"
+msgstr "ステータスダイヤモンドを表示"
+
+#: forum/settings/view.py:23
+msgid ""
+"If selected the tags in the recent tags widget will be displayed in a cloud."
+msgstr ""
+
+#: forum/settings/view.py:27
+msgid "Tags cloud min occurs"
+msgstr ""
+
+#: forum/settings/view.py:28 forum/settings/view.py:32
+#: forum/settings/view.py:36 forum/settings/view.py:40
+msgid "Used to calculate the font size of the tags in the cloud widget."
+msgstr ""
+
+#: forum/settings/view.py:31
+msgid "Tags cloud max occurs"
+msgstr ""
+
+#: forum/settings/view.py:35
+msgid "Tags cloud min font size"
+msgstr ""
+
+#: forum/settings/view.py:39
+msgid "Tags cloud max font size"
+msgstr ""
+
+#: forum/settings/view.py:43
 msgid "Recent awards block size"
 msgstr "最近の受賞の表示数"
 
-#: forum/settings/view.py:17
+#: forum/settings/view.py:44
 msgid ""
 "The number of awards to display in the recent awards block in the front page."
 msgstr "フロントページで、最近の受賞ブロックで表示される受賞の数を指定します。"
 
-#: forum/settings/view.py:20
+#: forum/settings/view.py:47
+msgid "Update latest activity on tag edit"
+msgstr ""
+
+#: forum/settings/view.py:48
+msgid ""
+"If you check this the latest activity will be updated when editing only the "
+"tags of a question."
+msgstr ""
+
+#: forum/settings/view.py:51
 msgid "Limit related tags block"
 msgstr "関連するタグの表示数"
 
-#: forum/settings/view.py:21
+#: forum/settings/view.py:52
 msgid ""
 "Limit related tags block size in questions list pages. Set to 0 to display "
 "all all tags."
@@ -2839,8 +2955,8 @@ msgstr "回答を編集"
 #: forum/skins/default/templates/answer_edit.html:22
 #: forum/skins/default/templates/ask.html:26
 #: forum/skins/default/templates/ask.html:29
-#: forum/skins/default/templates/question.html:39
-#: forum/skins/default/templates/question.html:42
+#: forum/skins/default/templates/question.html:45
+#: forum/skins/default/templates/question.html:48
 #: forum/skins/default/templates/question_edit.html:19
 #: forum/skins/default/templates/question_edit.html:22
 msgid "hide preview"
@@ -2848,7 +2964,7 @@ msgstr "プレビューを非表示にする"
 
 #: forum/skins/default/templates/answer_edit.html:22
 #: forum/skins/default/templates/ask.html:29
-#: forum/skins/default/templates/question.html:42
+#: forum/skins/default/templates/question.html:48
 #: forum/skins/default/templates/question_edit.html:22
 msgid "show preview"
 msgstr "プレビューを表示"
@@ -2873,14 +2989,14 @@ msgstr "リビジョンを選択"
 
 #: forum/skins/default/templates/answer_edit.html:78
 #: forum/skins/default/templates/ask.html:130
-#: forum/skins/default/templates/question.html:224
+#: forum/skins/default/templates/question.html:230
 #: forum/skins/default/templates/question_edit.html:118
 msgid "Toggle the real time Markdown editor preview"
 msgstr "Markdownエディタのプレビューを切り替え"
 
 #: forum/skins/default/templates/answer_edit.html:78
 #: forum/skins/default/templates/ask.html:130
-#: forum/skins/default/templates/question.html:225
+#: forum/skins/default/templates/question.html:231
 #: forum/skins/default/templates/question_edit.html:118
 msgid "toggle preview"
 msgstr "プレビューを切り替え"
@@ -2961,7 +3077,7 @@ msgstr ""
 "メールアドレスの検証が完了するまで、質問は公開されませんのでご注意ください"
 
 #: forum/skins/default/templates/ask.html:111
-#: forum/skins/default/templates/question.html:210
+#: forum/skins/default/templates/question.html:216
 #: forum/skins/default/templates/users/info.html:86
 msgid "Send me a validation link."
 msgstr "メールアドレスの検証リンクを送信する。"
@@ -3569,98 +3685,98 @@ msgstr "ポリシーの変更"
 msgid "how privacy policies can be changed"
 msgstr "どのようにプライバシーポリシーを変更するか"
 
-#: forum/skins/default/templates/question.html:111
-#: forum/skins/default/templates/sidebar/recent_tags.html:8
+#: forum/skins/default/templates/question.html:117
+#: forum/skins/default/templates/sidebar/recent_tags.html:11
 #, python-format
 msgid "see questions tagged '%(tagname)s'"
 msgstr "'%(tagname)s' タグの質問を検索"
 
-#: forum/skins/default/templates/question.html:130
+#: forum/skins/default/templates/question.html:136
 #, python-format
 msgid ""
 "The question has been closed for the following reason \"%(close_reason)s\" by"
 msgstr "この質問はクローズされました: %(close_reason)s by"
 
-#: forum/skins/default/templates/question.html:141
+#: forum/skins/default/templates/question.html:147
 #, python-format
 msgid "One Answer:"
 msgid_plural "%(counter)s Answers:"
 msgstr[0] "%(counter)s 件の回答:"
 msgstr[1] "%(counter)s 件の回答:"
 
-#: forum/skins/default/templates/question.html:191
+#: forum/skins/default/templates/question.html:197
 msgid "Your answer"
 msgstr "あなたの回答"
 
-#: forum/skins/default/templates/question.html:193
+#: forum/skins/default/templates/question.html:199
 msgid "Be the first one to answer this question!"
 msgstr "この質問に一番乗り！"
 
-#: forum/skins/default/templates/question.html:200
+#: forum/skins/default/templates/question.html:206
 msgid "You can answer anonymously and then login."
 msgstr "まず匿名で回答し、あとでログインする事が出来ます。"
 
-#: forum/skins/default/templates/question.html:204
+#: forum/skins/default/templates/question.html:210
 msgid "Answer your own question only to give an answer."
 msgstr ""
 "自分の回答に回答を書き込むときは、回答以外のことを書き込まないようにしてくだ"
 "さい。"
 
-#: forum/skins/default/templates/question.html:206
+#: forum/skins/default/templates/question.html:212
 msgid "Please only give an answer, no discussions."
 msgstr "回答だけを書いてください。議論は始めないでください。"
 
-#: forum/skins/default/templates/question.html:209
+#: forum/skins/default/templates/question.html:215
 msgid ""
 "Remember, your answer will not be published until you validate your email."
 msgstr "メールアドレスが検証されるまで、あなたの答えは公開されません。"
 
-#: forum/skins/default/templates/question.html:257
+#: forum/skins/default/templates/question.html:263
 msgid "Login/Signup to Post Your Answer"
 msgstr "ログイン/サインアップして回答を投稿してください。"
 
-#: forum/skins/default/templates/question.html:260
+#: forum/skins/default/templates/question.html:266
 msgid "Answer Your Own Question"
 msgstr "自分の質問に回答"
 
-#: forum/skins/default/templates/question.html:262
+#: forum/skins/default/templates/question.html:268
 msgid "Answer the question"
 msgstr "質問に答える"
 
-#: forum/skins/default/templates/question.html:284
+#: forum/skins/default/templates/question.html:290
 msgid "Question tags"
 msgstr "この質問のタグ"
 
-#: forum/skins/default/templates/question.html:290
+#: forum/skins/default/templates/question.html:296
 #: forum/skins/default/templates/question_summary_list_roll.html:52
 #: forum/skins/default/templates/tags.html:45
 #: forum/skins/default/templates/question_list/item.html:31
 msgid "see questions tagged"
 msgstr "タグ検索;"
 
-#: forum/skins/default/templates/question.html:290
+#: forum/skins/default/templates/question.html:296
 #: forum/skins/default/templates/question_summary_list_roll.html:52
 #: forum/skins/default/templates/tags.html:45
 msgid "using tags"
 msgstr "タグで検索"
 
-#: forum/skins/default/templates/question.html:295
+#: forum/skins/default/templates/question.html:301
 msgid "question asked"
 msgstr "質問の投稿日"
 
-#: forum/skins/default/templates/question.html:298
+#: forum/skins/default/templates/question.html:304
 msgid "question was seen"
 msgstr "質問の表示回数"
 
-#: forum/skins/default/templates/question.html:298
+#: forum/skins/default/templates/question.html:304
 msgid "times"
 msgstr "回"
 
-#: forum/skins/default/templates/question.html:301
+#: forum/skins/default/templates/question.html:307
 msgid "last updated"
 msgstr "最終更新日"
 
-#: forum/skins/default/templates/question.html:307
+#: forum/skins/default/templates/question.html:313
 msgid "Related questions"
 msgstr "関連する質問"
 
@@ -3703,8 +3819,8 @@ msgstr "回答"
 
 #: forum/skins/default/templates/question_summary_list_roll.html:14
 #: forum/skins/default/templates/question_list/item.html:11
-#: forum/views/commands.py:78 forum/views/readers.py:63
-#: forum/views/readers.py:64 forum/views/readers.py:289
+#: forum/views/commands.py:83 forum/views/readers.py:63
+#: forum/views/readers.py:64 forum/views/readers.py:295
 #: forum/views/users.py:55 forum/views/users.py:56 forum/views/users.py:357
 msgid "votes"
 msgstr "投票"
@@ -3789,12 +3905,12 @@ msgid "You are not subscribed to this question."
 msgstr "この質問を購読していません"
 
 #: forum/skins/default/templates/subscription_status.html:19
-#: forum/views/commands.py:485
+#: forum/views/commands.py:491
 msgid "unsubscribe me"
 msgstr "購読を解除"
 
 #: forum/skins/default/templates/subscription_status.html:21
-#: forum/views/commands.py:485
+#: forum/views/commands.py:491
 msgid "subscribe me"
 msgstr "購読する"
 
@@ -3834,49 +3950,6 @@ msgstr "コメントや回答を購読する"
 #: forum/skins/default/templates/subscription_status.html:41
 msgid "Answers and Comments"
 msgstr "回答とコメント"
-
-#: forum/skins/default/templates/tag_selector.html:4
-#: forum/skins/default/templates/question_list/tag_selector.html:6
-msgid "Interesting tags"
-msgstr "興味のあるタグ"
-
-#: forum/skins/default/templates/tag_selector.html:10
-#: forum/skins/default/templates/tag_selector.html:27
-#: forum/skins/default/templates/question_list/related_tags.html:9
-#: forum/skins/default/templates/question_list/tag_selector.html:13
-#: forum/skins/default/templates/question_list/tag_selector.html:31
-#, python-format
-msgid "see questions tagged '%(tag_name)s'"
-msgstr "タグ '%(tag_name)s' の質問を検索"
-
-#: forum/skins/default/templates/tag_selector.html:14
-#: forum/skins/default/templates/question_list/tag_selector.html:17
-#, python-format
-msgid "remove '%(tag_name)s' from the list of interesting tags"
-msgstr "'%(tag_name)s' を興味のあるタグから削除"
-
-#: forum/skins/default/templates/tag_selector.html:20
-#: forum/skins/default/templates/tag_selector.html:37
-#: forum/skins/default/templates/question_list/tag_selector.html:23
-#: forum/skins/default/templates/question_list/tag_selector.html:41
-msgid "Add"
-msgstr "追加"
-
-#: forum/skins/default/templates/tag_selector.html:21
-#: forum/skins/default/templates/question_list/tag_selector.html:24
-msgid "Ignored tags"
-msgstr "興味のないタグ"
-
-#: forum/skins/default/templates/tag_selector.html:31
-#: forum/skins/default/templates/question_list/tag_selector.html:35
-#, fuzzy, python-format
-msgid "remove '%(tag_name)s' from the list of ignored tags"
-msgstr "'%(tag_name)s' を興味のないタグから削除"
-
-#: forum/skins/default/templates/tag_selector.html:40
-#: forum/skins/default/templates/question_list/tag_selector.html:45
-msgid "keep ignored questions hidden"
-msgstr "興味のない質問を隠す"
 
 #: forum/skins/default/templates/tags.html:6
 #: forum/skins/default/templates/tags.html:29
@@ -4225,55 +4298,69 @@ msgstr ""
 msgid "Points:"
 msgstr "ポイント："
 
+#: forum/skins/default/templates/node/canned_comments.html:12
+msgid "Choose from the canned comments."
+msgstr ""
+
 #: forum/skins/default/templates/node/comments.html:13
 msgid "I like this comment (click again to cancel)"
 msgstr "お気に入り (もう一度クリックするとキャンセル)"
 
 #: forum/skins/default/templates/node/comments.html:17
-#: forum/skins/default/templates/node/comments.html:69
+#: forum/skins/default/templates/node/comments.html:77
 msgid "Edit comment"
 msgstr "コメントを編集"
 
 #: forum/skins/default/templates/node/comments.html:21
-#: forum/skins/default/templates/node/comments.html:71
+#: forum/skins/default/templates/node/comments.html:79
 msgid "Delete comment"
 msgstr "コメントを削除"
 
 #: forum/skins/default/templates/node/comments.html:25
-#: forum/skins/default/templates/node/comments.html:73
+#: forum/skins/default/templates/node/comments.html:81
 msgid "Convert comment to answer"
 msgstr "コメントを回答に変更"
 
-#: forum/skins/default/templates/node/comments.html:40
+#: forum/skins/default/templates/node/comments.html:27
+#, fuzzy
+msgid "Convert comment to question"
+msgstr "質問に変更"
+
+#: forum/skins/default/templates/node/comments.html:42
 #, python-format
 msgid "showing %(showing)s of %(total)s"
 msgstr "%(showing)s / %(total)s を表示中"
 
-#: forum/skins/default/templates/node/comments.html:42
+#: forum/skins/default/templates/node/comments.html:44
 msgid "show all"
 msgstr "すべて表示"
 
-#: forum/skins/default/templates/node/comments.html:45
+#: forum/skins/default/templates/node/comments.html:47
 msgid "add new comment"
 msgstr "コメントを追加"
 
-#: forum/skins/default/templates/node/comments.html:57
+#: forum/skins/default/templates/node/comments.html:59
 msgid "characters needed"
 msgstr "文字足りません"
 
-#: forum/skins/default/templates/node/comments.html:58
+#: forum/skins/default/templates/node/comments.html:60
 msgid "characters left"
 msgstr "文字書き込めます"
 
-#: forum/skins/default/templates/node/comments.html:60
+#: forum/skins/default/templates/node/comments.html:62
 msgid " comment"
 msgstr "コメント"
 
-#: forum/skins/default/templates/node/comments.html:61
+#: forum/skins/default/templates/node/comments.html:63
 msgid " cancel"
 msgstr "キャンセル"
 
-#: forum/skins/default/templates/node/comments.html:76
+#: forum/skins/default/templates/node/comments.html:68
+#, fuzzy
+msgid "Use canned comment"
+msgstr "回答とコメント"
+
+#: forum/skins/default/templates/node/comments.html:84
 msgid "just now"
 msgstr "今"
 
@@ -4674,27 +4761,32 @@ msgstr ""
 "%(question_author)s が %(safe_app_name)s に 質問 \"%(question_title)s\" (タ"
 "グ: %(question_tags)s)を投稿しました:\n"
 
-#: forum/skins/default/templates/osqaadmin/base.html:13
+#: forum/skins/default/templates/osqaadmin/base.html:5
+#, fuzzy
+msgid "Site Administration"
+msgstr "管理"
+
+#: forum/skins/default/templates/osqaadmin/base.html:15
 #: forum/skins/default/templates/osqaadmin/djstyle_base.html:22
 msgid "OSQA administration area"
 msgstr "OSQA管理エリア"
 
-#: forum/skins/default/templates/osqaadmin/base.html:26
+#: forum/skins/default/templates/osqaadmin/base.html:29
 msgid "Switch to django style interface"
 msgstr "djangoスタイルのインターフェースに切り替え"
 
-#: forum/skins/default/templates/osqaadmin/base.html:27
+#: forum/skins/default/templates/osqaadmin/base.html:30
 msgid "Administration menu"
 msgstr "管理メニュー"
 
-#: forum/skins/default/templates/osqaadmin/base.html:39
+#: forum/skins/default/templates/osqaadmin/base.html:42
 #: forum/skins/default/templates/osqaadmin/djstyle_base.html:130
 #: forum/skins/default/templates/osqaadmin/maintenance.html:5
 #: forum/skins/default/templates/osqaadmin/maintenance.html:6
 msgid "Maintenance mode"
 msgstr "メンテナンスモード"
 
-#: forum/skins/default/templates/osqaadmin/base.html:40
+#: forum/skins/default/templates/osqaadmin/base.html:43
 #: forum/skins/default/templates/osqaadmin/djstyle_base.html:131
 #: forum/skins/default/templates/osqaadmin/flagged_posts.html:6
 #: forum/skins/default/templates/osqaadmin/flagged_posts.html:7
@@ -5207,23 +5299,23 @@ msgstr "クローズ（質問のみ）"
 msgid "Run the selected action"
 msgstr "選択されたアクションを実行します。"
 
-#: forum/skins/default/templates/osqaadmin/nodeman.html:446
+#: forum/skins/default/templates/osqaadmin/nodeman.html:445
 msgid "Type"
 msgstr "タイプ"
 
-#: forum/skins/default/templates/osqaadmin/nodeman.html:447
+#: forum/skins/default/templates/osqaadmin/nodeman.html:446
 msgid "Summary"
 msgstr "概要"
 
-#: forum/skins/default/templates/osqaadmin/nodeman.html:449
+#: forum/skins/default/templates/osqaadmin/nodeman.html:448
 msgid "State"
 msgstr ""
 
-#: forum/skins/default/templates/osqaadmin/nodeman.html:451
+#: forum/skins/default/templates/osqaadmin/nodeman.html:450
 msgid "Author"
 msgstr "著者"
 
-#: forum/skins/default/templates/osqaadmin/nodeman.html:454
+#: forum/skins/default/templates/osqaadmin/nodeman.html:453
 msgid "Added at"
 msgstr ""
 
@@ -5231,21 +5323,21 @@ msgstr ""
 msgid "Score"
 msgstr "スコア"
 
-#: forum/skins/default/templates/osqaadmin/nodeman.html:460
+#: forum/skins/default/templates/osqaadmin/nodeman.html:461
 msgid "Last activity by"
 msgstr ""
 
-#: forum/skins/default/templates/osqaadmin/nodeman.html:463
+#: forum/skins/default/templates/osqaadmin/nodeman.html:464
 msgid "Last activity at"
 msgstr ""
 
-#: forum/skins/default/templates/osqaadmin/nodeman.html:465
+#: forum/skins/default/templates/osqaadmin/nodeman.html:466
 #: forum_modules/exporter/exporter.py:344
 #: forum_modules/exporter/importer.py:420
 msgid "Tags"
 msgstr "タグ"
 
-#: forum/skins/default/templates/osqaadmin/nodeman.html:494
+#: forum/skins/default/templates/osqaadmin/nodeman.html:495
 msgid "by"
 msgstr ""
 
@@ -5273,6 +5365,16 @@ msgstr "編集するページを選択"
 #: forum/skins/default/templates/osqaadmin/static_pages.html:16
 msgid "Pages"
 msgstr "ページ"
+
+#: forum/skins/default/templates/osqaadmin/static_pages.html:23
+#, fuzzy
+msgid "Are you sure you want to delete this page?"
+msgstr "デフォルト設定に戻しますか?"
+
+#: forum/skins/default/templates/osqaadmin/static_pages.html:24
+#, fuzzy
+msgid "Delete"
+msgstr "削除"
 
 #: forum/skins/default/templates/osqaadmin/statistics.html:27
 msgid ""
@@ -5325,8 +5427,8 @@ msgid "Check to make the sort order sticky"
 msgstr "チェックするとソート順を記憶します"
 
 #: forum/skins/default/templates/question_list/item.html:11
-#: forum/views/commands.py:67 forum/views/commands.py:70
-#: forum/views/commands.py:111
+#: forum/views/commands.py:71 forum/views/commands.py:74
+#: forum/views/commands.py:116
 msgid "vote"
 msgstr "投票"
 
@@ -5341,6 +5443,13 @@ msgstr "ビュー"
 #: forum/skins/default/templates/question_list/related_tags.html:6
 msgid "Related tags"
 msgstr "関連タグ"
+
+#: forum/skins/default/templates/question_list/related_tags.html:9
+#: forum/skins/default/templates/question_list/tag_selector.html:14
+#: forum/skins/default/templates/question_list/tag_selector.html:32
+#, python-format
+msgid "see questions tagged '%(tag_name)s'"
+msgstr "タグ '%(tag_name)s' の質問を検索"
 
 #: forum/skins/default/templates/question_list/sort_tabs.html:4
 msgid "most recently updated questions"
@@ -5357,7 +5466,7 @@ msgstr "最近の質問"
 
 #: forum/skins/default/templates/question_list/sort_tabs.html:5
 #: forum/views/readers.py:46 forum/views/readers.py:62
-#: forum/views/readers.py:287 forum/views/users.py:41 forum/views/users.py:54
+#: forum/views/readers.py:293 forum/views/users.py:41 forum/views/users.py:54
 msgid "newest"
 msgstr "最新"
 
@@ -5386,6 +5495,33 @@ msgstr "購読解除"
 #: forum/skins/default/templates/question_list/subscription_item.html:8
 msgid "Last checked"
 msgstr "最終確認"
+
+#: forum/skins/default/templates/question_list/tag_selector.html:7
+msgid "Interesting tags"
+msgstr "興味のあるタグ"
+
+#: forum/skins/default/templates/question_list/tag_selector.html:18
+#, python-format
+msgid "remove '%(tag_name)s' from the list of interesting tags"
+msgstr "'%(tag_name)s' を興味のあるタグから削除"
+
+#: forum/skins/default/templates/question_list/tag_selector.html:24
+#: forum/skins/default/templates/question_list/tag_selector.html:42
+msgid "Add"
+msgstr "追加"
+
+#: forum/skins/default/templates/question_list/tag_selector.html:25
+msgid "Ignored tags"
+msgstr "興味のないタグ"
+
+#: forum/skins/default/templates/question_list/tag_selector.html:36
+#, fuzzy, python-format
+msgid "remove '%(tag_name)s' from the list of ignored tags"
+msgstr "'%(tag_name)s' を興味のないタグから削除"
+
+#: forum/skins/default/templates/question_list/tag_selector.html:46
+msgid "keep ignored questions hidden"
+msgstr "興味のない質問を隠す"
 
 #: forum/skins/default/templates/question_list/title.html:5
 msgid "Found by tags"
@@ -5459,11 +5595,11 @@ msgstr "最近の受賞"
 msgid "all awards"
 msgstr "全ての受賞"
 
-#: forum/skins/default/templates/sidebar/recent_tags.html:4
+#: forum/skins/default/templates/sidebar/recent_tags.html:7
 msgid "Recent tags"
 msgstr "最近のタグ"
 
-#: forum/skins/default/templates/sidebar/recent_tags.html:11
+#: forum/skins/default/templates/sidebar/recent_tags.html:14
 msgid "popular tags"
 msgstr "人気のタグ"
 
@@ -5580,7 +5716,8 @@ msgid "Navigation:"
 msgstr "ナビゲーション"
 
 #: forum/skins/default/templates/users/preferences.html:22
-msgid "Allways remember the sort order I apply to the lists I view"
+#, fuzzy
+msgid "Always remember the sort order I apply to the lists I view"
 msgstr "一覧で設定した並び順を記憶する"
 
 #: forum/skins/default/templates/users/questions.html:11
@@ -5590,7 +5727,7 @@ msgstr "お気に入りが登録されていません。"
 #: forum/skins/default/templates/users/signature.html:11
 #: forum/skins/default/templates/users/signature.html:17
 #: forum/skins/default/templates/users/signature.html:23
-#: forum/templatetags/extra_tags.py:78 forum/views/meta.py:89
+#: forum/templatetags/extra_tags.py:78 forum/views/meta.py:90
 msgid "badges"
 msgstr "バッジ"
 
@@ -5842,12 +5979,12 @@ msgid "Users"
 msgstr "ユーザー"
 
 #: forum/skins/default/templates/users/votes.html:15
-#: forum/views/commands.py:73
+#: forum/views/commands.py:77
 msgid "upvote"
 msgstr "投票"
 
 #: forum/skins/default/templates/users/votes.html:17
-#: forum/views/commands.py:73
+#: forum/views/commands.py:77
 msgid "downvote"
 msgstr "反対票"
 
@@ -5878,53 +6015,53 @@ msgstr "承認率"
 msgid "Rate of the user's accepted answers"
 msgstr "ユーザの回答が承認された率"
 
-#: forum/templatetags/extra_tags.py:150
+#: forum/templatetags/extra_tags.py:149
 msgid "2 days ago"
 msgstr "2日前"
 
-#: forum/templatetags/extra_tags.py:152
+#: forum/templatetags/extra_tags.py:151
 msgid "yesterday"
 msgstr "昨日"
 
-#: forum/templatetags/extra_tags.py:154
+#: forum/templatetags/extra_tags.py:153
 msgid "hour ago"
 msgstr "時間前"
 
-#: forum/templatetags/extra_tags.py:154
+#: forum/templatetags/extra_tags.py:153
 msgid "hours ago"
 msgstr "時間前"
 
-#: forum/templatetags/extra_tags.py:154
+#: forum/templatetags/extra_tags.py:153
 #, python-format
 msgid "%(hr)d "
 msgid_plural "%(hr)d "
 msgstr[0] ""
 msgstr[1] ""
 
-#: forum/templatetags/extra_tags.py:156
+#: forum/templatetags/extra_tags.py:155
 msgid "min ago"
 msgstr "分前"
 
-#: forum/templatetags/extra_tags.py:156
+#: forum/templatetags/extra_tags.py:155
 msgid "mins ago"
 msgstr "分前"
 
-#: forum/templatetags/extra_tags.py:156
+#: forum/templatetags/extra_tags.py:155
 #, python-format
 msgid "%(min)d "
 msgid_plural "%(min)d "
 msgstr[0] ""
 msgstr[1] ""
 
-#: forum/templatetags/extra_tags.py:158
+#: forum/templatetags/extra_tags.py:157
 msgid "sec ago"
 msgstr "秒前"
 
-#: forum/templatetags/extra_tags.py:158
+#: forum/templatetags/extra_tags.py:157
 msgid "secs ago"
 msgstr "秒前"
 
-#: forum/templatetags/extra_tags.py:158
+#: forum/templatetags/extra_tags.py:157
 #, python-format
 msgid "%(sec)d "
 msgid_plural "%(sec)d "
@@ -5997,142 +6134,142 @@ msgstr "質問への変更"
 msgid "posted"
 msgstr "投稿"
 
-#: forum/views/admin.py:117
+#: forum/views/admin.py:136
 msgid "Questions Graph"
 msgstr "質問グラフ"
 
-#: forum/views/admin.py:121
+#: forum/views/admin.py:140
 msgid "Users Graph"
 msgstr "ユーザーのグラフ"
 
-#: forum/views/admin.py:160
+#: forum/views/admin.py:179
 #, python-format
 msgid "'%s' settings saved succesfully"
 msgstr "'%s'設定を保存しました"
 
-#: forum/views/admin.py:267
+#: forum/views/admin.py:286
 msgid "Bootstrap mode enabled"
 msgstr "ブートストラップモードが有効になりました"
 
-#: forum/views/admin.py:281
+#: forum/views/admin.py:300
 msgid "All values reverted to defaults"
 msgstr "全ての設定値がデフォルト値に戻りました"
 
-#: forum/views/admin.py:297
+#: forum/views/admin.py:316
 msgid "All values recalculated"
 msgstr "すべての値が再計算されます"
 
-#: forum/views/admin.py:312
+#: forum/views/admin.py:331
 msgid "Maintenance mode enabled"
 msgstr "メンテナンスモードが有効になりました"
 
-#: forum/views/admin.py:314
+#: forum/views/admin.py:333
 msgid "Settings adjusted"
 msgstr "設定を調整しました"
 
-#: forum/views/admin.py:321
+#: forum/views/admin.py:340
 msgid "Your site is now running normally"
 msgstr "このサイトは現在正常に動作しています"
 
-#: forum/views/admin.py:325
+#: forum/views/admin.py:344
 msgid "Currently down for maintenance. We'll be back soon"
 msgstr "現在メンテナンス中です。しばらくお待ちください。"
 
-#: forum/views/admin.py:385
+#: forum/views/admin.py:410
 msgid "createuser"
 msgstr ""
 
-#: forum/views/admin.py:385
+#: forum/views/admin.py:410
 msgid "Create new user"
 msgstr "ユーザ登録"
 
-#: forum/views/admin.py:400
+#: forum/views/admin.py:425
 #, python-format
 msgid "New user created sucessfully. %s."
 msgstr "ユーザが登録されました。%s。"
 
-#: forum/views/admin.py:401
+#: forum/views/admin.py:426
 #, python-format
 msgid "See %s profile"
 msgstr "%s のプロファイルを参照"
 
-#: forum/views/admin.py:414
+#: forum/views/admin.py:439
 msgid "added_at"
 msgstr "added_at"
 
-#: forum/views/admin.py:415
+#: forum/views/admin.py:440
 msgid "added_at_asc"
 msgstr "added_at_asc"
 
-#: forum/views/admin.py:416
+#: forum/views/admin.py:441
 msgid "author"
 msgstr "著者"
 
-#: forum/views/admin.py:417
+#: forum/views/admin.py:442
 msgid "author_asc"
 msgstr ""
 
-#: forum/views/admin.py:418
+#: forum/views/admin.py:443
 msgid "score"
 msgstr ""
 
-#: forum/views/admin.py:419
+#: forum/views/admin.py:444
 msgid "score_asc"
 msgstr ""
 
-#: forum/views/admin.py:420
+#: forum/views/admin.py:445
 msgid "act_at"
 msgstr ""
 
-#: forum/views/admin.py:421
+#: forum/views/admin.py:446
 msgid "act_at_asc"
 msgstr ""
 
-#: forum/views/admin.py:422
+#: forum/views/admin.py:447
 msgid "act_by"
 msgstr ""
 
-#: forum/views/admin.py:423
+#: forum/views/admin.py:448
 msgid "act_by_asc"
 msgstr ""
 
-#: forum/views/admin.py:426
+#: forum/views/admin.py:451
 msgid "nodeman"
 msgstr ""
 
-#: forum/views/admin.py:426
+#: forum/views/admin.py:451
 msgid "Bulk management"
 msgstr "一括処理"
 
-#: forum/views/admin.py:432
+#: forum/views/admin.py:457
 msgid "filter"
 msgstr "フィルタ"
 
-#: forum/views/admin.py:445
+#: forum/views/admin.py:470
 msgid "No action performed"
 msgstr "処理を行いませんでした"
 
-#: forum/views/admin.py:452
+#: forum/views/admin.py:477
 msgid "All selected nodes marked as deleted"
 msgstr "選択したノードに削除マークを設定しました"
 
-#: forum/views/admin.py:459
+#: forum/views/admin.py:484
 msgid "All selected nodes undeleted"
 msgstr "選択したノードを復旧しました"
 
-#: forum/views/admin.py:464
+#: forum/views/admin.py:489
 msgid "bulk close"
 msgstr "まとめてクローズ"
 
-#: forum/views/admin.py:466
+#: forum/views/admin.py:491
 msgid "Selected questions were closed"
 msgstr "選択した質問をクローズしました"
 
-#: forum/views/admin.py:478
+#: forum/views/admin.py:503
 msgid "All selected nodes deleted"
 msgstr "選択したノードを削除しました"
 
-#: forum/views/auth.py:119 forum/views/auth.py:131
+#: forum/views/auth.py:120 forum/views/auth.py:132
 msgid ""
 "Sorry, these login credentials belong to anoother user. Plese terminate your "
 "current session and try again."
@@ -6140,19 +6277,19 @@ msgstr ""
 "このログイン情報は、他のユーザが使用しています。セッションを終了し、もう一度"
 "やり直してください。"
 
-#: forum/views/auth.py:122
+#: forum/views/auth.py:123
 msgid "You are already logged in with that user."
 msgstr "もうこのユーザでログインしています。"
 
-#: forum/views/auth.py:128
+#: forum/views/auth.py:129
 msgid "These login credentials are already associated with your account."
 msgstr "このログイン資格情報は、既にアカウントに関連付けられています。"
 
-#: forum/views/auth.py:137
+#: forum/views/auth.py:138
 msgid "The new credentials are now associated with your account"
 msgstr "新しい資格は、すでにアカウントに関連付けられています。"
 
-#: forum/views/auth.py:177
+#: forum/views/auth.py:178
 msgid ""
 "Oops, something went wrong in the middle of this process. Please try again. "
 "Note that you need to have cookies enabled for the authentication to work."
@@ -6160,75 +6297,75 @@ msgstr ""
 "処理中にエラーが発生しました。もう一度やり直してくださいクッキーが有効でなけ"
 "れば、ログインすることができません。"
 
-#: forum/views/auth.py:189 forum_modules/localauth/views.py:29
+#: forum/views/auth.py:190 forum_modules/localauth/views.py:29
 msgid "A welcome email has been sent to your email address. "
 msgstr "歓迎メールをあなたのメールアドレスに送信しました。"
 
-#: forum/views/auth.py:194
+#: forum/views/auth.py:195
 msgid ""
 "Oops, something went wrong in the middle of this process. Please try again."
 msgstr ""
 "おっと、処理中に何かが上手くいきませんでした。もう一度やり直してください。"
 
-#: forum/views/auth.py:248
+#: forum/views/auth.py:254
 msgid "An email has been sent with your temporary login key"
 msgstr "一時的なログインキーをメールで送信しました"
 
-#: forum/views/auth.py:269
+#: forum/views/auth.py:275
 msgid ""
 "You are logged in with a temporary access key, please take the time to fix "
 "your issue with authentication."
 msgstr ""
 "一時的なアクセスキーでログインしています。アカウント設定を修正してください。"
 
-#: forum/views/auth.py:289
+#: forum/views/auth.py:295
 msgid "A message with an email validation link was just sent to your address."
 msgstr "メールアドレス検証メールを送信しました"
 
-#: forum/views/auth.py:300
+#: forum/views/auth.py:306
 msgid "Thank you, your email is now validated."
 msgstr "ありがとうございます。メールアドレスを検証しました。"
 
-#: forum/views/auth.py:325
+#: forum/views/auth.py:331
 msgid "New password set"
 msgstr "新しいパスワードを設定しました"
 
-#: forum/views/auth.py:329
+#: forum/views/auth.py:335
 msgid "Your password was changed"
 msgstr "パスワードが変更されました"
 
-#: forum/views/auth.py:365
+#: forum/views/auth.py:371
 #, python-format
 msgid "You removed the association with %s"
 msgstr "%s の関連付けを削除しました"
 
-#: forum/views/auth.py:377
+#: forum/views/auth.py:383
 #, python-format
 msgid "Welcome back %s, you are now logged in"
 msgstr "おかえりなさい %s。ログインしました"
 
-#: forum/views/auth.py:391
+#: forum/views/auth.py:397
 #, python-format
 msgid "You have a %s pending submission."
 msgstr "%s 件の投稿を保留しています。"
 
-#: forum/views/auth.py:392
+#: forum/views/auth.py:398
 msgid "save it"
 msgstr "保存"
 
-#: forum/views/auth.py:393 forum/views/writers.py:279
+#: forum/views/auth.py:399 forum/views/writers.py:286
 msgid "review"
 msgstr "レビュー"
 
-#: forum/views/auth.py:394 forum/views/writers.py:276
+#: forum/views/auth.py:400 forum/views/writers.py:283
 msgid "cancel"
 msgstr "キャンセル"
 
-#: forum/views/auth.py:402
+#: forum/views/auth.py:408
 msgid "Sorry, but this account is suspended"
 msgstr "申し訳ありませんが、このアカウントは停止されています。"
 
-#: forum/views/commands.py:24
+#: forum/views/commands.py:28
 #, python-format
 msgid ""
 "Sorry, but you don't have enough reputation points to %(action)s.<br /"
@@ -6237,7 +6374,7 @@ msgstr ""
 "%(action)s を行うための評判ポイントが足りません。<br /> <a href='%(faq_url)"
 "s'>faq</a> を確認してください。"
 
-#: forum/views/commands.py:32
+#: forum/views/commands.py:36
 #, python-format
 msgid ""
 "Sorry but you cannot %(action)s your own post.<br />Please check the <a "
@@ -6246,7 +6383,7 @@ msgstr ""
 "自分自身の投稿に%(action)sはできません。<br /><a href='%(faq_url)s'>faq</a> "
 "を確認してください。"
 
-#: forum/views/commands.py:40
+#: forum/views/commands.py:44
 #, python-format
 msgid ""
 "Sorry but anonymous users cannot %(action)s.<br />Please login or create an "
@@ -6255,7 +6392,7 @@ msgstr ""
 "匿名ユーザは  %(action)s することができません。<a href='%(signin_url)s'>こち"
 "ら</a> からログインしてください"
 
-#: forum/views/commands.py:48
+#: forum/views/commands.py:52
 #, python-format
 msgid ""
 "Sorry, but you don't have enough %(action)s left for today..<br />The limit "
@@ -6264,7 +6401,7 @@ msgstr ""
 "本日はもう %(action)s 回数が残っていません。<br />一日の最大回数は %(limit)s "
 "です。<a href='%(faq_url)s'>faq</a>を確認してください"
 
-#: forum/views/commands.py:56
+#: forum/views/commands.py:60
 #, python-format
 msgid ""
 "Sorry, but you cannot %(action)s twice the same post.<br />Please check the "
@@ -6273,107 +6410,107 @@ msgstr ""
 "同じ投稿に2回 %(action)s する事はできません。.<br /><a href='%(faq_url)"
 "s'>faq</a>を確認してください"
 
-#: forum/views/commands.py:88
+#: forum/views/commands.py:93
 #, python-format
 msgid ""
 "Sorry but you cannot cancel a vote after %(ndays)d %(tdays)s from the "
 "original vote"
 msgstr "投票は %(ndays)d %(tdays)s 以内しかキャンセルできません"
 
-#: forum/views/commands.py:90
+#: forum/views/commands.py:95
 msgid "day"
 msgid_plural "days"
 msgstr[0] "日"
 msgstr[1] "日"
 
-#: forum/views/commands.py:110
+#: forum/views/commands.py:115
 #, python-format
 msgid "You have %(nvotes)s %(tvotes)s left today."
 msgstr "今日はあと %(nvotes)s 回%(tvotes)s できます。"
 
-#: forum/views/commands.py:124 forum/views/commands.py:130
+#: forum/views/commands.py:129 forum/views/commands.py:135
 msgid "flag posts"
 msgstr "フラグの投稿"
 
-#: forum/views/commands.py:127
+#: forum/views/commands.py:132
 msgid "flag"
 msgstr "フラグ"
 
-#: forum/views/commands.py:135
+#: forum/views/commands.py:140
 msgid "flags"
 msgstr "フラグ"
 
-#: forum/views/commands.py:140
+#: forum/views/commands.py:145
 #, python-format
 msgid "You already flagged this post with the following reason: %(reason)s"
 msgstr "この投稿は、%(reason)s として通報済みです。"
 
-#: forum/views/commands.py:145 forum/views/commands.py:375
+#: forum/views/commands.py:150 forum/views/commands.py:380
 msgid "Reason is empty"
 msgstr "理由を記入してください"
 
-#: forum/views/commands.py:149
+#: forum/views/commands.py:154
 msgid ""
 "Thank you for your report. A moderator will review your submission shortly."
 msgstr ""
 "ご報告いただきありがとうございます。モデレーターは、まもなく通報を確認しま"
 "す。"
 
-#: forum/views/commands.py:157 forum/views/commands.py:163
+#: forum/views/commands.py:162 forum/views/commands.py:168
 msgid "like comments"
 msgstr ""
 
-#: forum/views/commands.py:160
+#: forum/views/commands.py:165
 msgid "like"
 msgstr "好き"
 
-#: forum/views/commands.py:187 forum/views/commands.py:190
+#: forum/views/commands.py:192 forum/views/commands.py:195
 msgid "delete comments"
 msgstr "コメントを削除する"
 
-#: forum/views/commands.py:206
+#: forum/views/commands.py:211
 msgid "mark a question as favorite"
 msgstr "質問をお気に入りに登録"
 
-#: forum/views/commands.py:232 forum/views/commands.py:513
-#: forum/views/commands.py:524
+#: forum/views/commands.py:237 forum/views/commands.py:544
+#: forum/views/commands.py:555
 msgid "Invalid request"
 msgstr "無効な要求"
 
-#: forum/views/commands.py:237
+#: forum/views/commands.py:242
 msgid "Comment is empty"
 msgstr "コメントが入力されていません"
 
-#: forum/views/commands.py:240
+#: forum/views/commands.py:245
 #, python-format
 msgid "At least %d characters required on comment body."
 msgstr "コメントには最低 %d 文字入力してください。"
 
-#: forum/views/commands.py:243
+#: forum/views/commands.py:248
 #, python-format
 msgid "No more than %d characters on comment body."
 msgstr "コメントには %d 文字までしか入力できません。"
 
-#: forum/views/commands.py:249
+#: forum/views/commands.py:254
 msgid "edit comments"
 msgstr "コメントを編集"
 
-#: forum/views/commands.py:284 forum/views/commands.py:298
+#: forum/views/commands.py:289 forum/views/commands.py:303
 msgid "accept answers"
 msgstr "回答を採用"
 
-#: forum/views/commands.py:304
+#: forum/views/commands.py:309
 msgid "Sorry but you cannot accept the answer"
 msgstr "あなたは回答を採用することができません"
 
-#: forum/views/commands.py:313
+#: forum/views/commands.py:318
 msgid "This question already has an accepted answer."
 msgid_plural ""
 "Sorry but this question has reached the limit of accepted answers."
 msgstr[0] "この質問にはもう回答が採用されています。"
 msgstr[1] "この質問にはこれ以上回答を採用することはできません。"
 
-#: forum/views/commands.py:320
+#: forum/views/commands.py:325
 msgid ""
 "The author of this answer already has an accepted answer in this question."
 msgid_plural ""
@@ -6383,61 +6520,69 @@ msgstr[0] "この回答の著者は、もうこの質問で回答を採用され
 msgstr[1] ""
 "この回答の著者は、この質問ではこれ以上回答を採用することが出来ません"
 
-#: forum/views/commands.py:335 forum/views/commands.py:338
+#: forum/views/commands.py:340 forum/views/commands.py:343
 msgid "delete posts"
 msgstr "投稿を削除"
 
-#: forum/views/commands.py:361 forum/views/commands.py:370
+#: forum/views/commands.py:366 forum/views/commands.py:375
 msgid "close questions"
 msgstr "質問をクローズ"
 
-#: forum/views/commands.py:365
+#: forum/views/commands.py:370
 msgid "reopen questions"
 msgstr "質問を再オープン"
 
-#: forum/views/commands.py:387 forum/views/commands.py:399
+#: forum/views/commands.py:392 forum/views/commands.py:404
 msgid "mark posts as community wiki"
 msgstr "投稿をコミュニティwikiに変更"
 
-#: forum/views/commands.py:391
+#: forum/views/commands.py:396
 msgid "cancel a community wiki post"
 msgstr "コミュニティwikiの投稿をキャンセル"
 
-#: forum/views/commands.py:412
+#: forum/views/commands.py:418 forum/views/commands.py:421
+msgid "convert answers to comments"
+msgstr "回答をコメントに変更"
+
+#: forum/views/commands.py:424
 #, python-format
 msgid "Answer by %(uname)s: %(snippet)s..."
 msgstr "%(uname)s の回答: %(snippet)s..."
 
-#: forum/views/commands.py:414
+#: forum/views/commands.py:426
 msgid "Question"
 msgstr "質問"
 
-#: forum/views/commands.py:421 forum/views/commands.py:424
-msgid "convert answers to comments"
-msgstr "回答をコメントに変更"
-
-#: forum/views/commands.py:429 forum/views/commands.py:432
+#: forum/views/commands.py:435 forum/views/commands.py:438
 msgid "That is an invalid post to put the comment under"
 msgstr "この投稿はコメントに移動することができません"
 
-#: forum/views/commands.py:450 forum/views/commands.py:453
+#: forum/views/commands.py:456 forum/views/commands.py:459
 msgid "convert comments to answers"
 msgstr "コメントを回答に変更"
 
-#: forum/views/commands.py:468
+#: forum/views/commands.py:474
 msgid "You do not have the correct credentials to preform this action."
 msgstr "この処理を行うための認証がありません"
 
-#: forum/views/commands.py:563
+#: forum/views/commands.py:502
+msgid "You cannot use the canned comments tool."
+msgstr ""
+
+#: forum/views/commands.py:594
 msgid "The permanent URL to the answer has been copied to your clipboard."
 msgstr "回答のパーマネントURLをクリップボードにコピーしました。"
 
-#: forum/views/commands.py:574 forum/views/commands.py:578
-#: forum/views/commands.py:587
+#: forum/views/commands.py:605 forum/views/commands.py:609
+#: forum/views/commands.py:621
 msgid "award"
 msgstr "ポイントを贈る"
 
-#: forum/views/commands.py:594
+#: forum/views/commands.py:618
+msgid "The number of points to award needs to be a positive value."
+msgstr ""
+
+#: forum/views/commands.py:628
 #, python-format
 msgid "You have awarded %(awarded_user)s with %(points)d points"
 msgstr "%(awarded_user)s に %(points)d ポイント贈りました"
@@ -6449,11 +6594,11 @@ msgstr ""
 "申し訳ありませんが、不明なエラーが発生しました。 <br />しばらくしてから、もう"
 "一度試してみてください。"
 
-#: forum/views/meta.py:70
+#: forum/views/meta.py:71
 msgid "Thanks for the feedback!"
 msgstr "フィードバックをお寄せいただきありがとうございます！"
 
-#: forum/views/meta.py:78
+#: forum/views/meta.py:79
 msgid "We look forward to hearing your feedback! Please, give it next time :)"
 msgstr "フィードバックをお待ちしております。次回はぜひ！ :)"
 
@@ -6477,7 +6622,7 @@ msgstr "mostvoted"
 msgid "most <strong>voted</strong> questions"
 msgstr "一番 <strong>得票数の多かった</strong> 質問"
 
-#: forum/views/readers.py:61 forum/views/readers.py:285
+#: forum/views/readers.py:61 forum/views/readers.py:291
 #: forum/views/users.py:42 forum/views/users.py:53
 msgid "oldest"
 msgstr "古い順"
@@ -6580,28 +6725,28 @@ msgstr "購読中の質問 %s"
 msgid "Questions subscribed by %s"
 msgstr "%s が購読中の質問"
 
-#: forum/views/readers.py:170
+#: forum/views/readers.py:172
 msgid "Questions"
 msgstr "質問"
 
-#: forum/views/readers.py:229 forum/views/readers.py:230
+#: forum/views/readers.py:235 forum/views/readers.py:236
 msgid "ranking"
 msgstr "ランキング"
 
-#: forum/views/readers.py:229
+#: forum/views/readers.py:235
 msgid "relevance"
 msgstr "関連"
 
-#: forum/views/readers.py:229
+#: forum/views/readers.py:235
 msgid "most relevant questions"
 msgstr "最も関連性の高い質問"
 
-#: forum/views/readers.py:237 forum/views/readers.py:239
+#: forum/views/readers.py:243 forum/views/readers.py:245
 #, python-format
 msgid "questions matching '%(keywords)s'"
 msgstr "'%(keywords)s' に一致する質問"
 
-#: forum/views/readers.py:386
+#: forum/views/readers.py:393
 #, python-format
 msgid "Revision n. %(rev_number)d"
 msgstr "Revision n. %(rev_number)d"
@@ -6752,15 +6897,15 @@ msgstr ""
 msgid "Your question is pending until you %s."
 msgstr "質問は %s まで現在保留されます"
 
-#: forum/views/writers.py:99 forum/views/writers.py:261
+#: forum/views/writers.py:99 forum/views/writers.py:268
 msgid "validate your email"
 msgstr "メールアドレスの検証"
 
-#: forum/views/writers.py:122
+#: forum/views/writers.py:129
 msgid "Converted to question"
 msgstr "質問に変更"
 
-#: forum/views/writers.py:260
+#: forum/views/writers.py:267
 #, python-format
 msgid "Your answer is pending until you %s."
 msgstr "質問は %s まで保留されます。"
@@ -7583,18 +7728,13 @@ msgstr "全体の進行状況"
 msgid " of "
 msgstr ""
 
-#: forum_modules/facebookauth/authentication.py:31
+#: forum_modules/facebookauth/authentication.py:36
 msgid "Sorry, your Facebook session has expired, please try again"
 msgstr ""
 "申し訳ありませんが、Facebookセッションの有効期限が切れています。もう一度試し"
 "てください。"
 
-#: forum_modules/facebookauth/authentication.py:33
-msgid ""
-"The authentication with Facebook connect failed due to an invalid signature"
-msgstr "Facebookでの認証が無効な署名のため失敗しました"
-
-#: forum_modules/facebookauth/authentication.py:35
+#: forum_modules/facebookauth/authentication.py:38
 msgid ""
 "The authentication with Facebook connect failed, cannot find authentication "
 "tokens"
@@ -7650,13 +7790,47 @@ msgstr "パスワード"
 msgid "Create account"
 msgstr "アカウントを作成する"
 
-#: forum_modules/oauthauth/consumer.py:33
+#: forum_modules/oauthauth/consumer.py:36
 msgid "Error, the oauth token is not on the server"
 msgstr "エラー: oauthトークンが設定されていません"
 
-#: forum_modules/oauthauth/consumer.py:38
+#: forum_modules/oauthauth/consumer.py:41
 msgid "Something went wrong! Auth tokens do not match"
 msgstr "エラーが発生しました。Authトークンが一致しません"
+
+#: forum_modules/oauthauth/settings.py:6
+msgid "Twitter consumer key"
+msgstr ""
+
+#: forum_modules/oauthauth/settings.py:7
+msgid ""
+"\n"
+"Get this key at the <a href=\"http://twitter.com/apps/\">Twitter apps</a> to "
+"enable\n"
+"authentication in your site through Twitter.\n"
+msgstr ""
+
+#: forum_modules/oauthauth/settings.py:14
+msgid "Twitter consumer secret"
+msgstr ""
+
+#: forum_modules/oauthauth/settings.py:15
+msgid ""
+"\n"
+"This your Twitter consumer secret that you'll get in the same place as the "
+"consumer key.\n"
+msgstr ""
+
+#: forum_modules/oauthauth/settings.py:21
+msgid "Twitter auto-callback redirect"
+msgstr ""
+
+#: forum_modules/oauthauth/settings.py:22
+msgid ""
+"\n"
+"Automatically redirect to the Twitter authentication done page, pass the "
+"oauth_callback parameter.\n"
+msgstr ""
 
 #: forum_modules/openidauth/consumer.py:58
 msgid "Sorry, but your input is not a valid OpenId"
@@ -7730,15 +7904,15 @@ msgstr ""
 msgid "Merge users with same user name and email"
 msgstr ""
 
-#: forum_modules/updater/base.py:123
+#: forum_modules/updater/base.py:144
 msgid "Wasn't able to check to the update server."
 msgstr ""
 
-#: forum_modules/updater/base.py:132
+#: forum_modules/updater/base.py:153
 msgid "Wasn't able to retreive the update messages."
 msgstr ""
 
-#: forum_modules/updater/base.py:140
+#: forum_modules/updater/base.py:165
 #, python-format
 msgid "%d update messages have been downloaded."
 msgstr ""
@@ -7801,3 +7975,8 @@ msgstr "テストフレーズ3"
 #: locale/phrases.py:4
 msgid "Test Phrase n"
 msgstr "テストフレーズのn"
+
+#~ msgid ""
+#~ "The authentication with Facebook connect failed due to an invalid "
+#~ "signature"
+#~ msgstr "Facebookでの認証が無効な署名のため失敗しました"
