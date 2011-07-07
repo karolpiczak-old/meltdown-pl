@@ -65,7 +65,16 @@
             <div class="clear"></div>
             {% if user.can_use_canned_comments %}
             <div class="canned_comment">
-                <a href="{% url canned_comments post.id %}" class="ajax-command withprompt">{% trans "Use canned comment" %}</a>
+                <span id="post-{{ post.id }}-menu" class="context-menu">
+                    <span id="post-{{ post.id }}-menu-trigger" class="action-link context-menu-trigger">{% trans "Use canned comment" %}</span>
+                    <ul id="post-{{ post.id }}-menu-dropdown" class="context-menu-dropdown" style="width: 275px;">
+                        {% for canned_comment in canned_comments %}
+                        <li class="item">
+                            <a style="white-space: pre-wrap;" href="javascript:void(0);" onclick="canned_comment({{ post.id }}, jQuery(this).text())">{{ canned_comment }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </span>
             </div>
             {% endif %}
         </div>

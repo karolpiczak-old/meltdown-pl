@@ -46,7 +46,6 @@ core_urls = (
     url(r'^%s(?P<id>\d+)/$' % _('revisions/'), app.readers.revisions, name='revisions'),
     url(r'^%s$' % _('questions/'), app.readers.questions, name='questions'),
     url(r'^%s%s$' % (_('questions/'), _('ask/')), app.writers.ask, name='ask'),
-    url(r'^canned_comments/(?P<post_id>\d+)/$', app.commands.canned_comments, name='canned_comments'),
     url(r'^%s%s$' % (_('questions/'), _('related_questions/')), app.commands.related_questions, name='related_questions'),
 
     url(r'^%s%s$' % (_('questions/'), _('unanswered/')), app.readers.unanswered, name='unanswered'),

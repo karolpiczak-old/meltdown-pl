@@ -2,6 +2,7 @@
  * We do not want the CSRF protection enabled for the AJAX post requests, it causes only trouble.
  * Get the csrftoken cookie and pass it to the X-CSRFToken HTTP request property.
  */
+
 $('html').ajaxSend(function(event, xhr, settings) {
     function getCookie(name) {
         var cookieValue = null;
@@ -23,6 +24,10 @@ $('html').ajaxSend(function(event, xhr, settings) {
         xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
     }
 });
+
+function canned_comment(post_id, comment) {
+    $('#comment-' + post_id + '-form textarea').val(comment);
+}
 
 var response_commands = {
     refresh_page: function() {
@@ -121,10 +126,6 @@ var response_commands = {
         }
 
         $('#comment-' + comment_id).slideDown('slow');
-    },
-
-    canned_comment: function(post_id, comment) {
-        $('#comment-' + post_id + '-form textarea').val(comment);
     },
 
     update_comment: function(comment_id, comment_text) {
@@ -732,7 +733,7 @@ function pickedTags(){
                 tag_link.attr('rel','tag');
                 tag_link.attr('href', scriptUrl + $.i18n._('tags/') + tagname + '/');
                 tag_link.html(tagname);
-                var del_link = $('<img></img>');
+                var del_link = $('<img />');
                 del_link.addClass('delete-icon');
                 del_link.attr('src', mediaUrl('media/images/close-small-dark.png'));
 

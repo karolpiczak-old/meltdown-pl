@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 import re
 
 from forum.models import Question, Action
+from django.template import Template, Context
 from django.utils.translation import ungettext, ugettext as _
 from django.utils.html import strip_tags
 from django.utils.encoding import smart_unicode
@@ -203,8 +204,19 @@ def comments(post, user):
         context.update(dict(c.__dict__))
         comments.append(context)
 
+    # Generate canned comments
+    canned_comments = []
+    for comment in settings.CANNED_COMMENTS:
+        t = Template(smart_unicode(comment))
+        c = Context({
+            'post' : post,
+            'settings' : settings,
+        })
+        canned_comments.append(t.render(c))
+
     return {
         'comments': comments,
+        'canned_comments': canned_comments,
         'post': post,
         'can_comment': user.can_comment(post),
         'max_length': settings.FORM_MAX_COMMENT_BODY,

@@ -18,7 +18,11 @@ CANNED_COMMENTS = Setting('CANNED_COMMENTS',
 ],
 MODERATION_SET, dict(
 label = _("Canned comments"),
-help_text = _("Create some canned comments to be used for easier moderation."),
+help_text = _("""
+<p>Create some canned comments to be used for easier moderation. You can access the {{ post }} and {{ settings }} variables.</p>
+<p>If you want to access the current post author username you can use {{ post.author }}, for the question title use {{ post.title }}.</p>
+<p>To get the application title use {{ settings.APP_TITLE }}. All settings are accessible through the settings object.</p>
+"""),
 widget=StringListWidget))
 
 FLAG_TYPES = Setting('FLAG_TYPES',
