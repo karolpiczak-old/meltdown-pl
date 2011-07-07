@@ -306,7 +306,6 @@ class DeclareNode(template.Node):
                     context[m.group(1).strip()] = eval(command, d)
                 except Exception, e:
                     logging.error("Error in declare tag, when evaluating: %s" % m.group(3).strip())
-                    raise
         return ''
 
 @register.tag(name='declare')
