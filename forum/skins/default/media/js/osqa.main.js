@@ -25,10 +25,6 @@ $('html').ajaxSend(function(event, xhr, settings) {
     }
 });
 
-function canned_comment(post_id, comment) {
-    $('#comment-' + post_id + '-form textarea').val(comment);
-}
-
 var response_commands = {
     refresh_page: function() {
         window.location.reload(true)
@@ -369,7 +365,28 @@ function end_command(success) {
     }
 }
 
+var comment_box_cursor_position = 0;
+function canned_comment(post_id, comment) {
+    textarea = $('#comment-' + post_id + '-form textarea')
+
+    // Get the text from the beginning to the caret
+    textarea_start = textarea.val().substr(0, comment_box_cursor_position)
+
+    // Get the text from the caret to the end
+    textarea_end = textarea.val().substr(comment_box_cursor_position, textarea.val().length)
+
+    textarea.val(textarea_start + comment + textarea_endsvn );
+}
+
 $(function() {
+    $('textarea.commentBox').bind('keydown keyup mousedown mouseup mousemove', function(evt) {
+        comment_box_cursor_position = $(this).caret().start;
+    });
+
+    $('textarea.commentBox').blur(function() {
+        //alert(comment_box_cursor_position);
+    });
+
     $('a.ajax-command').live('click', function(evt) {
         if (running) return false;
 
