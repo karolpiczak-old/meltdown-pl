@@ -68,6 +68,14 @@ label = _("Email Link Style"),
 help_text = _("A valid css string to be used to style email links (the A tag)."),
 required=False))
 
+SEND_DIGEST_ONLY_TO_ACTIVE_USERS = Setting('SEND_DIGEST_ONLY_TO_ACTIVE_USERS', True, EMAIL_SET, dict(
+label = _("Send digest only to active users"),
+help_text = _("If checked the daily digest won't be sent to users that have been suspended."),
+required=False))
 
+SEND_DIGEST_ONLY_TO_VALIDATED_USERS = Setting('SEND_DIGEST_ONLY_TO_VALIDATED_USERS', True, EMAIL_SET, dict(
+label = _("Send digest only to validated users"),
+help_text = _("If checked the daily digest won't be sent to users that haven't validated their emails."),
+required=False))
 
 EMAIL_DIGEST_FLAG = Setting('EMAIL_DIGEST_FLAG', None)

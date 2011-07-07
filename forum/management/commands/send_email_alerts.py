@@ -91,7 +91,17 @@ class Command(NoArgsCommand):
 
         EMAIL_DIGEST_FLAG.set_value(digest_control)
 
-        users = User.objects.filter(subscription_settings__enable_notifications=True, subscription_settings__send_digest=True)
+        users = User.objects.filter(subscription_settings__enable_notifications=True,
+                                    subscription_settings__send_digest=True)
+
+        # Send digest only to active users
+        if settings.SEND_DIGEST_ONLY_TO_ACTIVE_USERS:
+            users = users.filter(is_active=True)
+
+        # Send digest only to users with validated emails
+        if settings.SEND_DIGEST_ONLY_TO_VALIDATED_USERS:
+            users = users.filter(email_isvalid=True)
+
         new_members = User.objects.filter(is_active=True, date_joined__gt=from_date).annotate(n_actions=models.Count('actions')).order_by('-n_actions')
 
         new_member_count = new_members.count()
