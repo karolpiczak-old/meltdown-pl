@@ -375,7 +375,7 @@ function canned_comment(post_id, comment) {
     // Get the text from the caret to the end
     textarea_end = textarea.val().substr(comment_box_cursor_position, textarea.val().length)
 
-    textarea.val(textarea_start + comment + textarea_endsvn );
+    textarea.val(textarea_start + comment + textarea_end);
 }
 
 $(function() {
