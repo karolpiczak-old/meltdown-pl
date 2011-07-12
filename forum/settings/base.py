@@ -79,7 +79,7 @@ class BaseSetting(object):
         except KeyValue.DoesNotExist:
             kv = KeyValue(key=self.name)
         except Exception, e:
-            logging.error("Error savin setting to database (%s): %s" % (self.name, str(e)))
+            logging.error("Error saving setting to database (%s): %s" % (self.name, str(e)))
             return
 
         kv.value = value
@@ -124,5 +124,3 @@ class Setting(object):
             Setting.emulators[deftype] = emul
 
         return emul(name, default, set, field_context)
-
-
