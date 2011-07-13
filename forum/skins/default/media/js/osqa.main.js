@@ -19,10 +19,12 @@ $('html').ajaxSend(function(event, xhr, settings) {
         }
         return cookieValue;
     }
-    if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
-        // Only send the token to relative URLs i.e. locally.
-        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-    }
+    try {
+        if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+            // Only send the token to relative URLs i.e. locally.
+            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+        }
+    } catch (e) {}
 });
 
 var response_commands = {

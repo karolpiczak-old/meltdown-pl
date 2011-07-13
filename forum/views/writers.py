@@ -2,6 +2,8 @@
 import os.path
 import time, datetime, random
 import logging
+
+from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, Http404
@@ -10,17 +12,19 @@ from django.utils.html import *
 from django.utils import simplejson
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
-from django.core.exceptions import PermissionDenied
 
+from django.core.exceptions import PermissionDenied
 from forum.actions import AskAction, AnswerAction, ReviseAction, RollbackAction, RetagAction, AnswerToQuestionAction, CommentToQuestionAction
 from forum.forms import *
 from forum.models import *
 from forum.forms import get_next_url
 from forum.utils import html
+
 from forum.http_responses import HttpResponseUnauthorized
 
 from vars import PENDING_SUBMISSION_SESSION_ATTR
 
+@csrf_exempt
 def upload(request):#ajax upload file to a question or answer
     class FileTypeNotAllow(Exception):
         pass
