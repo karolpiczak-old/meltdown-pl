@@ -3,13 +3,12 @@
 <div id="fb-root"></div>
 <script src="http://connect.facebook.net/en_US/all.js"></script>
 <script>
-    var FB_API_KEY = "{{ provider.API_KEY }}";
-    FB.init({
-        appId:FB_API_KEY, cookie:true,
-        status:true, xfbml:true
-    });
-
     function check_login_status() {
+        var FB_API_KEY = "{{ provider.API_KEY }}";
+        FB.init({
+            appId:FB_API_KEY, cookie:true,
+            status:true, xfbml:true
+        });
         FB.getLoginStatus(function(response) {
             if (response.session) {
                 redirect_to_done_page();
