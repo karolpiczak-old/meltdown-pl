@@ -28,7 +28,7 @@ function ajaxFileUpload(imageUrl)
                   if(error != ''){
                     alert(error);
                   }else{
-                    imageUrl.attr('value', fileURL);
+                    imageUrl.attr('value', appUrl + fileURL);
                   }
 
               },
@@ -373,6 +373,7 @@ Attacklab.wmdBase = function(){
 			
 			// The input text box
 			input = doc.createElement("input");
+            input.id = "image-url";
 			input.type = "text";
 			input.value = defaultInputText;
 			style = input.style;
