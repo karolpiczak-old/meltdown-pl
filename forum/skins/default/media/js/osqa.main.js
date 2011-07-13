@@ -594,7 +594,7 @@ $(function() {
                 }
 
                 start_command();
-                $.post($form.attr('action'), $form.serialize(), function(data) {
+                $.post($form.attr('action'), post_data, function(data) {
                     process_ajax_response(data, evt, function(error) {
                         if (!error) {
                             cleanup_form();
