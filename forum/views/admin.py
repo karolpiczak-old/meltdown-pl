@@ -1,20 +1,20 @@
 from datetime import datetime, timedelta
-import os, time, csv, random
+import time
 
 from django.shortcuts import render_to_response, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse, Http404
-from forum.http_responses import HttpResponseUnauthorized
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.utils import simplejson
 from django.db import models
+
+from forum.http_responses import HttpResponseUnauthorized
 from forum.settings.base import Setting
 from forum.forms import MaintenanceModeForm, PageForm, CreateUserForm
 from forum.settings.forms import SettingsSetForm
 from forum.utils import pagination, html
 from forum.utils.mail import send_template_email
-
 from forum.models import Question, Answer, User, Node, Action, Page, NodeState, Tag
 from forum.models.node import NodeMetaClass
 from forum.actions import NewPageAction, EditPageAction, PublishAction, DeleteAction, UserJoinsAction, CloseAction

@@ -1,20 +1,18 @@
+# -*- coding: utf-8 -*-
+
 import datetime
 import logging
 
-from forum import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.utils import simplejson
 from django.utils.encoding import smart_unicode
 from django.utils.translation import ungettext, ugettext as _
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render_to_response
-from django.template import RequestContext
 
-from django.template.loader import render_to_string
 from forum.models import *
-from forum.models.node import NodeMetaClass
-from forum.utils.decorators import ajax_method, ajax_login_required
+from forum.utils.decorators import ajax_login_required
 from forum.actions import *
 from forum.modules import decorate
 from forum import settings

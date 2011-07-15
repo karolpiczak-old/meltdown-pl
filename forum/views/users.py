@@ -24,11 +24,9 @@ from forum.utils import pagination
 from forum.views.readers import QuestionListPaginatorContext, AnswerPaginatorContext
 from forum.settings import ONLINE_USERS
  
-import bisect
 import time
 import datetime
 import decorators
-import unicodedata
 
 class UserReputationSort(pagination.SimpleSort):
     def apply(self, objects):

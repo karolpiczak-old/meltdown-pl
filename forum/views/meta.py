@@ -1,28 +1,27 @@
 import os
 from itertools import groupby
-from django.shortcuts import render_to_response, get_object_or_404
-from django.core.urlresolvers import reverse
-from django.template import RequestContext, loader
-from django.http import HttpResponseRedirect, HttpResponse, Http404
+
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from django.http import HttpResponseRedirect, HttpResponse
 from django.views.static import serve
-from forum import settings
-from forum.modules import decorate
 from django.views.decorators.cache import cache_page
+from django.utils.translation import ugettext as _
+from django.utils.safestring import mark_safe
+
+from forum import settings
 from forum.views.decorators import login_required
 from forum.forms import FeedbackForm
-from django.core.urlresolvers import reverse
-from django.utils.translation import ugettext as _
-from django.db.models import Count
+from forum.modules import decorate
 from forum.forms import get_next_url
 from forum.models import Badge, Award, User, Page
 from forum.badges.base import BadgesMeta
 from forum.http_responses import HttpResponseNotFound, HttpResponseIntServerError
-from forum import settings
 from forum.utils.mail import send_template_email
-from django.utils.safestring import mark_safe
 from forum.templatetags.extra_filters import or_preview
+
 import decorators
-import re, sys, logging, traceback
+import logging, traceback
 
 def favicon(request):
     return HttpResponseRedirect(str(settings.APP_FAVICON))

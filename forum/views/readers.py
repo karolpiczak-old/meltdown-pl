@@ -2,35 +2,29 @@
 import datetime
 import logging
 from urllib import unquote
-from forum import settings as django_settings
 from django.shortcuts import render_to_response, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse, Http404, HttpResponsePermanentRedirect
+from django.http import HttpResponseRedirect, Http404, HttpResponsePermanentRedirect
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.template import RequestContext
 from django import template
 from django.utils.html import *
-from django.utils import simplejson
-from django.utils.encoding import smart_unicode
 from django.db.models import Q, Count
 from django.utils.translation import ugettext as _
-from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
-from django.utils.datastructures import SortedDict
-from django.views.decorators.cache import cache_page
-from django.utils.http import urlquote  as django_urlquote
 from django.template.defaultfilters import slugify
 from django.utils.safestring import mark_safe
 
-from forum.utils.html import sanitize_html, hyperlink
+from forum import settings as django_settings
+from forum.utils.html import hyperlink
 from forum.utils.diff import textDiff as htmldiff
 from forum.utils import pagination
 from forum.forms import *
 from forum.models import *
-from forum.forms import get_next_url
 from forum.actions import QuestionViewAction
 from forum.http_responses import HttpResponseUnauthorized
 from forum.feed import RssQuestionFeed, RssAnswerFeed
 from forum.utils.pagination import generate_uri
+
 import decorators
 
 class HottestQuestionsSort(pagination.SortBase):

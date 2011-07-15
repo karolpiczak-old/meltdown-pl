@@ -1,14 +1,18 @@
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+# -*- coding: utf-8 -*-
+
+import logging
+
+from datetime import datetime
+
+from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import simplejson
-from django.core.paginator import Paginator, EmptyPage
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
-from django.utils.translation import ungettext, ugettext as _
+from django.utils.translation import ugettext as _
+
 from forum.modules import ui, decorate
-from datetime import datetime, date
 from forum.settings import ONLINE_USERS
-import logging
 
 def login_required(func, request, *args, **kwargs):
     if not request.user.is_authenticated():

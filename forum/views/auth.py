@@ -1,36 +1,31 @@
-from django.shortcuts import render_to_response, get_object_or_404
-from django.template import RequestContext
-from django.core.urlresolvers import reverse
-from forum.models import User
-from django.http import HttpResponseRedirect, Http404
-from forum.http_responses import HttpResponseUnauthorized
-from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext as _
-from django.utils.http import urlquote_plus
-from django.utils.encoding import smart_unicode
-from forum.views.decorators import login_required
-from forum.modules import decorate
-from django.contrib.auth import login, logout
-from django.http import get_host
-from forum.actions import SuspendAction
-from forum.utils import html
-from forum import settings
-from writers import manage_pending_data
-import types
+# -*- coding: utf-8 -*-
+
 import datetime
 import logging
 
-from forum.forms import SimpleRegistrationForm, TemporaryLoginRequestForm, \
-        ChangePasswordForm, SetPasswordForm
-from forum.utils.mail import send_template_email
+from django.shortcuts import render_to_response, get_object_or_404
+from django.template import RequestContext
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect, Http404
+from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext as _
+from django.utils.encoding import smart_unicode
+from django.contrib.auth import login, logout
 
+from writers import manage_pending_data
+
+from forum.utils import html
+from forum.views.decorators import login_required
+from forum.modules import decorate
+from forum.forms import SimpleRegistrationForm, TemporaryLoginRequestForm, ChangePasswordForm, SetPasswordForm
+from forum.http_responses import HttpResponseUnauthorized
+from forum.utils.mail import send_template_email
 from forum.authentication.base import InvalidAuthentication
 from forum.authentication import AUTH_PROVIDERS
-
-from forum.models import AuthKeyUserAssociation, ValidationHash, Question, Answer
+from forum.models import User, AuthKeyUserAssociation, ValidationHash
 from forum.actions import UserJoinsAction
+from forum import settings
 
-from forum.settings import REP_GAIN_BY_EMAIL_VALIDATION
 from vars import ON_SIGNIN_SESSION_ATTR, PENDING_SUBMISSION_SESSION_ATTR
 
 def signin_page(request):
