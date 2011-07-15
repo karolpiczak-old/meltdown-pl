@@ -410,7 +410,7 @@ class User(BaseModel, DjangoUser):
             except MultipleObjectsReturned:
                 logging.error("Multiple suspension actions found for user %s (%s)" % (self.username, self.id))
                 self.__dict__['_suspension_dencache_'] = self.reputes.filter(action__action_type="suspend", action__canceled=False
-                                                                             ).order_by('-action__action_date')[0]
+                                                                             ).order_by('-action__action_date')[0].action
 
         return self.__dict__['_suspension_dencache_']
 
