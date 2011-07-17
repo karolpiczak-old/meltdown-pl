@@ -21,4 +21,4 @@ UPDATE_MESSAGES_XML = Setting('UPDATE_MESSAGES_XML', '')
 LATEST_UPDATE_DATETIME = Setting('LATEST_UPDATES_DATETIME', datetime.datetime.now())
 
 # Update server. Do not edit.
-UPDATE_SERVER_URL = 'http://192.168.0.102:8008'
+UPDATE_SERVER_URL = 'https://updater.osqa.net'
