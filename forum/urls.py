@@ -23,6 +23,12 @@ try:
 except AttributeError:
     admin_url = url(r'^%s(.*)' % _('nimda/'), admin.site.urls)
 
+# Choose the user urls pattern
+if bool(settings.INCLUDE_ID_IN_USER_URLS.value):
+    core_user_urls_prefix = r'^%s(?P<id>\d+)/(?P<slug>.*)'
+else:
+    core_user_urls_prefix = r'^%s(?P<slug>.*)'
+
 core_urls = (
     url(r'^$', app.readers.index, name='index'), admin_url,
                         
@@ -98,13 +104,13 @@ core_urls = (
     url(r'^%s(?P<id>\d+)/%s$' % (_('users/'), _('award/')), app.users.award_points, name='user_award_points'),
     url(r'^%s(?P<id>\d+)/%s$' % (_('users/'), _('suspend/')), app.users.suspend, name='user_suspend'),
     url(r'^%s(?P<id>\d+)/%s(?P<action>[a-z]+)/(?P<status>[a-z]+)/$' % (_('users/'), _('powers/')), app.users.user_powers, name='user_powers'),
-    url(r'^%s(?P<id>\d+)/(?P<slug>.*)/%s$' % (_('users/'), _('subscriptions/')), app.users.user_subscriptions, name='user_subscriptions'),
+    url((core_user_urls_prefix + '/%s$') % (_('users/'), _('subscriptions/')), app.users.user_subscriptions, name='user_subscriptions'),
     url(r'^%s(?P<id>\d+)/(?P<slug>.*)/%s$' % (_('users/'), _('preferences/')), app.users.user_preferences, name='user_preferences'),
     url(r'^%s(?P<id>\d+)/(?P<slug>.*)/%s$' % (_('users/'), _('favorites/')), app.users.user_favorites, name='user_favorites'),
     url(r'^%s(?P<id>\d+)/(?P<slug>.*)/%s$' % (_('users/'), _('reputation/')), app.users.user_reputation, name='user_reputation'),
     url(r'^%s(?P<id>\d+)/(?P<slug>.*)/%s$' % (_('users/'), _('votes/')), app.users.user_votes, name='user_votes'),
     url(r'^%s(?P<id>\d+)/(?P<slug>.*)/%s$' % (_('users/'), _('recent/')), app.users.user_recent, name='user_recent'),
-    url(r'^%s(?P<id>\d+)/(?P<slug>.*)$' % _('users/'), app.users.user_profile, name='user_profile'),
+    url(core_user_urls_prefix % _('users/'), app.users.user_profile, name='user_profile'),
     url(r'^%s$' % _('badges/'), app.meta.badges, name='badges'),
     url(r'^%s(?P<id>\d+)/(?P<slug>[\w-]+)?$' % _('badges/'), app.meta.badge, name='badge'),
     # (r'^admin/doc/' % _('admin/doc'), include('django.contrib.admindocs.urls')),

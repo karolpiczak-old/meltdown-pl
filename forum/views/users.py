@@ -255,8 +255,14 @@ def suspend(request, id):
 
 def user_view(template, tab_name, tab_title, tab_description, private=False, tabbed=True, render_to=None, weight=500):
     def decorator(fn):
-        def params(request, id, slug=None):
-            user = get_object_or_404(User, id=id)
+        def params(request, id=None, slug=None):
+            # Get the user object by id if the id parameter has been passed
+            if id is not None:
+                user = get_object_or_404(User, id=id)
+            # ...or by slug if the slug has been given
+            elif slug is not None:
+                user = get_object_or_404(User, username=slug)
+
             if private and not (user == request.user or request.user.is_superuser):
                 raise ReturnImediatelyException(HttpResponseUnauthorized(request))
 

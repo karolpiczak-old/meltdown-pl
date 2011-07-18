@@ -199,7 +199,14 @@ class User(BaseModel, DjangoUser):
 
     @models.permalink
     def get_profile_url(self):
-        return ('user_profile', (), {'id': self.id, 'slug': slugify(smart_unicode(self.username))})
+        keyword_arguments = {
+            'slug': slugify(smart_unicode(self.username))
+        }
+        if settings.INCLUDE_ID_IN_USER_URLS:
+            keyword_arguments.update({
+                'id': self.id,
+            })
+        return ('user_profile', (), keyword_arguments)
 
     def get_absolute_url(self):
         return self.get_profile_url()
@@ -210,7 +217,14 @@ class User(BaseModel, DjangoUser):
 
     @models.permalink
     def get_user_subscriptions_url(self):
-        return ('user_subscriptions', (), { 'id': self.id, 'slug': slugify(smart_unicode(self.username))})
+        keyword_arguments = {
+            'slug': slugify(smart_unicode(self.username))
+        }
+        if settings.INCLUDE_ID_IN_USER_URLS:
+            keyword_arguments.update({
+                'id': self.id,
+            })
+        return ('user_subscriptions', (), keyword_arguments)
 
     @models.permalink
     def get_answered_url(self):

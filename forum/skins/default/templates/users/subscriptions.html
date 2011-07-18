@@ -32,8 +32,8 @@
     <br/>
 
     <div id="navBar"><div class="tabsA">
-        <a href='{% url user_subscriptions id=view_user.id slug=view_user.username|slugify %}?tab=settings' id="subscriptions_settings_button"  {%  if not manage_open %}class="on"{% endif %}>Settings</a>
-        <a href='{% url user_subscriptions id=view_user.id slug=view_user.username|slugify %}?tab=manage' id="subscriptions_management_button"  {%  if manage_open %}class="on"{% endif %}>Manage</a>
+        <a href='{{ view_user.get_user_subscriptions_url }}?tab=settings' id="subscriptions_settings_button"  {%  if not manage_open %}class="on"{% endif %}>Settings</a>
+        <a href='{{ view_user.get_user_subscriptions_url }}?tab=manage' id="subscriptions_management_button"  {%  if manage_open %}class="on"{% endif %}>Manage</a>
     </div></div>
 
     <br/>
