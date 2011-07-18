@@ -13,7 +13,7 @@ import logging
 
 
 from xml.dom.minidom import parse, parseString
-from forum.startup import get_database_engine
+from forum.base import get_database_engine
 from forum.models import Question, User
 from forum.settings import APP_URL, SVN_REVISION, APP_TITLE, APP_DESCRIPTION
 from django import VERSION as DJANGO_VERSION
