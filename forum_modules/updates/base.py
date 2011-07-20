@@ -15,7 +15,7 @@ import logging
 
 from xml.dom.minidom import parse, parseString
 from forum.base import get_database_engine
-from forum.models import Question, User
+from forum.models import Question, Answer, Comment, User
 from forum.settings import APP_URL, SVN_REVISION, APP_TITLE, APP_DESCRIPTION
 from django import VERSION as DJANGO_VERSION
 from django.utils import simplejson
@@ -99,6 +99,9 @@ def check_for_updates():
     <app_description value="%(app_description)s" />
     <svn_revision value="%(svn_revision)d" />
     <views value="%(site_views)d" />
+    <questions_count value="%(questions_count)d" />
+    <answers_count value="%(answers_count)d" />
+    <comments_count value="%(comments_count)d" />
     <active_users value="%(active_users)d" />
     <server value="%(server_name)s" />
     <python_version value="%(python_version)s" />
@@ -114,6 +117,9 @@ def check_for_updates():
         'svn_revision' : svn_revision,
         'site_views' : get_site_views(),
         'server_name' : get_server_name(),
+        'questions_count' : Question.objects.filter_state(deleted=False).count(),
+        'answers_count' : Answer.objects.filter_state(deleted=False).count(),
+        'comments_count' : Comment.objects.filter_state(deleted=False).count(),
         'active_users' : get_active_users(),
         'python_version' : ''.join(sys.version.splitlines()),
         'django_version' : str(DJANGO_VERSION),

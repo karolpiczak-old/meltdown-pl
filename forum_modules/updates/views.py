@@ -8,7 +8,7 @@ from forum.views.admin import admin_tools_page, admin_page
 @admin_tools_page(_('updater'), _('Update Checker'))
 def updater_index(request):
     return (
-        'modules/updater/index.html',
+        'modules/updates/index.html',
         {
 
         },
