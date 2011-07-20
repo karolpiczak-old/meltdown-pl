@@ -1,5 +1,6 @@
 import os
 import sys
+import platform
 import bz2
 import urllib2, urllib
 import binascii
@@ -117,7 +118,7 @@ def check_for_updates():
         'python_version' : ''.join(sys.version.splitlines()),
         'django_version' : str(DJANGO_VERSION),
         'database' : database_type,
-        'os' : str(os.uname()),
+        'os' : str(platform.uname()),
         'emails' : admin_emails_xml,
     }
 
