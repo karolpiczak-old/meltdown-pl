@@ -82,6 +82,10 @@ def get_score_badge(user):
 # Usage: {% get_accept_rate node.author %}
 @register.simple_tag
 def get_accept_rate(user):
+    # If the Show Accept Rate feature is not activated this tag should return a blank string
+    if not settings.SHOW_USER_ACCEPT_RATE:
+        return ""
+
     # We get the number of all user's answers.
     total_answers_count = Answer.objects.filter(author=user).count()
 

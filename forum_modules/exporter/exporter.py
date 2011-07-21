@@ -515,20 +515,3 @@ def export_awards(a, el, anon_data):
 def export_settings(s, el, anon_data):
     el.add('key', s.key)
     make_extra(el.add('value'), s.value)
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-

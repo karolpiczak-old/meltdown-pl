@@ -38,6 +38,11 @@ help_text = _("The long usernames will be truncated.."),
 required=False,
 ))
 
+SHOW_USER_ACCEPT_RATE = Setting('SHOW_USER_ACCEPT_RATE', True, USERS_SET, dict(
+label = _("Show user accept rate"),
+help_text = _("If you check this the user accept rate will be displayed on the user posts."),
+required=False))
+
 TRUNCATE_USERNAMES_LONGER_THAN = Setting('TRUNCATE_USERNAMES_LONGER_THAN', 15, USERS_SET, dict(
 label = _("Truncate usernames longer than"),
 help_text = _("The usernames that are longer than this will be truncated and ... will be appended.")))
