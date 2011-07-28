@@ -48,6 +48,13 @@ from urls import *
 from accept import *
 from sitemaps import *
 
+# Be able to import all module settings as well
+for m in djsettings.MODULE_LIST:
+    try:
+        exec 'from %s.settings import *' % m.__name__
+    except:
+        pass
+
 BADGES_SET = SettingSet('badges', _('Badges config'), _("Configure badges on your OSQA site."), 500)
 
 #__all__ = locals().keys()
