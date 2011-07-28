@@ -1,10 +1,12 @@
 import os.path
-from base import Setting, SettingSet
+from base import Setting, SettingSet, BaseSetting
 
 from django.forms.widgets import Textarea
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings as djsettings
 from django.utils.version import get_svn_revision
+
+from forum.modules import get_modules_script_implementations
 
 OSQA_VERSION = "Development Build"
 
@@ -48,14 +50,15 @@ from urls import *
 from accept import *
 from sitemaps import *
 
+__all__ = locals().keys()
+
 # Be able to import all module settings as well
-for m in djsettings.MODULE_LIST:
-    try:
-        exec 'from %s.settings import *' % m.__name__
-    except:
-        pass
+for k,v in get_modules_script_implementations('settings', BaseSetting).items():
+   if not k in __all__:
+        __all__.append(k)
+        exec "%s = v" % k
+
 
 BADGES_SET = SettingSet('badges', _('Badges config'), _("Configure badges on your OSQA site."), 500)
 
-#__all__ = locals().keys()
 
