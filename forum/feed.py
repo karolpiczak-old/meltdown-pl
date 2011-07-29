@@ -67,7 +67,7 @@ class BaseNodeFeed(Feed):
 
 class RssQuestionFeed(BaseNodeFeed):
     def __init__(self, request, question_list, title, description):
-        url = request.path + "&" + generate_uri(request.GET, (_('page'), _('pagesize'), _('sort')))
+        url = request.path + "?" + generate_uri(request.GET, (_('page'), _('pagesize'), _('sort')))
         super(RssQuestionFeed, self).__init__(request, title, description, url)
 
         self._question_list = question_list
