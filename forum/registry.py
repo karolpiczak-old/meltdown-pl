@@ -4,6 +4,7 @@ from django.utils.encoding import smart_unicode
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 
+from forum.models import User
 from forum.templatetags.extra_tags import get_score_badge
 from forum.utils.html import cleanup_urls
 from forum import settings
@@ -84,7 +85,7 @@ ui.register(ui.USER_MENU,
             ),
             ui.UserMenuItem(
                 label=_("email notification settings"),
-                url=lambda u, c: reverse('user_subscriptions', kwargs={'id': c['user'].id, 'slug': slugify(smart_unicode(c['user'].username))}),
+                url=lambda u, c: User.objects.get(id=int(c['user'].id)).get_user_subscriptions_url(),
                 span_attrs={'class': 'user-subscriptions'},
                 weight=200,
                 name='EMAIL_SETTINGS'
