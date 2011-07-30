@@ -272,12 +272,22 @@ def user_view(template, tab_name, tab_title, tab_description, private=False, tab
             if render_to and (not render_to(user)):
                 raise ReturnImediatelyException(HttpResponseRedirect(user.get_profile_url()))
 
-            return [request, user], {}
+            return [request, user], { 'slug' : slug, }
 
         decorated = decorate.params.withfn(params)(fn)
 
-        def result(context, request, user):
+        def result(context_or_response, request, user, **kwargs):
             rev_page_title = smart_unicode(user.username) + " - " + tab_description
+
+            # Check whether the return type of the decorated function is a context or Http Response
+            if isinstance(context_or_response, HttpResponse):
+                response = context_or_response
+
+                # If it is a response -- show it
+                return response
+            else:
+                # ...if it is a context move forward, update it and render it to response
+                context = context_or_response
 
             context.update({
                 "tab": "users",
@@ -306,9 +316,14 @@ def user_view(template, tab_name, tab_title, tab_description, private=False, tab
 
 
 @user_view('users/stats.html', 'stats', _('overview'), _('user overview'))
-def user_profile(request, user):
+def user_profile(request, user, **kwargs):
     questions = Question.objects.filter_state(deleted=False).filter(author=user).order_by('-added_at')
     answers = Answer.objects.filter_state(deleted=False).filter(author=user).order_by('-added_at')
+
+    # Check whether the passed slug matches the one for the user object
+    slug = kwargs['slug']
+    if slug != slugify(smart_unicode(user.username)):
+        return HttpResponseRedirect(user.get_absolute_url())
 
     up_votes = user.vote_up_count
     down_votes = user.vote_down_count
@@ -338,7 +353,7 @@ def user_profile(request, user):
     })
     
 @user_view('users/recent.html', 'recent', _('recent activity'), _('recent user activity'))
-def user_recent(request, user):
+def user_recent(request, user, **kwargs):
     activities = user.actions.exclude(
             action_type__in=("voteup", "votedown", "voteupcomment", "flag", "newpage", "editpage")).order_by(
             '-action_date')[:USERS_PAGE_SIZE]
@@ -347,7 +362,7 @@ def user_recent(request, user):
 
 
 @user_view('users/reputation.html', 'reputation', _('reputation history'), _('graph of user karma'))
-def user_reputation(request, user):
+def user_reputation(request, user, **kwargs):
     rep = list(user.reputes.order_by('date'))
     values = [r.value for r in rep]
     redux = lambda x, y: x+y
@@ -362,20 +377,20 @@ def user_reputation(request, user):
     return {"view_user": user, "reputation": rep, "graph_data": graph_data}
 
 @user_view('users/votes.html', 'votes', _('votes'), _('user vote record'), True)
-def user_votes(request, user):
+def user_votes(request, user, **kwargs):
     votes = user.votes.exclude(node__state_string__contains="(deleted").filter(
             node__node_type__in=("question", "answer")).order_by('-voted_at')[:USERS_PAGE_SIZE]
 
     return {"view_user" : user, "votes" : votes}
 
 @user_view('users/questions.html', 'favorites', _('favorites'), _('questions that user selected as his/her favorite'))
-def user_favorites(request, user):
+def user_favorites(request, user, **kwargs):
     favorites = FavoriteAction.objects.filter(canceled=False, user=user)
 
     return {"favorites" : favorites, "view_user" : user}
 
 @user_view('users/subscriptions.html', 'subscriptions', _('subscription'), _('subscriptions'), True, tabbed=False)
-def user_subscriptions(request, user):
+def user_subscriptions(request, user, **kwargs):
     enabled = True
 
     tab = request.GET.get('tab', "settings")
@@ -433,7 +448,7 @@ def user_subscriptions(request, user):
 
 
 @user_view('users/preferences.html', 'preferences', _('preferences'), _('preferences'), True, tabbed=False)
-def user_preferences(request, user):
+def user_preferences(request, user, **kwargs):
     if request.POST:
         form = UserPreferencesForm(request.POST)
 
