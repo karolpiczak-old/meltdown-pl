@@ -261,7 +261,10 @@ def user_view(template, tab_name, tab_title, tab_description, private=False, tab
                 user = get_object_or_404(User, id=id)
             # ...or by slug if the slug has been given
             elif slug is not None:
-                user = get_object_or_404(User, username=slug)
+                try:
+                    user = User.objects.get(username__iexact=slug)
+                except User.DoesNotExist:
+                    raise Http404
 
             if private and not (user == request.user or request.user.is_superuser):
                 raise ReturnImediatelyException(HttpResponseUnauthorized(request))
