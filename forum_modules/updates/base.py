@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os
 import sys
 import platform
@@ -92,7 +94,7 @@ def check_for_updates():
 
     database_type = get_database_engine()
 
-    statistics = """<check>
+    statistics = u"""<check>
     <key value="%(site_key)s" />
     <app_url value="%(app_url)s" />
     <app_title value="%(app_title)s" />
@@ -129,6 +131,7 @@ def check_for_updates():
     }
 
     # Compress the statistics XML dump
+    statistics = statistics.encode('ascii', 'xmlcharrefreplace')
     statistics_compressed = bz2.compress(statistics)
 
     # Pass the compressed statistics to the update server
@@ -175,7 +178,10 @@ def update_trigger():
     # Trigger the update process
     now = datetime.datetime.now()
     if (now - settings.LATEST_UPDATE_DATETIME) > datetime.timedelta(days=1):
-        update_status = check_for_updates()
-
-        logging.error(smart_unicode("Update process has been triggered: %s" % update_status))
-        settings.LATEST_UPDATE_DATETIME.set_value(now)
+        try:
+            update_status = check_for_updates()
+            logging.log(logging.INFO, smart_unicode("Update process has been triggered: %s" % update_status))
+        except Exception, e:
+            logging.errror(smart_unicode(e))
+        finally:
+            settings.LATEST_UPDATE_DATETIME.set_value(now)
