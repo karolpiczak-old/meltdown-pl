@@ -91,7 +91,7 @@ def badges(request):
     badges = sorted([Badge.objects.get(id=id) for id in BadgesMeta.by_id.keys()], lambda b1, b2: cmp(b1.name, b2.name))
 
     if request.user.is_authenticated():
-        my_badges = Award.objects.filter(user=request.user).values('badge_id').distinct()
+        my_badges = Award.objects.filter(user=request.user).values_list('badge_id', flat=True).distinct()
     else:
         my_badges = []
 
