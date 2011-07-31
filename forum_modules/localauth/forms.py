@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate
 from django import forms
 import logging
 
+from forum.settings import RECAPTCHA_PUB_KEY, RECAPTCHA_PRIV_KEY
+
 class ClassicRegisterForm(SetPasswordForm):
     """ legacy registration form """
 
@@ -17,15 +19,16 @@ class ClassicRegisterForm(SetPasswordForm):
     def __init__(self, *args, **kwargs):
         super(ClassicRegisterForm, self).__init__(*args, **kwargs)
 
-        spam_fields = call_all_handlers('create_anti_spam_field')
-        if spam_fields:
-            spam_fields = dict(spam_fields)
-            for name, field in spam_fields.items():
-                self.fields[name] = field
+        if len(str(RECAPTCHA_PUB_KEY.value)) > 0 and len(str(RECAPTCHA_PRIV_KEY.value)) > 0:
+            spam_fields = call_all_handlers('create_anti_spam_field')
+            if spam_fields:
+                spam_fields = dict(spam_fields)
+                for name, field in spam_fields.items():
+                    self.fields[name] = field
 
-            self._anti_spam_fields = spam_fields.keys()
-        else:
-            self._anti_spam_fields = []
+                self._anti_spam_fields = spam_fields.keys()
+            else:
+                self._anti_spam_fields = []
 
     def anti_spam_fields(self):
         return [self[name] for name in self._anti_spam_fields]
