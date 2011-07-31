@@ -113,12 +113,23 @@ def tag(request, tag):
             except User.DoesNotExist:
                 raise Http404
 
-    return question_list(request,
+    # The extra tag context we need to pass
+    tag_context = {
+        'tag' : tag,
+    }
+
+    # The context returned by the question_list function, contains info about the questions
+    question_context = question_list(request,
                          questions,
                          mark_safe(_(u'questions tagged <span class="tag">%(tag)s</span>') % {'tag': tag}),
                          None,
                          mark_safe(_(u'Questions Tagged With %(tag)s') % {'tag': tag}),
                          False)
+
+    # Create the combined context
+    context = dict(question_context, **tag_context)
+
+    return context
 
 @decorators.render('questions.html', 'questions', tabbed=False)
 def user_questions(request, mode, user, slug):
@@ -185,16 +196,19 @@ def question_list(request, initial,
 
         feed_url = request.path + "?type=rss" + req_params
 
-    return pagination.paginated(request, ('questions', paginator_context or QuestionListPaginatorContext()), {
-    "questions" : questions.distinct(),
-    "questions_count" : questions.count(),
-    "keywords" : keywords,
-    "list_description": list_description,
-    "base_path" : base_path,
-    "page_title" : page_title,
-    "tab" : "questions",
-    'feed_url': feed_url,
-    })
+    context = {
+        'questions' : questions.distinct(),
+        'questions_count' : questions.count(),
+        'keywords' : keywords,
+        'list_description': list_description,
+        'base_path' : base_path,
+        'page_title' : page_title,
+        'tab' : 'questions',
+        'feed_url': feed_url,
+    }
+
+    return pagination.paginated(request,
+                               ('questions', paginator_context or QuestionListPaginatorContext()), context)
 
 
 def search(request):

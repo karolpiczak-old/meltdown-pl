@@ -7,6 +7,12 @@
 
 {% block title %}{% spaceless %}{{ page_title }}{% endspaceless %}{% endblock %}
 
+{% block metadescription %}{% spaceless %}
+    {% if tag %}
+        {% blocktrans with settings.APP_TITLE as app_title %}Questions and answers about {{ tag }} on {{ app_title }}{% endblocktrans %}
+    {% endif %}
+{% endspaceless %}{% endblock %}
+
 {% block meta %}
     <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ feed_url }}" />
 {% endblock %}
