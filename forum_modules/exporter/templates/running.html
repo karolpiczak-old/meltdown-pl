@@ -6,7 +6,7 @@
     {% ifequal mode "exporter" %}{% trans "XML data exporter" %}{% else %}{% trans "XML data importer" %}{% endifequal %}
 {% endblock %}
 {% block description %}
-    {% ifequal mode "exporter" %}{% trans "Export database to XML format" %}{% else %}{% trans "Restore data from a previouus export" %}{% endifequal %}
+    {% ifequal mode "exporter" %}{% trans "Export database to XML format" %}{% else %}{% trans "Restore data from a previous export" %}{% endifequal %}
 {% endblock %}
 
 {% block adminjs %}
@@ -57,7 +57,7 @@
             var $bar = $('#state_' + name);
 
             if (data[name] === undefined) {
-                $bar.find('.state_label').html('{% trans "Skiped" %}')
+                $bar.find('.state_label').html('{% trans "Skipped" %}')
             } else if (state == null || data[name] != state[name]) {
                 var width = $bar.width();
 
@@ -102,9 +102,9 @@
                     } else {
                         var msg;
                         if (exporting) {
-                            msg = '{% trans "An error has occurred during de export proccess"%}';
+                            msg = '{% trans "An error has occurred during the export proccess"%}';
                         } else {
-                            msg = '{% trans "An error has occurred during de import proccess"%}';
+                            msg = '{% trans "An error has occurred during the import proccess"%}';
                         }
                         $('#wait_message').html(msg + ': ' + data.errors + '<br />' +
                         '{% trans "Please check the log file for a full stack trace." %}')
