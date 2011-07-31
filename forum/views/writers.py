@@ -1,11 +1,14 @@
 # encoding:utf-8
 import os.path
 
-from django.views.decorators.csrf import csrf_exempt
+import datetime
+
+from django.core.urlresolvers import reverse
 from django.core.files.storage import FileSystemStorage
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render_to_response, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.template import RequestContext
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.utils.html import *
 from django.utils.translation import ugettext as _
 
@@ -13,7 +16,6 @@ from forum.actions import AskAction, AnswerAction, ReviseAction, RollbackAction,
 from forum.forms import *
 from forum.models import *
 from forum.utils import html
-
 from forum.http_responses import HttpResponseUnauthorized
 
 from vars import PENDING_SUBMISSION_SESSION_ATTR
