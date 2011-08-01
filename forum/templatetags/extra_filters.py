@@ -22,7 +22,12 @@ def decorated_int(number, cls="thousand"):
         number = int(number)    # allow strings or numbers passed in
         if number > 999:
             thousands = float(number) / 1000.0
-            format = "%.1f" if number < 99500 else "%.0f"
+
+            if number < 99500:
+                format = "%.1f"
+            else:
+                format = "%.0f"
+
             s = format % thousands
 
             return mark_safe("<span class=\"%s\">%sk</span>" % (cls, s))
