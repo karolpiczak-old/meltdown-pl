@@ -26,6 +26,8 @@ class TitleField(forms.CharField):
         self.initial = ''
 
     def clean(self, value):
+        super(TitleField, self).clean(value);
+
         if len(value) < settings.FORM_MIN_QUESTION_TITLE:
             raise forms.ValidationError(_('title must be must be at least %s characters') % settings.FORM_MIN_QUESTION_TITLE)
 
