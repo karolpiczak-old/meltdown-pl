@@ -305,7 +305,10 @@ def user_view(template, tab_name, tab_title, tab_description, private=False, tab
                 try:
                     return reverse(fn.__name__, kwargs={'id': vu.id, 'slug': slugify(smart_unicode(vu.username))})
                 except NoReverseMatch:
-                    return reverse(fn.__name__, kwargs={'id': vu.id})
+                    try:
+                        return reverse(fn.__name__, kwargs={'id': vu.id})
+                    except NoReverseMatch:
+                        return reverse(fn.__name__, kwargs={'slug': slugify(smart_unicode(vu.username))})
 
             ui.register(ui.PROFILE_TABS, ui.ProfileTab(
                 tab_name, tab_title, tab_description,url_getter, private, render_to, weight
