@@ -119,15 +119,15 @@ def tag(request, tag):
     }
 
     # The context returned by the question_list function, contains info about the questions
-    question_context = question_list(request,
+    question_context = dict(question_list(request,
                          questions,
                          mark_safe(_(u'questions tagged <span class="tag">%(tag)s</span>') % {'tag': tag}),
                          None,
                          mark_safe(_(u'Questions Tagged With %(tag)s') % {'tag': tag}),
-                         False)
+                         False))
 
     # Create the combined context
-    context = dict(question_context, **tag_context)
+    context = dict(question_context.items() + tag_context.items())
 
     return context
 
