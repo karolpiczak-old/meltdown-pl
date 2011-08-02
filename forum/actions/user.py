@@ -23,6 +23,15 @@ class UserJoinsAction(ActionProxy):
         'app_name': APP_SHORT_NAME,
         }
 
+class UserLoginAction(ActionProxy):
+    verb = _("logged in")
+
+    def describe(self, viewer=None):
+        return _("%(user)s %(have_has)s logged in") % {
+            'user' : self.hyperlink(self.user.get_profile_url(), self.friendly_username(viewer, self.user)),
+            'have_has': self.viewer_or_user_verb(viewer, self.user, _('have'), _('has')),
+        }
+
 class EmailValidationAction(ActionProxy):
     verb = _("validated e-mail")
 

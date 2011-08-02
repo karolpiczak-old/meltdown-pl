@@ -23,7 +23,7 @@ from forum.utils.mail import send_template_email
 from forum.authentication.base import InvalidAuthentication
 from forum.authentication import AUTH_PROVIDERS
 from forum.models import User, AuthKeyUserAssociation, ValidationHash
-from forum.actions import UserJoinsAction
+from forum.actions import UserJoinsAction, UserLoginAction
 from forum import settings
 
 from vars import ON_SIGNIN_SESSION_ATTR, PENDING_SUBMISSION_SESSION_ATTR
@@ -373,6 +373,9 @@ def login_and_forward(request, user, forward=None, message=None):
 
     user.backend = "django.contrib.auth.backends.ModelBackend"
     login(request, user)
+
+    # Store the login action
+    UserLoginAction(user=user, ip=request.META['REMOTE_ADDR']).save()
 
     if message is None:
         message = _("Welcome back %s, you are now logged in") % smart_unicode(user.username)

@@ -82,6 +82,6 @@ class FacebookAuthContext(ConsumerTemplateContext):
     weight = 100
     human_name = 'Facebook'
     code_template = 'modules/facebookauth/button.html'
-    extra_css = ["http://www.facebook.com/css/connect/connect_button.css"]
+    extra_css = []
 
     API_KEY = settings.FB_API_KEY
