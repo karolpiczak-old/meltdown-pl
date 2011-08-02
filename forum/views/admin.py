@@ -464,7 +464,7 @@ def node_management(request):
             selected_nodes = request.POST.getlist('_selected_node')
 
             if selected_nodes and request.POST.get('action', None):
-                action = request.POST['action']
+                action = str(request.POST['action'])
                 selected_nodes = Node.objects.filter(id__in=selected_nodes)
 
                 message = _("No action performed")
