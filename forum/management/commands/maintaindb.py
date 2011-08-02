@@ -30,7 +30,7 @@ def create_revision(node):
             tagnames = node.tagnames,
             title = node.title,
             )
-
+    rev.save()
     node.save()
 
     return node
