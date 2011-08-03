@@ -7,8 +7,6 @@ from django.contrib.auth import authenticate
 from django import forms
 import logging
 
-from forum.settings import RECAPTCHA_PUB_KEY, RECAPTCHA_PRIV_KEY
-
 class ClassicRegisterForm(SetPasswordForm):
     """ legacy registration form """
 
@@ -19,7 +17,14 @@ class ClassicRegisterForm(SetPasswordForm):
     def __init__(self, *args, **kwargs):
         super(ClassicRegisterForm, self).__init__(*args, **kwargs)
 
-        if len(str(RECAPTCHA_PUB_KEY.value)) > 0 and len(str(RECAPTCHA_PRIV_KEY.value)) > 0:
+        # Try importing the ReCapthca public and private keys, Import Error will be raised in case it has been disabled
+        try:
+            from forum.settings import RECAPTCHA_PUB_KEY, RECAPTCHA_PRIV_KEY
+            recaptcha_enabled = len(str(RECAPTCHA_PUB_KEY.value)) > 0 and len(str(RECAPTCHA_PRIV_KEY.value)) > 0
+        except ImportError:
+            recaptcha_enabled = False
+
+        if recaptcha_enabled:
             spam_fields = call_all_handlers('create_anti_spam_field')
             if spam_fields:
                 spam_fields = dict(spam_fields)
