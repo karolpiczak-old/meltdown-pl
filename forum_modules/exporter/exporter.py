@@ -9,10 +9,35 @@ from forum.settings import APP_URL
 from forum.templatetags.extra_tags import diff_date
 import xml.etree.ElementTree
 from xml.etree import ElementTree as ET
-from xml.etree.ElementTree import Comment, _encode, ProcessingInstruction, QName, fixtag, _escape_attrib, _escape_cdata
+from xml.etree.ElementTree import Comment, _encode, ProcessingInstruction, QName, _escape_attrib, _escape_cdata, _namespace_map
 from forum import settings
 from django.conf import settings as djsettings
 import settings as selfsettings
+import string
+
+try:
+	from xml.etree.ElementTree import fixtag
+except ImportError:
+	def fixtag(tag, namespaces):
+		# given a decorated tag (of the form {uri}tag), return prefixed
+		# tag and namespace declaration, if any
+		if isinstance(tag, QName):
+			tag = tag.text
+		namespace_uri, tag = string.split(tag[1:], "}", 1)
+		prefix = namespaces.get(namespace_uri)
+		if prefix is None:
+			prefix = _namespace_map.get(namespace_uri)
+			if prefix is None:
+				prefix = "ns%d" % len(namespaces)
+			namespaces[namespace_uri] = prefix
+			if prefix == "xml":
+				xmlns = None
+			else:
+				xmlns = ("xmlns:%s" % prefix, namespace_uri)
+		else:
+			xmlns = None
+		return "%s:%s" % (prefix, tag), xmlns
+
 
 CACHE_KEY = "%s_exporter_state" % APP_URL
 EXPORT_STEPS = []
