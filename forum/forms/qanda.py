@@ -3,11 +3,9 @@ from datetime import date
 from django import forms
 from forum.models import *
 from django.utils.translation import ugettext as _
-from django.contrib.humanize.templatetags.humanize import apnumber
 
 from django.utils.encoding import smart_unicode
-from django.utils.safestring import mark_safe
-from general import NextUrlField, UserNameField, SetPasswordForm
+from general import NextUrlField, UserNameField
 
 from forum import settings
 
@@ -18,6 +16,7 @@ import logging
 class TitleField(forms.CharField):
     def __init__(self, *args, **kwargs):
         super(TitleField, self).__init__(*args, **kwargs)
+
         self.required = True
         self.max_length = 255
         self.widget = forms.TextInput(attrs={'size' : 70, 'autocomplete' : 'off', 'maxlength' : self.max_length})
@@ -26,7 +25,7 @@ class TitleField(forms.CharField):
         self.initial = ''
 
     def clean(self, value):
-        super(TitleField, self).clean(value);
+        super(TitleField, self).clean(value)
 
         if len(value) < settings.FORM_MIN_QUESTION_TITLE:
             raise forms.ValidationError(_('title must be must be at least %s characters') % settings.FORM_MIN_QUESTION_TITLE)
@@ -36,6 +35,7 @@ class TitleField(forms.CharField):
 class EditorField(forms.CharField):
     def __init__(self, *args, **kwargs):
         super(EditorField, self).__init__(*args, **kwargs)
+
         self.widget = forms.Textarea(attrs={'id':'editor'})
         self.label  = _('content')
         self.help_text = u''
@@ -49,6 +49,8 @@ class QuestionEditorField(EditorField):
 
 
     def clean(self, value):
+        super(QuestionEditorField, self).clean(value)
+
         if not bool(settings.FORM_EMPTY_QUESTION_BODY) and (len(re.sub('[ ]{2,}', ' ', value)) < settings.FORM_MIN_QUESTION_BODY):
             raise forms.ValidationError(_('question content must be at least %s characters') % settings.FORM_MIN_QUESTION_BODY)
 
@@ -60,6 +62,8 @@ class AnswerEditorField(EditorField):
         self.required = True
 
     def clean(self, value):
+        super(AnswerEditorField, self).clean(value)
+
         if len(re.sub('[ ]{2,}', ' ', value)) < settings.FORM_MIN_QUESTION_BODY:
             raise forms.ValidationError(_('answer content must be at least %s characters') % settings.FORM_MIN_QUESTION_BODY)
 
@@ -69,6 +73,7 @@ class AnswerEditorField(EditorField):
 class TagNamesField(forms.CharField):
     def __init__(self, user=None, *args, **kwargs):
         super(TagNamesField, self).__init__(*args, **kwargs)
+
         self.required = True
         self.widget = forms.TextInput(attrs={'size' : 50, 'autocomplete' : 'off'})
         self.max_length = 255
@@ -81,6 +86,8 @@ class TagNamesField(forms.CharField):
         self.user = user
 
     def clean(self, value):
+        super(TagNamesField, self).clean(value)
+
         value = super(TagNamesField, self).clean(value)
         data = value.strip().lower()
 
@@ -306,7 +313,7 @@ class EditUserForm(forms.Form):
 
     def clean_email(self):
         if self.user.email != self.cleaned_data['email']:
-            if settings.EMAIL_UNIQUE == True:
+            if settings.EMAIL_UNIQUE:
                 if 'email' in self.cleaned_data:
                     from forum.models import User
                     try:
