@@ -29,7 +29,7 @@ class NodeContent(models.Model):
         return auto_user_link(self, self._as_markdown(content, *['auto_linker']))
 
     @classmethod
-    def _as_markdown_raw(cls, content, *extensions):
+    def _as_markdown(cls, content, *extensions):
         try:
             return mark_safe(sanitize_html(markdown.markdown(content, extensions=extensions)))
         except Exception, e:
@@ -37,11 +37,6 @@ class NodeContent(models.Model):
             logging.error("Caught exception %s in markdown parser rendering %s %s:\s %s" % (
                 str(e), cls.__name__, str(e), traceback.format_exc()))
             return ''
-
-    # Replace \ with \\ to preserve backslashes during markdown processing
-    @classmethod
-    def _as_markdown(cls, content, *extensions):
-	return cls._as_markdown_raw(content.replace('\\','\\\\'), *extensions)
 
     def as_markdown(self, *extensions):
         return self._as_markdown(self.body, *extensions)

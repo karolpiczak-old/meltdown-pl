@@ -17,8 +17,7 @@ class Comment(Node):
     @property
     def comment(self):
         if settings.FORM_ALLOW_MARKDOWN_IN_COMMENTS:
-	    # Avoid doing double replacement of backslashes
-            return self._as_markdown_raw(self.body,'limitedsyntax')
+	        return self.as_markdown('limitedsyntax')
         else:
             return self.body
 
