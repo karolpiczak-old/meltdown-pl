@@ -123,7 +123,7 @@ class OpenIdAbstractAuthConsumer(AuthenticationConsumer):
             ax_schema = getattr(self, 'dataype2ax_schema', False)
 
             if ax_schema:
-                ax = AXFetchResponse.fromSuccessResponse(openid_response)
+                ax = AXFetchResponse.fromSuccessResponse(openid_response, False)
 
                 if ax:
                     axargs = ax.getExtensionArgs()
