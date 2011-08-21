@@ -398,7 +398,26 @@ def user_subscriptions(request, user, **kwargs):
 
     tab = request.GET.get('tab', "settings")
 
-    if tab == 'settings':
+    # Manage tab
+    if tab == 'manage':
+        manage_open = True
+
+        auto = request.GET.get('auto', 'True')
+        if auto == 'True':
+            show_auto = True
+            subscriptions = QuestionSubscription.objects.filter(user=user).order_by('-last_view')
+        else:
+            show_auto = False
+            subscriptions = QuestionSubscription.objects.filter(user=user, auto_subscription=False).order_by('-last_view')
+
+        return pagination.paginated(request, ('subscriptions', SubscriptionListPaginatorContext()), {
+            'subscriptions':subscriptions,
+            'view_user':user,
+            "auto":show_auto,
+            'manage_open':manage_open,
+        })
+    # Settings Tab and everything else
+    else:
         manage_open = False
         if request.method == 'POST':
             manage_open = False
@@ -421,34 +440,6 @@ def user_subscriptions(request, user, **kwargs):
             'form':form,
             'manage_open':manage_open,
         }
-
-    elif tab == 'manage':
-        manage_open = True
-
-        auto = request.GET.get('auto', 'True')
-        if auto == 'True':
-            show_auto = True
-            subscriptions = QuestionSubscription.objects.filter(user=user).order_by('-last_view')
-        else:
-            show_auto = False
-            subscriptions = QuestionSubscription.objects.filter(user=user, auto_subscription=False).order_by('-last_view')
-
-        return pagination.paginated(request, ('subscriptions', SubscriptionListPaginatorContext()), {
-            'subscriptions':subscriptions,
-            'view_user':user,
-            "auto":show_auto,
-            'manage_open':manage_open,
-        })
-
-    # else:
-        # todo: probably want to throw an error
-        # error = "error to throw"
-
-
-
-
-
-
 
 @user_view('users/preferences.html', 'preferences', _('preferences'), _('preferences'), True, tabbed=False)
 def user_preferences(request, user, **kwargs):
