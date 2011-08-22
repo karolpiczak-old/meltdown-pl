@@ -123,6 +123,13 @@ try:
 except:
     pass
 
+# Try loading Gunicorn web server
+try:
+    import gunicorn
+    INSTALLED_APPS.append('gunicorn')
+except ImportError:
+    pass
+
 if not DEBUG:
     try:
         import rosetta
