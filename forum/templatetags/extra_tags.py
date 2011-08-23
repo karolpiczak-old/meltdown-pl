@@ -107,7 +107,7 @@ def get_accept_rate(user):
         }
     # If the user has one accepted answer we'll be using singular.
     elif accepted_answers_count == 1:
-        accept_rate_number_title = _('%s has one accepted answer') % user.username
+        accept_rate_number_title = _('%s has one accepted answer') % smart_unicode(user.username)
     # This are the only options. Otherwise there are no accepted answers at all.
     else:
         accept_rate_number_title = _('%s has no accepted answers') % smart_unicode(user.username)
