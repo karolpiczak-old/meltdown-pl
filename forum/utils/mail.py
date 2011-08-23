@@ -16,6 +16,7 @@ except:
 
 from django.core.mail import DNS_NAME
 from smtplib import SMTP
+from smtplib import SMTPRecipientsRefused
 from forum import settings
 from django.template import loader, Context, Template
 from forum.utils.html import sanitize_html
@@ -28,6 +29,21 @@ def send_template_email(recipients, template, context):
     context.update(dict(recipients=recipients, settings=settings))
     t.render(Context(context))
 
+def create_connection():
+    connection = SMTP(str(settings.EMAIL_HOST), str(settings.EMAIL_PORT),
+                          local_hostname=DNS_NAME.get_fqdn())
+
+    if (bool(settings.EMAIL_USE_TLS)):
+        connection.ehlo()
+        connection.starttls()
+        connection.ehlo()
+
+    if settings.EMAIL_HOST_USER and settings.EMAIL_HOST_PASSWORD:
+        connection.login(str(settings.EMAIL_HOST_USER), str(settings.EMAIL_HOST_PASSWORD))
+
+    return connection
+
+
 def create_and_send_mail_messages(messages):
     if not settings.EMAIL_HOST:
         return
@@ -37,21 +53,15 @@ def create_and_send_mail_messages(messages):
     sender = u'%s <%s>' % (unicode(settings.APP_SHORT_NAME), unicode(settings.DEFAULT_FROM_EMAIL))
 
     try:
-        connection = SMTP(str(settings.EMAIL_HOST), str(settings.EMAIL_PORT),
-                          local_hostname=DNS_NAME.get_fqdn())
-
-        if (bool(settings.EMAIL_USE_TLS)):
-            connection.ehlo()
-            connection.starttls()
-            connection.ehlo()
-
-        if settings.EMAIL_HOST_USER and settings.EMAIL_HOST_PASSWORD:
-            connection.login(str(settings.EMAIL_HOST_USER), str(settings.EMAIL_HOST_PASSWORD))
+        connection = None
 
         if sender is None:
             sender = str(settings.DEFAULT_FROM_EMAIL)
 
         for recipient, subject, html, text, media in messages:
+	    if connection is None:
+		connection = create_connection()
+
             msgRoot = MIMEMultipart('related')
 
             msgRoot['Subject'] = Header(subject, 'utf-8')
@@ -78,8 +88,15 @@ def create_and_send_mail_messages(messages):
 
             try:
                 connection.sendmail(sender, [recipient.email], msgRoot.as_string())
+	    except SMTPRecipientsRefused, e:
+		logging.error("Email address not accepted.  Exception: %s" % e)
             except Exception, e:
                 logging.error("Couldn't send mail using the sendmail method: %s" % e)
+		try:
+		    connection.quit()
+		    connection = None
+		except Exception:
+		    connection = None
 
         try:
             connection.quit()

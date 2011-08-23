@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 import time
 
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render_to_response, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse, Http404
@@ -574,6 +575,7 @@ def node_management(request):
     'hide_menu': True
     }))
 
+@csrf_exempt
 @super_user_required
 def test_email_settings(request):
     user = request.user
