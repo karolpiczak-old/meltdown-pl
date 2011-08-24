@@ -59,8 +59,8 @@ def create_and_send_mail_messages(messages):
             sender = str(settings.DEFAULT_FROM_EMAIL)
 
         for recipient, subject, html, text, media in messages:
-	    if connection is None:
-		connection = create_connection()
+            if connection is None:
+                connection = create_connection()
 
             msgRoot = MIMEMultipart('related')
 
@@ -88,15 +88,15 @@ def create_and_send_mail_messages(messages):
 
             try:
                 connection.sendmail(sender, [recipient.email], msgRoot.as_string())
-	    except SMTPRecipientsRefused, e:
-		logging.error("Email address not accepted.  Exception: %s" % e)
+            except SMTPRecipientsRefused, e:
+                logging.error("Email address not accepted.  Exception: %s" % e)
             except Exception, e:
                 logging.error("Couldn't send mail using the sendmail method: %s" % e)
-		try:
-		    connection.quit()
-		    connection = None
-		except Exception:
-		    connection = None
+                try:
+                    connection.quit()
+                    connection = None
+                except Exception:
+                    connection = None
 
         try:
             connection.quit()
