@@ -36,7 +36,19 @@
         {% if can_view_private %}{% user_menu request.user view_user %}{% endif %}
             <table class="user-details">
                 <tr>
-                    <th colspan="2" align="left"><h3>{% trans "Registered user" %}</h3></th>
+                    <th colspan="2" align="left">
+                        <h3>
+                            {% if view_user.is_superuser %}
+                                {% trans "Administrator" %}
+                            {% else %}
+                                {% if view_user.is_staff %}
+                                    {% trans "Moderator" %}
+                                {% else %}
+                                    {% trans "Registered user" %}
+                                {% endif %}
+                            {% endif %}
+                        </h3>
+                    </th>
                 </tr>
                 {% if view_user.real_name %}
                 <tr>
