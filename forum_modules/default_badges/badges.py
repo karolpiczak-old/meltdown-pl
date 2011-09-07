@@ -320,3 +320,11 @@ class Taxonomist(AbstractBadge):
     def award_to(self, action):
         return None
 
+class ValidatedEmail(AbstractBadge):
+    type = Badge.BRONZE
+    listen_to = (EmailValidationAction,)
+    name = _("Validated Email")
+    description = _("User who has validated email associated to the account")
+
+    def award_to(self, action):
+        return action.user

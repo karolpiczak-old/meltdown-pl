@@ -14,6 +14,7 @@ from django.contrib.auth import login, logout
 
 from writers import manage_pending_data
 
+from forum.actions import EmailValidationAction
 from forum.utils import html
 from forum.views.decorators import login_required
 from forum.modules import decorate
@@ -296,8 +297,7 @@ def validate_email(request, user, code):
     user = get_object_or_404(User, id=user)
 
     if (ValidationHash.objects.validate(code, user, 'email', [user.email])):
-        user.email_isvalid = True
-        user.save()
+        EmailValidationAction(user=user, ip=request.META['REMOTE_ADDR']).save()
         return login_and_forward(request, user, reverse('index'), _("Thank you, your email is now validated."))
     else:
         return render_to_response('auth/mail_already_validated.html', { 'user' : user }, RequestContext(request))
