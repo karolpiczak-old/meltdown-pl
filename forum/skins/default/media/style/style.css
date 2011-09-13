@@ -820,6 +820,29 @@ div.question-body p, div.answer-body p {
     color: #333333;
 }
 
+#medalList .badgeListDescription {
+    float: left;
+    margin-top: 8px;
+    max-width: 60%;
+}
+
+#medalList .badgeListItem {
+    float: left;
+    width: 32%;
+}
+
+#medalList .intoMyBadges span {
+    font-size: 175%;
+    padding-right: 5px;
+    color: #5B9058;
+}
+#medalList .intoMyBadges {
+    float: left;
+    min-width: 5%;
+    text-align: right;
+    height:30px;
+}
+
 .list-item {
     margin-left: 15px;
 }
