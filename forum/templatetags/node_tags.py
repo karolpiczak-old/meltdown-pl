@@ -7,6 +7,7 @@ from django.utils.translation import ungettext, ugettext as _
 from django.utils.html import strip_tags
 from django.utils.encoding import smart_unicode
 from django.utils.safestring import mark_safe
+from django.conf import settings as django_settings
 from django.core.urlresolvers import reverse
 from django import template
 from forum.actions import *
@@ -81,7 +82,13 @@ def post_control(text, url, command=False, withprompt=False, confirm=False, titl
         (copy and " copy" or " ")
     return {'text': text, 'url': url, 'classes': classes, 'title': title}
 
-@register.inclusion_tag('node/post_controls.html')
+
+moderation_enabled = False
+for m in django_settings.MODULE_LIST:
+    if m.__name__.endswith('moderation'):
+        moderation_enabled = True
+
+@register.inclusion_tag('node/post_controls.html' if not moderation_enabled else "modules/moderation/node/post_controls.html")
 def post_controls(post, user):
     controls = []
     menu = []
