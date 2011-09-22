@@ -86,6 +86,13 @@ def get_accept_rate(user):
     if not settings.SHOW_USER_ACCEPT_RATE:
         return ""
 
+    # Freeze accept rate for users
+    freeze_accept_rate_for_users_users = settings.FREEZE_ACCEPT_RATE_FOR.value
+    if user.username in list(freeze_accept_rate_for_users_users):
+        freeze = True
+    else:
+        freeze = False
+
     # We get the number of all user's answers.
     total_answers_count = Answer.objects.filter(author=user).count()
 
@@ -110,7 +117,10 @@ def get_accept_rate(user):
         accept_rate_number_title = _('%s has one accepted answer') % smart_unicode(user.username)
     # This are the only options. Otherwise there are no accepted answers at all.
     else:
-        accept_rate_number_title = _('%s has no accepted answers') % smart_unicode(user.username)
+        if freeze:
+            accept_rate_number_title = ""
+        else:
+            accept_rate_number_title = _('%s has no accepted answers') % smart_unicode(user.username)
 
     html_output = """
     <span title="%(accept_rate_title)s" class="accept_rate">%(accept_rate_label)s:</span>
@@ -118,7 +128,7 @@ def get_accept_rate(user):
     """ % {
         'accept_rate_label' : _('accept rate'),
         'accept_rate_title' : _('Rate of the user\'s accepted answers'),
-        'accept_rate' : int(accept_rate),
+        'accept_rate' : 100 if freeze else int(accept_rate),
         'accept_rate_number_title' : u'%s' % accept_rate_number_title,
     }
 

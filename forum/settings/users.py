@@ -1,4 +1,4 @@
-from forms import CommaStringListWidget
+from forms import CommaStringListWidget, StringListWidget
 from django.forms import CheckboxSelectMultiple
 from django.forms.widgets import RadioSelect
 from base import Setting, SettingSet
@@ -42,6 +42,13 @@ SHOW_USER_ACCEPT_RATE = Setting('SHOW_USER_ACCEPT_RATE', True, USERS_SET, dict(
 label = _("Show user accept rate"),
 help_text = _("If you check this the user accept rate will be displayed on the user posts."),
 required=False))
+
+FREEZE_ACCEPT_RATE_FOR = Setting('FREEZE_ACCEPT_RATE_FOR',
+["admin",],
+USERS_SET, dict(
+label = _("Freeze accept rate"),
+help_text = _("Freeze answers accept rate for the selected users."),
+widget=StringListWidget))
 
 TRUNCATE_USERNAMES_LONGER_THAN = Setting('TRUNCATE_USERNAMES_LONGER_THAN', 15, USERS_SET, dict(
 label = _("Truncate usernames longer than"),
