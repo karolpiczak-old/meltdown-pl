@@ -331,7 +331,8 @@ function process_ajax_response(data, evt, callback) {
     if (!data.success && data['error_message'] != undefined) {
         show_message(evt, data.error_message, function() {if (callback) callback(true);});
         end_command(false);
-    } else if (typeof data['commands'] != undefined){
+    }
+    if (typeof data['commands'] != undefined){
         for (var command in data.commands) {
             response_commands[command].apply(null, data.commands[command])
 
