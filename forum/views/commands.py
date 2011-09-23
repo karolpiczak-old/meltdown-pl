@@ -20,12 +20,23 @@ from forum import settings
 from decorators import command, CommandException, RefreshPageCommand
 
 class NotEnoughRepPointsException(CommandException):
-    def __init__(self, action):
-        super(NotEnoughRepPointsException, self).__init__(
-                _(
-                        """Sorry, but you don't have enough reputation points to %(action)s.<br />Please check the <a href='%(faq_url)s'>faq</a>"""
-                        ) % {'action': action, 'faq_url': reverse('faq')}
-                )
+    def __init__(self, action, user_reputation=None, reputation_required=None):
+        if reputation_required is not None and user_reputation is not None:
+            message = _(
+                """Sorry, but you don't have enough reputation points to %(action)s.<br />
+                The minimum reputation required is %(reputation_required)d (yours is %(user_reputation)d).
+                Please check the <a href='%(faq_url)s'>FAQ</a>"""
+            ) % {
+                'action': action,
+                'faq_url': reverse('faq'),
+                'reputation_required' : reputation_required,
+                'user_reputation' : user_reputation,
+            }
+        else:
+            message = _(
+                """Sorry, but you don't have enough reputation points to %(action)s.<br />Please check the <a href='%(faq_url)s'>faq</a>"""
+            ) % {'action': action, 'faq_url': reverse('faq')}
+        super(NotEnoughRepPointsException, self).__init__(message)
 
 class CannotDoOnOwnException(CommandException):
     def __init__(self, action):
@@ -72,7 +83,9 @@ def vote_post(request, id, vote_type):
         raise CannotDoOnOwnException(_('vote'))
 
     if not (vote_type == 'up' and user.can_vote_up() or user.can_vote_down()):
-        raise NotEnoughRepPointsException(vote_type == 'up' and _('upvote') or _('downvote'))
+        reputation_required = int(settings.REP_TO_VOTE_UP) if vote_type == 'up' else int(settings.REP_TO_VOTE_DOWN)
+        action_type = vote_type == 'up' and _('upvote') or _('downvote')
+        raise NotEnoughRepPointsException(action_type, user_reputation=user.reputation, reputation_required=reputation_required)
 
     user_vote_count_today = user.get_vote_count_today()
     user_can_vote_count_today = user.can_vote_count_today()
