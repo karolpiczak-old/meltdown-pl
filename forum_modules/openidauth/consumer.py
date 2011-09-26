@@ -1,5 +1,8 @@
+# -*- coding: utf-8 -*-
+
 import re
 
+from django.utils.encoding import smart_unicode
 from django.utils.html import escape
 from django.http import get_host
 
@@ -41,7 +44,7 @@ class OpenIdAbstractAuthConsumer(AuthenticationConsumer):
 
     def prepare_authentication_request(self, request, redirect_to):
         if not redirect_to.startswith('http://') or redirect_to.startswith('https://'):
-		    redirect_to =  get_url_host(request) + redirect_to
+            redirect_to =  get_url_host(request) + redirect_to
 
         user_url = self.get_user_url(request)
 
@@ -78,9 +81,9 @@ class OpenIdAbstractAuthConsumer(AuthenticationConsumer):
             axr = AXFetchRequest()
             for data_type, schema in ax_schema.items():
                 if isinstance(schema, tuple):
-                    axr.add(AttrInfo(schema[0], 1, True, schema[1]))
+                    axr.add(AttrInfo(schema[0], required=True, alias=schema[1]))
                 else:
-                    axr.add(AttrInfo(schema, 1, True, data_type))
+                    axr.add(AttrInfo(schema, required=True, alias=data_type))
 
             auth_request.addExtension(axr)
 
@@ -94,7 +97,7 @@ class OpenIdAbstractAuthConsumer(AuthenticationConsumer):
         consumer = Consumer(request.session, OsqaOpenIDStore())
 
         query_dict = dict([
-            (k.encode('utf8'), v.encode('utf8')) for k, v in request.GET.items()
+            (smart_unicode(k), smart_unicode(v)) for k, v in request.GET.items()
         ])
 
         #for i in query_dict.items():
