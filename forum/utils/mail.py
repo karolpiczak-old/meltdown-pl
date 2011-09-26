@@ -94,12 +94,15 @@ def create_and_send_mail_messages(messages):
                 logging.error("Couldn't send mail using the sendmail method: %s" % e)
                 try:
                     connection.quit()
-                    connection = None
-                except Exception:
+                except Exception, e:
+                    logging.error(e)
+                finally:
                     connection = None
 
         try:
             connection.quit()
+        except AttributeError:
+            pass
         except socket.sslerror:
             connection.close()
     except Exception, e:
