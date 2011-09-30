@@ -1,6 +1,10 @@
+import forum
+
 from forum.settings import MAINTAINANCE_MODE, APP_LOGO, APP_TITLE
 
 from forum.http_responses import HttpResponseServiceUnavailable
+
+
 
 class RequestUtils(object):
     def process_request(self, request):
@@ -15,4 +19,10 @@ class RequestUtils(object):
             request.META['REQUEST_METHOD'] = "POST"
 
         self.request = request
+        forum.REQUEST_HOLDER.request = request
         return None
+
+    def process_response(selfself, request, response):
+        forum.REQUEST_HOLDER.request = None
+        return response
+
