@@ -1781,13 +1781,14 @@ div.dialog .dialog-buttons {
 }
 
 .dialog-yes, .dialog-no {
+    padding: 0px 5px;
     margin: 0 3px 5px 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     background-color: #3060A8;
     color: white;
-    height: 20px;
     line-height: 20px;
+    vertical-align: baseline;
     font-weight: bold;
     border: 0;
 }
