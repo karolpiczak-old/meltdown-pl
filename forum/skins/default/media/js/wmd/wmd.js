@@ -1134,10 +1134,10 @@ Attacklab.wmdBase = function(){
 			helpAnchor.href = helpLink;
 			helpAnchor.target = helpTarget
 			helpAnchor.title = helpHoverTitle;
-			helpButton.appendChild(helpAnchor);
+			//helpButton.appendChild(helpAnchor);
 			
-			setupButton(helpButton, true);
-			buttonRow.appendChild(helpButton);
+			//setupButton(helpButton, true);
+			//buttonRow.appendChild(helpButton);
 			
 			setUndoRedoButtonStates();
 		}
