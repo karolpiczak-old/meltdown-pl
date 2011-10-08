@@ -6,6 +6,7 @@ except:
     old_version = True
 
 from django.http import HttpResponse
+from django.utils.encoding import smart_unicode
 from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
 from models import Question
@@ -83,7 +84,11 @@ class RssAnswerFeed(BaseNodeFeed):
         title_template = "feeds/rss_answer_title.html"
 
     def __init__(self, request, question, include_comments=False):
-        super(RssAnswerFeed, self).__init__(request, _("Answers to: %s") % question.title, question.html, question.get_absolute_url())
+        super(RssAnswerFeed, self).__init__(
+            request, _("Answers to: %s") % smart_unicode(question.title),
+            question.html,
+            question.get_absolute_url()
+        )
         self._question = question
         self._include_comments = include_comments
 
@@ -97,12 +102,10 @@ class RssAnswerFeed(BaseNodeFeed):
 
     def item_title(self, item):
         if item.node_type == "answer":
-            return _("Answer by %s") % item.author.username
+            return _("Answer by %s") % smart_unicode(item.author.username)
         else:
             return _("Comment by %(cauthor)s on %(pauthor)s's %(qora)s") % dict(
-                cauthor=item.author.username, pauthor=item.parent.author.username, qora=(item.parent.node_type == "answer" and _("answer") or _("question"))
+                cauthor=smart_unicode(item.author.username),
+                pauthor=smart_unicode(item.parent.author.username),
+                qora=(item.parent.node_type == "answer" and _("answer") or _("question"))
             )
-
-
-
-
