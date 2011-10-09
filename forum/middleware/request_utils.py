@@ -22,7 +22,7 @@ class RequestUtils(object):
         forum.REQUEST_HOLDER.request = request
         return None
 
-    def process_response(selfself, request, response):
+    def process_response(self, request, response):
         forum.REQUEST_HOLDER.request = None
         return response
 
