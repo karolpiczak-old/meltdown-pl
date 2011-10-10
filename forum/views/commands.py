@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from django.utils import simplejson
 from django.utils.encoding import smart_unicode
 from django.utils.translation import ungettext, ugettext as _
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404, render_to_response
 
 from forum.models import *
@@ -338,6 +338,11 @@ def accept_answer(request, id):
 
 
         AcceptAnswerAction(node=answer, user=user, ip=request.META['REMOTE_ADDR']).save()
+
+        # If the request is not an AJAX redirect to the answer URL rather than to the home page
+        if not request.is_ajax():
+            return HttpResponseRedirect(answer.get_absolute_url())
+
         commands['mark_accepted'] = [answer.id]
 
     return {'commands': commands}
