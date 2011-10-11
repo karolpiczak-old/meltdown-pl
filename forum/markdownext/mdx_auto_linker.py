@@ -34,6 +34,8 @@ AUTO_LINK_RE = re.compile(r"""
 
 """, re.X | re.I)
 
+EMAIL_LINK_REPLACE_RE = re.compile("(?<= href=\")[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})(?=\")")
+
 def is_ip(addr):
     try:
         socket.inet_aton(addr)
@@ -45,7 +47,7 @@ def replacer(m):
 
     ws = m.group('ws')
 
-    if ws and ws[0] in ("'", '"'):
+    if ws and ws[0] in ("'", '"', "@"):
         return m.group(0)
 
     elif not ws:
@@ -62,7 +64,7 @@ def replacer(m):
     if not protocol:
         domain_chunks = domain.split('.')
 
-        if not ((len(domain_chunks) == 1 and domain_chunks[0].lower() == 'localhost') or (domain_chunks[-1].lower() in TLDS)):
+        if not (len(domain_chunks) == 1 and domain_chunks[0].lower() == 'localhost') or (domain_chunks[-1].lower() in TLDS):
             return m.group(0)
 
     if (not protocol) and is_ip(domain):
@@ -92,7 +94,10 @@ def replacer(m):
 class AutoLinker(markdown.postprocessors.Postprocessor):
 
     def run(self, text):
-        return AUTO_LINK_RE.sub(replacer, text)
+        text = AUTO_LINK_RE.sub(replacer, text)
+        text = EMAIL_LINK_REPLACE_RE.sub(lambda m: "mailto:%s" % m.group(0), text)
+
+        return text
 
 class AutoLinkerExtension(markdown.Extension):
 
