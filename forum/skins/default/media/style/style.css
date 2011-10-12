@@ -1694,7 +1694,8 @@ div.comment-tools a:hover {
 
 .comment-form-buttons input {
     width: 100%;
-    height: 22px;
+    height: auto;
+    padding: 2px 0 4px 0;
     vertical-align: middle;
     margin-top: 6px;
 }
