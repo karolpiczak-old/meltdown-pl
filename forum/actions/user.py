@@ -46,7 +46,7 @@ class EmailValidationAction(ActionProxy):
         return _("%(user)s %(have_has)s validated the e-mail %(email)s") % {
         'user': self.hyperlink(self.user.get_profile_url(), self.friendly_username(viewer, self.user)),
         'have_has': self.viewer_or_user_verb(viewer, self.user, _('have'), _('has')),
-        'email' : self.user.email
+        'email' : self.user.email if viewer.is_superuser or viewer.is_staff or viewer == self.user else ""
         }
 
 class EditProfileAction(ActionProxy):
