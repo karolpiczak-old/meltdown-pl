@@ -3,6 +3,8 @@
 import datetime
 import logging
 
+from urllib import urlencode
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.utils import simplejson
@@ -341,7 +343,17 @@ def accept_answer(request, id):
 
         # If the request is not an AJAX redirect to the answer URL rather than to the home page
         if not request.is_ajax():
-            return HttpResponseRedirect(answer.get_absolute_url())
+            msg = _("""
+              Congratulations! You've accepted an answer.
+            """)
+
+            # Notify the user with a message that an answer has been accepted
+            request.user.message_set.create(message=msg)
+
+            # Redirect URL should include additional get parameters that might have been attached
+            redirect_url = answer.parent.get_absolute_url() + "?accepted_answer=true&%s" % smart_unicode(urlencode(request.GET))
+
+            return HttpResponseRedirect(redirect_url)
 
         commands['mark_accepted'] = [answer.id]
 
