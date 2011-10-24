@@ -284,6 +284,7 @@ def comment(request, id):
                 reverse('node_markdown', kwargs={'id': comment.id}),
                 reverse('convert_comment', kwargs={'id': comment.id}),
                 user.can_convert_comment_to_answer(comment),
+                bool(settings.SHOW_LATEST_COMMENTS_FIRST)
                 ]
         }
         }
