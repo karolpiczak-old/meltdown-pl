@@ -98,7 +98,7 @@
         <span class="comments-showing">
             {% blocktrans %}showing {{ showing }} of {{ total }}{% endblocktrans %}
         </span>
-        <a href="#" class="show-all-comments-link">{% trans "show all" %}</a>
+        <a href="#" class="show-all-comments-link">{% blocktrans %}show {{ more_comments_count }} more comments{% endblocktrans %}</a>
     {% endifnotequal %}
     {% if can_comment %}
         <a href="#" class="add-comment-link">{% trans "add new comment" %}</a>

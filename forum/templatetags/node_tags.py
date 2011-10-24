@@ -221,6 +221,7 @@ def comments(post, user):
         })
         canned_comments.append(t.render(c))
 
+    total = len(all_comments)
     return {
         'comments': comments,
         'canned_comments': canned_comments,
@@ -230,7 +231,8 @@ def comments(post, user):
         'min_length': settings.FORM_MIN_COMMENT_BODY,
         'show_gravatar': settings.FORM_GRAVATAR_IN_COMMENTS,
         'showing': showing,
-        'total': len(all_comments),
+        'total': total,
+        'more_comments_count' : int(total - showing),
         'user': user,
     }
 
