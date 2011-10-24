@@ -182,7 +182,7 @@ def post_controls(post, user):
 
 @register.inclusion_tag('node/comments.html')
 def comments(post, user):
-    all_comments = post.comments.filter_state(deleted=False).order_by('added_at')
+    all_comments = post.comments.filter_state(deleted=False).order_by('-added_at')
 
     if len(all_comments) <= 5:
         top_scorers = all_comments

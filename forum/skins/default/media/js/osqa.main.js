@@ -116,7 +116,7 @@ var response_commands = {
                 .replace(new RegExp('%EDIT_URL%', 'g'), edit_url)
                 .replace(new RegExp('%CONVERT_URL%', 'g'), convert_url);
 
-        $container.append(skeleton);
+        $container.prepend(skeleton);
 
         // Show the convert comment to answer tool only if the current comment can be converted
         if (can_convert == true) {

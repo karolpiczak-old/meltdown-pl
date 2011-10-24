@@ -1600,6 +1600,7 @@ img.subscription-remove {
 .comment-form-container {
     display: none;
     padding-top: 12px;
+    margin-bottom: 8px;
 }
 
 .comment-form-widgets-container input {
@@ -1621,6 +1622,15 @@ div.comment-tools {
     border-top: 1px dotted #CCCCCE;
     padding-top: 12px;
     text-align: right;
+}
+
+div.comment-tools span.comment-tools-separator {
+    float: left;
+    display: block;
+    line-height: 17px;
+    color: #ccc;
+    font-size: 15px;
+    margin-left: 1px;
 }
 
 div.comment-tools .comments-showing {
