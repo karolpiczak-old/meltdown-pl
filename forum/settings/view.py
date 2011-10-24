@@ -9,6 +9,12 @@ label = _("Embed YouTube Videos"),
 help_text = _("If you check this YouTube videos will be embedded"),
 required=False))
 
+SHOW_LATEST_COMMENTS_FIRST = Setting('SHOW_LATEST_COMMENTS_FIRST', False, VIEW_SET, dict(
+label = _("Show latest comments first"),
+help_text = _("Choose this if you want the latest comments to appear first."),
+required=False))
+
+
 SUMMARY_LENGTH = Setting('SUMMARY_LENGTH', 300, VIEW_SET, dict(
 label = _("Summary Length"),
 help_text = _("The number of characters that are going to be displayed in order to get the content summary.")))

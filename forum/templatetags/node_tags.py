@@ -182,7 +182,8 @@ def post_controls(post, user):
 
 @register.inclusion_tag('node/comments.html')
 def comments(post, user):
-    all_comments = post.comments.filter_state(deleted=False).order_by('-added_at')
+    all_comments = post.comments.filter_state(deleted=False)\
+                                .order_by('-added_at' if settings.SHOW_LATEST_COMMENTS_FIRST else 'added_at')
 
     if len(all_comments) <= 5:
         top_scorers = all_comments
@@ -233,6 +234,7 @@ def comments(post, user):
         'showing': showing,
         'total': total,
         'more_comments_count' : int(total - showing),
+        'show_latest_comments_first' : settings.SHOW_LATEST_COMMENTS_FIRST,
         'user': user,
     }
 
