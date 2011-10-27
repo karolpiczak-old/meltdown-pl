@@ -22,7 +22,7 @@ from forum import settings
 from decorators import command, CommandException, RefreshPageCommand
 
 class NotEnoughRepPointsException(CommandException):
-    def __init__(self, action, user_reputation=None, reputation_required=None):
+    def __init__(self, action, user_reputation=None, reputation_required=None, node=None):
         if reputation_required is not None and user_reputation is not None:
             message = _(
                 """Sorry, but you don't have enough reputation points to %(action)s.<br />
@@ -87,7 +87,7 @@ def vote_post(request, id, vote_type):
     if not (vote_type == 'up' and user.can_vote_up() or user.can_vote_down()):
         reputation_required = int(settings.REP_TO_VOTE_UP) if vote_type == 'up' else int(settings.REP_TO_VOTE_DOWN)
         action_type = vote_type == 'up' and _('upvote') or _('downvote')
-        raise NotEnoughRepPointsException(action_type, user_reputation=user.reputation, reputation_required=reputation_required)
+        raise NotEnoughRepPointsException(action_type, user_reputation=user.reputation, reputation_required=reputation_required, node=post)
 
     user_vote_count_today = user.get_vote_count_today()
     user_can_vote_count_today = user.can_vote_count_today()
@@ -178,7 +178,7 @@ def like_comment(request, id):
         raise CannotDoOnOwnException(_('like'))
 
     if not user.can_like_comment(comment):
-        raise NotEnoughRepPointsException( _('like comments'))
+        raise NotEnoughRepPointsException( _('like comments'), node=comment)
 
     like = VoteAction.get_action_for(node=comment, user=user)
 

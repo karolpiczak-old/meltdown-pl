@@ -2,6 +2,7 @@
 
 import datetime
 import logging
+import urllib
 
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
@@ -287,7 +288,12 @@ def send_validation_email(request):
         # We don't care if there are previous cashes in the database... In every case we have to create a new one
         hash = ValidationHash.objects.create_new(request.user, 'email', [request.user.email])
 
-        send_template_email([request.user], "auth/mail_validation.html", {'validation_code': hash})
+        additional_get_params = urllib.urlencode(request.GET)
+        send_template_email([request.user], "auth/mail_validation.html", {
+            'validation_code': hash,
+            'additional_get_params' : additional_get_params
+        })
+
         request.user.message_set.create(message=_("A message with an email validation link was just sent to your address."))
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
@@ -400,7 +406,8 @@ def login_and_forward(request, user, forward=None, message=None):
         else:
             return manage_pending_data(request, _('save'), forward)
 
-    return HttpResponseRedirect(forward)
+    additional_get_params = urllib.urlencode(request.GET)
+    return HttpResponseRedirect(forward + "?%s" % additional_get_params)
 
 def forward_suspended_user(request, user, show_private_msg=True):
     message = _("Sorry, but this account is suspended")
