@@ -223,54 +223,60 @@ def _paginated(request, objects, context):
     total_pages = paginator.num_pages
 
     if total_pages > 1:
-        def page_nums():
-            total_pages = paginator.num_pages
 
-            has_previous = page > 1
-            has_next = page < total_pages
+        total_pages = paginator.num_pages
 
-            range_start = page - context.visible_page_range / 2
-            range_end = page + context.visible_page_range / 2
+        has_previous = page > 1
+        has_next = page < total_pages
 
+        range_start = page - context.visible_page_range / 2
+        range_end = page + context.visible_page_range / 2
+
+        if range_start < 1:
+            range_end = context.visible_page_range
+            range_start = 1
+
+        if range_end > total_pages:
+            range_start = total_pages - context.visible_page_range + 1
+            range_end = total_pages
             if range_start < 1:
-                range_end = context.visible_page_range
                 range_start = 1
 
-            if range_end > total_pages:
-                range_start = total_pages - context.visible_page_range + 1
-                range_end = total_pages
-                if range_start < 1:
-                    range_start = 1
+        page_numbers = []
 
-            page_numbers = []
+        if sort:
+            url_builder = lambda n: mark_safe("%s%s%s=%s&amp;%s=%s" % (escape(base_path), url_joiner, context.SORT, sort, context.PAGE, n))
+        else:
+            url_builder = lambda n: mark_safe("%s%s%s=%s" % (escape(base_path), url_joiner, context.PAGE, n))
 
-            if sort:
-                url_builder = lambda n: mark_safe("%s%s%s=%s&amp;%s=%s" % (escape(base_path), url_joiner, context.SORT, sort, context.PAGE, n))
-            else:
-                url_builder = lambda n: mark_safe("%s%s%s=%s" % (escape(base_path), url_joiner, context.PAGE, n))
+        if range_start > (context.outside_page_range + 1):
+            page_numbers.append([(n, url_builder(n)) for n in range(1, context.outside_page_range + 1)])
+            page_numbers.append(None)
+        elif range_start > 1:
+            page_numbers.append([(n, url_builder(n)) for n in range(1, range_start)])
 
-            if range_start > (context.outside_page_range + 1):
-                page_numbers.append([(n, url_builder(n)) for n in range(1, context.outside_page_range + 1)])
-                page_numbers.append(None)
-            elif range_start > 1:
-                page_numbers.append([(n, url_builder(n)) for n in range(1, range_start)])
+        page_numbers.append([(n, url_builder(n)) for n in range(range_start, range_end + 1)])
 
-            page_numbers.append([(n, url_builder(n)) for n in range(range_start, range_end + 1)])
+        if range_end < (total_pages - context.outside_page_range):
+            page_numbers.append(None)
+            page_numbers.append([(n, url_builder(n)) for n in range(total_pages - context.outside_page_range + 1, total_pages + 1)])
+        elif range_end < total_pages:
+            page_numbers.append([(n, url_builder(n)) for n in range(range_end + 1, total_pages + 1)])
 
-            if range_end < (total_pages - context.outside_page_range):
-                page_numbers.append(None)
-                page_numbers.append([(n, url_builder(n)) for n in range(total_pages - context.outside_page_range + 1, total_pages + 1)])
-            elif range_end < total_pages:
-                page_numbers.append([(n, url_builder(n)) for n in range(range_end + 1, total_pages + 1)])
+        page_numbers_context = {
+            'has_previous': has_previous,
+            'previous_url': has_previous and url_builder(page - 1) or None,
+            'has_next': has_next,
+            'next_url': has_next and url_builder(page + 1) or None,
+            'current': page,
+            'page_numbers': page_numbers
+        }
 
-            return page_numbers_template.render(template.Context({
-                'has_previous': has_previous,
-                'previous_url': has_previous and url_builder(page - 1) or None,
-                'has_next': has_next,
-                'next_url': has_next and url_builder(page + 1) or None,
-                'current': page,
-                'page_numbers': page_numbers
-            }))
+        paginator.page_numbers_context = page_numbers_context
+
+        def page_nums():
+            return page_numbers_template.render(template.Context(page_numbers_context))
+
         paginator.page_numbers = page_nums
     else:
         paginator.page_numbers = ''
