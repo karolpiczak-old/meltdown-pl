@@ -27,6 +27,9 @@ class Question(Node):
 
     @property
     def headline(self):
+        return self._headline()
+
+    def _headline(self):
         if self.nis.deleted:
             return _('[deleted] ') + self.title
 
