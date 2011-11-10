@@ -1,6 +1,8 @@
 import datetime
 from base import *
 
+from django.conf import settings as django_settings
+from django.core.cache.backends.base import BaseCache
 from django.utils.translation import ugettext as _
 from django.utils.encoding import smart_unicode, force_unicode
 
@@ -45,7 +47,12 @@ class Tag(BaseModel):
     @classmethod
     def infer_cache_key(cls, querydict):
         if 'name' in querydict:
-            return cls._generate_cache_key(cls.safe_cache_name(querydict['name']))
+            cache_key = cls._generate_cache_key(cls.safe_cache_name(querydict['name']))
+
+            if len(cache_key) > django_settings.CACHE_MAX_KEY_LENGTH:
+                cache_key = cache_key[:django_settings.CACHE_MAX_KEY_LENGTH]
+
+            return cache_key
 
         return None
 

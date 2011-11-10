@@ -7,6 +7,8 @@ SITE_ID = 1
 ADMIN_MEDIA_PREFIX = '/admin_media/'
 SECRET_KEY = '$oo^&_m&qwbib=(_4m_n*zn-d=g#s0he5fx9xonnym#8p6yigm'
 
+CACHE_MAX_KEY_LENGTH = 235
+
 TEMPLATE_LOADERS = [
     'django.template.loaders.filesystem.load_template_source',
     'django.template.loaders.app_directories.load_template_source',

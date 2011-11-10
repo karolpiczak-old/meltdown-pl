@@ -1,5 +1,6 @@
 from base import *
 from utils import PickledObjectField
+from django.conf import settings as django_settings
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User as DjangoUser, AnonymousUser as DjangoAnonymousUser
@@ -462,7 +463,10 @@ class UserProperty(BaseModel):
     @classmethod
     def infer_cache_key(cls, querydict):
         if 'user' in querydict and 'key' in querydict:
-            return cls._generate_cache_key("%s:%s" % (querydict['user'].id, querydict['key']))
+            cache_key = cls._generate_cache_key("%s:%s" % (querydict['user'].id, querydict['key']))
+            if len(cache_key) > django_settings.CACHE_MAX_KEY_LENGTH:
+                cache_key = cache_key[:django_settings.CACHE_MAX_KEY_LENGTH]
+            return cache_key
 
         return None
 

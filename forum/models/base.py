@@ -8,6 +8,7 @@ from urllib import quote_plus, urlencode
 from django.db import models, IntegrityError, connection, transaction
 from django.utils.http import urlquote  as django_urlquote
 from django.utils.html import strip_tags
+from django.conf import settings as django_settings
 from django.core.urlresolvers import reverse
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
@@ -323,7 +324,12 @@ class BaseModel(models.Model):
             pk = [v for (k,v) in querydict.items() if k in ('pk', 'pk__exact', 'id', 'id__exact'
                             ) or k.endswith('_ptr__pk') or k.endswith('_ptr__id')][0]
 
-            return cls._generate_cache_key(pk)
+            cache_key = cls._generate_cache_key(pk)
+
+            if len(cache_key) > django_settings.CACHE_MAX_KEY_LENGTH:
+                cache_key = cache_key[:django_settings.CACHE_MAX_KEY_LENGTH]
+
+            return cache_key
         except:
             return None
 
