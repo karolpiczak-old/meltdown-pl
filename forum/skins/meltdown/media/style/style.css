@@ -1142,9 +1142,9 @@ a.medal:hover {
   border-style: solid;
   border-width: 0px 0px 1px 0px;
   clear: both;
-  font-size: 17px;
-  line-height: 17px;
-  margin: 10px 0 20px;
+  font-size: 18px;
+  line-height: 18px;
+  margin: 5px 0 5px;
   padding: 10px 0 10px 60px;
   vertical-align: bottom;
 }
@@ -1157,11 +1157,11 @@ a.medal:hover {
   background: url("../images/h2.png") no-repeat scroll 15px center transparent;
   border-color: #E5E5E5 #DCEDF7;
   border-style: solid;
-  border-width: 0px 0px 1px 0px;
+  border-width: 0px 0px 0px 0px;
   clear: both;
   font-size: 16px;
   line-height: 16px;
-  margin: 10px 0 20px;
+  margin: 0px 0 0px;
   padding: 10px 0 10px 60px;
   vertical-align: bottom;
 }
@@ -1174,11 +1174,11 @@ a.medal:hover {
   background: url("../images/h3.png") no-repeat scroll 15px center transparent;
   border-color: #E5E5E5 #DCEDF7;
   border-style: solid;
-  border-width: 0px 0px 1px 0px;
+  border-width: 0px 0px 0px 0px;
   clear: both;
-  font-size: 15px;
-  line-height: 15px;
-  margin: 10px 0 20px;
+  font-size: 14px;
+  line-height: 14px;
+  margin: 0px 0 0px;
   padding: 10px 0 10px 60px;
   vertical-align: bottom;
 }
