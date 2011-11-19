@@ -172,7 +172,8 @@ def question_list(request, initial,
                   feed_url=None,
                   paginator_context=None,
                   feed_sort=('-added_at',),
-                  feed_req_params_exclude=(_('page'), _('pagesize'), _('sort'))):
+                  feed_req_params_exclude=(_('page'), _('pagesize'), _('sort')),
+                  extra_context={}):
 
     questions = initial.filter_state(deleted=False)
 
@@ -212,6 +213,7 @@ def question_list(request, initial,
         'tab' : 'questions',
         'feed_url': feed_url,
     }
+    context.update(extra_context)
 
     return pagination.paginated(request,
                                ('questions', paginator_context or QuestionListPaginatorContext()), context)
