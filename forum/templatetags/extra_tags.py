@@ -47,6 +47,9 @@ def gravatar(user, size):
 
 @register.simple_tag
 def get_score_badge(user):
+    return _get_score_badge(user)
+
+def _get_score_badge(user):
     if user.is_suspended():
         return _("(suspended)")
 
