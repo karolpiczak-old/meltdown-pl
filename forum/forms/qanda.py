@@ -158,6 +158,17 @@ class FeedbackForm(forms.Form):
             self.fields['name'] = forms.CharField(label=_('Your name:'), required=False)
             self.fields['email'] = forms.EmailField(label=_('Email (not shared with anyone):'), required=True)
 
+        # Create anti spam fields
+        spam_fields = call_all_handlers('create_anti_spam_field')
+        if spam_fields:
+            spam_fields = dict(spam_fields)
+            for name, field in spam_fields.items():
+                self.fields[name] = field
+
+            self._anti_spam_fields = spam_fields.keys()
+        else:
+            self._anti_spam_fields = []
+
 
 
 class AskForm(forms.Form):
