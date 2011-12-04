@@ -28,6 +28,8 @@ class AskAction(NodeEditAction):
         question.save()
         self.node = question
 
+        self.user.message_set.create(message=self.describe(self.user))
+
     def describe(self, viewer=None):
         return _("%(user)s asked %(question)s") % {
             'user': self.hyperlink(self.user.get_profile_url(), self.friendly_username(viewer, self.user)),
@@ -44,6 +46,9 @@ class AnswerAction(NodeEditAction):
 
     def process_action(self):
         self.node.question.reset_answer_count_cache()
+
+        self.user.message_set.create(message=self.describe(self.user))
+
 
     def describe(self, viewer=None):
         question = self.node.parent
