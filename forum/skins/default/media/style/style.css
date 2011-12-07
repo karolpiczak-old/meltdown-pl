@@ -795,6 +795,10 @@ div.question-body p, div.answer-body p {
     color: #6B2B28;
 }
 
+.focusedAnswer {
+    background: #FFFFCC;
+}
+
 .tagsList {
     list-style-type: none;
     margin: 0;

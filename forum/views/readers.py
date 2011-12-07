@@ -324,8 +324,8 @@ def answer_redirect(request, answer):
     if page == 0:
         page = 1
 
-    return HttpResponsePermanentRedirect("%s?%s=%s#%s" % (
-        answer.question.get_absolute_url(), _('page'), page, answer.id))
+    return HttpResponseRedirect("%s?%s=%s&focusedAnswerId=%s#%s" % (
+        answer.question.get_absolute_url(), _('page'), page, answer.id, answer.id))
 
 @decorators.render("question.html", 'questions')
 def question(request, id, slug='', answer=None):
@@ -375,6 +375,10 @@ def question(request, id, slug='', answer=None):
             subscription = False
     else:
         subscription = False
+    try:
+        focused_answer_id = int(request.GET.get("focusedAnswerId", None))
+    except TypeError, ValueError:
+        focused_answer_id = None
 
     return pagination.paginated(request, ('answers', AnswerPaginatorContext()), {
     "question" : question,
@@ -383,6 +387,7 @@ def question(request, id, slug='', answer=None):
     "similar_questions" : question.get_related_questions(),
     "subscription": subscription,
     "embed_youtube_videos" : settings.EMBED_YOUTUBE_VIDEOS,
+    "focused_answer_id" : focused_answer_id
     })
 
 
