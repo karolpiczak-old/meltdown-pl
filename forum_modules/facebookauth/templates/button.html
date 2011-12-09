@@ -7,7 +7,7 @@
         var FB_API_KEY = "{{ provider.API_KEY }}";
         FB.init({
             appId:FB_API_KEY, cookie:true,
-            status:true, xfbml:true
+            status:true, xfbml:true, oauth:true
         });
         FB.getLoginStatus(function(response) {
             if (response.session) {
