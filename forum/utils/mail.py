@@ -52,6 +52,8 @@ def create_and_send_mail_messages(messages):
     sender.append('<%s>' % unicode(settings.DEFAULT_FROM_EMAIL))
     sender = u'%s <%s>' % (unicode(settings.APP_SHORT_NAME), unicode(settings.DEFAULT_FROM_EMAIL))
 
+    reply_to = unicode(settings.DEFAULT_REPLY_TO_EMAIL)
+
     try:
         connection = None
 
@@ -70,6 +72,9 @@ def create_and_send_mail_messages(messages):
             to = Header(recipient.username, 'utf-8')
             to.append('<%s>' % recipient.email)
             msgRoot['To'] = to
+
+            if reply_to:
+                msgRoot['Reply-To'] = reply_to
 
             msgRoot.preamble = 'This is a multi-part message from %s.' % unicode(settings.APP_SHORT_NAME).encode('utf8')
 

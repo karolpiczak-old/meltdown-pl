@@ -43,6 +43,11 @@ label = _("Site 'from' Email Address"),
 help_text = _("The address that will show up on the 'from' field on emails sent by your website."),
 required=False))
 
+DEFAULT_REPLY_TO_EMAIL = Setting('DEFAULT_REPLY_TO_EMAIL', '', EMAIL_SET, dict(
+label = _("Site 'reply-to' Email Address"),
+help_text = _("The address that will show up on the 'reply-to' field on emails sent by your website."),
+required=False))
+
 EMAIL_SUBJECT_PREFIX = Setting('EMAIL_SUBJECT_PREFIX', '', EMAIL_SET, dict(
 label = _("Email Subject Prefix"),
 help_text = _("Every email sent through your website will have the subject prefixed by this string. It's usually a good idea to have such a prefix so your users can easily set up a filter on their email clients."),
