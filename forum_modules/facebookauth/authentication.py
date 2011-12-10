@@ -1,17 +1,20 @@
-import hashlib
-from time import time
-from datetime import datetime
+# -*- coding: utf-8 -*-
+
+import cgi
+import logging
+
 from urllib import urlopen,  urlencode
-from urlparse import parse_qs
 from forum.authentication.base import AuthenticationConsumer, ConsumerTemplateContext, InvalidAuthentication
-from django.utils.translation import ugettext as _
+
+from django.conf import settings as django_settings
 from django.utils.encoding import smart_unicode
+from django.utils.translation import ugettext as _
 
 import settings
 
 try:
     from json import load as load_json
-except:
+except Exception:
     from django.utils.simplejson import JSONDecoder
 
     def load_json(json):
@@ -19,60 +22,54 @@ except:
         return decoder.decode(json.read())
 
 class FacebookAuthConsumer(AuthenticationConsumer):
+
+    def prepare_authentication_request(self, request, redirect_to):
+        args = dict(
+            client_id=settings.FB_API_KEY,
+            redirect_uri="%s%s" % (django_settings.APP_URL, redirect_to),
+            scope="email"
+        )
+
+        facebook_api_authentication_url = "https://graph.facebook.com/oauth/authorize?" + urlencode(args)
+
+        return facebook_api_authentication_url
     
     def process_authentication_request(self, request):
-        API_KEY = str(settings.FB_API_KEY)
+        try:
+            args = dict(client_id=settings.FB_API_KEY, redirect_uri="%s%s" % (django_settings.APP_URL, request.path))
 
-        # Check if the Facebook cookie has been received.
-        if 'fbs_%s' % API_KEY in request.COOKIES:
-            fbs_cookie = request.COOKIES['fbs_%s' % API_KEY]
-            parsed_fbs = parse_qs(smart_unicode(fbs_cookie))
-            self.parsed_fbs = parsed_fbs
+            args["client_secret"] = settings.FB_APP_SECRET  #facebook APP Secret
 
-            # Check if the session hasn't expired.
-            if self.check_session_expiry(request.COOKIES):
-                return parsed_fbs['uid'][0]
-            else:
-                raise InvalidAuthentication(_('Sorry, your Facebook session has expired, please try again'))
-        else:
-            raise InvalidAuthentication(_('The authentication with Facebook connect failed, cannot find authentication tokens'))
-    def check_session_expiry(self, cookies):
-        return datetime.fromtimestamp(float(self.parsed_fbs['expires'][0])) > datetime.now()
+            args["code"] = request.GET.get("code", None)
+            response = cgi.parse_qs(urlopen("https://graph.facebook.com/oauth/access_token?" + urlencode(args)).read())
+            access_token = response["access_token"][-1]
 
-    def get_user_data(self, cookies):
-        API_KEY = str(settings.FB_API_KEY)
-        fbs_cookie = cookies['fbs_%s' % API_KEY]
-        parsed_fbs = parse_qs(smart_unicode(fbs_cookie))
+            # Store the access token in cookie
+            request.session["assoc_key"] = access_token
 
-        # Communicate with the access token to the Facebook oauth interface.
-        json = load_json(urlopen('https://graph.facebook.com/me?access_token=%s' % parsed_fbs['access_token'][0]))
+            return access_token
+        except Exception, e:
+            logging.error("Problem during facebook authentication: %s" % e)
+            raise InvalidAuthentication(_("Something wrond happened during Facebook authentication, administrators will be notified"))
 
-        first_name = smart_unicode(json['first_name'])
-        last_name = smart_unicode(json['last_name'])
-        full_name = '%s %s' % (first_name, last_name)
+    def get_user_data(self, assoc_key):
+        profile = load_json(urlopen("https://graph.facebook.com/me?" + urlencode(dict(access_token=assoc_key))))
 
-        # There is a limit in the Django user model for the username length (no more than 30 characaters)
-        if len(full_name) <= 30:
-            username = full_name
-        # If the full name is too long use only the first
-        elif len(first_name) <= 30:
-            username = first_name
-        # If it's also that long -- only the last
-        elif len(last_name) <= 30:
-            username = last_name
-        # If the real name of the user is indeed that weird, let him choose something on his own =)
-        else:
-            username = ''
+        name = profile["name"]
 
         # Check whether the length if the email is greater than 75, if it is -- just replace the email
         # with a blank string variable, otherwise we're going to have trouble with the Django model.
-        email = smart_unicode(json['email'])
+        email = smart_unicode(profile['email'])
         if len(email) > 75:
             email = ''
 
+        # If the name is longer than 30 characters - leave it blank
+        if len(name) > 30:
+            name = ''
+
         # Return the user data.
         return {
-            'username': username,
+            'username': name,
             'email': email,
         }
 

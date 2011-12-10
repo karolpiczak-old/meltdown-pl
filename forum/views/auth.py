@@ -196,11 +196,7 @@ def external_register(request):
 
         provider_class = AUTH_PROVIDERS[auth_provider].consumer
 
-        # Pass the cookies to the Facebook authentication class get_user_data method. We need them to take the access token.
-        if provider_class.__class__.__name__ == 'FacebookAuthConsumer':
-            user_data = provider_class.get_user_data(request.COOKIES)
-        else:
-            user_data = provider_class.get_user_data(request.session['assoc_key'])
+        user_data = provider_class.get_user_data(request.session['assoc_key'])
 
         if not user_data:
             user_data = request.session.get('auth_consumer_data', {})

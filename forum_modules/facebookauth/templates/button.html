@@ -1,31 +1,3 @@
 {% load extra_tags %}
 
-<div id="fb-root"></div>
-<script src="http://connect.facebook.net/en_US/all.js"></script>
-<script>
-    function check_login_status() {
-        var FB_API_KEY = "{{ provider.API_KEY }}";
-        FB.init({
-            appId:FB_API_KEY, cookie:true,
-            status:true, xfbml:true, oauth:true
-        });
-        FB.getLoginStatus(function(response) {
-            if (response.session) {
-                redirect_to_done_page();
-            } else {
-                FB.login(function(response) {
-                    if (response.session) {
-                      redirect_to_done_page();
-                    } else {
-                      // user cancelled login
-                    }
-                }, {perms:'email'});
-            }
-        });
-    }
-
-    function redirect_to_done_page() {
-        window.location = "{% url auth_provider_done provider=provider.id %}";
-    }
-</script>
-<a style="position: relative; top: -8px;" href="javascript:void(0);" onclick="check_login_status()" perms="email"><img src="{% media '/media/images/openid/facebook.gif' %}" /></a>
+<a style="position: relative; top: -8px;" href="{% url auth_provider_signin provider="facebook" %}"><img src="{% media '/media/images/openid/facebook.gif' %}" /></a>

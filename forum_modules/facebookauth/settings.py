@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from forum.settings import EXT_KEYS_SET
 from forum.settings.base import Setting
 
