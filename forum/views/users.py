@@ -131,7 +131,7 @@ def online_users(request):
     })
 
 
-def edit_user(request, id):
+def edit_user(request, id, slug):
     user = get_object_or_404(User, id=id)
     if not (request.user.is_superuser or request.user == user):
         return HttpResponseUnauthorized(request)

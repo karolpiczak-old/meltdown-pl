@@ -71,7 +71,10 @@ class SuperUserSwitchMenuItem(ui.UserMenuItem):
 ui.register(ui.USER_MENU,
             ui.UserMenuItem(
                 label=_("edit profile"),
-                url=lambda u, c: reverse('edit_user', kwargs={'id': c['user'].id}),
+                url=lambda u, c: reverse('edit_user', kwargs={
+                    'id': c['user'].id,
+                    'slug' : slugify(c['user'].username)
+                }),
                 span_attrs={'class': 'user-edit'},
                 weight=0,
                 name='EDIT_PROFILE'

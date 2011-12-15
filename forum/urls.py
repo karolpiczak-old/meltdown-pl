@@ -100,7 +100,7 @@ core_urls = (
     url(r'^%s$' % _('users/'), app.users.users, name='users'),
     # url(r'^%s$' % _('online_users/'), app.users.online_users, name='online_users'),    
     
-    url(r'^%s(?P<id>\d+)/%s$' % (_('users/'), _('edit/')), app.users.edit_user, name='edit_user'),
+    url(r'^%s(?P<id>\d+)/(?P<slug>.*)/%s$' % (_('users/'), _('edit/')), app.users.edit_user, name='edit_user'),
     url(r'^%s(?P<id>\d+)/%s$' % (_('users/'), _('award/')), app.users.award_points, name='user_award_points'),
     url(r'^%s(?P<id>\d+)/%s$' % (_('users/'), _('suspend/')), app.users.suspend, name='user_suspend'),
     url(r'^%s(?P<id>\d+)/%s(?P<action>[a-z]+)/(?P<status>[a-z]+)/$' % (_('users/'), _('powers/')), app.users.user_powers, name='user_powers'),
