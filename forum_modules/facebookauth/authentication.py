@@ -44,16 +44,22 @@ class FacebookAuthConsumer(AuthenticationConsumer):
             response = cgi.parse_qs(urlopen("https://graph.facebook.com/oauth/access_token?" + urlencode(args)).read())
             access_token = response["access_token"][-1]
 
-            # Store the access token in cookie
-            request.session["assoc_key"] = access_token
 
-            return access_token
+            user_data = self.get_user_data(access_token)
+            assoc_key = user_data["id"]
+
+            # Store the access token in cookie
+            request.session["access_token"] = access_token
+            request.session["assoc_key"] = assoc_key
+
+            # Return the association key
+            return assoc_key
         except Exception, e:
             logging.error("Problem during facebook authentication: %s" % e)
             raise InvalidAuthentication(_("Something wrond happened during Facebook authentication, administrators will be notified"))
 
-    def get_user_data(self, assoc_key):
-        profile = load_json(urlopen("https://graph.facebook.com/me?" + urlencode(dict(access_token=assoc_key))))
+    def get_user_data(self, access_token):
+        profile = load_json(urlopen("https://graph.facebook.com/me?" + urlencode(dict(access_token=access_token))))
 
         name = profile["name"]
 
@@ -69,6 +75,7 @@ class FacebookAuthConsumer(AuthenticationConsumer):
 
         # Return the user data.
         return {
+            'id' : profile['id'],
             'username': name,
             'email': email,
         }

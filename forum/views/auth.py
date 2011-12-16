@@ -196,7 +196,11 @@ def external_register(request):
 
         provider_class = AUTH_PROVIDERS[auth_provider].consumer
 
-        user_data = provider_class.get_user_data(request.session['assoc_key'])
+        if provider_class.__class__.__name__ == 'FacebookAuthConsumer':
+            user_data = provider_class.get_user_data(request.session['access_token'])
+        else:
+            user_data = provider_class.get_user_data(request.session['assoc_key'])
+
 
         if not user_data:
             user_data = request.session.get('auth_consumer_data', {})
