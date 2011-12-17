@@ -3,6 +3,7 @@
 import datetime
 import logging
 import urllib
+from urlparse import urlparse
 
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
@@ -407,7 +408,16 @@ def login_and_forward(request, user, forward=None, message=None):
             return manage_pending_data(request, _('save'), forward)
 
     additional_get_params = urllib.urlencode(request.GET)
-    return HttpResponseRedirect(forward + "?%s" % additional_get_params)
+
+    parsed_forward = urlparse(forward)
+
+    # If there is already some parsed query in the URL then change the forward URL
+    if parsed_forward.query:
+        forward_url = forward + "&%s" % additional_get_params
+    else:
+        forward_url = forward + "?%s" % additional_get_params
+
+    return HttpResponseRedirect(forward_url)
 
 def forward_suspended_user(request, user, show_private_msg=True):
     message = _("Sorry, but this account is suspended")
