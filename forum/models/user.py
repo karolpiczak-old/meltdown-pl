@@ -4,7 +4,7 @@ from django.conf import settings as django_settings
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User as DjangoUser, AnonymousUser as DjangoAnonymousUser
-from django.db.models import Q
+from django.db.models import Q, Manager
 
 from django.utils.encoding import smart_unicode
 
@@ -110,6 +110,20 @@ def false_if_validation_required_to(item):
         return decorated
     return decorator
 
+class UserManager(CachedManager):
+    def get(self, *args, **kwargs):
+        if not len(args) and len(kwargs) == 1 and 'username' in kwargs:
+            matching_users = self.filter(username=kwargs['username'])
+            
+            if len(matching_users) == 1:
+                return matching_users[0]
+            else:
+                for user in matching_users:
+                    if user.username == kwargs['username']:
+                        return user
+                return matching_users[0]
+        return super(UserManager, self).get(*args, **kwargs)
+
 class User(BaseModel, DjangoUser):
     is_approved = models.BooleanField(default=False)
     email_isvalid = models.BooleanField(default=False)
@@ -130,6 +144,8 @@ class User(BaseModel, DjangoUser):
 
     vote_up_count = DenormalizedField("actions", canceled=False, action_type="voteup")
     vote_down_count = DenormalizedField("actions", canceled=False, action_type="votedown")
+
+    objects = UserManager()
 
     def __unicode__(self):
         return smart_unicode(self.username)
