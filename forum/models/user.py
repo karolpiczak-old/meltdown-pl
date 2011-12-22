@@ -117,7 +117,7 @@ class UserManager(CachedManager):
             
             if len(matching_users) == 1:
                 return matching_users[0]
-            else:
+            elif len(matching_users) > 1:
                 for user in matching_users:
                     if user.username == kwargs['username']:
                         return user
