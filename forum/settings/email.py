@@ -31,7 +31,7 @@ EMAIL_HOST_PASSWORD = Setting('EMAIL_HOST_PASSWORD', '', EMAIL_SET, dict(
 label = _("Email Password"),
 help_text = _("The password for your SMTP connection."),
 required=False,
-widget=PasswordInput))
+widget=PasswordInput(render_value=True)))
 
 EMAIL_USE_TLS = Setting('EMAIL_USE_TLS', False, EMAIL_SET, dict(
 label = _("Use TLS"),
