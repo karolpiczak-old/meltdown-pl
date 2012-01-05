@@ -218,17 +218,17 @@ def delete_comment(request, id):
 
 @decorate.withfn(command)
 def mark_favorite(request, id):
-    question = get_object_or_404(Question, id=id)
+    node = get_object_or_404(Node, id=id)
 
     if not request.user.is_authenticated():
         raise AnonymousNotAllowedException(_('mark a question as favorite'))
 
     try:
-        favorite = FavoriteAction.objects.get(canceled=False, node=question, user=request.user)
+        favorite = FavoriteAction.objects.get(canceled=False, node=node, user=request.user)
         favorite.cancel(ip=request.META['REMOTE_ADDR'])
         added = False
     except ObjectDoesNotExist:
-        FavoriteAction(node=question, user=request.user, ip=request.META['REMOTE_ADDR']).save()
+        FavoriteAction(node=node, user=request.user, ip=request.META['REMOTE_ADDR']).save()
         added = True
 
     return {
