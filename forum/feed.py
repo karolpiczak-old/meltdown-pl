@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 try:
     from django.contrib.syndication.views import Feed, FeedDoesNotExist, add_domain
     old_version = False
@@ -24,33 +26,33 @@ class BaseNodeFeed(Feed):
         description_template = "feeds/rss_description.html"
 
     def __init__(self, request, title, description, url):
-        self._title = title
-        self._description = mark_safe(description.encode("utf-8"))
+        self._title = u"%s" % smart_unicode(title)
+        self._description = mark_safe(u"%s" % smart_unicode(description))
         self._url = url
 
         if old_version:
             super(BaseNodeFeed, self).__init__('', request)
 
     def title(self):
-        return self._title
+        return u"%s" % smart_unicode(self._title)
 
     def link(self):
         return self._url
 
     def description(self):
-        return self._description
+        return u"%s" % smart_unicode(self._description)
 
     def item_title(self, item):
-        return item.title
+        return u"%s" % smart_unicode(item.title)
 
     def item_description(self, item):
-        return item.html
+        return u"%s" % smart_unicode(item.html)
 
     def item_link(self, item):
         return item.leaf.get_absolute_url()
 
     def item_author_name(self, item):
-        return item.author.username
+        return u"%s" % smart_unicode(item.author.username)
 
     def item_author_link(self, item):
         return item.author.get_profile_url()
