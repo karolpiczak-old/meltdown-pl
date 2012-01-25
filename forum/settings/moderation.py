@@ -3,7 +3,7 @@ from forms import StringListWidget
 
 from django.utils.encoding import smart_unicode
 from django.utils.translation import ugettext_lazy as _
-from django.forms.widgets import Textarea
+from django.forms.widgets import Textarea, RadioSelect
 
 MODERATION_SET = SettingSet('moderation', _('Moderation settings'), _("Define the moderation workflow of your site"), 100)
 
@@ -41,3 +41,17 @@ MODERATION_SET, dict(
 label = _("Close Reasons"),
 help_text = _("Create some close reasons to use in the close question popup."),
 widget=StringListWidget))
+
+
+# Flag control position
+REPORT_OFFENSIVE_CONTROL_POSITION_CHOICES = (
+    ('more', _('Position it in the "More" menu')),
+    ('controls', _('Position it in main controls')),
+)
+
+REPORT_OFFENSIVE_CONTROL_POSITION = Setting('REPORT_OFFENSIVE_CONTROL_POSITION', 'more', MODERATION_SET, dict(
+label = _("Position of report control"),
+help_text = _("Choose the position of the \"report (0)\" control of nodes."),
+widget=RadioSelect,
+choices=REPORT_OFFENSIVE_CONTROL_POSITION_CHOICES,
+required=False))
