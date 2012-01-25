@@ -77,9 +77,13 @@ def post_classes(post):
 
     return " ".join(classes)
 
-def post_control(text, url, command=False, withprompt=False, confirm=False, title="", copy=False):
+def post_control(text, url, command=False, withprompt=False, confirm=False, title="", copy=False, extra_classes=[]):
     classes = (command and "ajax-command" or " ") + (withprompt and " withprompt" or " ") + (confirm and " confirm" or " ") + \
         (copy and " copy" or " ")
+
+    for extra_class in extra_classes:
+        classes += " %s" % extra_class
+
     return {'text': text, 'url': url, 'classes': classes, 'title': title}
 
 
