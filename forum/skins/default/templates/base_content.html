@@ -2,7 +2,7 @@
 <!-- base_content.html -->
 {% load i18n extra_tags extra_filters markup ui_registry %}
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head>{% block after_head_js %}{% endblock %}
         <title>{% block fulltitle %}{% block title %}{% endblock %} - {{ settings.APP_SHORT_NAME }}{% endblock %}</title>
         <meta name="description" content="{% block metadescription %}{{ settings.APP_DESCRIPTION }}{% endblock %}" />
         <meta name="keywords" content="{% block metakeywords %}{{ settings.APP_KEYWORDS }}{% endblock %}" />
