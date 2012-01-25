@@ -24,7 +24,9 @@
 {% endblock %}
 
 {% block sidebar %}
-    {% if user.is_superuser %}
+    {% if hide_navigation %}
+
+    {% else %}
     <div class="boxC">
         <a href="{% url admin_switch_interface %}?to=djstyle">{% trans "Switch to django style interface" %}</a>
         <h3 class="subtitle">{% trans "Administration menu" %}</h3>

@@ -43,7 +43,7 @@
             {% block pagename %}{% endblock %} - 
             {% block description %}{% endblock %}
         </div>
-        <div id="content" class="{% if hide_menu %}flex{% else %}colMS{% endif %}">
+        <div id="content" class="{% if hide_navigation %}flex{% else %}colMS{% endif %}">
             <div id="content-main">
             {% autoescape off %}
                 {% for message in user_messages %}
@@ -52,7 +52,9 @@
             {% endautoescape %}
                 {% block admincontent %}{% endblock %}
             </div>
-            {% if not hide_menu %}
+            {% if hide_navigation %}
+
+            {% else %}
             <div id="content-related">
                 {% if unsaved %}
                 <div id="changes-box" class="module">

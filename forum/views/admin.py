@@ -57,6 +57,10 @@ def admin_page_wrapper(fn, request, *args, **kwargs):
 
     context['tools'] = [(name, fn.label) for name, fn in TOOLS.items()]
 
+    # Show the navigation only to moderators and super users
+    if not context.has_key("hide_navigation"):
+        context['hide_navigation'] = not request.user.is_superuser
+
     unsaved = request.session.get('previewing_settings', {})
     context['unsaved'] = set([getattr(settings, s).set.name for s in unsaved.keys() if hasattr(settings, s)])
 
@@ -572,7 +576,7 @@ def node_management(request):
     'state_types': state_types,
     'authors': authors,
     'tags': tags,
-    'hide_menu': True
+    'hide_navigation': True
     }))
 
 @csrf_exempt
