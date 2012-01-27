@@ -245,7 +245,7 @@ class Node(BaseModel, NodeContent):
     marked = models.BooleanField(default=False)
 
     comment_count = DenormalizedField("children", node_type="comment", canceled=False)
-    flag_count = DenormalizedField("flags")
+    flag_count = DenormalizedField("actions", action_type="flag", canceled=False)
 
     friendly_name = _("post")
 
