@@ -236,7 +236,7 @@ def suspend(request, id):
             return render_to_response('users/suspend_user.html')
 
     data = {
-        'bantype': request.POST.get('bantype', 'indefinetly').strip(),
+        'bantype': request.POST.get('bantype', 'Indefinitely').strip(),
         'publicmsg': request.POST.get('publicmsg', _('Bad behaviour')),
         'privatemsg': request.POST.get('privatemsg', None) or request.POST.get('publicmsg', ''),
         'suspended': user
